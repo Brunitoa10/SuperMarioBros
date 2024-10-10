@@ -1,5 +1,5 @@
 package EstadoJugador;
 
-public class EstadoJugador {
+public interface EstadoJugador {
 
 }
