@@ -1,6 +1,6 @@
 package Vista;
 
-public class ConstanteVista {
+public class ConstantesVista {
     public static final int VENTANA_ALTO = 600;
     public static final int VENTANA_ANCHO = 800;
 
