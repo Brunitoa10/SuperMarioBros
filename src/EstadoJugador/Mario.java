@@ -1,4 +1,17 @@
 package EstadoJugador;
 
-public class Mario {
+public class Mario implements EstadoJugador {
+    public Mario() {
+
+    }
+
+    @Override
+    public void recibeDanio() {
+
+    }
+
+    @Override
+    public void lanzarBolaFuego() {
+
+    }
 }

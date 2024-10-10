@@ -1,4 +1,10 @@
 package Entidades.Power_Ups;
 
-public class FlorDeFuego {
+import Fabricas.Sprite;
+
+public class FlorDeFuego extends PowerUp {
+
+    public FlorDeFuego(int x, int y, Sprite sprite, int velocidad, int puntaje) {
+        super(x, y, sprite, velocidad, puntaje);
+    }
 }

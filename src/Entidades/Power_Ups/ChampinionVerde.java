@@ -1,4 +1,12 @@
 package Entidades.Power_Ups;
 
-public class ChampinionVerde {
+import Entidades.EntidadMovil;
+import Fabricas.Sprite;
+
+public class ChampinionVerde extends PowerUp {
+
+    public ChampinionVerde(int x, int y, Sprite sprite, int velocidad, int puntaje) {
+        super(x, y, sprite, velocidad, puntaje);
+    }
+
 }

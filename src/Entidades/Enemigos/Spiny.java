@@ -1,8 +1,12 @@
 package Entidades.Enemigos;
 
-public class Spiny {
+import Fabricas.Sprite;
+
+public class Spiny extends Enemigo {
     private int PuntajeDeath;
 
 
-
+    public Spiny(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+    }
 }
