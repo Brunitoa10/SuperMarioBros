@@ -5,6 +5,7 @@ import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
+import Visitor.Visitor;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
@@ -65,5 +66,15 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public int get_vida() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'get_vida'");
+    }
+
+    @Override
+    public boolean detectColision(Colisionable c) {
+        return false;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+
     }
 }

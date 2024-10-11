@@ -3,7 +3,7 @@ package Entidades;
 import Fabricas.Sprite;
 import Vista.ObserverGrafica.Observer;
 
-public abstract class Entidad implements EntidadLogica {
+public abstract class Entidad implements EntidadLogica,Colisionable {
     protected int posicionX;
     protected int posicionY;
     protected int ancho;
