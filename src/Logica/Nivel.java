@@ -72,4 +72,17 @@ public class Nivel {
     public void agregarProyectiles(Proyectil proyectiles) {
         this.proyectiles.addLast(proyectiles);
     }
+
+    public void sumarVida(int cantVidas) {
+        this.vida += cantVidas;
+    }
+
+    public boolean sinVidas() {
+        return vida > 0;
+    }
+
+    public void perdioVida() {
+        vida--;
+    }
+
 }
