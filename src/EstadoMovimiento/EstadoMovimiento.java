@@ -1,6 +1,8 @@
 package EstadoMovimiento;
 
+import Entidades.Jugador;
+
 public interface EstadoMovimiento {
     public void saltar();
-    public void caminar();
+    public void desplazarEnX(int direccion);
 }
