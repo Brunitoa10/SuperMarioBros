@@ -6,6 +6,7 @@ import EstadoMovimiento.EstadoMovimiento;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Visitor.Visitor;
+import Visitor.VisitorJugador;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
@@ -13,7 +14,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
-
+    protected VisitorJugador VJ;
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         this.puntaje = 0;

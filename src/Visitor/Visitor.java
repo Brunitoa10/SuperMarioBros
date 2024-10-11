@@ -6,8 +6,8 @@ import Entidades.Jugador;
 import Entidades.Power_Ups.PowerUp;
 
 public interface Visitor {
-    public void visitPersonaje(Jugador j);
-    public void visitEnemigo(Enemigo e);
-    public void visitPowerUp(PowerUp p);
-    public void visitMoneda(Moneda m);
+    public void visit(Jugador j);
+    public void visit(Enemigo e);
+    public void visit(Moneda p);
+    public void visit(PowerUp m);
 }
