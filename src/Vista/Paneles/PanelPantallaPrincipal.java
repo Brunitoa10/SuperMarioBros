@@ -1,5 +1,6 @@
 package Vista.Paneles;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +16,13 @@ import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaPrincipal extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private ControladorVista controlador_vistas;
     private JLabel imagen_fondo;
-    private JButton boton_iniciar;
+    private JButton btn_iniciar_juego;
     private JButton boton_puntajes;
 
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
@@ -34,37 +39,49 @@ public class PanelPantallaPrincipal extends JPanel {
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
                 ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
+        setLayout(null);
         imagen_fondo.setIcon(icono_imagen_escalado);
-        imagen_fondo.setBounds(10, 28, ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
+        imagen_fondo.setBounds(0, 5, 800, 600);
         add(imagen_fondo);
     }
 
     protected void agregar_boton_iniciar() {
-        boton_iniciar = new JButton();
+
+        System.out.println("Agregue boton inicio");
+
+        btn_iniciar_juego = new JButton("");
+        btn_iniciar_juego.setBounds(300, 391, 230, 57);
+
         decorar_boton_iniciar();
+        add(btn_iniciar_juego);
+
         registrar_oyente_boton_iniciar();
-        add(boton_iniciar);
     }
 
     protected void agregar_boton_puntaje() {
         boton_puntajes = new JButton();
-        boton_puntajes.setBounds(0, 0, 800, 600);
+        boton_puntajes.setBounds(402, 610, 33, 9);
         decorar_boton_puntajes();
         registrar_oyente_boton_puntajes();
         add(boton_puntajes);
     }
 
     protected void decorar_boton_iniciar() {
-        transparentar_boton(boton_iniciar);
+        System.out.println("Decorando boton inicio");
+        btn_iniciar_juego.setBackground(new Color(255, 255, 255));
+        transparentar_boton(btn_iniciar_juego);
     }
 
     protected void decorar_boton_puntajes() {
         transparentar_boton(boton_puntajes);
+        boton_puntajes.setBounds((ConstantesVista.PANEL_ANCHO / 2) - 130, ConstantesVista.PANEL_ALTO - 90, 260, 50);
     }
 
     protected void registrar_oyente_boton_iniciar() {
-        boton_iniciar.addActionListener(new ActionListener() {
+        System.out.println("Registrando boton inicio");
+        btn_iniciar_juego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Boton inicio apretado");
                 controlador_vistas.accionar_inicio_juego();
             }
         });

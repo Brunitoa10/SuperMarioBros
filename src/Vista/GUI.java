@@ -56,7 +56,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     // De interfaz ControladorDeVistas
-
     public void accionar_inicio_juego() {
         mi_juego.iniciar();
     }
@@ -66,7 +65,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     public void accionar_pantalla_modo_juego() {
-        // To Do
+        System.out.println("Seleccione un modo de juego");
     }
 
     public void cambiar_modo_juego(int modo) {

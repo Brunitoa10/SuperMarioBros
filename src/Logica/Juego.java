@@ -17,8 +17,8 @@ public class Juego {
     }
 
     public void iniciar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iniciar'");
+        System.out.println("Logica mostrar modo de juego");
+        controlador_vistas.mostrar_pantalla_nivel();
     }
 
 }
