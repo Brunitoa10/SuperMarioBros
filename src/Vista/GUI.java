@@ -5,6 +5,12 @@ import javax.swing.JFrame;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
+import Vista.Controladores.ConstantesVista;
+import Vista.Controladores.ControladorVista;
+import Vista.Controladores.ControladorVistaJuego;
+import Vista.ObserverGrafica.Observer;
+import Vista.Paneles.PanelPantallaNivel;
+import Vista.Paneles.PanelPantallaPrincipal;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
@@ -88,7 +94,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     public void mostrar_pantalla_fin_juego() {
-
+        ventana.setContentPane(panel_pantalla_fin_juego);
+        refrescar();
     }
 
     protected void refrescar() {

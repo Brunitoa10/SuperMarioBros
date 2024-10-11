@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Paneles;
 
 import javax.swing.JPanel;
 

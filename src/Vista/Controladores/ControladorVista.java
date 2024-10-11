@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Controladores;
 
 public interface ControladorVista {
     public void accionar_inicio_juego();

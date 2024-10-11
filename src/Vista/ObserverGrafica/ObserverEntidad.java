@@ -1,4 +1,4 @@
-package Vista;
+package Vista.ObserverGrafica;
 
 import Entidades.EntidadLogica;
 

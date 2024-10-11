@@ -1,7 +1,8 @@
-package Vista;
+package Vista.Controladores;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Vista.ObserverGrafica.Observer;
 
 public interface ControladorVistaJuego {
     public Observer registrar_entidad(EntidadLogica entidad_logica);

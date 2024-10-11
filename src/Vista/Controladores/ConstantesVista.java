@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Controladores;
 
 public class ConstantesVista {
     public static final int VENTANA_ALTO = 600;

@@ -1,6 +1,7 @@
-package Vista;
+package Vista.ObserverGrafica;
 
 import Entidades.EntidadJugador;
+import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverJugador extends ObserverGrafica {
 
@@ -15,17 +16,8 @@ public class ObserverJugador extends ObserverGrafica {
     }
 
     @Override
-    public void actualizar_imagen() {
-
-    }
-
-    @Override
-    public void actualizar_posicion_tamanio() {
-
-    }
-
-    @Override
     public void actualizar_observer() {
         super.actualizar_observer();
+        // panel_pantalla_nivel.actualizar_estado_jugador(jugador_observado);
     }
 }
