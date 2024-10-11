@@ -1,8 +1,9 @@
 package Entidades.Power_Ups;
 
-import Entidades.EntidadMovil;
+import Entidades.Colisionable;
 import Fabricas.Sprite;
 import Logica.Nivel;
+import Visitor.Visitor;
 
 public class ChampinionVerde extends PowerUp {
 
@@ -15,4 +16,11 @@ public class ChampinionVerde extends PowerUp {
         nivel.sumarVida(1);
     }
 
+    public boolean detectColision(Colisionable c) {
+        return c.detectColision(this);
+    }
+
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
 }
