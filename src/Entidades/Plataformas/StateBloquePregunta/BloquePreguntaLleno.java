@@ -1,4 +1,5 @@
 package Entidades.Plataformas.StateBloquePregunta;
 
-public class BloquePreguntaLleno {
+public class BloquePreguntaLleno implements EstadoBloquePregunta {
+
 }

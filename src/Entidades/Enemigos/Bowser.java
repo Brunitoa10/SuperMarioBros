@@ -1,7 +1,14 @@
 package Entidades.Enemigos;
 
-public class Bowser {
-    private int PuntajeDeath;
+import Fabricas.Sprite;
 
+public class Bowser extends Enemigo {
+    private int puntajeDeath;
+
+
+    public Bowser(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+        velocidad = 4;
+    }
 
 }

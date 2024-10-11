@@ -1,4 +1,10 @@
 package Entidades.Plataformas;
 
-public class BloqueSolido {
+import Fabricas.Sprite;
+
+public class BloqueSolido extends Plataforma {
+
+    public BloqueSolido(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+    }
 }

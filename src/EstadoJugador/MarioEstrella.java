@@ -1,4 +1,13 @@
 package EstadoJugador;
 
-public class MarioEstrella {
+public class MarioEstrella implements EstadoJugador{
+    @Override
+    public void recibeDanio() {
+
+    }
+
+    @Override
+    public void lanzarBolaFuego() {
+
+    }
 }

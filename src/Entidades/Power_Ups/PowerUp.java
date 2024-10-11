@@ -1,8 +1,15 @@
 package Entidades.Power_Ups;
 
-public abstract class PowerUp {
+import Entidades.EntidadMovil;
+import Fabricas.Sprite;
+
+public abstract class PowerUp extends EntidadMovil {
 
     protected int puntaje;
 
+    public PowerUp(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+        puntaje = 0;
+    }
 
 }

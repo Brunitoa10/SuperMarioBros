@@ -1,7 +1,13 @@
 package Entidades.Enemigos;
 
-public class Goomba {
+import Fabricas.Sprite;
+
+public class Goomba extends Enemigo {
     private int PuntajeDeath;
 
 
+    public Goomba(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+        velocidad = 4;
+    }
 }
