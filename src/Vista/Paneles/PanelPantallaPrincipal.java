@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,7 +23,6 @@ public class PanelPantallaPrincipal extends JPanel {
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
         this.controlador_vistas = controlador_vistas;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
-        setLayout(null);
         agregar_imagen_fondo();
         agregar_boton_iniciar();
         agregar_boton_puntaje();
@@ -30,12 +30,12 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void agregar_imagen_fondo() {
         imagen_fondo = new JLabel();
-        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/imagenes/Inicio.png"));
+        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/Inicio.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
                 ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
-        ImageIcon icono_imagen_escalado = new ImageIcon(imagen_escalada);
+        Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         imagen_fondo.setIcon(icono_imagen_escalado);
-        imagen_fondo.setBounds(0, 0, ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
+        imagen_fondo.setBounds(10, 28, ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
         add(imagen_fondo);
     }
 
@@ -48,6 +48,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void agregar_boton_puntaje() {
         boton_puntajes = new JButton();
+        boton_puntajes.setBounds(0, 0, 800, 600);
         decorar_boton_puntajes();
         registrar_oyente_boton_puntajes();
         add(boton_puntajes);
@@ -55,12 +56,10 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void decorar_boton_iniciar() {
         transparentar_boton(boton_iniciar);
-        boton_iniciar.setBounds((ConstantesVista.PANEL_ANCHO / 2) - 100, ConstantesVista.PANEL_ALTO - 150, 200, 50);
     }
 
     protected void decorar_boton_puntajes() {
         transparentar_boton(boton_puntajes);
-        boton_puntajes.setBounds((ConstantesVista.PANEL_ANCHO / 2) - 130, ConstantesVista.PANEL_ALTO - 90, 260, 50);
     }
 
     protected void registrar_oyente_boton_iniciar() {
