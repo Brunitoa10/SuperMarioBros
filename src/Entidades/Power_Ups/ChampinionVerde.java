@@ -5,8 +5,9 @@ import Fabricas.Sprite;
 
 public class ChampinionVerde extends PowerUp {
 
-    public ChampinionVerde(int x, int y, Sprite sprite, int puntaje) {
-        super(x, y, sprite, puntaje);
+    public ChampinionVerde(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+        puntaje = 0;
     }
 
 }

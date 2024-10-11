@@ -7,9 +7,9 @@ public abstract class PowerUp extends EntidadMovil {
 
     protected int puntaje;
 
-    public PowerUp(int x, int y, Sprite sprite, int puntaje) {
+    public PowerUp(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.puntaje = puntaje;
+        puntaje = 0;
     }
 
 }
