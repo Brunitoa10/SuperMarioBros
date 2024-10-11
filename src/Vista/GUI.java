@@ -1,5 +1,7 @@
 package Vista;
 
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 import Entidades.EntidadJugador;
@@ -35,6 +37,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
+        ventana.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/imagenes/mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
