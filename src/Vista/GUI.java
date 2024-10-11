@@ -9,20 +9,24 @@ import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
+import Vista.Paneles.PanelPantallaFinJuego;
 import Vista.Paneles.PanelPantallaNivel;
 import Vista.Paneles.PanelPantallaPrincipal;
+import Vista.Paneles.PanelPantallaRanking;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
     protected JFrame ventana;
     protected PanelPantallaNivel panel_pantalla_nivel;
     protected PanelPantallaPrincipal panel_pantalla_principal;
+    protected PanelPantallaFinJuego panel_pantalla_fin_juego;
+    protected PanelPantallaRanking panel_pantalla_ranking;
     protected Juego mi_juego;
 
     public GUI(Juego juego) {
         this.mi_juego = juego;
         panel_pantalla_nivel = new PanelPantallaNivel();
-        panel_pantalla_principal = new PanelPantallaPrincipal()
+        panel_pantalla_principal = new PanelPantallaPrincipal(this);
         configurar_ventana();
         registrar_oyente_ventana();
     }
@@ -80,21 +84,19 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         return observer_jugador;
     }
 
-    /*
-     * public Observer registrar_silueta(EntidadLogica silueta) {
-     * Observer observer_silueta = panel_pantalla_nivel.incorporar_silueta(silueta);
-     * refrescar();
-     * return observer_silueta;
-     * }
-     */
-
-    public void mostrar_pantalla_carrera() {
+    public void mostrar_pantalla_nivel() {
         ventana.setContentPane(panel_pantalla_nivel);
         refrescar();
     }
 
     public void mostrar_pantalla_fin_juego() {
         ventana.setContentPane(panel_pantalla_fin_juego);
+        refrescar();
+    }
+
+    @Override
+    public void mostar_pantalla_ranking() {
+        ventana.setContentPane(panel_pantalla_ranking);
         refrescar();
     }
 

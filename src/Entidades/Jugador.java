@@ -1,7 +1,10 @@
 package Entidades;
+
+import EstadoJugador.EstadoJugador;
+import EstadoJugador.Mario;
+import EstadoMovimiento.EstadoMovimiento;
+import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
-import EstadoJugador.*;
-import EstadoMovimiento.*;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
@@ -50,5 +53,17 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     @Override
     public void actualizar_entidad() {
 
+    }
+
+    @Override
+    public int get_tiempo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'get_tiempo'");
+    }
+
+    @Override
+    public int get_vida() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'get_vida'");
     }
 }
