@@ -5,6 +5,8 @@ import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
+import Visitor.Visitor;
+import Visitor.VisitorJugador;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
@@ -12,8 +14,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
-    protected String nombre;
-
+    protected VisitorJugador VJ;
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         this.puntaje = 0;
@@ -68,7 +69,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         throw new UnsupportedOperationException("Unimplemented method 'get_vida'");
     }
 
-    public void setNombre(String nombreParaRedefinir) {
-        nombre = nombreParaRedefinir.toLowerCase();
+    @Override
+    public boolean detectColision(Colisionable c) {
+        return false;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+
     }
 }
