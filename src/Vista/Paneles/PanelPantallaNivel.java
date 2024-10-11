@@ -103,7 +103,8 @@ public class PanelPantallaNivel extends JPanel {
 
     protected void agregar_imagen_fondo_panel_informacion() {
         imagen_fondo_panel_informacion = new JLabel();
-        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/imagenes/pantalla-informacion.png"));
+        ImageIcon icono_imagen = new ImageIcon(
+                this.getClass().getResource("/Recursos/imagenes/pantalla-informacion.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_INFORMACION_ANCHO,
                 ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
