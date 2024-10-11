@@ -7,9 +7,12 @@ import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
+import Vista.Controladores.ControlTeclado;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
+    protected static final int ALTURA_MAXIMA_SALTO = 200;
+    protected ControlTeclado controlTeclado;
     protected EstadoJugador estadoJugador;
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
@@ -20,7 +23,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.puntaje = 0;
         this.velocidad = 4;
         this.estadoJugador = new Mario();
-        this.estadoMovimiento = new MarioParado();
+        this.estadoMovimiento = new MarioParado(this);
+        this.controlTeclado = new ControlTeclado(this);
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -77,5 +81,17 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     @Override
     public void accept(Visitor v) {
 
+    }
+
+    public void desplazarEnX(int direccion) {
+        estadoMovimiento.desplazarEnX(direccion);
+    }
+
+    public void saltar() {
+        estadoMovimiento.saltar();
+    }
+
+    public int getAlturaMaximaSalto() {
+        return ALTURA_MAXIMA_SALTO;
     }
 }

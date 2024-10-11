@@ -1,6 +1,14 @@
 package EstadoMovimiento;
 
+import Entidades.Jugador;
+
 public class MarioAgachado implements EstadoMovimiento {
+
+    Jugador mario;
+
+    public MarioAgachado(Jugador mario) {
+        this.mario = mario;
+    }
 
     @Override
     public void saltar() {
@@ -8,7 +16,6 @@ public class MarioAgachado implements EstadoMovimiento {
     }
 
     @Override
-    public void caminar() {
-
+    public void desplazarEnX(int direccion) {
     }
 }
