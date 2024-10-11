@@ -1,6 +1,4 @@
 package Entidades.Power_Ups;
-
-import Entidades.EntidadMovil;
 import Fabricas.Sprite;
 
 public class Estrella extends PowerUp {
@@ -9,5 +7,6 @@ public class Estrella extends PowerUp {
         super(x, y, sprite);
         puntaje = 0;
     }
+
 
 }
