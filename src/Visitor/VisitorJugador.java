@@ -3,9 +3,11 @@ package Visitor;
 import Entidades.Enemigos.Enemigo;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.Jugador;
+import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Proyectiles.Proyectil;
 
-    public class VisitorJugador implements Visitor {
+public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Jugador J) {
@@ -24,6 +26,14 @@ import Entidades.Power_Ups.PowerUp;
 
     @Override
     public void visit(Moneda m) {
+
+    }
+
+    public void visit(Plataforma p){
+
+    }
+
+    public void visit(Proyectil proyectil){
 
     }
 }
