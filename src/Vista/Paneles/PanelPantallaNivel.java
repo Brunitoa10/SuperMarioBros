@@ -116,7 +116,7 @@ public class PanelPantallaNivel extends JPanel {
     protected void agregar_labels_editables_informacion() {
         label_puntaje = new JLabel("00000");
         label_tiempo = new JLabel("00000");
-        label_vida = new JLabel("00000");
+        label_vida = new JLabel("0");
         decorar_labels_informacion();
         imagen_fondo_panel_informacion.add(label_puntaje);
         imagen_fondo_panel_informacion.add(label_tiempo);
