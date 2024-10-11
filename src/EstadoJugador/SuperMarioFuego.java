@@ -10,4 +10,6 @@ public class SuperMarioFuego implements EstadoJugador{
     public void lanzarBolaFuego() {
 
     }
+
+
 }

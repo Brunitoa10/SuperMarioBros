@@ -12,6 +12,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
+    protected String nombre;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -65,5 +66,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public int get_vida() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'get_vida'");
+    }
+
+    public void setNombre(String nombreParaRedefinir) {
+        nombre = nombreParaRedefinir.toLowerCase();
     }
 }
