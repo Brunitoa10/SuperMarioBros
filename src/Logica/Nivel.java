@@ -54,6 +54,7 @@ public class Nivel {
 
     public void agregarJugador(Jugador jugador) {
         this.jugador = jugador;
+
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
