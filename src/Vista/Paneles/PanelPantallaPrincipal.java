@@ -60,7 +60,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void agregar_boton_puntaje() {
         boton_puntajes = new JButton();
-        boton_puntajes.setBounds(402, 610, 33, 9);
+        // boton_puntajes.setBounds(270, 484, 380, 76);
         decorar_boton_puntajes();
         registrar_oyente_boton_puntajes();
         add(boton_puntajes);
@@ -74,7 +74,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void decorar_boton_puntajes() {
         transparentar_boton(boton_puntajes);
-        boton_puntajes.setBounds((ConstantesVista.PANEL_ANCHO / 2) - 130, ConstantesVista.PANEL_ALTO - 90, 260, 50);
+        boton_puntajes.setBounds(176, 487, 471, 65);
     }
 
     protected void registrar_oyente_boton_iniciar() {

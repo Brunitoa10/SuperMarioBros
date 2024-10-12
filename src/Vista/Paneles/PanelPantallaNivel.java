@@ -1,6 +1,5 @@
 package Vista.Paneles;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -90,7 +89,6 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_informacion() {
-        // agregar_imagen_fondo_panel_informacion();
 
         setLayout(null);
 
@@ -129,25 +127,5 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_tiempo.setBounds(607, 15, 150, 14);
         add(lbl_tiempo);
-        agregar_labels_editables_informacion();
-    }
-
-    /*
-     * protected void agregar_imagen_fondo_panel_informacion() {
-     * ImageIcon icono_imagen = new ImageIcon(
-     * this.getClass().getResource("/Recursos/imagenes/pantalla-informacion.png"));
-     * Image imagen_escalada =
-     * icono_imagen.getImage().getScaledInstance(ConstantesVista.
-     * PANEL_INFORMACION_ANCHO,
-     * ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
-     * Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
-     * }
-     */
-
-    protected void agregar_labels_editables_informacion() {
-        decorar_labels_informacion();
-    }
-
-    protected void decorar_labels_informacion() {
     }
 }
