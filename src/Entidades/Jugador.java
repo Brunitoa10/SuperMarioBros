@@ -50,6 +50,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
+
         this.estadoMovimiento = estadoMovimiento;
     }
 
@@ -60,7 +61,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public void actualizar_entidad() {
-
+        estadoMovimiento.actualizar();
     }
 
     @Override
@@ -77,8 +78,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public boolean detectColision(Entidad c) {
-        boolean colisionan =c.detectColission(this);
-        return false;
+        return c.detectColission(this);
     }
 
     @Override
@@ -87,23 +87,22 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void desplazarEnX(int direccion) {
+
         estadoMovimiento.desplazarEnX(direccion);
     }
 
     public void saltar() {
+
         estadoMovimiento.saltar();
     }
 
     public int getAlturaMaximaSalto() {
+
         return ALTURA_MAXIMA_SALTO;
     }
 
-    public boolean estaSaltando() {
-        return estaSaltando;
-    }
 
-    public void setEstaSaltando(boolean estaSaltando) {
-        this.estaSaltando = estaSaltando;
-    }//??//
+
+
 
 }

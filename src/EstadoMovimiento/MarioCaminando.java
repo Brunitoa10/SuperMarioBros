@@ -12,6 +12,7 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void saltar() {
+
         mario.setEstadoMovimiento(new MarioSaltando(mario));
     }
 
@@ -19,5 +20,10 @@ public class MarioCaminando implements EstadoMovimiento {
     public void desplazarEnX(int direccion) {
         mario.set_direccion(direccion);
         mario.set_posicion_x(mario.get_posicion_x() + (direccion * mario.get_velocidad()));
+    }
+
+    @Override
+    public void actualizar() {
+        mario.set_posicion_x(mario.get_posicion_x()+mario.get_direccion()*mario.get_velocidad());
     }
 }
