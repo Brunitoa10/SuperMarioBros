@@ -19,8 +19,8 @@ public class MarioSaltando implements EstadoMovimiento {
         }
     }
 
-    private boolean estaEnELSuelo() {
-
+    private boolean estaEnElSuelo() {
+        return true;
     }
 
     @Override
