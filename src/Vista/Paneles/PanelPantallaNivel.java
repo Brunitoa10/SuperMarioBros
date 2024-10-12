@@ -17,19 +17,19 @@ import Vista.Controladores.ConstantesVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
+import javax.swing.SwingConstants;
 
 public class PanelPantallaNivel extends JPanel {
-
-    private JPanel panel_informacion;
     private JLabel imagen_fondo_panel_nivel;
-    private JLabel imagen_fondo_panel_informacion;
     private JLabel label_puntaje;
-    private JLabel label_tiempo;
+    private JLabel lbl_vida;
     private JLabel label_vida;
+    private JLabel lbl_puntaje_txt;
+    private JLabel lbl_Vida_txt;
+    private JLabel lbl_tiempo_txt;
 
     public PanelPantallaNivel() {
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
-        setLayout(new BorderLayout());
         agregar_panel_informacion();
     }
 
@@ -54,7 +54,7 @@ public class PanelPantallaNivel extends JPanel {
 
     protected void actualizar_labels_informacion(EntidadJugador jugador) {
         label_puntaje.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
-        label_tiempo.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
+        lbl_vida.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
         label_vida.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5)); // Pedir a nivel?
     }
 
@@ -92,49 +92,60 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_informacion() {
-        panel_informacion = new JPanel();
-        panel_informacion.setLayout(null);
-        panel_informacion
-                .setPreferredSize(new Dimension(ConstantesVista.PANEL_INFORMACION_ANCHO, ConstantesVista.PANEL_ALTO));
         agregar_imagen_fondo_panel_informacion();
         agregar_labels_editables_informacion();
-        add(panel_informacion, BorderLayout.EAST);
+        setLayout(null);
+        label_puntaje = new JLabel("00000");
+        label_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
+        label_puntaje.setBounds(115, 11, 130, 22);
+        add(label_puntaje);
+        
+        lbl_puntaje_txt = new JLabel("Puntaje");
+        lbl_puntaje_txt.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl_puntaje_txt.setBounds(10, 11, 95, 22);
+        add(lbl_puntaje_txt);
+        
+        lbl_Vida_txt = new JLabel("Vida");
+        lbl_Vida_txt.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl_Vida_txt.setBounds(285, 11, 95, 22);
+        add(lbl_Vida_txt);
+        lbl_vida = new JLabel("0");
+        lbl_vida.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl_vida.setBounds(390, 11, 95, 22);
+        add(lbl_vida);
+        label_vida = new JLabel("00000");
+        label_vida.setBounds(653, 11, 113, 34);
+        add(label_vida);
+        
+        lbl_tiempo_txt = new JLabel("tiempo");
+        lbl_tiempo_txt.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl_tiempo_txt.setBounds(537, 17, 95, 22);
+        add(lbl_tiempo_txt);
     }
 
     protected void agregar_imagen_fondo_panel_informacion() {
-        imagen_fondo_panel_informacion = new JLabel();
         ImageIcon icono_imagen = new ImageIcon(
                 this.getClass().getResource("/Recursos/imagenes/pantalla-informacion.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_INFORMACION_ANCHO,
                 ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
-        imagen_fondo_panel_informacion.setIcon(icono_imagen_escalado);
-        imagen_fondo_panel_informacion.setBounds(0, 0, ConstantesVista.PANEL_INFORMACION_ANCHO,
-                ConstantesVista.PANEL_ALTO);
-        panel_informacion.add(imagen_fondo_panel_informacion);
     }
 
     protected void agregar_labels_editables_informacion() {
-        label_puntaje = new JLabel("00000");
-        label_tiempo = new JLabel("00000");
-        label_vida = new JLabel("0");
         decorar_labels_informacion();
-        imagen_fondo_panel_informacion.add(label_puntaje);
-        imagen_fondo_panel_informacion.add(label_tiempo);
-        imagen_fondo_panel_informacion.add(label_vida);
     }
 
     protected void decorar_labels_informacion() {
         label_puntaje.setBounds(49, 120, 150, 50);
-        label_tiempo.setBounds(54, 290, 150, 50);
+        lbl_vida.setBounds(54, 290, 150, 50);
         label_vida.setBounds(52, 450, 150, 50);
 
         label_puntaje.setForeground(Color.WHITE);
-        label_tiempo.setForeground(Color.WHITE);
+        lbl_vida.setForeground(Color.WHITE);
         label_vida.setForeground(Color.WHITE);
 
         label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
-        label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
+        lbl_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
     }
 }
