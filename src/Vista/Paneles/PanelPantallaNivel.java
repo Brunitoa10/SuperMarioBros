@@ -3,10 +3,7 @@ package Vista.Paneles;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -19,6 +16,10 @@ import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
 
 public class PanelPantallaNivel extends JPanel {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private JLabel imagen_fondo_panel_nivel;
     private JLabel label_puntaje;
     private JLabel lbl_vida;
@@ -91,8 +92,8 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_informacion() {
-        agregar_imagen_fondo_panel_informacion();
-        agregar_labels_editables_informacion();
+        // agregar_imagen_fondo_panel_informacion();
+
         setLayout(null);
         label_puntaje = new JLabel("00000");
         label_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,15 +121,20 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo_txt.setBounds(537, 17, 95, 22);
         add(lbl_tiempo_txt);
+        agregar_labels_editables_informacion();
     }
 
-    protected void agregar_imagen_fondo_panel_informacion() {
-        ImageIcon icono_imagen = new ImageIcon(
-                this.getClass().getResource("/Recursos/imagenes/pantalla-informacion.png"));
-        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_INFORMACION_ANCHO,
-                ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
-        Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
-    }
+    /*
+     * protected void agregar_imagen_fondo_panel_informacion() {
+     * ImageIcon icono_imagen = new ImageIcon(
+     * this.getClass().getResource("/Recursos/imagenes/pantalla-informacion.png"));
+     * Image imagen_escalada =
+     * icono_imagen.getImage().getScaledInstance(ConstantesVista.
+     * PANEL_INFORMACION_ANCHO,
+     * ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
+     * Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
+     * }
+     */
 
     protected void agregar_labels_editables_informacion() {
         decorar_labels_informacion();

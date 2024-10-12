@@ -90,7 +90,7 @@ public class PanelPantallaPrincipal extends JPanel {
     protected void registrar_oyente_boton_puntajes() {
         boton_puntajes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controlador_vistas.accionar_pantalla_modo_juego();
+                controlador_vistas.accionar_pantalla_ranking();
             }
         });
     }

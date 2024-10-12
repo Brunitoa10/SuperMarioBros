@@ -13,5 +13,5 @@ public interface ControladorVistaJuego {
 
     public void mostrar_pantalla_fin_juego();
 
-    public void mostar_pantalla_ranking();
+    public void mostrar_pantalla_ranking();
 }

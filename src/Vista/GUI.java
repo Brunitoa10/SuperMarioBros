@@ -38,7 +38,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setIconImage(
-                Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/mario.png")));
+                Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
@@ -60,8 +60,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         mi_juego.iniciar();
     }
 
-    public void accionar_pantalla_puntajes() {
-        // To Do
+    public void accionar_pantalla_ranking() {
+        mi_juego.mostrar_pantalla_ranking();
     }
 
     public void accionar_pantalla_modo_juego() {
@@ -98,7 +98,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     @Override
-    public void mostar_pantalla_ranking() {
+    public void mostrar_pantalla_ranking() {
         ventana.setContentPane(panel_pantalla_ranking);
         refrescar();
     }
