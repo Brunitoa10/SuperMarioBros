@@ -29,6 +29,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         this.mi_juego = juego;
         panel_pantalla_nivel = new PanelPantallaNivel();
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
+        panel_pantalla_ranking = new PanelPantallaRanking(this);
         configurar_ventana();
         registrar_oyente_ventana();
     }
