@@ -7,19 +7,20 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class PanelPantallaRanking extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField text_puntaje_primero;
-	private JTextField text_puntaje_segundo;
-	private JTextField text_puntaje_tercero;
-	private JTextField text_puntaje_cuarto;
-	private JTextField text_puntaje_quinto;
 	private JLabel lbl_imagen_fondo;
 	private JButton btn_volver;
+	private JLabel lbl_puntaje_primero;
+	private JLabel lbl_puntaje_segundo;
+	private JLabel lbl_puntaje_tercero;
+	private JLabel lbl_puntaje_cuarto;
+	private JLabel lbl_puntaje_quinto;
 	
 	public PanelPantallaRanking() {
 		setLayout(null);
@@ -44,39 +45,40 @@ public class PanelPantallaRanking extends JPanel {
 	}
 
 	private void cargar_puntajes() {
-		text_puntaje_primero = new JTextField();
-		text_puntaje_primero.setText("0000");
-		text_puntaje_primero.setFont(new Font("Tahoma", Font.BOLD, 11));
-		text_puntaje_primero.setBounds(323, 146, 285, 31);
-		add(text_puntaje_primero);
-		text_puntaje_primero.setColumns(10);
 		
-		text_puntaje_segundo = new JTextField();
-		text_puntaje_segundo.setText("0000");
-		text_puntaje_segundo.setFont(new Font("Tahoma", Font.BOLD, 11));
-		text_puntaje_segundo.setColumns(10);
-		text_puntaje_segundo.setBounds(323, 209, 285, 31);
-		add(text_puntaje_segundo);
+		lbl_puntaje_primero = new JLabel("0000");
+		lbl_puntaje_primero.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_puntaje_primero.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_puntaje_primero.setBackground(new Color(192, 192, 192));
+		lbl_puntaje_primero.setBounds(323, 143, 285, 34);
+		add(lbl_puntaje_primero);
 		
-		text_puntaje_tercero = new JTextField();
-		text_puntaje_tercero.setText("0000");
-		text_puntaje_tercero.setFont(new Font("Tahoma", Font.BOLD, 11));
-		text_puntaje_tercero.setColumns(10);
-		text_puntaje_tercero.setBounds(323, 288, 285, 31);
-		add(text_puntaje_tercero);
+		lbl_puntaje_segundo = new JLabel("0000");
+		lbl_puntaje_segundo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_puntaje_segundo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_puntaje_segundo.setBackground(Color.LIGHT_GRAY);
+		lbl_puntaje_segundo.setBounds(323, 243, 285, 34);
+		add(lbl_puntaje_segundo);
 		
-		text_puntaje_cuarto = new JTextField();
-		text_puntaje_cuarto.setText("0000");
-		text_puntaje_cuarto.setFont(new Font("Tahoma", Font.BOLD, 11));
-		text_puntaje_cuarto.setColumns(10);
-		text_puntaje_cuarto.setBounds(323, 374, 285, 31);
-		add(text_puntaje_cuarto);
+		lbl_puntaje_tercero = new JLabel("0000");
+		lbl_puntaje_tercero.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_puntaje_tercero.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_puntaje_tercero.setBackground(Color.LIGHT_GRAY);
+		lbl_puntaje_tercero.setBounds(323, 329, 285, 34);
+		add(lbl_puntaje_tercero);
 		
-		text_puntaje_quinto = new JTextField();
-		text_puntaje_quinto.setText("0000");
-		text_puntaje_quinto.setFont(new Font("Tahoma", Font.BOLD, 11));
-		text_puntaje_quinto.setColumns(10);
-		text_puntaje_quinto.setBounds(323, 433, 285, 31);
-		add(text_puntaje_quinto);
+		lbl_puntaje_cuarto = new JLabel("0000");
+		lbl_puntaje_cuarto.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_puntaje_cuarto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_puntaje_cuarto.setBackground(Color.LIGHT_GRAY);
+		lbl_puntaje_cuarto.setBounds(323, 400, 285, 34);
+		add(lbl_puntaje_cuarto);
+		
+		lbl_puntaje_quinto = new JLabel("0000");
+		lbl_puntaje_quinto.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_puntaje_quinto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_puntaje_quinto.setBackground(Color.LIGHT_GRAY);
+		lbl_puntaje_quinto.setBounds(323, 480, 285, 34);
+		add(lbl_puntaje_quinto);
 	}
 }

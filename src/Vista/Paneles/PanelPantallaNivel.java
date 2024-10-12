@@ -1,6 +1,5 @@
 package Vista.Paneles;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
@@ -17,7 +17,6 @@ import Vista.Controladores.ConstantesVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
-import javax.swing.SwingConstants;
 
 public class PanelPantallaNivel extends JPanel {
     private JLabel imagen_fondo_panel_nivel;
@@ -99,12 +98,12 @@ public class PanelPantallaNivel extends JPanel {
         label_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
         label_puntaje.setBounds(115, 11, 130, 22);
         add(label_puntaje);
-        
+
         lbl_puntaje_txt = new JLabel("Puntaje");
         lbl_puntaje_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_puntaje_txt.setBounds(10, 11, 95, 22);
         add(lbl_puntaje_txt);
-        
+
         lbl_Vida_txt = new JLabel("Vida");
         lbl_Vida_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_Vida_txt.setBounds(285, 11, 95, 22);
@@ -116,7 +115,7 @@ public class PanelPantallaNivel extends JPanel {
         label_vida = new JLabel("00000");
         label_vida.setBounds(653, 11, 113, 34);
         add(label_vida);
-        
+
         lbl_tiempo_txt = new JLabel("tiempo");
         lbl_tiempo_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo_txt.setBounds(537, 17, 95, 22);
