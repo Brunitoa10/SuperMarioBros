@@ -1,6 +1,7 @@
 package Entidades.Enemigos;
 
 import Entidades.Colisionable;
+import Entidades.Entidad;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -13,8 +14,9 @@ public class PiranhaPlant extends Enemigo {
         velocidad = 0;
     }
 
-    public boolean detectColision(Colisionable c) {
-        return c.detectColision(this);
+    public boolean detectColision(Entidad c) {
+        boolean colisionan =c.detectColission(this);
+        return false;
     }
 
     public void accept(Visitor v) {

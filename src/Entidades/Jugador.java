@@ -76,7 +76,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public boolean detectColision(Colisionable c) {
+    public boolean detectColision(Entidad c) {
+        boolean colisionan =c.detectColission(this);
         return false;
     }
 

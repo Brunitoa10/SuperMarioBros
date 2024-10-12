@@ -44,6 +44,7 @@ public class LoopJuego implements Runnable {
         long tmporizador = System.currentTimeMillis();
         int cuadrosPorSegundo = 0;
         int actualizaciones = 0;
+
         while(ejecutando) {
             long tiempoActual = System.nanoTime();//Cambiar nombre variable
             delta += (tiempoActual - tiempoAnterior) / nanoSegundos;

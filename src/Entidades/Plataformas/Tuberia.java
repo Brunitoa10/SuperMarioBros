@@ -1,6 +1,7 @@
 package Entidades.Plataformas;
 
 import Entidades.Colisionable;
+import Entidades.Entidad;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -10,8 +11,9 @@ public class Tuberia extends Plataforma {
         super(x, y, sprite);
     }
 
-    public boolean detectColision(Colisionable c) {
-        return c.detectColision(this);
+    public boolean detectColision(Entidad c) {
+        boolean colisionan =c.detectColission(this);
+        return false;
     }
 
     public void accept(Visitor v) {

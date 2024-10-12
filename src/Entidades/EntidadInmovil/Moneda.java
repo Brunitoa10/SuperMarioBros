@@ -1,6 +1,7 @@
 package Entidades.EntidadInmovil;
 
 import Entidades.Colisionable;
+import Entidades.Entidad;
 import Fabricas.Sprite;
 import Logica.Nivel;
 import Visitor.Visitor;
@@ -20,8 +21,9 @@ public class Moneda extends EntidadInmovil{
     }
 
 
-    public boolean detectColision(Colisionable c) {
-        return c.detectColision(this);
+    public boolean detectColision(Entidad c) {
+        boolean colisionan =c.detectColission(this);
+        return false;
     }
 
     public void accept(Visitor v) {

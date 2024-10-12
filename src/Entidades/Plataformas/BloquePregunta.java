@@ -1,6 +1,7 @@
 package Entidades.Plataformas;
 
 import Entidades.Colisionable;
+import Entidades.Entidad;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.Plataformas.StateBloquePregunta.BloquePreguntaLleno;
 import Entidades.Plataformas.StateBloquePregunta.EstadoBloquePregunta;
@@ -20,8 +21,9 @@ public class BloquePregunta extends Plataforma{
         this.estado = new BloquePreguntaLleno();
     }
 
-    public boolean detectColision(Colisionable c) {
-        return c.detectColision(this);
+    public boolean detectColision(Entidad c) {
+        boolean colisionan =c.detectColission(this);
+        return false;
     }
 
     public void accept(Visitor v) {
