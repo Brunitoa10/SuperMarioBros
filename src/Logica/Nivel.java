@@ -85,4 +85,16 @@ public class Nivel {
         vida--;
     }
 
+    public void addPuntaje(int puntajeParaAniadir) {
+        puntajeTotal += puntajeParaAniadir;
+    }
+
+    public int getPuntaje(){
+        return puntajeTotal;
+    }
+
+    public void setPuntaje(int puntajeSetter){
+        puntajeTotal = puntajeSetter;
+    }
+
 }

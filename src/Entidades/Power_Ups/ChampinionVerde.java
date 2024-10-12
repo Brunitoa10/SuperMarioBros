@@ -13,7 +13,9 @@ public class ChampinionVerde extends PowerUp {
     }
 
     public void aplicarEfecto(Nivel nivel){
-        nivel.sumarVida(1);
+        // vidas que el champinion suma al agarrarlo
+        int vidasChampinion = 1;
+        nivel.sumarVida(vidasChampinion);
     }
 
     public boolean detectColision(Colisionable c) {
