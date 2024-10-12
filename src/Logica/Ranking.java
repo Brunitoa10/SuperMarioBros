@@ -1,8 +1,8 @@
 package Logica;
 
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Ranking {
 
@@ -14,7 +14,7 @@ public class Ranking {
     }
 
     private void cargarRanking() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/Logica/ranking.txt")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Logica/ranking.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (!linea.trim().isEmpty()) { // Ignorar líneas vacías
@@ -34,16 +34,16 @@ public class Ranking {
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
-        Collections.sort(jugadores, (j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
+        jugadores.sort((j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
     }
 
     public void actualizarRanking(String nombre, int puntuacion) {
         // Buscar si el jugador ya existe en el ranking
-        for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).getNombre().equals(nombre)) {
+        for (JugadorRanking buscarJugador : jugadores) {
+            if (buscarJugador.getNombre().equals(nombre)) {
                 // Actualizar la puntuación si es mayor
-                if (puntuacion > jugadores.get(i).getPuntaje()) {
-                    jugadores.get(i).setPuntaje(puntuacion);
+                if (puntuacion > buscarJugador.getPuntaje()) {
+                    buscarJugador.setPuntaje(puntuacion);
                 }
                 ordenarYGuardarRanking();
                 return;
@@ -56,7 +56,7 @@ public class Ranking {
     }
 
     private void ordenarYGuardarRanking() {
-        Collections.sort(jugadores, (j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
+        jugadores.sort((j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
 
         // Mantener solo los 5 mejores jugadores
         if (jugadores.size() > 5) {
