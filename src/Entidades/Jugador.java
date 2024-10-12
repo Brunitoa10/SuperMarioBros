@@ -105,13 +105,4 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.estaSaltando = estaSaltando;
     }//??//
 
-    public int getVelocidadSalto() {
-        return 0;
-    }
-
-    public void setVelocidadSalto(int velocidadInicialSalto) {
-    }
-
-    public void setAlturaMaximaSalto(int alturaMaximaSalto) {
-    }
 }
