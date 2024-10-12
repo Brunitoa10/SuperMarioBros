@@ -18,6 +18,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
     protected VisitorJugador VJ;
+    protected boolean estaSaltando;
+
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         this.puntaje = 0;
@@ -94,4 +96,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public int getAlturaMaximaSalto() {
         return ALTURA_MAXIMA_SALTO;
     }
+
+    public boolean estaSaltando() {
+        return estaSaltando;
+    }
+
+    public void setEstaSaltando(boolean estaSaltando) {
+        this.estaSaltando = estaSaltando;
+    }
+
 }
