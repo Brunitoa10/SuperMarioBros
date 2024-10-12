@@ -103,7 +103,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public void setEstaSaltando(boolean estaSaltando) {
         this.estaSaltando = estaSaltando;
-    }
+    }//??//
 
     public int getVelocidadSalto() {
         return 0;

@@ -1,7 +1,9 @@
 package Entidades.EntidadInmovil;
 
+import Entidades.Colisionable;
 import Entidades.Entidad;
 import Fabricas.Sprite;
+import Visitor.Visitor;
 
 public abstract class EntidadInmovil extends Entidad {
 
@@ -13,3 +15,4 @@ public abstract class EntidadInmovil extends Entidad {
         super(x, y, sprite);
     }
 }
+
