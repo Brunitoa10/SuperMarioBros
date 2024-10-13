@@ -20,7 +20,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaNivel panel_pantalla_nivel;
     protected PanelPantallaPrincipal panel_pantalla_principal;
     protected PanelPantallaFinJuego panel_pantalla_fin_juego;
-    protected PanelPantallaRanking2 panel_pantalla_ranking;
+    protected PanelPantallaRanking panel_pantalla_ranking;
     protected PanelPantallaModoJuego panel_pantalla_modo_juego;
     protected Ranking ranking;
 
@@ -31,7 +31,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         this.mi_juego = juego;
         panel_pantalla_nivel = new PanelPantallaNivel();
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
-        panel_pantalla_ranking = new PanelPantallaRanking2(this,ranking);
+        panel_pantalla_ranking = new PanelPantallaRanking(this,ranking);
         panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
         configurar_ventana();
         registrar_oyente_ventana();
