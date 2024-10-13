@@ -93,7 +93,7 @@ public class Nivel {
         this.vida += cantVidas;
     }
 
-    public boolean sinVidas() {
+    public boolean conVidas() {
         return vida > 0;
     }
 

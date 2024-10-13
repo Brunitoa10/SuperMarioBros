@@ -5,7 +5,7 @@ import Logica.Nivel;
 
 public class Mario implements EstadoJugador {
 
-    Jugador mario; 
+    protected Jugador mario; 
 
     public Mario(Jugador mario) {
         this.mario = mario;
