@@ -2,4 +2,4 @@ Juan2,10000
 Juan,1000
 Jugador2,300
 jugador5,250
-juancitoa,204
+juancitoa,206

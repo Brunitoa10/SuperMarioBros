@@ -1,10 +1,11 @@
 package Logica;
 
+
 public class TesterRanking {
     public static void main (String[]args){
         Ranking rank = new Ranking();
 
-        rank.agregarAlRanking("juancitoa",204);
+        rank.agregarAlRanking("juancitoa",206);
         mostrarRank(rank);
 
 
