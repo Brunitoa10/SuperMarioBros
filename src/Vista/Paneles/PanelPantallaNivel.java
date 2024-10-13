@@ -140,9 +140,9 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_tiempo.setBounds(607, 15, 150, 14);
         add(lbl_tiempo);
-        
+
         JLabel lbl_fondo = new JLabel("New label");
-        lbl_fondo.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.gif")));
+        lbl_fondo.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
         lbl_fondo.setBounds(0, 0, 800, 589);
         add(lbl_fondo);
     }
@@ -166,7 +166,7 @@ public class PanelPantallaNivel extends JPanel {
 
         public void cambiarFondo(int nivel) {
             this.nivelActual = nivel;
-            String rutaImagen = "/Recursos/Fondos/" + nivelActual + "_Nivel.gif";
+            String rutaImagen = "/Recursos/Fondos/" + nivelActual + "_Nivel.png";
             imagen = new ImageIcon(getClass().getResource(rutaImagen)).getImage();
 
             if (imagen == null) {

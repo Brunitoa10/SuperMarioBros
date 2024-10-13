@@ -33,15 +33,15 @@ public class PanelPantallaRanking extends JPanel {
 		tablaJugadores.setBounds(181, 119, 453, 346);
 		add(tablaJugadores);
 
-		JLabel lbl_columna_izquierda_1 = new JLabel("");
-		lbl_columna_izquierda_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1.setBounds(27, 58, 107, 107);
-		add(lbl_columna_izquierda_1);
+		JLabel lbl_columna_derecha_1 = new JLabel("");
+		lbl_columna_derecha_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_derecha_1.setBounds(27, 58, 107, 107);
+		add(lbl_columna_derecha_1);
 
-		JLabel lbl_columna_izquierda_1_1 = new JLabel("");
-		lbl_columna_izquierda_1_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1.setBounds(27, 322, 107, 107);
-		add(lbl_columna_izquierda_1_1);
+		JLabel lbl_columna_derecha_3 = new JLabel("");
+		lbl_columna_derecha_3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_derecha_3.setBounds(27, 322, 107, 107);
+		add(lbl_columna_derecha_3);
 
 		btn_volver = new JButton("Volver");
 		btn_volver.setBackground(Color.LIGHT_GRAY);
@@ -60,40 +60,40 @@ public class PanelPantallaRanking extends JPanel {
 		lbl_imagen_hongo.setBounds(502, 493, 27, 50);
 		add(lbl_imagen_hongo);
 
-		JLabel lbl_columna_izquierda_1_1_1 = new JLabel("");
-		lbl_columna_izquierda_1_1_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_1.setBounds(27, 188, 107, 107);
-		add(lbl_columna_izquierda_1_1_1);
+		JLabel lbl_columna_derecha_2 = new JLabel("");
+		lbl_columna_derecha_2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_derecha_2.setBounds(27, 188, 107, 107);
+		add(lbl_columna_derecha_2);
 
-		JLabel lbl_columna_izquierda_1_1_2 = new JLabel("");
-		lbl_columna_izquierda_1_1_2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_2.setBounds(683, 58, 107, 107);
-		add(lbl_columna_izquierda_1_1_2);
+		JLabel lbl_columna_izquierda_1 = new JLabel("");
+		lbl_columna_izquierda_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_izquierda_1.setBounds(675, 58, 107, 107);
+		add(lbl_columna_izquierda_1);
 
-		JLabel lbl_columna_izquierda_1_1_3 = new JLabel("");
-		lbl_columna_izquierda_1_1_3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_3.setBounds(683, 188, 107, 107);
-		add(lbl_columna_izquierda_1_1_3);
+		JLabel lbl_columna_izquierda_2 = new JLabel("");
+		lbl_columna_izquierda_2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_izquierda_2.setBounds(675, 188, 107, 107);
+		add(lbl_columna_izquierda_2);
 
-		JLabel lbl_columna_izquierda_1_1_4 = new JLabel("");
-		lbl_columna_izquierda_1_1_4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_4.setBounds(683, 322, 107, 107);
-		add(lbl_columna_izquierda_1_1_4);
+		JLabel lbl_columna_izquierda_3 = new JLabel("");
+		lbl_columna_izquierda_3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_izquierda_3.setBounds(675, 322, 107, 107);
+		add(lbl_columna_izquierda_3);
 
 		JLabel lbl_super = new JLabel("");
 		lbl_super.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/super.png"))));
 		lbl_super.setBounds(254, 11, 285, 115);
 		add(lbl_super);
 
-		JLabel lbl_columna_izquierda_1_1_5 = new JLabel("");
-		lbl_columna_izquierda_1_1_5.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_5.setBounds(27, 446, 107, 107);
-		add(lbl_columna_izquierda_1_1_5);
+		JLabel lbl_columna_derecha_4 = new JLabel("");
+		lbl_columna_derecha_4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_derecha_4.setBounds(27, 446, 107, 107);
+		add(lbl_columna_derecha_4);
 
-		JLabel lbl_columna_izquierda_1_1_6 = new JLabel("");
-		lbl_columna_izquierda_1_1_6.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1_1_6.setBounds(683, 446, 107, 107);
-		add(lbl_columna_izquierda_1_1_6);
+		JLabel lbl_columna_izquierda_4 = new JLabel("");
+		lbl_columna_izquierda_4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lbl_columna_izquierda_4.setBounds(675, 446, 107, 107);
+		add(lbl_columna_izquierda_4);
 
 		llenarTabla();
 		registrar_oyente_boton_volver();
