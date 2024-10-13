@@ -1,6 +1,8 @@
 package EstadoJugador;
 
+import Logica.Nivel;
+
 public interface EstadoJugador {
-    public void recibeDanio();
+    public void recibeDanio(Nivel nivel);
     public void lanzarBolaFuego();
 }
