@@ -11,14 +11,14 @@ import Visitor.Visitor;
 
 public class BloquePregunta extends Plataforma{
 
-    protected PowerUp powerUp;
-    protected Moneda moneda;
+    protected int recompensa;
     protected EstadoBloquePregunta estado;
 
 
-    public BloquePregunta(int x, int y, Sprite sprite) {
+    public BloquePregunta(int x, int y, Sprite sprite, int recompensa) {
         super(x, y, sprite);
         this.estado = new BloquePreguntaLleno();
+        this.recompensa = recompensa;
     }
 
     public boolean detectColision(Entidad c) {
