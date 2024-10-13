@@ -14,7 +14,7 @@ public class Ranking {
     }
 
     private void cargarRanking() {
-        try (BufferedReader br = new BufferedReader(new FileReader("Logica/ranking.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Recursos/ranking.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (!linea.trim().isEmpty()) { // Ignorar líneas vacías
@@ -67,7 +67,7 @@ public class Ranking {
     }
 
     private void guardarRanking() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Logica/ranking.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Recursos/ranking.txt"))) {
             for (JugadorRanking jugador : jugadores) {
                 bw.write(jugador.getNombre() + "," + jugador.getPuntaje());
                 bw.newLine();
