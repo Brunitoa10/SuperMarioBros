@@ -1,8 +1,18 @@
 package EstadoJugador;
 
-public class Mario implements EstadoJugador {
-    public Mario() {
+import Entidades.Jugador;
+import Logica.Nivel;
 
+public class Mario implements EstadoJugador {
+
+    Jugador mario; 
+
+    public Mario(Jugador mario) {
+        this.mario = mario;
+    }
+
+    public void recibeDanio(Nivel nivel) {
+        nivel.perdioVida();
     }
 
     @Override
