@@ -14,7 +14,6 @@ public class SuperMarioFuego implements EstadoJugador{
 
     @Override
     public void lanzarBolaFuego() {
-        BolaDeFuego bola = new BolaDeFuego();
     }
 
 }
