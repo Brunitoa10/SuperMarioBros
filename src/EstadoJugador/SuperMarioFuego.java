@@ -1,15 +1,20 @@
 package EstadoJugador;
 
-public class SuperMarioFuego implements EstadoJugador{
-    @Override
-    public void recibeDanio() {
+import Entidades.Jugador;
+import Logica.Nivel;
+import Entidades.Proyectiles.BolaDeFuego;
 
+public class SuperMarioFuego implements EstadoJugador{
+
+    protected Jugador mario;
+
+    public void recibeDanio(Nivel nivel) {
+        mario.setEstadoJugador(new Mario(mario));
     }
 
     @Override
     public void lanzarBolaFuego() {
-
+        BolaDeFuego bola = new BolaDeFuego();
     }
-
 
 }
