@@ -16,11 +16,6 @@ public class Mario implements EstadoJugador {
     }
 
     @Override
-    public void recibeDanio() {
-
-    }
-
-    @Override
     public void lanzarBolaFuego() {
 
     }
