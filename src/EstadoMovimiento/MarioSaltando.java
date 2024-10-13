@@ -18,8 +18,8 @@ public class MarioSaltando implements EstadoMovimiento {
 
     public void saltar() {
         if(estaEnElSuelo()) {
-            EstadoMovimiento estadoMov = new Mario_en_aire(mario, VELOCIDAD_SALTO);
-            mario.setEstadoMovimiento(estadoMov);
+           // EstadoMovimiento estadoMov = new Mario_en_aire(mario, VELOCIDAD_SALTO);
+            //mario.setEstadoMovimiento(estadoMov);
         }
     }
 

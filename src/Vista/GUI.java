@@ -27,10 +27,12 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaModoJuego panel_pantalla_modo_juego;
 
     protected Juego mi_juego;
+    protected int nivel;
 
     public GUI(Juego juego) {
         this.mi_juego = juego;
-        panel_pantalla_nivel = new PanelPantallaNivel();
+        this.nivel = 1;
+        panel_pantalla_nivel = new PanelPantallaNivel(nivel, this);
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
         panel_pantalla_ranking = new PanelPantallaRanking(this);
         panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
@@ -75,9 +77,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     public void cambiar_modo_juego(String modo) {
-    	// Lógica para cambiar el modo de juego
+        // Lógica para cambiar el modo de juego
         System.out.println("Modo seleccionado: " + modo);
-        // Dependiendo del modo, podrías inicializar configuraciones o cambiar la lógica del juego.
+        // Dependiendo del modo, podrías inicializar configuraciones o cambiar la lógica
+        // del juego.
         mostrar_pantalla_inicial(); // Vuelve a la pantalla principal o inicia el juego
     }
 
@@ -97,6 +100,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     public void mostrar_pantalla_nivel() {
         ventana.setContentPane(panel_pantalla_nivel);
+
         refrescar();
     }
 
@@ -119,6 +123,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected void refrescar() {
         ventana.revalidate();
         ventana.repaint();
+    }
+
+    public void cambiar_fondo_nivel(int nivel) {
+        panel_pantalla_nivel.cambiar_fondo(nivel);
+        refrescar();
     }
 
 }

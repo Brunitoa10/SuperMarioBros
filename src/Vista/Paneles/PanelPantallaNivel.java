@@ -2,7 +2,10 @@ package Vista.Paneles;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -10,6 +13,7 @@ import javax.swing.SwingConstants;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Controladores.ConstantesVista;
+import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
@@ -19,28 +23,37 @@ public class PanelPantallaNivel extends JPanel {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JLabel imagen_fondo_panel_nivel;
+    // private JLabel imagen_fondo_panel_nivel;
     private JLabel lbl_puntaje_txt;
     private JLabel lbl_Vida_txt;
     private JLabel lbl_tiempo_txt;
     private JLabel lbl_tiempo;
+    private Imagenfondo fondo;
+    private ControladorVista controlador_vistas;
 
-    public PanelPantallaNivel() {
+    public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
+        this.controlador_vistas = controlador_vistas;
+        fondo = new Imagenfondo(nivel);
+        add(fondo);
+
         agregar_panel_informacion();
+        validate();
     }
 
     // Operaciones para ControladorVistas
 
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
         ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        imagen_fondo_panel_nivel.add(observer_entidad);
+        // imagen_fondo_panel_nivel.add(observer_entidad);
+        fondo.add(observer_entidad);
         return observer_entidad;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
         ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
-        imagen_fondo_panel_nivel.add(observer_jugador);
+        // imagen_fondo_panel_nivel.add(observer_jugador);
+        fondo.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
     }
@@ -50,9 +63,9 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void actualizar_labels_informacion(EntidadJugador jugador) {
-    	lbl_puntaje_txt.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
-    	lbl_Vida_txt.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
-    	lbl_tiempo_txt.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5)); // Pedir a nivel?
+        lbl_puntaje_txt.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
+        lbl_Vida_txt.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
+        lbl_tiempo_txt.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5)); // Pedir a nivel?
     }
 
     protected String texto_con_cantidad_digitos(int numero, int digitos) {
@@ -109,23 +122,73 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo_txt.setBounds(532, 11, 95, 22);
         add(lbl_tiempo_txt);
-        
+
         JLabel lbl_puntaje = new JLabel("00000");
         lbl_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_puntaje.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_puntaje.setBounds(97, 15, 150, 14);
         add(lbl_puntaje);
-        
+
         JLabel lbl_vida = new JLabel("0");
         lbl_vida.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_vida.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_vida.setBounds(354, 15, 150, 14);
         add(lbl_vida);
-        
+
         lbl_tiempo = new JLabel("00000");
         lbl_tiempo.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_tiempo.setBounds(607, 15, 150, 14);
         add(lbl_tiempo);
+        
+        JLabel lbl_fondo = new JLabel("New label");
+        lbl_fondo.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.gif")));
+        lbl_fondo.setBounds(0, 0, 800, 589);
+        add(lbl_fondo);
+    }
+
+    // Clase auxiliar para poder hacer el fondo
+
+    @SuppressWarnings("unused")
+    private class Imagenfondo extends JPanel {
+
+        /**
+         *
+         */
+        private static final long serialVersionUID = 4180857344385898634L;
+
+        private Image imagen;
+        private int nivelActual = 1;
+
+        public Imagenfondo(int nivel) {
+            this.nivelActual = nivel;
+        }
+
+        public void cambiarFondo(int nivel) {
+            this.nivelActual = nivel;
+            String rutaImagen = "/Recursos/Fondos/" + nivelActual + "_Nivel.gif";
+            imagen = new ImageIcon(getClass().getResource(rutaImagen)).getImage();
+
+            if (imagen == null) {
+                System.out.println("Error: Imagen no encontrada en la ruta: " + rutaImagen);
+            } else {
+                System.out.println("Imagen cargada correctamente: " + rutaImagen);
+            }
+            repaint();
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (imagen != null) {
+                g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+
+    }
+
+    public void cambiar_fondo(int nivel) {
+        fondo.cambiarFondo(nivel);
+        fondo.repaint();
     }
 }
