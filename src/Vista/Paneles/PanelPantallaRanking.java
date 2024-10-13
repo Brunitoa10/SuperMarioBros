@@ -15,6 +15,10 @@ import java.util.Objects;
 
 
 public class PanelPantallaRanking extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JTable tablaJugadores = new JTable();
 	private final Ranking ranking;
 	private final JButton btn_volver;
