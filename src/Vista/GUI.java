@@ -12,6 +12,7 @@ import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
 import Vista.Paneles.PanelPantallaFinJuego;
+import Vista.Paneles.PanelPantallaModoJuego;
 import Vista.Paneles.PanelPantallaNivel;
 import Vista.Paneles.PanelPantallaPrincipal;
 import Vista.Paneles.PanelPantallaRanking;
@@ -23,6 +24,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaPrincipal panel_pantalla_principal;
     protected PanelPantallaFinJuego panel_pantalla_fin_juego;
     protected PanelPantallaRanking panel_pantalla_ranking;
+    protected PanelPantallaModoJuego panel_pantalla_modo_juego;
+
     protected Juego mi_juego;
 
     public GUI(Juego juego) {
@@ -30,6 +33,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panel_pantalla_nivel = new PanelPantallaNivel();
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
         panel_pantalla_ranking = new PanelPantallaRanking(this);
+        panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
         configurar_ventana();
         registrar_oyente_ventana();
     }
@@ -67,11 +71,14 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     public void accionar_pantalla_modo_juego() {
         System.out.println("Seleccione un modo de juego");
+        mostrar_pantalla_modo_juego();
     }
 
-    public void cambiar_modo_juego(int modo) {
-        // To Do
-        mostrar_pantalla_inicial();
+    public void cambiar_modo_juego(String modo) {
+    	// Lógica para cambiar el modo de juego
+        System.out.println("Modo seleccionado: " + modo);
+        // Dependiendo del modo, podrías inicializar configuraciones o cambiar la lógica del juego.
+        mostrar_pantalla_inicial(); // Vuelve a la pantalla principal o inicia el juego
     }
 
     // De interfaz ComandosJuegoVista
@@ -101,6 +108,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public void mostrar_pantalla_ranking() {
         ventana.setContentPane(panel_pantalla_ranking);
+        refrescar();
+    }
+
+    public void mostrar_pantalla_modo_juego() {
+        ventana.setContentPane(panel_pantalla_modo_juego);
         refrescar();
     }
 

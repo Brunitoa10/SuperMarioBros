@@ -13,7 +13,7 @@ public class Launcher {
                     Juego juego = new Juego();
                     GUI controlador_vistas = new GUI(juego);
                     juego.set_controlador_vistas(controlador_vistas);
-                    controlador_vistas.mostrar_pantalla_inicial();
+                    controlador_vistas.mostrar_pantalla_modo_juego(); //.mostrar_pantalla_inicial();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
