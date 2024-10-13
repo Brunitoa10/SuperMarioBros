@@ -1,25 +1,33 @@
 package Fabricas;
 
-import Entidades.Entidad;
+import Entidades.Enemigos.*;
+import Entidades.EntidadInmovil.*;
+import Entidades.Jugador;
+import Entidades.Plataformas.*;
+import Entidades.Power_Ups.*;
+import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.ProyectilSpiny;
 
 public interface FabricaEntidad {
-    public Entidad crearGoomba(int x, int y);
-    public Entidad crearBuzzyBeetle(int x, int y);
-    public Entidad crearKoopaTroopa(int x, int y);
-    public Entidad crearLakitu(int x, int y);
-    public Entidad crearSpiny(int x, int y);
-    public Entidad crearBowser(int x, int y);
-    public Entidad crearPiranhaPlant(int x, int y);
-    public Entidad crearMoneda(int x, int y);
-    public Entidad crearChampinionVerde(int x, int y);
-    public Entidad crearEstrella(int x, int y);
-    public Entidad crearFlorDeFuego(int x, int y);
-    public Entidad crearSuperChampinion(int x, int y);
-    public Entidad crearBolaDeFuego(int x, int y);
-    public Entidad crearProyectilSpiny(int x, int y);
-    public Entidad crearLadrilloSolido(int x, int y);
-    public Entidad crearBloqueSolido(int x, int y);
-    public Entidad crearTuberia(int x, int y);
-    public Entidad crearBloquePregunta(int x, int y);
-    public Entidad crearJugador(int x, int y);
+    public Goomba crearGoomba(int x, int y);
+    public BuzzyBeetle crearBuzzyBeetle(int x, int y);
+    public KoopaTroopa crearKoopaTroopa(int x, int y);
+    public Lakitu crearLakitu(int x, int y);
+    public Spiny crearSpiny(int x, int y);
+    public Bowser crearBowser(int x, int y);
+    public PiranhaPlant crearPiranhaPlant(int x, int y);
+    public Moneda crearMoneda(int x, int y);
+    public ChampinionVerde crearChampinionVerde(int x, int y);
+    public Estrella crearEstrella(int x, int y);
+    public FlorDeFuego crearFlorDeFuego(int x, int y);
+    public SuperChampinion crearSuperChampinion(int x, int y);
+    public BolaDeFuego crearBolaDeFuego(int x, int y);
+    public ProyectilSpiny crearProyectilSpiny(int x, int y);
+    public LadrilloSolido crearLadrilloSolido(int x, int y);
+    public BloqueSolido crearBloqueSolido(int x, int y);
+    public Tuberia crearTuberia(int x, int y);
+    public BloquePregunta crearBloquePregunta(int x, int y, int recompensa);
+    public Jugador crearJugador(int x, int y);
+    public Bandera crearBandera(int x, int y);
+    public Princesa crearPrincesa(int x, int y);
 }

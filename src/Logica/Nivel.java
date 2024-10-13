@@ -2,6 +2,7 @@ package Logica;
 
 import Entidades.Enemigos.*;
 import Entidades.*;
+import Entidades.EntidadInmovil.*;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.*;
@@ -17,19 +18,22 @@ public class Nivel {
     protected List<Plataforma> plataformas;
     protected List<PowerUp> powerUps;
     protected List<Proyectil> proyectiles;
+    protected List<Moneda> monedas;
     protected Jugador jugador;
+    protected Bandera bandera;
+    protected Princesa princesa;
     protected int vida;
     protected int puntajeTotal;
     protected FabricaEntidad fabricaEntidades;
 
-    public Nivel(String ruta_nivel_txt) {
+    public Nivel(int numero) {
         this.puntajeTotal = 0;
         this.vida = 3;
-        this.ruta_nivel_txt = ruta_nivel_txt;
         this.enemigos = new LinkedList<Enemigo>();
         this.plataformas = new LinkedList<Plataforma>();
         this.powerUps = new LinkedList<PowerUp>();
         this.proyectiles = new LinkedList<Proyectil>();
+        this.monedas = new LinkedList<Moneda>();
     }
 
     public Jugador getJugador() {
@@ -69,8 +73,20 @@ public class Nivel {
         this.powerUps.addLast(powerUp);
     }
 
-    public void agregarProyectiles(Proyectil proyectiles) {
+    public void agregarProyectil(Proyectil proyectiles) {
         this.proyectiles.addLast(proyectiles);
+    }
+
+    public void agregarMoneda(Moneda monedas) {
+        this.monedas.addLast(monedas);
+    }
+
+    public void agregarBandera(Bandera bandera) {
+        this.bandera = bandera;
+    }
+
+    public void agregarPrincesa(Princesa princesa) {
+        this.princesa = princesa;
     }
 
     public void sumarVida(int cantVidas) {
