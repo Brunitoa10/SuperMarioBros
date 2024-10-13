@@ -13,7 +13,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     public void actualizar() {
         mario.set_posicion_x(mario.get_posicion_x()+mario.get_direccion()*mario.get_velocidad());
-        mario.set_posicion_y(mario.get_posicion_y()-VELOCIDAD_SALTO);
+        mario.set_posicion_y(mario.get_posicion_y()+VELOCIDAD_SALTO);
     }
 
     public void saltar() {
