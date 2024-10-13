@@ -3,10 +3,18 @@ package Logica;
 public class TesterRanking {
     public static void main (String[]args){
         Ranking rank = new Ranking();
-        rank.mostrarRanking();
-        rank.actualizarRanking("Juan2",103);
-        rank.mostrarRanking();
+
+        rank.agregarAlRanking("juancitoa",204);
+        mostrarRank(rank);
+
 
     }
 
+    private static void mostrarRank(Ranking rank) {
+        for (JugadorRanking jug : rank.mostrarRanking()) {
+            System.out.println(jug.getNombre());
+            System.out.println(jug.getPuntaje());
+
+        }
+    }
 }

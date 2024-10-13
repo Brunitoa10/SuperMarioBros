@@ -1,7 +1,7 @@
 package Logica;
 
-
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Ranking {
@@ -35,53 +35,57 @@ public class Ranking {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
         jugadores.sort((j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
+        // Asegurar que solo haya 5 jugadores en el ranking
+        if (jugadores.size() > 5) {
+            jugadores = new ArrayList<>(jugadores.subList(0, 5));
+        }
     }
 
-    public void actualizarRanking(String nombre, int puntuacion) {
+    public void agregarAlRanking(String nombre, int puntuacion) {
         // Buscar si el jugador ya existe en el ranking
-        for (JugadorRanking buscarJugador : jugadores) {
-            if (buscarJugador.getNombre().equals(nombre)) {
-                // Actualizar la puntuación si es mayor
-                if (puntuacion > buscarJugador.getPuntaje()) {
-                    buscarJugador.setPuntaje(puntuacion);
-                }
-                ordenarYGuardarRanking();
-                return;
+        int indiceJugador = -1;
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getNombre().equals(nombre)) {
+                indiceJugador = i;
+                break;
             }
         }
 
-        // Si el jugador no existe, agregarlo al ranking
-        jugadores.add(new JugadorRanking(nombre, puntuacion));
-        ordenarYGuardarRanking();
-    }
-
-    private void ordenarYGuardarRanking() {
-        jugadores.sort((j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
-
-        // Mantener solo los 5 mejores jugadores
-        if (jugadores.size() > 5) {
-            jugadores.subList(5, jugadores.size()).clear();
+        if (indiceJugador != -1) {
+            // Si el jugador existe, actualizar su puntuación si es mayor
+            if (puntuacion > jugadores.get(indiceJugador).getPuntaje()) {
+                jugadores.get(indiceJugador).setPuntaje(puntuacion);
+            }
+        } else {
+            // Si el jugador no existe, agregarlo al ranking
+            jugadores.add(new JugadorRanking(nombre, puntuacion));
         }
 
+        // Ordenar el ranking por puntuación de forma descendente
+        jugadores.sort((j1, j2) -> Integer.compare(j2.getPuntaje(), j1.getPuntaje()));
+
+        // Asegurar que solo haya 5 jugadores en el ranking
+        if (jugadores.size() > 5) {
+            jugadores = new ArrayList<>(jugadores.subList(0, 5));
+        }
+
+        // Guardar el ranking actualizado en el archivo
         guardarRanking();
     }
 
     private void guardarRanking() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Logica/ranking.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Logica/ranking.txt"), StandardCharsets.UTF_8))) {
             for (JugadorRanking jugador : jugadores) {
                 bw.write(jugador.getNombre() + "," + jugador.getPuntaje());
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println("Error al escribir el archivo: " + e.getMessage());
+            System.err.println("Error al guardar el archivo: " + e.getMessage());
         }
     }
 
-    public void mostrarRanking() {
-        System.out.println("Ranking:");
-        for (int i = 0; i < jugadores.size(); i++) {
-            JugadorRanking jugador = jugadores.get(i);
-            System.out.println((i + 1) + ". " + jugador.getNombre() + ": " + jugador.getPuntaje());
-        }
+
+    public ArrayList<JugadorRanking> mostrarRanking() {
+        return jugadores;
     }
 }

@@ -7,15 +7,12 @@ import javax.swing.JFrame;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
+import Logica.Ranking;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
-import Vista.Paneles.PanelPantallaFinJuego;
-import Vista.Paneles.PanelPantallaModoJuego;
-import Vista.Paneles.PanelPantallaNivel;
-import Vista.Paneles.PanelPantallaPrincipal;
-import Vista.Paneles.PanelPantallaRanking;
+import Vista.Paneles.*;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
@@ -23,16 +20,18 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaNivel panel_pantalla_nivel;
     protected PanelPantallaPrincipal panel_pantalla_principal;
     protected PanelPantallaFinJuego panel_pantalla_fin_juego;
-    protected PanelPantallaRanking panel_pantalla_ranking;
+    protected PanelPantallaRanking2 panel_pantalla_ranking;
     protected PanelPantallaModoJuego panel_pantalla_modo_juego;
+    protected Ranking ranking;
 
     protected Juego mi_juego;
 
     public GUI(Juego juego) {
+        ranking = new Ranking();
         this.mi_juego = juego;
         panel_pantalla_nivel = new PanelPantallaNivel();
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
-        panel_pantalla_ranking = new PanelPantallaRanking(this);
+        panel_pantalla_ranking = new PanelPantallaRanking2(this,ranking);
         panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
         configurar_ventana();
         registrar_oyente_ventana();
