@@ -1,14 +1,17 @@
 package Vista.Paneles;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import Entidades.EntidadJugador;
@@ -18,49 +21,39 @@ import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
-import Vistas.ConstantesVistas;
-
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 public class PanelPantallaNivel extends JPanel {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    // private JLabel imagen_fondo_panel_nivel;
     private JLabel lbl_puntaje_txt;
     private JLabel lbl_Vida_txt;
     private JLabel lbl_tiempo_txt;
     private JLabel lbl_tiempo;
+    private JLabel imagen_fondo_panel_nivel;
     private Imagenfondo fondo;
     JPanel panel_nivel_fondo;
     JScrollPane scroll_Panel_nivel;
-    private ControladorVista controlador_vistas;
 
     public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
-        setPreferredSize(new Dimension(800, 574));
-        this.controlador_vistas = controlador_vistas;
-        fondo = new Imagenfondo(nivel);
-        add(fondo);
+        setPreferredSize(new Dimension(813, 607));
 
         agregar_panel_informacion();
-        validate();
+        agregar_panel_carrera_con_fondo_y_scroll();
     }
 
     // Operaciones para ControladorVistas
 
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
         ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        // imagen_fondo_panel_nivel.add(observer_entidad);
-        fondo.add(observer_entidad);
+        imagen_fondo_panel_nivel.add(observer_entidad);
         return observer_entidad;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
         ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
-        // imagen_fondo_panel_nivel.add(observer_jugador);
-        fondo.add(observer_jugador);
+        imagen_fondo_panel_nivel.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
     }
@@ -105,11 +98,17 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     // Operacion para observer de jugador
-
+    protected void actualizar_scroll_hacia_jugador(EntidadJugador jugador) {
+        // To DO
+        // panel_scroll_nivel.getVerticalScrollBar().setValue(
+        // panel_scroll_nivel.getVerticalScrollBar().getValue() +
+        // jugador.get_velocidad() );
+    }
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_informacion() {
 
+        setLayout(null);
         setLayout(null);
 
         lbl_puntaje_txt = new JLabel("Puntaje");
@@ -147,50 +146,46 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_tiempo.setBounds(607, 15, 150, 14);
         add(lbl_tiempo);
+    }
+
+    // Operaciones propias para construccion de PanelPantallaCarrera
+
+    protected void agregar_panel_carrera_con_fondo_y_scroll() {
+    	 // Configurar el JLabel con la imagen de fondo
+        imagen_fondo_panel_nivel = new JLabel();
+        imagen_fondo_panel_nivel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
+        imagen_fondo_panel_nivel.setLayout(null);
         
-        scroll_Panel_nivel = new JScrollPane();
-        
-        scroll_Panel_nivel.setBounds(0, 0, 800, 563);
-        add(scroll_Panel_nivel);
-        
+        // Ajustar el tamaño preferido para el fondo
+        imagen_fondo_panel_nivel.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO)); // Aumenta el ancho según necesites
+
+        // Crear un panel para el fondo
         panel_nivel_fondo = new JPanel();
-        scroll_Panel_nivel.setViewportView(panel_nivel_fondo);
         panel_nivel_fondo.setLayout(null);
         
-        JLabel lbl_fondo_imagen = new JLabel("");
-        lbl_fondo_imagen.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
-        lbl_fondo_imagen.setBounds(0, 0, 798, 550);
-        panel_nivel_fondo.add(lbl_fondo_imagen);
+        // Establecer un tamaño preferido para el panel
+        panel_nivel_fondo.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO)); // Aumenta el ancho aquí también
+        panel_nivel_fondo.add(imagen_fondo_panel_nivel);
+
+        // Configurar el JScrollPane
+        scroll_Panel_nivel = new JScrollPane(panel_nivel_fondo);
+        scroll_Panel_nivel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambia a ALWAYS para ver el scrollbar siempre
+        scroll_Panel_nivel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // Desactivar el scrollbar vertical
+        scroll_Panel_nivel.setBounds(0, 40, 800, 560); // Ajustar altura para el espacio de la información
+        
+        // Establecer bordes para pruebas (opcional)
+        panel_nivel_fondo.setBorder(BorderFactory.createLineBorder(Color.RED));
+        
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
+        lblNewLabel.setBounds(0, 0, 798, 548);
+        panel_nivel_fondo.add(lblNewLabel);
+        scroll_Panel_nivel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+
+        // Agregar el JScrollPane al panel principal
+        add(scroll_Panel_nivel);
     }
-    
- // Operacion para observer de jugador
-	
- 	protected void actualizar_scroll_hacia_jugador(EntidadJugador jugador) {
- 		// To DO
- 		//panel_scroll_carrera.getVerticalScrollBar().setValue( panel_scroll_carrera.getVerticalScrollBar().getValue() + jugador.get_velocidad() );
- 	}
- 	
- 	// Operaciones propias para construccion de PanelPantallaCarrera
- 	
- 	protected void agregar_panel_carrera_con_fondo_y_scroll() {
- 		//imagen_fondo_panel_carreras = new JLabel();
- 		//imagen_fondo_panel_carreras.setLayout(null);
- 		//imagen_fondo_panel_carreras.setBounds(0,0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_ALTO);
- 		
- 		panel_nivel_fondo = new JPanel(null);
- 		panel_nivel_fondo.setPreferredSize(new Dimension(ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_ALTO));
- 		//panel_nivel_fondo.add(imagen_fondo_panel_carreras);
- 		
- 		scroll_Panel_nivel = new JScrollPane(panel_nivel_fondo);
- 		scroll_Panel_nivel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
- 		scroll_Panel_nivel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
- 		scroll_Panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_ALTO);
- 			
- 		add(scroll_Panel_nivel, BorderLayout.CENTER);
- 	}
-    
-    
-    
+
     // Clase auxiliar para poder hacer el fondo
 
     @SuppressWarnings("unused")
@@ -206,6 +201,7 @@ public class PanelPantallaNivel extends JPanel {
 
         public Imagenfondo(int nivel) {
             this.nivelActual = nivel;
+            cambiarFondo(nivelActual);
         }
 
         public void cambiarFondo(int nivel) {
