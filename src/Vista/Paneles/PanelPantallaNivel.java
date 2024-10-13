@@ -151,21 +151,13 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_carrera_con_fondo_y_scroll() {
-    	 // Configurar el JLabel con la imagen de fondo
-        imagen_fondo_panel_nivel = new JLabel();
-        imagen_fondo_panel_nivel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
-        imagen_fondo_panel_nivel.setLayout(null);
-        
-        // Ajustar el tamaño preferido para el fondo
-        imagen_fondo_panel_nivel.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO)); // Aumenta el ancho según necesites
 
         // Crear un panel para el fondo
         panel_nivel_fondo = new JPanel();
         panel_nivel_fondo.setLayout(null);
         
         // Establecer un tamaño preferido para el panel
-        panel_nivel_fondo.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO)); // Aumenta el ancho aquí también
-        panel_nivel_fondo.add(imagen_fondo_panel_nivel);
+        panel_nivel_fondo.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO));
 
         // Configurar el JScrollPane
         scroll_Panel_nivel = new JScrollPane(panel_nivel_fondo);
@@ -176,10 +168,10 @@ public class PanelPantallaNivel extends JPanel {
         // Establecer bordes para pruebas (opcional)
         panel_nivel_fondo.setBorder(BorderFactory.createLineBorder(Color.RED));
         
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
-        lblNewLabel.setBounds(0, 0, 798, 548);
-        panel_nivel_fondo.add(lblNewLabel);
+        imagen_fondo_panel_nivel = new JLabel("");
+        imagen_fondo_panel_nivel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
+        imagen_fondo_panel_nivel.setBounds(0, 0, 798, 548);
+        panel_nivel_fondo.add(imagen_fondo_panel_nivel);
         scroll_Panel_nivel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         // Agregar el JScrollPane al panel principal

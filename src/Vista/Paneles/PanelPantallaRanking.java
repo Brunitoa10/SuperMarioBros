@@ -30,6 +30,7 @@ public class PanelPantallaRanking extends JPanel {
 		this.controlador_vistas = controlador_vistas;
 		this.ranking = rankingParametro;
 		setLayout(null);
+		tablaJugadores.setBackground(new Color(192, 192, 192));
 		tablaJugadores.setBounds(181, 119, 453, 346);
 		add(tablaJugadores);
 
