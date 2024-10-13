@@ -4,8 +4,11 @@ import java.util.List;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
-
+import Fabricas.FabricaSprites;
+import Fabricas.FabricaSpritesOriginal;
+import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
 
@@ -13,11 +16,19 @@ import Vista.ObserverGrafica.Observer;
 public class Juego {
 
     protected ControladorVistaJuego controlador_vistas;
-    // protected GeneradorNivel generadorNivel;
-    // protected FabricaSprites fabricaSprites;
-    protected FabricaEntidad fabricaEntidad;
+    protected GeneradorNivel generador_nivel;
+    protected FabricaSprites fabrica_sprites;
+    protected FabricaEntidad fabrica_entidades;
     protected Nivel nivelActual;
 
+    
+    public Juego() {
+		fabrica_sprites = new FabricaSpritesOriginal();
+		fabrica_entidades = new CreadorEntidad(fabrica_sprites);
+		generador_nivel= new GeneradorNivel(fabrica_entidades);
+	}
+	
+    
     // Comunicacion con parte grafica
     public void set_controlador_vistas(ControladorVistaJuego controlador_vistas) {
         this.controlador_vistas = controlador_vistas;

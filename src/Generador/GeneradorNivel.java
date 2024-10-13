@@ -1,8 +1,5 @@
 package Generador;
 
-import Entidades.Jugador;
-import Entidades.Power_Ups.FlorDeFuego;
-import Entidades.Power_Ups.PowerUp;
 import Fabricas.*;
 import Logica.Nivel;
 
@@ -11,10 +8,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class GeneradorNivel {
-    protected CreadorEntidad fabricaEntidades;
+    protected FabricaEntidad fabricaEntidades;
 
 
-    public GeneradorNivel(CreadorEntidad fabricaEntidades) {
+    public GeneradorNivel(FabricaEntidad fabricaEntidades) {
         this.fabricaEntidades = fabricaEntidades;
     }
 
