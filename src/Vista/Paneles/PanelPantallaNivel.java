@@ -215,12 +215,5 @@ public class PanelPantallaNivel extends JPanel {
         label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));*/
     }
-    public void paintComponent(Graphics g, Juego juego) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.white);
-        g2.fillRect(juego.getJugador().get_posicion_x(), juego.getJugador().get_posicion_y(), 32, 32);
-        g2.dispose();
 
-    }
 }

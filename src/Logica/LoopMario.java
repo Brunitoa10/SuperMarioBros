@@ -3,6 +3,7 @@ package Logica;
 import Entidades.Jugador;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
+import Vista.ObserverGrafica.ObserverGrafica;
 
 
 public class LoopMario implements Runnable {
@@ -15,7 +16,7 @@ public class LoopMario implements Runnable {
     private OyenteTeclado controlTeclado;
     private Jugador mario;
     private ControladorVistaJuego controlador;
-    
+
     public LoopMario(Juego juego) {
         this.controlTeclado = juego.getOyenteTeclado();
         this.mario = juego.getNivelActual().getJugador();
@@ -99,6 +100,7 @@ public class LoopMario implements Runnable {
     private void renderizar() {
 
         controlador.refrescar();
+        mario.actualizar_entidad();
     }
 
 }
