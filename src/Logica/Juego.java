@@ -23,7 +23,7 @@ public class Juego {
 
 
     private Juego() {
-        fabrica_sprites = new FabricaSpritesOriginal("Recursos/Sprites/Originales");
+        fabrica_sprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
         fabrica_entidades = new CreadorEntidad(fabrica_sprites);
         generador_nivel= new GeneradorNivel(fabrica_entidades);
 
@@ -39,7 +39,6 @@ public class Juego {
         registrar_observers();
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
-        oyenteTeclado = new OyenteTeclado();
         loopMario = new LoopMario(this);
 
     }

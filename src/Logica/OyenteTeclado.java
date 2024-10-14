@@ -25,6 +25,7 @@ public class OyenteTeclado implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
+            System.out.println("xd");
             teclaArriba = true;
         }
         if (code == KeyEvent.VK_A) {

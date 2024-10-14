@@ -2,6 +2,7 @@ package Vista.Controladores;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.OyenteTeclado;
 import Vista.ObserverGrafica.Observer;
 
 public interface ControladorVistaJuego {
@@ -18,4 +19,6 @@ public interface ControladorVistaJuego {
     public void refrescar();
 
     public void actualizarObserver();
+
+    public OyenteTeclado oyenteTeclado();
 }

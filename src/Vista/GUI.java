@@ -45,6 +45,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         registrar_oyente_ventana();
     }
 
+    public OyenteTeclado oyenteTeclado(){
+        return panel_pantalla_nivel.obtenerOyenteTeclado();
+    }
+
     protected void configurar_ventana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

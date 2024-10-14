@@ -5,6 +5,8 @@ import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.ObserverGrafica;
 import Vista.Paneles.PanelPantallaNivel;
+import java.awt.*;
+import java.security.Key;
 
 
 public class LoopMario implements Runnable {
@@ -14,16 +16,23 @@ public class LoopMario implements Runnable {
     private static final double NUMERO_TICKS_POR_SEGUNDO = 60.0;
     private boolean ejecutando;
     private Thread hilo;
-    private OyenteTeclado controlTeclado;
+    private OyenteTeclado oyenteTeclado;
     private Jugador mario;
     private ControladorVistaJuego controlador;
     private PanelPantallaNivel panel;
+    private OyenteTeclado oyente;
 
     public LoopMario(Juego juego) {
-        this.controlTeclado = juego.getOyenteTeclado();
+
         this.mario = juego.getNivelActual().getJugador();
         this.controlador = juego.getControladorVistaJuego();
+        oyente = controlador.oyenteTeclado();
         inicializar();
+
+    }
+
+    public void setKeyH(OyenteTeclado oyente){
+        oyenteTeclado = oyente;
     }
 
 
@@ -80,19 +89,17 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
-        if (controlTeclado.teclaIzquierda) {
+       if (oyente.teclaIzquierda) {
+           System.out.println("Izquierda");
             mario.desplazarEnX(-1);
         }
-        if (controlTeclado.teclaDerecha) {
-
+        if (oyente.teclaDerecha) {
             mario.desplazarEnX(1);
-
         }
-        if (controlTeclado.teclaArriba) {
+        if (oyente.teclaArriba) {
             mario.saltar();
-            controlTeclado.teclaArriba = false;
+            oyente.teclaArriba = false;
         }
-        mario.desplazarEnX(1);
         mario.get_posicion_x();
 
         mario.actualizar_entidad();
