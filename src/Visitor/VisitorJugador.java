@@ -9,6 +9,12 @@ import Entidades.Proyectiles.Proyectil;
 
 public class VisitorJugador implements Visitor {
 
+    protected Jugador mario;
+
+    public VisitorJugador(Jugador mario) {
+        this.mario = mario;
+    }
+
     @Override
     public void visit(Jugador J) {
 

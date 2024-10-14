@@ -8,6 +8,13 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 
 public class VisitorMoneda implements Visitor {
+
+    protected Moneda moneda;
+
+    public VisitorMoneda(Moneda moneda) {
+        this.moneda = moneda;
+    }
+
     @Override
     public void visit(Jugador j) {
 

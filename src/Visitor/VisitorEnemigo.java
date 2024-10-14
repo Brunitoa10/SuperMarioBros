@@ -8,9 +8,15 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 
 public class VisitorEnemigo implements Visitor {
-    @Override
-    public void visit(Jugador j) {
 
+    protected Enemigo enemigo;
+
+    public VisitorEnemigo(Enemigo enemigo) {
+        this.enemigo = enemigo;
+    }
+
+    public void visit(Jugador j) {
+        
     }
 
     @Override

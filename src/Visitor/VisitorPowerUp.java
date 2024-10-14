@@ -8,6 +8,13 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 
 public class VisitorPowerUp implements Visitor {
+
+    protected PowerUp powerUp;
+
+    public VisitorPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
+    }
+
     @Override
     public void visit(Jugador j) {
 
