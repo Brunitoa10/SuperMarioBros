@@ -123,8 +123,8 @@ public class PanelPantallaNivel extends JPanel {
         panel_nivel.add(imagen_fondo_panel_nivel);
 
         panel_scroll_nivel = new JScrollPane(panel_nivel);
-        panel_scroll_nivel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        panel_scroll_nivel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panel_scroll_nivel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         panel_scroll_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_ALTO);
 
         add(panel_scroll_nivel, BorderLayout.CENTER);
@@ -136,7 +136,7 @@ public class PanelPantallaNivel extends JPanel {
         panel_informacion.setPreferredSize(new Dimension(ConstantesVista.PANEL_INFORMACION_ANCHO, ConstantesVista.PANEL_ALTO));
         agregar_imagen_fondo_panel_informacion();
         agregar_labels_editables_informacion();
-        add(panel_informacion, BorderLayout.EAST);
+        add(panel_informacion, BorderLayout.NORTH);
     }
 
     protected void agregar_imagen_fondo_panel_informacion() {
