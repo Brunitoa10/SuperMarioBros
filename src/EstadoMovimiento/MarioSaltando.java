@@ -3,33 +3,46 @@ package EstadoMovimiento;
 import Entidades.Jugador;
 
 public class MarioSaltando implements EstadoMovimiento {
-    Jugador mario;
-    private static final int VELOCIDAD_SALTO = 10;
+    private Jugador mario;
+    private static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
+    private static final int GRAVEDAD = 1;  // Gravedad constante que hará que baje
+    private int velocidadY;  // Velocidad vertical actual
 
     public MarioSaltando(Jugador mario) {
         this.mario = mario;
+        this.velocidadY = VELOCIDAD_INICIAL_SALTO; // Empieza subiendo con velocidad inicial
     }
 
+    @Override
     public void actualizar() {
+        // Movimiento horizontal
         mario.set_posicion_x(mario.get_posicion_x() + mario.get_direccion() * mario.get_velocidad());
-        mario.set_posicion_y(mario.get_posicion_y() + VELOCIDAD_SALTO);
-    }
 
-    public void saltar() {
+        // Aplicar gravedad (para que empiece a bajar eventualmente)
+        velocidadY += GRAVEDAD;
+
+        // Movimiento vertical
+        mario.set_posicion_y(mario.get_posicion_y() + velocidadY);
+
+        // Verificar si Mario toca el suelo
         if (estaEnElSuelo()) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario, VELOCIDAD_SALTO));
+            // Cambiar al estado de caminar si está en el suelo
+            mario.set_posicion_y(420); // Ajustar la posición exacta del suelo
+            mario.setEstadoMovimiento(new MarioCaminando(mario));
         }
     }
 
-    // Falta implementar
-    private boolean estaEnElSuelo() {
-        return mario.get_posicion_y() == 420;
+    @Override
+    public void saltar() {
+        // No hace nada porque ya está saltando
     }
 
     @Override
     public void desplazarEnX(int direccion) {
         mario.set_direccion(direccion);
-        mario.set_posicion_x(mario.get_posicion_x() + (direccion * mario.get_velocidad()));
     }
 
+    private boolean estaEnElSuelo() {
+        return mario.get_posicion_y() >= 420; // Suelo a nivel 420
+    }
 }
