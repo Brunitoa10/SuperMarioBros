@@ -1,12 +1,25 @@
 package Fabricas;
-import Entidades.*;
-import Entidades.Enemigos.*;
-import Entidades.EntidadInmovil.*;
+
+import Entidades.Jugador;
+import Entidades.Enemigos.Bowser;
+import Entidades.Enemigos.BuzzyBeetle;
+import Entidades.Enemigos.Goomba;
+import Entidades.Enemigos.KoopaTroopa;
+import Entidades.Enemigos.Lakitu;
+import Entidades.Enemigos.PiranhaPlant;
+import Entidades.Enemigos.Spiny;
+import Entidades.EntidadInmovil.Bandera;
 import Entidades.EntidadInmovil.Moneda;
-import Entidades.Plataformas.*;
-import Entidades.Power_Ups.*;
+import Entidades.EntidadInmovil.Princesa;
+import Entidades.Plataformas.BloquePregunta;
+import Entidades.Plataformas.BloqueSolido;
+import Entidades.Plataformas.LadrilloSolido;
+import Entidades.Plataformas.Tuberia;
+import Entidades.Power_Ups.ChampinionVerde;
+import Entidades.Power_Ups.Estrella;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 import Entidades.Proyectiles.BolaDeFuego;
-import Entidades.Proyectiles.Proyectil;
 import Entidades.Proyectiles.ProyectilSpiny;
 
 public class CreadorEntidad implements FabricaEntidad {
@@ -98,7 +111,7 @@ public class CreadorEntidad implements FabricaEntidad {
     @Override
     public ProyectilSpiny crearProyectilSpiny(int x, int y) {
         Sprite proyectilSpinySprite = fabricaSprites.crearSpriteProyectilSpiny();
-        return new ProyectilSpiny(x,y,proyectilSpinySprite);
+        return new ProyectilSpiny(x, y, proyectilSpinySprite);
     }
 
     @Override
@@ -128,7 +141,7 @@ public class CreadorEntidad implements FabricaEntidad {
     @Override
     public Jugador crearJugador(int x, int y) {
         Sprite jugadorSprite = fabricaSprites.crearSpriteJugador();
-        return new Jugador(x,y,jugadorSprite);
+        return new Jugador(x, y, jugadorSprite);
     }
 
     @Override

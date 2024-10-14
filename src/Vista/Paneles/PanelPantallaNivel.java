@@ -1,12 +1,14 @@
 package Vista.Paneles;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,37 +25,66 @@ import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
 
 public class PanelPantallaNivel extends JPanel {
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private JLabel lbl_puntaje_txt;
     private JLabel lbl_Vida_txt;
     private JLabel lbl_tiempo_txt;
     private JLabel lbl_tiempo;
-    private JLabel imagen_fondo_panel_nivel;
-    private Imagenfondo fondo;
-    JPanel panel_nivel_fondo;
-    JScrollPane scroll_Panel_nivel;
+    private Image background; // Imagen de fondo
+    private BufferedImage marioImage; // Imagen de Mario
+    private int marioX = 100; // Posición X de Mario
+    private int marioY = 100; // Posición Y de Mario
 
     public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
         setPreferredSize(new Dimension(813, 607));
-
+        cargarRecursos(nivel); // Cargar imágenes
         agregar_panel_informacion();
         agregar_panel_carrera_con_fondo_y_scroll();
+    }
+
+    private void cargarRecursos(int nivel) {
+        // Cargar imagen de fondo
+        try {
+            background = ImageIO.read(new File("src/Recursos/Fondos/" + nivel + "_Nivel.png"));
+        } catch (Exception e) {
+            System.err.println("Error al cargar la imagen de fondo: " + e.getMessage());
+        }
+
+        // Cargar sprite de Mario
+        try {
+            marioImage = ImageIO
+                    .read(new File("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png"));
+        } catch (Exception e) {
+            System.err.println("Error al cargar la imagen de Mario: " + e.getMessage());
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // Dibujar imagen de fondo
+        if (background != null) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        }
+
+        // Dibujar sprite de Mario
+        if (marioImage != null) {
+            g.drawImage(marioImage, marioX, marioY, this);
+        }
     }
 
     // Operaciones para ControladorVistas
 
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
         ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        imagen_fondo_panel_nivel.add(observer_entidad);
+        //panel_nivel_fondo.add(observer_entidad);
         return observer_entidad;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
         ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
-        imagen_fondo_panel_nivel.add(observer_jugador);
+        //panel_nivel_fondo.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
     }
@@ -64,53 +95,17 @@ public class PanelPantallaNivel extends JPanel {
 
     protected void actualizar_labels_informacion(EntidadJugador jugador) {
         lbl_puntaje_txt.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
-        lbl_Vida_txt.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
-        lbl_tiempo_txt.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5)); // Pedir a nivel?
+        lbl_Vida_txt.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5));
+        lbl_tiempo_txt.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
     }
 
     protected String texto_con_cantidad_digitos(int numero, int digitos) {
-        String texto_autocompletado = "";
-        if (en_rango(numero, 0, 9)) {
-            texto_autocompletado = "0000" + numero;
-        } else {
-            if (en_rango(numero, 10, 99)) {
-                texto_autocompletado = "000" + numero;
-            } else {
-                if (en_rango(numero, 100, 999)) {
-                    texto_autocompletado = "00" + numero;
-                } else {
-                    if (en_rango(numero, 1000, 9999)) {
-                        texto_autocompletado = "0" + numero;
-                    } else {
-                        texto_autocompletado += numero;
-                    }
-                }
-            }
-        }
+        String texto_autocompletado = String.format("%0" + digitos + "d", numero);
         return texto_autocompletado;
     }
 
-    protected boolean en_rango(int numero, int piso, int techo) {
-        boolean retorno;
-        retorno = numero >= piso;
-        retorno = retorno && (numero <= techo);
-        return retorno;
-    }
-
-    // Operacion para observer de jugador
-    protected void actualizar_scroll_hacia_jugador(EntidadJugador jugador) {
-        // To DO
-        // panel_scroll_nivel.getVerticalScrollBar().setValue(
-        // panel_scroll_nivel.getVerticalScrollBar().getValue() +
-        // jugador.get_velocidad() );
-    }
-    // Operaciones propias para construccion de PanelPantallaCarrera
-
     protected void agregar_panel_informacion() {
-
         setLayout(null);
-        setLayout(null);
-
         lbl_puntaje_txt = new JLabel("Puntaje");
         lbl_puntaje_txt.setFont(new Font("Tahoma", Font.BOLD, 11));
         lbl_puntaje_txt.setHorizontalAlignment(SwingConstants.CENTER);
@@ -148,79 +143,11 @@ public class PanelPantallaNivel extends JPanel {
         add(lbl_tiempo);
     }
 
-    // Operaciones propias para construccion de PanelPantallaCarrera
-
     protected void agregar_panel_carrera_con_fondo_y_scroll() {
-
-        // Crear un panel para el fondo
-        panel_nivel_fondo = new JPanel();
-        panel_nivel_fondo.setLayout(null);
-        
-        // Establecer un tamaño preferido para el panel
-        panel_nivel_fondo.setPreferredSize(new Dimension(1600, ConstantesVista.PANEL_ALTO));
-
-        // Configurar el JScrollPane
-        scroll_Panel_nivel = new JScrollPane(panel_nivel_fondo);
-        scroll_Panel_nivel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambia a ALWAYS para ver el scrollbar siempre
-        scroll_Panel_nivel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // Desactivar el scrollbar vertical
-        scroll_Panel_nivel.setBounds(0, 40, 800, 560); // Ajustar altura para el espacio de la información
-        
-        // Establecer bordes para pruebas (opcional)
-        panel_nivel_fondo.setBorder(BorderFactory.createLineBorder(Color.RED));
-        
-        imagen_fondo_panel_nivel = new JLabel("");
-        imagen_fondo_panel_nivel.setIcon(new ImageIcon(PanelPantallaNivel.class.getResource("/Recursos/Fondos/1_Nivel.png")));
-        imagen_fondo_panel_nivel.setBounds(0, 0, 798, 548);
-        panel_nivel_fondo.add(imagen_fondo_panel_nivel);
-        scroll_Panel_nivel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-
-        // Agregar el JScrollPane al panel principal
-        add(scroll_Panel_nivel);
-    }
-
-    // Clase auxiliar para poder hacer el fondo
-
-    @SuppressWarnings("unused")
-    private class Imagenfondo extends JPanel {
-
-        /**
-         *
-         */
-        private static final long serialVersionUID = 4180857344385898634L;
-
-        private Image imagen;
-        private int nivelActual = 1;
-
-        public Imagenfondo(int nivel) {
-            this.nivelActual = nivel;
-            cambiarFondo(nivelActual);
-        }
-
-        public void cambiarFondo(int nivel) {
-            this.nivelActual = nivel;
-            String rutaImagen = "/Recursos/Fondos/" + nivelActual + "_Nivel.png";
-            imagen = new ImageIcon(getClass().getResource(rutaImagen)).getImage();
-
-            if (imagen == null) {
-                System.out.println("Error: Imagen no encontrada en la ruta: " + rutaImagen);
-            } else {
-                System.out.println("Imagen cargada correctamente: " + rutaImagen);
-            }
-            repaint();
-        }
-
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            if (imagen != null) {
-                g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            }
-        }
-
     }
 
     public void cambiar_fondo(int nivel) {
-        fondo.cambiarFondo(nivel);
-        fondo.repaint();
+        cargarRecursos(nivel); // Volver a cargar el fondo si cambias de nivel
+        repaint(); // Redibujar el panel
     }
 }
