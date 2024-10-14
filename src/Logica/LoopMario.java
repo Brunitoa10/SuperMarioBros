@@ -48,13 +48,17 @@ public class LoopMario implements Runnable {
 
         if (oyente.teclaIzquierda) {
             mario.desplazarEnX(-1);
-        }
+
+        }else
+            mario.desplazarEnX(0);
         if (oyente.teclaDerecha) {
             mario.desplazarEnX(1);
-        }
+
+        }else
+            mario.desplazarEnX(0);
         if (oyente.teclaArriba) {
             mario.saltar();
-            oyente.teclaArriba = false;
+
         }
         mario.actualizar_entidad();
     }

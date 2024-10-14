@@ -44,9 +44,11 @@ public class OyenteTeclado implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             teclaArriba = false;
+
         }
         if (code == KeyEvent.VK_A) {
             teclaIzquierda = false;
+            System.out.println("solte");
         }
         if (code == KeyEvent.VK_D) {
             teclaDerecha = false;
