@@ -16,4 +16,6 @@ public interface ControladorVistaJuego {
     public void mostrar_pantalla_ranking();
 
     public void refrescar();
+
+    public void actualizarObserver();
 }

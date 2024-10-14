@@ -4,6 +4,7 @@ import Entidades.Jugador;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.ObserverGrafica;
+import Vista.Paneles.PanelPantallaNivel;
 
 
 public class LoopMario implements Runnable {
@@ -16,6 +17,7 @@ public class LoopMario implements Runnable {
     private OyenteTeclado controlTeclado;
     private Jugador mario;
     private ControladorVistaJuego controlador;
+    private PanelPantallaNivel panel;
 
     public LoopMario(Juego juego) {
         this.controlTeclado = juego.getOyenteTeclado();
@@ -92,13 +94,13 @@ public class LoopMario implements Runnable {
         }
         mario.desplazarEnX(1);
         mario.get_posicion_x();
-        System.out.println(mario.get_posicion_x());
+
         mario.actualizar_entidad();
 
     }
 
     private void renderizar() {
-
+        controlador.actualizarObserver();
         controlador.refrescar();
         mario.actualizar_entidad();
     }

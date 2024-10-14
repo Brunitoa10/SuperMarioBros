@@ -34,8 +34,8 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel label_tiempo_txt;
     private GUI controladorVista;
     private JScrollPane scroll;
-
-
+    private ObserverEntidad observerJugador;
+    private ObserverJugador observer_Jugador1;
 
 
     public PanelPantallaNivel(GUI controladorVista) {
@@ -70,13 +70,14 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones para ControladorVistas
 
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
-        ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        imagen_fondo_panel_nivel.add(observer_entidad);
-        return observer_entidad;
+        observerJugador= new ObserverEntidad(entidad_logica);
+        imagen_fondo_panel_nivel.add(observerJugador);
+        return observerJugador;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
         ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
+        observer_Jugador1 = observer_jugador;
         imagen_fondo_panel_nivel.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
@@ -214,6 +215,11 @@ public class PanelPantallaNivel extends JPanel {
         label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));*/
+    }
+    public void actualizarObserver(){
+        observer_Jugador1.actualizar_observer();
+        System.out.println("Estoy aca");
+        imagen_fondo_panel_nivel.add(observerJugador);
     }
 
 }

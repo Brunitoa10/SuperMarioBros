@@ -129,6 +129,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana.repaint();
     }
 
+    public void actualizarObserver(){
+        panel_pantalla_nivel.actualizarObserver();
+    }
 
 
 }
