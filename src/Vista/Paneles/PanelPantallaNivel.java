@@ -44,7 +44,7 @@ public class PanelPantallaNivel extends JPanel {
 
     public PanelPantallaNivel(GUI controladorVista) {
         this.controladorVista = controladorVista;
-        //setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
+       
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
 		setLayout(new BorderLayout());
         //agregar_panel_informacion();
@@ -128,7 +128,7 @@ public class PanelPantallaNivel extends JPanel {
     protected void agregar_panel_nivel_con_fondo_y_scroll() {
     	System.out.println("Cree imagen fondo"); 
     	
-    	imagen_fondo_panel_nivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/1_Nivel.gif"))); 
+    	imagen_fondo_panel_nivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/1_Nivel_usar.gif"))); 
     	imagen_fondo_panel_nivel.setLayout(null);  
     	imagen_fondo_panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
 		this.add(imagen_fondo_panel_nivel);
