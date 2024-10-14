@@ -21,7 +21,7 @@ public class Juego {
 
     
     private Juego() {
-		fabrica_sprites = new FabricaSpritesOriginal();
+		fabrica_sprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
 		fabrica_entidades = new CreadorEntidad(fabrica_sprites);
 		generador_nivel= new GeneradorNivel(fabrica_entidades);
 	}
