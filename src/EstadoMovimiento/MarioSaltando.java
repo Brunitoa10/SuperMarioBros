@@ -23,7 +23,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     // Falta implementar
     private boolean estaEnElSuelo() {
-        return mario.get_posicion_y() == 0;
+        return mario.get_posicion_y() == 420;
     }
 
     @Override

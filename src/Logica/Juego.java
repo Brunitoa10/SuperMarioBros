@@ -19,15 +19,14 @@ public class Juego {
     protected Nivel nivelActual;
     protected static Juego instanciaJuego;
 
-    
-    private Juego() {
-		fabrica_sprites = new FabricaSpritesOriginal("Recursos/Sprites/Originales");
-		fabrica_entidades = new CreadorEntidad(fabrica_sprites);
-		generador_nivel= new GeneradorNivel(fabrica_entidades);
 
-	}
-	
-    
+    private Juego() {
+        fabrica_sprites = new FabricaSpritesOriginal("Recursos/Sprites/Originales");
+        fabrica_entidades = new CreadorEntidad(fabrica_sprites);
+        generador_nivel= new GeneradorNivel(fabrica_entidades);
+
+    }
+
     // Comunicacion con parte grafica
     public void set_controlador_vistas(ControladorVistaJuego controlador_vistas) {
         this.controlador_vistas = controlador_vistas;
@@ -48,32 +47,40 @@ public class Juego {
         System.out.println("Logica mostrar ranking");
         controlador_vistas.mostrar_pantalla_ranking();
     }
-    
+
     protected void registrar_observers() {
-		registrar_observer_jugador(nivelActual.getJugador());
-		registrar_observers_para_entidades(nivelActual.getEnemigos());
-		registrar_observers_para_entidades(nivelActual.getPlataformas());
-		registrar_observers_para_entidades(nivelActual.getPowerUps());
-		registrar_observers_para_entidades(nivelActual.getProyectiles());
-	}
-	
-	protected void registrar_observer_jugador(Jugador vehiculo_jugador) {
-		Observer observer_jugador = controlador_vistas.registrar_entidad(vehiculo_jugador);
-		vehiculo_jugador.registrar_observer(observer_jugador);
-	}
-	
-	
-	protected void registrar_observers_para_entidades(List<? extends Entidad> entidades) {
-		for(Entidad entidad : entidades) {
-			Observer observer = controlador_vistas.registrar_entidad(entidad);
-			entidad.registrar_observer(observer);
-		}
-	}
+        registrar_observer_jugador(nivelActual.getJugador());
+        registrar_observers_para_entidades(nivelActual.getEnemigos());
+        registrar_observers_para_entidades(nivelActual.getPlataformas());
+        registrar_observers_para_entidades(nivelActual.getPowerUps());
+        registrar_observers_para_entidades(nivelActual.getProyectiles());
+    }
+
+    protected void registrar_observer_jugador(Jugador jugador) {
+        Observer observer_jugador = controlador_vistas.registrar_entidad(jugador);
+        jugador.registrar_observer(observer_jugador);
+    }
+
+
+    protected void registrar_observers_para_entidades(List<? extends Entidad> entidades) {
+        for(Entidad entidad : entidades) {
+            Observer observer = controlador_vistas.registrar_entidad(entidad);
+            entidad.registrar_observer(observer);
+        }
+    }
 
     public List<Sprite> getSprite() {
         System.out.println("Sprites Listado");
-        return nivelActual.spritesActualizables();
 
+        // Obtener la instancia de OyenteTeclado
+        OyenteTeclado oyente = OyenteTeclado.getInstancia(); // Asumiendo que OyenteTeclado tiene un método getInstancia()
+
+        // Verificar si la tecla derecha está presionada
+        if (oyente.teclaDerecha) {
+            nivelActual.getJugador().desplazarEnX(1); // Mover a Mario a la derecha
+        }
+
+        return nivelActual.spritesActualizables();
     }
 
     public static Juego SingletonInstancia() {

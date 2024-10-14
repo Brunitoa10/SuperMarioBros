@@ -12,8 +12,15 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void saltar() {
+        if(estaEnElSuelo()) {
+            mario.setEstadoMovimiento(new MarioSaltando(mario));
+        }else{
+            System.out.println("No esta en una superficie");
+        }
+    }
 
-        mario.setEstadoMovimiento(new MarioSaltando(mario));
+    private boolean estaEnElSuelo() {
+        return mario.get_posicion_y() == 420;
     }
 
     @Override
