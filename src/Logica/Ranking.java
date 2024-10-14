@@ -14,7 +14,7 @@ public class Ranking {
     }
 
     private void cargarRanking() {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Recursos/ranking.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Recursos/ranking.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (!linea.trim().isEmpty()) { // Ignorar líneas vacías

@@ -34,7 +34,7 @@ public class Juego {
 
     public void iniciar() {
         nivelActual = generador_nivel.generarNivel(1);
-        registrar_observer_jugador(nivelActual.getJugador());
+        registrar_observers();
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
     }

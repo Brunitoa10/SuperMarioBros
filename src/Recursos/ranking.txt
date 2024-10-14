@@ -1,5 +1,5 @@
-Juan2,10000
+Dino,10000
 Juan,1000
 Jugador2,300
 jugador5,250
-juancitoa,206
+Piccio,206
