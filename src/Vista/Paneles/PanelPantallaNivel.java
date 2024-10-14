@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
@@ -28,23 +29,29 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel lbl_Vida_txt;
     private JLabel lbl_tiempo_txt;
     private JLabel lbl_tiempo;
-    private Image background; // Imagen de fondo
-    private BufferedImage marioImage; // Imagen de Mario
-    private int marioX = 100; // Posición X de Mario
-    private int marioY = 193; // Posición Y de Mario
+    private Image fondo_panel_nivel;
+    private BufferedImage marioImage;
+    private int marioX = 100;
+    private int marioY = 193;
+    private JPanel panelContenido;
+    private JPanel panelInfo;
+    private JLabel lbl_puntaje;
+    private JLabel lbl_vida;
+    private JScrollPane scrollPane;
 
     public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
         // Configuración del layout del panel principal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Crear el panel que contendrá el contenido desplazable
-        JPanel panelContenido = new JPanel() {
+        panelContenido = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Dibujar imagen de fondo
-                if (background != null) {
-                    g.drawImage(background, 0, 0, background.getWidth(null), background.getHeight(null), this);
+                if (fondo_panel_nivel != null) {
+                    g.drawImage(fondo_panel_nivel, 0, 0, fondo_panel_nivel.getWidth(null),
+                            fondo_panel_nivel.getHeight(null), this);
                 }
                 // Dibujar sprite de Mario
                 if (marioImage != null) {
@@ -52,14 +59,15 @@ public class PanelPantallaNivel extends JPanel {
                 }
             }
         };
-        panelContenido.setPreferredSize(new Dimension(1200, 800)); // Tamaño del contenido
-        cargarRecursos(nivel); // Cargar imágenes
+        panelContenido
+                .setPreferredSize(new Dimension(ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO));
 
-        // Añadir el panel de información
+        cargarRecursos(nivel);
+
         agregar_panel_informacion(panelContenido);
 
         // Crear JScrollPane y añadir el panel de contenido
-        JScrollPane scrollPane = new JScrollPane(panelContenido);
+        scrollPane = new JScrollPane(panelContenido);
         scrollPane.setPreferredSize(new Dimension(813, 607)); // Tamaño del JScrollPane
 
         // Configuración del JScrollPane para permitir solo desplazamiento horizontal
@@ -74,7 +82,7 @@ public class PanelPantallaNivel extends JPanel {
     private void cargarRecursos(int nivel) {
         // Cargar imagen de fondo
         try {
-            background = ImageIO.read(new File("Recursos/Fondos/" + nivel + "_Nivel.png"));
+            fondo_panel_nivel = ImageIO.read(new File("src/Recursos/Fondos/" + nivel + "_Nivel.gif"));
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen de fondo: " + e.getMessage());
         }
@@ -82,7 +90,7 @@ public class PanelPantallaNivel extends JPanel {
         // Cargar sprite de Mario
         try {
             marioImage = ImageIO
-                    .read(new File("Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png"));
+                    .read(new File("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png"));
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen de Mario: " + e.getMessage());
         }
@@ -119,7 +127,7 @@ public class PanelPantallaNivel extends JPanel {
 
     protected void agregar_panel_informacion(JPanel panelContenido) {
         // Crear un sub-panel para la información del jugador
-        JPanel panelInfo = new JPanel();
+        panelInfo = new JPanel();
         panelInfo.setLayout(null);
         panelInfo.setPreferredSize(new Dimension(813, 50)); // Altura del panel de información
 
@@ -141,13 +149,13 @@ public class PanelPantallaNivel extends JPanel {
         lbl_tiempo_txt.setBounds(532, 11, 95, 22);
         panelInfo.add(lbl_tiempo_txt);
 
-        JLabel lbl_puntaje = new JLabel("00000");
+        lbl_puntaje = new JLabel("00000");
         lbl_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_puntaje.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_puntaje.setBounds(97, 15, 150, 14);
         panelInfo.add(lbl_puntaje);
 
-        JLabel lbl_vida = new JLabel("0");
+        lbl_vida = new JLabel("0");
         lbl_vida.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_vida.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_vida.setBounds(354, 15, 150, 14);
@@ -160,6 +168,7 @@ public class PanelPantallaNivel extends JPanel {
         panelInfo.add(lbl_tiempo);
 
         // Agregar el panel de información al panel de contenido
+
         panelContenido.add(panelInfo);
     }
 
