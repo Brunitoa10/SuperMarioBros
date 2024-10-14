@@ -4,6 +4,7 @@ import Entidades.Jugador;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 
+
 public class LoopMario implements Runnable {
 
     private static final int MILISENGUDOS_POR_SEGUNDO = 1000;
@@ -15,10 +16,10 @@ public class LoopMario implements Runnable {
     private Jugador mario;
     private ControladorVistaJuego controlador;
     
-    public LoopMario(OyenteTeclado controlTeclado, Jugador mario, ControladorVistaJuego controlador) {
-        this.controlTeclado = controlTeclado;
-        this.mario = mario;
-        this.controlador = controlador;
+    public LoopMario(Juego juego) {
+        this.controlTeclado = juego.getOyenteTeclado();
+        this.mario = juego.getNivelActual().getJugador();
+        this.controlador = juego.getControladorVistaJuego();
         inicializar();
     }
 
@@ -88,10 +89,15 @@ public class LoopMario implements Runnable {
             mario.saltar();
             controlTeclado.teclaArriba = false;
         }
+        mario.desplazarEnX(1);
+        mario.get_posicion_x();
+        System.out.println(mario.get_posicion_x());
         mario.actualizar_entidad();
+
     }
 
     private void renderizar() {
+
         controlador.refrescar();
     }
 

@@ -1,15 +1,12 @@
 package Vista.Paneles;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.*;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.Juego;
 import Logica.OyenteTeclado;
 import Vista.GUI;
 import Vista.Controladores.ConstantesVista;
@@ -38,7 +35,6 @@ public class PanelPantallaNivel extends JPanel {
     private GUI controladorVista;
     private JScrollPane scroll;
 
-    private OyenteTeclado oyenteTeclado = new OyenteTeclado();
 
 
 
@@ -218,5 +214,13 @@ public class PanelPantallaNivel extends JPanel {
         label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
         label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));*/
+    }
+    public void paintComponent(Graphics g, Juego juego) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
+        g2.fillRect(juego.getJugador().get_posicion_x(), juego.getJugador().get_posicion_y(), 32, 32);
+        g2.dispose();
+
     }
 }

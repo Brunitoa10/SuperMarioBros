@@ -39,8 +39,8 @@ public class Juego {
         registrar_observers();
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
-//        oyenteTeclado = new OyenteTeclado();
-        loopMario = new LoopMario(nivelActual.getJugador(),controlador_vistas);
+        oyenteTeclado = new OyenteTeclado();
+        loopMario = new LoopMario(this);
 
     }
 
@@ -74,19 +74,6 @@ public class Juego {
         }
     }
 
-    public List<Sprite> getSprite() {
-        System.out.println("Sprites Listado");
-
-        // Obtener la instancia de OyenteTeclado
-        OyenteTeclado oyente = OyenteTeclado.getInstancia(); // Asumiendo que OyenteTeclado tiene un método getInstancia()
-
-        // Verificar si la tecla derecha está presionada
-        if (oyente.teclaDerecha) {
-            nivelActual.getJugador().desplazarEnX(1); // Mover a Mario a la derecha
-        }
-
-        return nivelActual.spritesActualizables();
-    }
 
     public static Juego SingletonInstancia() {
         if (instanciaJuego == null) {
@@ -95,4 +82,19 @@ public class Juego {
         return instanciaJuego;
     }
 
+    public Nivel getNivelActual() {
+        return nivelActual;
+    }
+
+    public OyenteTeclado getOyenteTeclado() {
+        return oyenteTeclado;
+    }
+
+    public ControladorVistaJuego getControladorVistaJuego() {
+        return controlador_vistas;
+    }
+
+    public Jugador getJugador() {
+        return nivelActual.getJugador();
+    }
 }
