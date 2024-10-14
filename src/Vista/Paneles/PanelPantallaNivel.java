@@ -1,6 +1,5 @@
 package Vista.Paneles;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,16 +8,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
@@ -36,10 +34,41 @@ public class PanelPantallaNivel extends JPanel {
     private int marioY = 100; // Posición Y de Mario
 
     public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
-        setPreferredSize(new Dimension(813, 607));
+        // Configuración del layout del panel principal
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        // Crear el panel que contendrá el contenido desplazable
+        JPanel panelContenido = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Dibujar imagen de fondo
+                if (background != null) {
+                    g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+                }
+                // Dibujar sprite de Mario
+                if (marioImage != null) {
+                    g.drawImage(marioImage, marioX, marioY, this);
+                }
+            }
+        };
+        panelContenido.setPreferredSize(new Dimension(1200, 800)); // Tamaño del contenido
         cargarRecursos(nivel); // Cargar imágenes
-        agregar_panel_informacion();
-        agregar_panel_carrera_con_fondo_y_scroll();
+
+        // Añadir el panel de información
+        agregar_panel_informacion(panelContenido);
+
+        // Crear JScrollPane y añadir el panel de contenido
+        JScrollPane scrollPane = new JScrollPane(panelContenido);
+        scrollPane.setPreferredSize(new Dimension(813, 607)); // Tamaño del JScrollPane
+
+        // Configuración del JScrollPane para permitir solo desplazamiento horizontal
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0)); // Opcional: eliminar el borde del JScrollPane
+
+        // Añadir el JScrollPane al panel principal
+        add(scrollPane);
     }
 
     private void cargarRecursos(int nivel) {
@@ -59,32 +88,16 @@ public class PanelPantallaNivel extends JPanel {
         }
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Dibujar imagen de fondo
-        if (background != null) {
-            g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        }
-
-        // Dibujar sprite de Mario
-        if (marioImage != null) {
-            g.drawImage(marioImage, marioX, marioY, this);
-        }
-    }
-
     // Operaciones para ControladorVistas
-
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
         ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        //panel_nivel_fondo.add(observer_entidad);
+        // panel_nivel_fondo.add(observer_entidad);
         return observer_entidad;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
         ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
-        //panel_nivel_fondo.add(observer_jugador);
+        // panel_nivel_fondo.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
     }
@@ -104,46 +117,50 @@ public class PanelPantallaNivel extends JPanel {
         return texto_autocompletado;
     }
 
-    protected void agregar_panel_informacion() {
-        setLayout(null);
+    protected void agregar_panel_informacion(JPanel panelContenido) {
+        // Crear un sub-panel para la información del jugador
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(null);
+        panelInfo.setPreferredSize(new Dimension(813, 50)); // Altura del panel de información
+
         lbl_puntaje_txt = new JLabel("Puntaje");
         lbl_puntaje_txt.setFont(new Font("Tahoma", Font.BOLD, 11));
         lbl_puntaje_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_puntaje_txt.setBounds(10, 11, 95, 22);
-        add(lbl_puntaje_txt);
+        panelInfo.add(lbl_puntaje_txt);
 
         lbl_Vida_txt = new JLabel("Vida");
         lbl_Vida_txt.setFont(new Font("Tahoma", Font.BOLD, 11));
         lbl_Vida_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_Vida_txt.setBounds(285, 11, 95, 22);
-        add(lbl_Vida_txt);
+        panelInfo.add(lbl_Vida_txt);
 
         lbl_tiempo_txt = new JLabel("Tiempo");
         lbl_tiempo_txt.setFont(new Font("Tahoma", Font.BOLD, 11));
         lbl_tiempo_txt.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo_txt.setBounds(532, 11, 95, 22);
-        add(lbl_tiempo_txt);
+        panelInfo.add(lbl_tiempo_txt);
 
         JLabel lbl_puntaje = new JLabel("00000");
         lbl_puntaje.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_puntaje.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_puntaje.setBounds(97, 15, 150, 14);
-        add(lbl_puntaje);
+        panelInfo.add(lbl_puntaje);
 
         JLabel lbl_vida = new JLabel("0");
         lbl_vida.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_vida.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_vida.setBounds(354, 15, 150, 14);
-        add(lbl_vida);
+        panelInfo.add(lbl_vida);
 
         lbl_tiempo = new JLabel("00000");
         lbl_tiempo.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_tiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lbl_tiempo.setBounds(607, 15, 150, 14);
-        add(lbl_tiempo);
-    }
+        panelInfo.add(lbl_tiempo);
 
-    protected void agregar_panel_carrera_con_fondo_y_scroll() {
+        // Agregar el panel de información al panel de contenido
+        panelContenido.add(panelInfo);
     }
 
     public void cambiar_fondo(int nivel) {
