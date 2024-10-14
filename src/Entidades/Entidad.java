@@ -46,7 +46,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
     @Override
     public void actualizar_entidad() {
-
+        observer.actualizar_observer();
     }
 
     public boolean detectColission(Entidad e){

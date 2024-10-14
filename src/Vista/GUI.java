@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
+import Logica.OyenteTeclado;
 import Logica.Ranking;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
@@ -27,6 +28,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaRanking panel_pantalla_ranking;
     protected PanelPantallaModoJuego panel_pantalla_modo_juego;
     protected Ranking ranking;
+    protected OyenteTeclado oyente;
+
 
     protected Juego mi_juego;
     protected int nivel;
@@ -35,13 +38,16 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ranking = new Ranking();
         this.mi_juego = juego;
         this.nivel = 1;
-        panel_pantalla_nivel = new PanelPantallaNivel(nivel, this);
+        panel_pantalla_nivel = new PanelPantallaNivel(this);
+
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
         panel_pantalla_ranking = new PanelPantallaRanking(this, ranking);
         panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
         configurar_ventana();
         registrar_oyente_ventana();
     }
+
+
 
     protected void configurar_ventana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
@@ -62,6 +68,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     public void mostrar_pantalla_inicial() {
         ventana.setContentPane(panel_pantalla_principal);
+
+
         refrescar();
     }
 
@@ -104,6 +112,12 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void mostrar_pantalla_nivel() {
         ventana.setContentPane(panel_pantalla_nivel);
 
+
+        oyente = new OyenteTeclado();
+        panel_pantalla_nivel .addKeyListener(oyente);
+        panel_pantalla_nivel.setFocusable(true);
+        panel_pantalla_nivel.requestFocusInWindow();
+
         refrescar();
     }
 
@@ -123,14 +137,19 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         refrescar();
     }
 
-    protected void refrescar() {
+    public void refrescar() {
         ventana.revalidate();
         ventana.repaint();
     }
 
-    public void cambiar_fondo_nivel(int nivel) {
-        panel_pantalla_nivel.cambiar_fondo(nivel);
-        refrescar();
+    public void actualizarObserver(){
+        panel_pantalla_nivel.actualizarObserver();
     }
+
+    @Override
+    public OyenteTeclado oyenteTeclado() {
+        return oyente;
+    }
+
 
 }

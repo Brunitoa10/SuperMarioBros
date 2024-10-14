@@ -67,13 +67,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     @Override
     public int get_tiempo() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get_tiempo'");
+        return 300;
     }
 
     @Override
     public int get_vida() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get_vida'");
+        return 3;
     }
 
     @Override

@@ -7,6 +7,7 @@ import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.*;
 import Fabricas.FabricaEntidad;
+import Fabricas.Sprite;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,91 +27,103 @@ public class Nivel {
     protected int puntajeTotal;
     protected FabricaEntidad fabricaEntidades;
 
-    public Nivel(int numero) {
-        this.puntajeTotal = 0;
-        this.vida = 3;
-        this.enemigos = new LinkedList<Enemigo>();
-        this.plataformas = new LinkedList<Plataforma>();
-        this.powerUps = new LinkedList<PowerUp>();
-        this.proyectiles = new LinkedList<Proyectil>();
-        this.monedas = new LinkedList<Moneda>();
+        public Nivel(int numero) {
+            this.puntajeTotal = 0;
+            this.vida = 3;
+            this.enemigos = new LinkedList<Enemigo>();
+            this.plataformas = new LinkedList<Plataforma>();
+            this.powerUps = new LinkedList<PowerUp>();
+            this.proyectiles = new LinkedList<Proyectil>();
+            this.monedas = new LinkedList<Moneda>();
+        }
+
+        public Jugador getJugador() {
+            return jugador;
+        }
+
+        public List<Enemigo> getEnemigos() {
+            return enemigos;
+        }
+
+        public List<Plataforma> getPlataformas() {
+            return plataformas;
+        }
+
+        public List<PowerUp> getPowerUps() {
+            return powerUps;
+        }
+
+        public List<Proyectil> getProyectiles() {
+            return proyectiles;
+        }
+
+        public void agregarJugador(Jugador jugador) {
+            this.jugador = jugador;
+            System.out.println("Piccio");
+            if (this.jugador!=null)
+                System.out.println("Jugador Piccio");
+        }
+
+        public void agregarEnemigo(Enemigo enemigo) {
+            this.enemigos.addLast(enemigo);
+        }
+
+        public void agregarPlataforma(Plataforma plataforma) {
+            this.plataformas.addLast(plataforma);
+        }
+
+        public void agregarPowerUp(PowerUp powerUp) {
+            this.powerUps.addLast(powerUp);
+        }
+
+        public void agregarProyectil(Proyectil proyectiles) {
+            this.proyectiles.addLast(proyectiles);
+        }
+
+        public void agregarMoneda(Moneda monedas) {
+            this.monedas.addLast(monedas);
+        }
+
+        public void agregarBandera(Bandera bandera) {
+            this.bandera = bandera;
+        }
+
+        public void agregarPrincesa(Princesa princesa) {
+            this.princesa = princesa;
+        }
+
+        public void sumarVida(int cantVidas) {
+            this.vida += cantVidas;
+        }
+
+        public boolean conVidas() {
+            return vida > 0;
+        }
+
+        public void perdioVida() {
+            vida--;
+        }
+
+        public void addPuntaje(int puntajeParaAniadir) {
+            puntajeTotal += puntajeParaAniadir;
+        }
+
+        public int getPuntaje(){
+            return puntajeTotal;
+        }
+
+        public void setPuntaje(int puntajeSetter){
+            puntajeTotal = puntajeSetter;
+        }
+
+        public List<Sprite> spritesActualizables() {
+            LinkedList<Sprite> sprites = new LinkedList<>();
+            jugador.get_sprite().setPosicionX(jugador.get_posicion_x());
+            jugador.get_sprite().setPosicionY(jugador.get_posicion_y());
+            sprites.addLast(jugador.get_sprite());
+            return sprites;
+        }
+
+
+
     }
-
-    public Jugador getJugador() {
-        return jugador;
-    }
-
-    public List<Enemigo> getEnemigos() {
-        return enemigos;
-    }
-
-    public List<Plataforma> getPlataformas() {
-        return plataformas;
-    }
-
-    public List<PowerUp> getPowerUps() {
-        return powerUps;
-    }
-
-    public List<Proyectil> getProyectiles() {
-        return proyectiles;
-    }
-
-    public void agregarJugador(Jugador jugador) {
-        this.jugador = jugador;
-
-    }
-
-    public void agregarEnemigo(Enemigo enemigo) {
-        this.enemigos.addLast(enemigo);
-    }
-
-    public void agregarPlataforma(Plataforma plataforma) {
-        this.plataformas.addLast(plataforma);
-    }
-
-    public void agregarPowerUp(PowerUp powerUp) {
-        this.powerUps.addLast(powerUp);
-    }
-
-    public void agregarProyectil(Proyectil proyectiles) {
-        this.proyectiles.addLast(proyectiles);
-    }
-
-    public void agregarMoneda(Moneda monedas) {
-        this.monedas.addLast(monedas);
-    }
-
-    public void agregarBandera(Bandera bandera) {
-        this.bandera = bandera;
-    }
-
-    public void agregarPrincesa(Princesa princesa) {
-        this.princesa = princesa;
-    }
-
-    public void sumarVida(int cantVidas) {
-        this.vida += cantVidas;
-    }
-
-    public boolean conVidas() {
-        return vida > 0;
-    }
-
-    public void perdioVida() {
-        vida--;
-    }
-
-    public void addPuntaje(int puntajeParaAniadir) {
-        puntajeTotal += puntajeParaAniadir;
-    }
-
-    public int getPuntaje(){
-        return puntajeTotal;
-    }
-
-    public void setPuntaje(int puntajeSetter){
-        puntajeTotal = puntajeSetter;
-    }
-
-}

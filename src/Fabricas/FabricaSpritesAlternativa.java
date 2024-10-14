@@ -2,7 +2,7 @@ package Fabricas;
 
 public class FabricaSpritesAlternativa extends FabricaSprites {
 
-    public FabricaSpritesAlternativa() {
-        super("");
+    public FabricaSpritesAlternativa(String string) {
+        super(string);
     }
 }
