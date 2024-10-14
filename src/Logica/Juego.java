@@ -40,6 +40,7 @@ public class Juego {
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
         loopMario = new LoopMario(this);
+        loopMario.comenzar();
 
     }
 
