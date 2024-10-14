@@ -7,21 +7,13 @@ import java.awt.event.KeyListener;
 
 public class OyenteTeclado implements KeyListener {
 
-    private static OyenteTeclado instancia;
-
 
     protected boolean teclaArriba,teclaDerecha,teclaIzquierda;
 
     public OyenteTeclado() {
-        // ... (código existente) ...
+
     }
 
-    public static OyenteTeclado getInstancia() {
-        if (instancia == null) {
-            instancia = new OyenteTeclado();
-        }
-        return instancia;
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {

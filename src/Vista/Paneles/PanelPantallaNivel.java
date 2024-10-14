@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.OyenteTeclado;
 import Vista.GUI;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
@@ -36,6 +37,10 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel label_tiempo_txt;
     private GUI controladorVista;
     private JScrollPane scroll;
+
+    private OyenteTeclado oyenteTeclado = new OyenteTeclado();
+
+
 
     public PanelPantallaNivel(GUI controladorVista) {
         this.controladorVista = controladorVista;
@@ -92,6 +97,7 @@ public class PanelPantallaNivel extends JPanel {
     protected void actualizar_info_jugador(EntidadJugador jugador) {
         actualizar_labels_informacion(jugador);
         actualizar_scroll_hacia_jugador(jugador);
+
     }
 
     protected void actualizar_labels_informacion(EntidadJugador jugador) {

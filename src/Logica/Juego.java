@@ -18,6 +18,8 @@ public class Juego {
     protected FabricaEntidad fabrica_entidades;
     protected Nivel nivelActual;
     protected static Juego instanciaJuego;
+    protected LoopMario loopMario;
+    protected OyenteTeclado oyenteTeclado;
 
 
     private Juego() {
@@ -37,6 +39,9 @@ public class Juego {
         registrar_observers();
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
+//        oyenteTeclado = new OyenteTeclado();
+        loopMario = new LoopMario(nivelActual.getJugador(),controlador_vistas);
+
     }
 
     public void reiniciar(Nivel nivel) {

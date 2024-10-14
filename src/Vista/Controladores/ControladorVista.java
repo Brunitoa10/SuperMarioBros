@@ -13,4 +13,5 @@ public interface ControladorVista {
 
     public void mostrar_pantalla_ranking();
 
+    public void refrescar();
 }

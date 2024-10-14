@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
+import Logica.OyenteTeclado;
 import Logica.Ranking;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
@@ -27,6 +28,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaRanking panel_pantalla_ranking;
     protected PanelPantallaModoJuego panel_pantalla_modo_juego;
     protected Ranking ranking;
+
 
     protected Juego mi_juego;
     protected int nivel;
@@ -122,9 +124,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         refrescar();
     }
 
-    protected void refrescar() {
+    public void refrescar() {
         ventana.revalidate();
         ventana.repaint();
     }
+
+
 
 }

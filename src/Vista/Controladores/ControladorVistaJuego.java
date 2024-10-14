@@ -14,4 +14,6 @@ public interface ControladorVistaJuego {
     public void mostrar_pantalla_fin_juego();
 
     public void mostrar_pantalla_ranking();
+
+    public void refrescar();
 }
