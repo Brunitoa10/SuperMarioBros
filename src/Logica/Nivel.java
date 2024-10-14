@@ -7,6 +7,7 @@ import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.*;
 import Fabricas.FabricaEntidad;
+import Fabricas.Sprite;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -113,4 +114,11 @@ public class Nivel {
         puntajeTotal = puntajeSetter;
     }
 
+    public List<Sprite> spritesActualizables() {
+        LinkedList<Sprite> sprites = new LinkedList<>();
+        jugador.get_sprite().setPosicionX(jugador.get_posicion_x());
+        jugador.get_sprite().setPosicionY(jugador.get_posicion_y());
+        sprites.addLast(jugador.get_sprite());
+        return sprites;
+    }
 }

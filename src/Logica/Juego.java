@@ -4,10 +4,7 @@ import java.util.List;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Fabricas.CreadorEntidad;
-import Fabricas.FabricaEntidad;
-import Fabricas.FabricaSprites;
-import Fabricas.FabricaSpritesOriginal;
+import Fabricas.*;
 import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
@@ -20,9 +17,10 @@ public class Juego {
     protected FabricaSprites fabrica_sprites;
     protected FabricaEntidad fabrica_entidades;
     protected Nivel nivelActual;
+    protected static Juego instanciaJuego;
 
     
-    public Juego() {
+    private Juego() {
 		fabrica_sprites = new FabricaSpritesOriginal();
 		fabrica_entidades = new CreadorEntidad(fabrica_sprites);
 		generador_nivel= new GeneradorNivel(fabrica_entidades);
@@ -35,6 +33,7 @@ public class Juego {
     }
 
     public void iniciar() {
+        nivelActual = generador_nivel.generarNivel(1);
         System.out.println("Logica mostrar modo de juego");
         controlador_vistas.mostrar_pantalla_nivel();
     }
@@ -68,5 +67,16 @@ public class Juego {
 			entidad.registrar_observer(observer);
 		}
 	}
+
+    public List<Sprite> getSprite() {
+        return nivelActual.spritesActualizables();
+    }
+
+    public static Juego SingletonInstancia() {
+        if (instanciaJuego == null) {
+            instanciaJuego = new Juego();
+        }
+        return instanciaJuego;
+    }
 
 }

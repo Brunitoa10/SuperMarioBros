@@ -6,7 +6,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -17,6 +21,8 @@ import javax.swing.border.EmptyBorder;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Fabricas.Sprite;
+import Logica.Juego;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
@@ -51,9 +57,15 @@ public class PanelPantallaNivel extends JPanel {
                 if (fondo_panel_nivel != null) {
                     g.drawImage(fondo_panel_nivel, 0, 0, fondo_panel_nivel.getWidth(null), fondo_panel_nivel.getHeight(null), this);
                 }
-                // Dibujar sprite de Mario
-                if (marioImage != null) {
-                    g.drawImage(marioImage, marioX, marioY, this);
+                // Dibujar sprites
+                List<Sprite> spriteLinkedList = Juego.SingletonInstancia().getSprite();
+                for (Sprite sprite : spriteLinkedList) {
+                    try {
+                        Image imagen = ImageIO.read(new File(sprite.get_ruta_imagen()));
+                        g.drawImage(imagen, sprite.getPosicionX(), sprite.getPosicionY(), null);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         };
