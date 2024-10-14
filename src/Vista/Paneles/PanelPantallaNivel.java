@@ -80,9 +80,9 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void actualizar_labels_informacion(EntidadJugador jugador) {
-        label_puntaje.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
-        label_vida.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5));
-        label_tiempo.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
+        //label_puntaje.setText(texto_con_cantidad_digitos(jugador.get_puntaje(), 5));
+        //label_vida.setText(texto_con_cantidad_digitos(jugador.get_vida(), 5));
+        //label_tiempo.setText(texto_con_cantidad_digitos(jugador.get_tiempo(), 5));
     }
 
     protected String texto_con_cantidad_digitos(int numero, int digitos) {

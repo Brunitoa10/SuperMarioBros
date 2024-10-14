@@ -103,7 +103,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     public void mostrar_pantalla_nivel() {
         ventana.setContentPane(panel_pantalla_nivel);
-
         refrescar();
     }
 

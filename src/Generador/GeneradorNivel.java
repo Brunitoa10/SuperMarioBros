@@ -21,13 +21,16 @@ public class GeneradorNivel {
 
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);
-        String ruta_a_nivel = "src/Recursos/Niveles/nivel" + numero + ".txt";
+        String ruta_a_nivel = "Recursos/Niveles/nivel" + numero + ".txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta_a_nivel))) {
+            System.out.println(ruta_a_nivel);
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(" ");
+
                 int idEntidad = Integer.parseInt(datos[0]);
+                System.out.println("El identidad es" + idEntidad );
                 int posicionX = Integer.parseInt(datos[1]);
                 int posicionY = Integer.parseInt(datos[2]);
                 int idPowerUp = 0;
@@ -44,6 +47,7 @@ public class GeneradorNivel {
                     this.casoEnemigos(idEntidad, posicionX, posicionY, nivel);
                 }
                 else {
+                    System.out.println("El identidad es" + idEntidad );
                     this.restoCasos(idEntidad, posicionX, posicionY, nivel);
                 }
             }
@@ -56,8 +60,10 @@ public class GeneradorNivel {
     }
 
     private void restoCasos(int idEntidad, int x, int y, Nivel nivel) {
+        System.out.println(idEntidad);
         switch (idEntidad) {
             case 0:
+                System.out.println(idEntidad+" "+x+" "+y+" ");
                 nivel.agregarJugador(fabricaEntidades.crearJugador(x,y));
                 break;
             case 9:

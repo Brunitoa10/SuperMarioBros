@@ -11,6 +11,7 @@ public class Sprite {
         this.ancho = ancho;
         this.alto = alto;
         this.ruta_a_imagen = ruta_a_imagen;
+        System.out.println("Ruta de imagen: " + ruta_a_imagen);
     }
 
     public void setPosicionX(int posicionX) {

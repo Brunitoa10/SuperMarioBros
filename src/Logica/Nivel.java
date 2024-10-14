@@ -59,7 +59,9 @@ public class Nivel {
 
     public void agregarJugador(Jugador jugador) {
         this.jugador = jugador;
-
+        System.out.println("Piccio");
+        if (this.jugador!=null)
+            System.out.println("Jugador Piccio");
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
