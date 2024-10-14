@@ -20,13 +20,13 @@ public class LoopMario implements Runnable {
     private Jugador mario;
     private ControladorVistaJuego controlador;
     private PanelPantallaNivel panel;
-    private OyenteTeclado oyente;
+
 
     public LoopMario(Juego juego) {
 
         this.mario = juego.getNivelActual().getJugador();
         this.controlador = juego.getControladorVistaJuego();
-        oyente = controlador.oyenteTeclado();
+
         inicializar();
 
     }
@@ -89,8 +89,11 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
+
+        OyenteTeclado oyente = controlador.oyenteTeclado();
+
        if (oyente.teclaIzquierda) {
-           System.out.println("Izquierda");
+
             mario.desplazarEnX(-1);
         }
         if (oyente.teclaDerecha) {

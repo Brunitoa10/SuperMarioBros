@@ -20,5 +20,5 @@ public interface ControladorVistaJuego {
 
     public void actualizarObserver();
 
-    public OyenteTeclado oyenteTeclado();
+    OyenteTeclado oyenteTeclado();
 }

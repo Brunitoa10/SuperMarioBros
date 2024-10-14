@@ -37,14 +37,11 @@ public class PanelPantallaNivel extends JPanel {
     private ObserverEntidad observerJugador;
     private ObserverJugador observer_Jugador1;
 
-    OyenteTeclado controlTeclado = new OyenteTeclado();
 
 
 
     public PanelPantallaNivel(GUI controladorVista) {
         this.controladorVista = controladorVista;
-
-        this.addKeyListener(controlTeclado);
 
 
 
@@ -229,7 +226,4 @@ public class PanelPantallaNivel extends JPanel {
         imagen_fondo_panel_nivel.add(observerJugador);
     }
 
-    public OyenteTeclado obtenerOyenteTeclado() {
-        return controlTeclado;
-    }
 }
