@@ -74,6 +74,7 @@ public class LoopMario implements Runnable {
 
         if (actualizacionRequerida) {
             mario.actualizar_entidad();
+            mario.desplazarEnX(0);
         }
     }
 
