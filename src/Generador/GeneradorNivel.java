@@ -21,7 +21,7 @@ public class GeneradorNivel {
 
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);
-        String ruta_a_nivel = "/Recursos/Niveles/nivel" + numero + ".txt";
+        String ruta_a_nivel = "Recursos/Niveles/nivel" + numero + ".txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta_a_nivel))) {
             String linea;

@@ -31,7 +31,7 @@ public class PanelPantallaNivel extends JPanel {
     private Image background; // Imagen de fondo
     private BufferedImage marioImage; // Imagen de Mario
     private int marioX = 100; // Posición X de Mario
-    private int marioY = 100; // Posición Y de Mario
+    private int marioY = 193; // Posición Y de Mario
 
     public PanelPantallaNivel(int nivel, ControladorVista controlador_vistas) {
         // Configuración del layout del panel principal
@@ -44,7 +44,7 @@ public class PanelPantallaNivel extends JPanel {
                 super.paintComponent(g);
                 // Dibujar imagen de fondo
                 if (background != null) {
-                    g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+                    g.drawImage(background, 0, 0, background.getWidth(null), background.getHeight(null), this);
                 }
                 // Dibujar sprite de Mario
                 if (marioImage != null) {
@@ -74,7 +74,7 @@ public class PanelPantallaNivel extends JPanel {
     private void cargarRecursos(int nivel) {
         // Cargar imagen de fondo
         try {
-            background = ImageIO.read(new File("src/Recursos/Fondos/" + nivel + "_Nivel.png"));
+            background = ImageIO.read(new File("Recursos/Fondos/" + nivel + "_Nivel.png"));
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen de fondo: " + e.getMessage());
         }
@@ -82,7 +82,7 @@ public class PanelPantallaNivel extends JPanel {
         // Cargar sprite de Mario
         try {
             marioImage = ImageIO
-                    .read(new File("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png"));
+                    .read(new File("Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png"));
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen de Mario: " + e.getMessage());
         }
