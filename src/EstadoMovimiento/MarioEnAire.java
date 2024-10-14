@@ -34,4 +34,7 @@ public class MarioEnAire implements EstadoMovimiento{
             mario.set_posicion_y(mario.get_posicion_y() + VELOCIDAD_SALTO);
         }
     }
+    public boolean estaEnElSuelo() {
+        return mario.get_posicion_y() >= 420; // Suelo a nivel 420
+    }
 }

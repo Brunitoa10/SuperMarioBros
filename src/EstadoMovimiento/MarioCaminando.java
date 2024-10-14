@@ -19,10 +19,9 @@ public class MarioCaminando implements EstadoMovimiento {
         }
     }
 
-    private boolean estaEnElSuelo() {
-        return mario.get_posicion_y() == 420;
+    public boolean estaEnElSuelo() {
+        return mario.get_posicion_y() >= 420; // Suelo a nivel 420
     }
-
     @Override
     public void desplazarEnX(int direccion) {
         mario.set_direccion(direccion);

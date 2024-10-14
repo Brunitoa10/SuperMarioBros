@@ -42,7 +42,8 @@ public class MarioSaltando implements EstadoMovimiento {
         mario.set_direccion(direccion);
     }
 
-    private boolean estaEnElSuelo() {
+    public boolean estaEnElSuelo() {
         return mario.get_posicion_y() >= 420; // Suelo a nivel 420
     }
+
 }

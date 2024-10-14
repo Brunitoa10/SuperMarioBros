@@ -1,6 +1,5 @@
 package Logica;
 
-
 import Entidades.Jugador;
 import Vista.Controladores.ControladorVistaJuego;
 
@@ -10,6 +9,8 @@ public class LoopMario implements Runnable {
     private Jugador mario;
     private OyenteTeclado oyenteTeclado;
     private ControladorVistaJuego controlador;
+    private static final int GRAVEDAD = 1;
+    private static final int SUELO_Y = 420;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -34,7 +35,6 @@ public class LoopMario implements Runnable {
             renderizar();
 
             try {
-                // Pausa de 16ms para lograr unos 60 FPS aproximados
                 Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -43,23 +43,38 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
-
         OyenteTeclado oyente = controlador.oyenteTeclado();
+        boolean actualizacionRequerida = false;
 
+        // Movimiento lateral
         if (oyente.teclaIzquierda) {
             mario.desplazarEnX(-1);
-            mario.actualizar_entidad();
+            actualizacionRequerida = true;
         }
 
         if (oyente.teclaDerecha) {
             mario.desplazarEnX(1);
-            mario.actualizar_entidad();
-        }
-        if (oyente.teclaArriba) {
-            mario.saltar();
-            mario.actualizar_entidad();
+            actualizacionRequerida = true;
         }
 
+
+        if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
+            mario.saltar();
+            actualizacionRequerida = true;
+        }
+
+        if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
+            mario.set_posicion_y(mario.get_posicion_y() + GRAVEDAD);
+
+            if (mario.get_posicion_y() >= SUELO_Y) {
+                mario.set_posicion_y(SUELO_Y);
+            }
+            actualizacionRequerida = true;
+        }
+
+        if (actualizacionRequerida) {
+            mario.actualizar_entidad();
+        }
     }
 
     private void renderizar() {
