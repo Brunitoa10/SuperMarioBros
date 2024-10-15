@@ -15,7 +15,6 @@ import javax.swing.ScrollPaneConstants;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
-import Vista.GUI;
 import Vista.Controladores.ConstantesVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
@@ -38,12 +37,10 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel label_vida_txt;
     private JLabel label_tiempo;
     private JLabel label_tiempo_txt;
-    private GUI controladorVista;
     private ObserverEntidad observer_entidad;
     private ObserverJugador observer_jugador;
 
-    public PanelPantallaNivel(GUI controladorVista) {
-        this.controladorVista = controladorVista;
+    public PanelPantallaNivel() {
 
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(new BorderLayout());
@@ -237,7 +234,6 @@ public class PanelPantallaNivel extends JPanel {
 
     public void actualizarObserver() {
         observer_jugador.actualizar_observer();
-
         imagen_fondo_panel_nivel.add(observer_entidad);
     }
 
