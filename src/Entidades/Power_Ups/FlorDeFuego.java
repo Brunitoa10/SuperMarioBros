@@ -1,6 +1,5 @@
 package Entidades.Power_Ups;
 
-import Entidades.Colisionable;
 import Entidades.Entidad;
 import Fabricas.Sprite;
 import Visitor.Visitor;
@@ -12,7 +11,7 @@ public class FlorDeFuego extends PowerUp {
         puntaje = 0;
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }

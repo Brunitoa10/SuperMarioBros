@@ -1,11 +1,8 @@
 package Entidades.Plataformas;
 
-import Entidades.Colisionable;
 import Entidades.Entidad;
-import Entidades.EntidadInmovil.Moneda;
 import Entidades.Plataformas.StateBloquePregunta.BloquePreguntaLleno;
 import Entidades.Plataformas.StateBloquePregunta.EstadoBloquePregunta;
-import Entidades.Power_Ups.PowerUp;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -21,7 +18,7 @@ public class BloquePregunta extends Plataforma{
         this.recompensa = recompensa;
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }

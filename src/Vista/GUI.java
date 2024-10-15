@@ -1,9 +1,5 @@
 package Vista;
 
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
@@ -18,39 +14,38 @@ import Vista.Paneles.PanelPantallaModoJuego;
 import Vista.Paneles.PanelPantallaNivel;
 import Vista.Paneles.PanelPantallaPrincipal;
 import Vista.Paneles.PanelPantallaRanking;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
     protected JFrame ventana;
-    protected PanelPantallaNivel panel_pantalla_nivel;
-    protected PanelPantallaPrincipal panel_pantalla_principal;
-    protected PanelPantallaFinJuego panel_pantalla_fin_juego;
-    protected PanelPantallaRanking panel_pantalla_ranking;
-    protected PanelPantallaModoJuego panel_pantalla_modo_juego;
+    protected PanelPantallaNivel panelPantallaNivel;
+    protected PanelPantallaPrincipal panelPantallaPrincipal;
+    protected PanelPantallaFinJuego panelPantallaFinJuego;
+    protected PanelPantallaRanking panelPantallaRanking;
+    protected PanelPantallaModoJuego panelPantallaModoJuego;
     protected Ranking ranking;
     protected OyenteTeclado oyente;
 
-
-    protected Juego mi_juego;
+    protected Juego miJuego;
     protected int nivel;
 
+    
     public GUI(Juego juego) {
         ranking = new Ranking();
-        this.mi_juego = juego;
+        this.miJuego = juego;
         this.nivel = 1;
-        registrar_oyente_ventana();
-        panel_pantalla_nivel = new PanelPantallaNivel(this);
-
-        panel_pantalla_principal = new PanelPantallaPrincipal(this);
-        panel_pantalla_ranking = new PanelPantallaRanking(this, ranking);
-        panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
-        configurar_ventana();
+        registrarOyenteVentana();
+        panelPantallaNivel = new PanelPantallaNivel();
+        panelPantallaPrincipal = new PanelPantallaPrincipal(this);
+        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+        configurarVentana();
 
     }
 
-
-
-    protected void configurar_ventana() {
+    protected void configurarVentana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
@@ -58,99 +53,106 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
                 Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
+
         ventana.setVisible(true);
     }
 
-    protected void registrar_oyente_ventana() {
+    protected void registrarOyenteVentana() {
         // To DO
     }
 
     // De interfaz para launcher
-
-    public void mostrar_pantalla_inicial() {
-        ventana.setContentPane(panel_pantalla_principal);
-
+    @Override
+    public void mostrarPantallaInicial() {
+        ventana.setContentPane(panelPantallaPrincipal);
 
         refrescar();
     }
 
     // De interfaz ControladorDeVistas
-    public void accionar_inicio_juego() {
-        mi_juego.iniciar();
+    @Override
+    public void accionarInicioJuego() {
+        miJuego.iniciar();
     }
 
-    public void accionar_pantalla_ranking() {
-        mi_juego.mostrar_pantalla_ranking();
+    @Override
+    public void accionarPantallaRanking() {
+        miJuego.mostrarPantallaRanking() ;
     }
 
-    public void accionar_pantalla_modo_juego() {
+    @Override
+    public void accionarPantallaModoJuego() {
         System.out.println("Seleccione un modo de juego");
-        mostrar_pantalla_modo_juego();
+        mostrarPantallaModoJuego();
     }
 
-    public void cambiar_modo_juego(String modo) {
+    @Override
+    public void cambiarModoJuego(String modo) {
         // Lógica para cambiar el modo de juego
         System.out.println("Modo seleccionado: " + modo);
         // Dependiendo del modo, podrías inicializar configuraciones o cambiar la lógica
         // del juego.
-        mostrar_pantalla_inicial(); // Vuelve a la pantalla principal o inicia el juego
+        mostrarPantallaInicial(); // Vuelve a la pantalla principal o inicia el juego
     }
 
     // De interfaz ComandosJuegoVista
 
-    public Observer registrar_entidad(EntidadLogica entidad_logica) {
-        Observer observer_entidad = panel_pantalla_nivel.incorporar_entidad(entidad_logica);
+    @Override
+    public Observer registrarEntidad(EntidadLogica entidad_logica) {
+        Observer observer_entidad = panelPantallaNivel.incorporarEntidad(entidad_logica);
         refrescar();
         return observer_entidad;
     }
 
-    public Observer registrar_entidad(EntidadJugador entidad_jugador) {
-        Observer observer_jugador = panel_pantalla_nivel.incorporar_entidad_jugador(entidad_jugador);
+    @Override
+    public Observer registrarEntidad(EntidadJugador entidad_jugador) {
+        Observer observer_jugador = panelPantallaNivel.incorporarEntidadJugador(entidad_jugador);
         refrescar();
         return observer_jugador;
     }
 
-    public void mostrar_pantalla_nivel() {
-        ventana.setContentPane(panel_pantalla_nivel);
-
+    @Override
+    public void mostrarPantallaNivel() {
+        ventana.setContentPane(panelPantallaNivel);
 
         oyente = new OyenteTeclado();
-        panel_pantalla_nivel .addKeyListener(oyente);
-        panel_pantalla_nivel.setFocusable(true);
-        panel_pantalla_nivel.requestFocusInWindow();
+        panelPantallaNivel.addKeyListener(oyente);
+        panelPantallaNivel.setFocusable(true);
+        panelPantallaNivel.requestFocusInWindow();
 
         refrescar();
     }
 
-    public void mostrar_pantalla_fin_juego() {
-        ventana.setContentPane(panel_pantalla_fin_juego);
+    public void mostrarPantallaFinJuego() {
+        ventana.setContentPane(panelPantallaFinJuego);
         refrescar();
     }
 
     @Override
-    public void mostrar_pantalla_ranking() {
-        ventana.setContentPane(panel_pantalla_ranking);
+    public void mostrarPantallaRanking() {
+        ventana.setContentPane(panelPantallaRanking);
         refrescar();
     }
 
-    public void mostrar_pantalla_modo_juego() {
-        ventana.setContentPane(panel_pantalla_modo_juego);
+    public void mostrarPantallaModoJuego() {
+        ventana.setContentPane(panelPantallaModoJuego);
         refrescar();
     }
 
+    @Override
     public void refrescar() {
         ventana.revalidate();
         ventana.repaint();
     }
 
-    public void actualizarObserver(){
-        panel_pantalla_nivel.actualizarObserver();
+    @Override
+    public void actualizarObserver() {
+        panelPantallaNivel.actualizarObserver();
     }
 
     @Override
     public OyenteTeclado oyenteTeclado() {
         return oyente;
     }
-
 
 }

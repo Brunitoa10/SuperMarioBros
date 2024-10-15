@@ -60,24 +60,22 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public void actualizar_entidad() {
+    public void actualizarEntidad() {
         estadoMovimiento.actualizar();
     }
 
     @Override
     public int get_tiempo() {
-        // TODO Auto-generated method stub
         return 300;
     }
 
     @Override
     public int get_vida() {
-        // TODO Auto-generated method stub
         return 3;
     }
 
     @Override
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         return c.detectColission(this);
     }
 
@@ -87,8 +85,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void desplazarEnX(int direccion) {
-
         estadoMovimiento.desplazarEnX(direccion);
+        if(posicionX < -800) {
+            posicionX = -800;
+        }
     }
 
     public void saltar() {
@@ -100,9 +100,5 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
         return ALTURA_MAXIMA_SALTO;
     }
-
-
-
-
 
 }

@@ -20,7 +20,7 @@ public class MarioParado implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.get_posicion_y() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
     }
 
     @Override
@@ -30,6 +30,6 @@ public class MarioParado implements EstadoMovimiento {
 
 
     public void actualizar() {
-        mario.set_posicion_x(mario.get_posicion_x()+mario.get_direccion()*mario.get_velocidad());
+        mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
     }
 }

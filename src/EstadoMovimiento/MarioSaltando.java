@@ -16,18 +16,18 @@ public class MarioSaltando implements EstadoMovimiento {
     @Override
     public void actualizar() {
         // Movimiento horizontal
-        mario.set_posicion_x(mario.get_posicion_x() + mario.get_direccion() * mario.get_velocidad());
+        mario.setPosicionEnX(mario.getPosicionEnX() + mario.get_direccion() * mario.get_velocidad());
 
         // Aplicar gravedad (para que empiece a bajar eventualmente)
         velocidadY += GRAVEDAD;
 
         // Movimiento vertical
-        mario.set_posicion_y(mario.get_posicion_y() + velocidadY);
+        mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
         // Verificar si Mario toca el suelo
         if (estaEnElSuelo()) {
             // Cambiar al estado de caminar si está en el suelo
-            mario.set_posicion_y(420); // Ajustar la posición exacta del suelo
+            mario.setPosicionEnY(420); // Ajustar la posición exacta del suelo
             mario.setEstadoMovimiento(new MarioCaminando(mario));
         }
     }
@@ -43,7 +43,7 @@ public class MarioSaltando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.get_posicion_y() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
     }
 
 }

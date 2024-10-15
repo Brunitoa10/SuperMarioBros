@@ -1,6 +1,11 @@
 package Logica;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -24,7 +29,8 @@ public class Ranking {
                             int puntaje = Integer.parseInt(partes[1]);
                             jugadores.add(new JugadorRanking(partes[0], puntaje));
                         } catch (NumberFormatException e) {
-                            System.err.println("Error en la línea: " + linea + " - La puntuación no es un número válido.");
+                            System.err.println(
+                                    "Error en la línea: " + linea + " - La puntuación no es un número válido.");
                         }
                     } else {
                         System.err.println("Error en la línea: " + linea + " - Formato incorrecto.");
@@ -74,7 +80,8 @@ public class Ranking {
     }
 
     private void guardarRanking() {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Recursos/ranking.txt"), StandardCharsets.UTF_8))) {
+        try (BufferedWriter bw = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("Recursos/ranking.txt"), StandardCharsets.UTF_8))) {
             for (JugadorRanking jugador : jugadores) {
                 bw.write(jugador.getNombre() + "," + jugador.getPuntaje());
                 bw.newLine();
@@ -83,7 +90,6 @@ public class Ranking {
             System.err.println("Error al guardar el archivo: " + e.getMessage());
         }
     }
-
 
     public ArrayList<JugadorRanking> mostrarRanking() {
         return jugadores;

@@ -1,12 +1,10 @@
 package Vista.ObserverGrafica;
 
-import java.awt.MediaTracker;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import Entidades.EntidadLogica;
 import Vista.AdaptadorPosicionPixel;
+import java.awt.MediaTracker;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class ObserverGrafica extends JLabel implements Observer {
 
@@ -18,7 +16,7 @@ public class ObserverGrafica extends JLabel implements Observer {
     }
 
     @Override
-    public void actualizar_observer() {
+    public void actualizarObserver() {
         actualizar_imagen();
         actualizar_posicion_tamanio();
     }
@@ -26,7 +24,7 @@ public class ObserverGrafica extends JLabel implements Observer {
 
     protected void actualizar_imagen() {
 
-        String rutaImagen = entidad_observada.get_sprite().get_ruta_imagen();
+        String rutaImagen = entidad_observada.getSprite().get_ruta_imagen();
         ImageIcon icono = new ImageIcon(rutaImagen);
 
         if (icono.getImageLoadStatus() == MediaTracker.ERRORED) {
@@ -48,8 +46,8 @@ public class ObserverGrafica extends JLabel implements Observer {
      * }
      */
     protected void actualizar_posicion_tamanio() {
-        int x = AdaptadorPosicionPixel.transformar_x(entidad_observada.get_posicion_x());
-        int y = AdaptadorPosicionPixel.transformar_y(entidad_observada.get_posicion_y());
+        int x = AdaptadorPosicionPixel.transformar_x(entidad_observada.getPosicionEnX());
+        int y = AdaptadorPosicionPixel.transformar_y(entidad_observada.getPosicionEnY());
 
         if (getIcon() != null) {
             int ancho = getIcon().getIconWidth();

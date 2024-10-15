@@ -1,6 +1,5 @@
 package Entidades.Power_Ups;
 
-import Entidades.Colisionable;
 import Entidades.Entidad;
 import Fabricas.Sprite;
 import Logica.Nivel;
@@ -19,7 +18,7 @@ public class ChampinionVerde extends PowerUp {
         nivel.sumarVida(vidasChampinion);
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }

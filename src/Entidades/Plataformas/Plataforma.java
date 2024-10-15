@@ -1,6 +1,5 @@
 package Entidades.Plataformas;
 
-import Entidades.Colisionable;
 import Entidades.Entidad;
 import Entidades.EntidadInmovil.EntidadInmovil;
 import Fabricas.Sprite;
@@ -19,7 +18,7 @@ public abstract class Plataforma extends EntidadInmovil {
         super(x, y, sprite);
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }

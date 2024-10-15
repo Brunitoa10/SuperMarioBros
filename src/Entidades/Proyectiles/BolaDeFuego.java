@@ -1,8 +1,6 @@
 package Entidades.Proyectiles;
 
-import Entidades.Colisionable;
 import Entidades.Entidad;
-import Entidades.EntidadMovil;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -12,7 +10,7 @@ public class BolaDeFuego extends Proyectil {
         super(x, y, sprite);
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }

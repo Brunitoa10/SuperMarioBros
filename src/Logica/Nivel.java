@@ -59,9 +59,6 @@ public class Nivel {
 
         public void agregarJugador(Jugador jugador) {
             this.jugador = jugador;
-            System.out.println("Piccio");
-            if (this.jugador!=null)
-                System.out.println("Jugador Piccio");
         }
 
         public void agregarEnemigo(Enemigo enemigo) {
@@ -118,9 +115,9 @@ public class Nivel {
 
         public List<Sprite> spritesActualizables() {
             LinkedList<Sprite> sprites = new LinkedList<>();
-            jugador.get_sprite().setPosicionX(jugador.get_posicion_x());
-            jugador.get_sprite().setPosicionY(jugador.get_posicion_y());
-            sprites.addLast(jugador.get_sprite());
+            jugador.getSprite().setPosicionX(jugador.getPosicionEnX());
+            jugador.getSprite().setPosicionY(jugador.getPosicionEnY());
+            sprites.addLast(jugador.getSprite());
             return sprites;
         }
 

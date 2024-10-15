@@ -10,10 +10,10 @@ public class Launcher {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Juego juego = Juego.SingletonInstancia();
+                    Juego juego = new Juego();
                     GUI controlador_vistas = new GUI(juego);
-                    juego.set_controlador_vistas(controlador_vistas);
-                    controlador_vistas.mostrar_pantalla_modo_juego();
+                    juego.setControladorVistas(controlador_vistas);
+                    controlador_vistas.mostrarPantallaModoJuego();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

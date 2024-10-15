@@ -12,13 +12,13 @@ public class ObserverJugador extends ObserverGrafica {
         super(jugador_observado);
         this.panel_pantalla_nivel = panel_pantalla_nivel;
         this.jugador_observado = jugador_observado;
-        actualizar_observer();
+        actualizarObserver();
     }
 
     @Override
-    public void actualizar_observer() {
-        super.actualizar_observer();
-        // panel_pantalla_nivel.actualizar_estado_jugador(jugador_observado);
+    public void actualizarObserver() {
+        super.actualizarObserver();
+        panel_pantalla_nivel.actualizarScrollHaciaJugador(jugador_observado);
     }
 
     public EntidadJugador getJugador_observado() {
