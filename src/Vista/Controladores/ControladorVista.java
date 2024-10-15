@@ -1,17 +1,17 @@
 package Vista.Controladores;
 
 public interface ControladorVista {
-    public void accionar_inicio_juego();
+    public void accionarInicioJuego();
 
-    public void accionar_pantalla_modo_juego();
+    public void accionarPantallaModoJuego();
 
-    public void accionar_pantalla_ranking();
+    public void accionarPantallaRanking();
 
-    public void cambiar_modo_juego(String modo_juego);
+    public void cambiarModoJuego(String modo_juego);
 
-    public void mostrar_pantalla_inicial();
+    public void mostrarPantallaInicial();
 
-    public void mostrar_pantalla_ranking();
+    public void mostrarPantallaRanking();
 
     public void refrescar();
 }

@@ -60,7 +60,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public void actualizar_entidad() {
+    public void actualizarEntidad() {
         estadoMovimiento.actualizar();
     }
 

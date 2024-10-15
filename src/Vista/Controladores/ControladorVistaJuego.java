@@ -6,15 +6,15 @@ import Logica.OyenteTeclado;
 import Vista.ObserverGrafica.Observer;
 
 public interface ControladorVistaJuego {
-    public Observer registrar_entidad(EntidadLogica entidad_logica);
+    public Observer registrarEntidad(EntidadLogica entidad_logica);
 
-    public Observer registrar_entidad(EntidadJugador entidad_jugador);
+    public Observer registrarEntidad(EntidadJugador entidad_jugador);
 
-    public void mostrar_pantalla_nivel();
+    public void mostrarPantallaNivel();
 
-    public void mostrar_pantalla_fin_juego();
+    public void mostrarPantallaFinJuego();
 
-    public void mostrar_pantalla_ranking();
+    public void mostrarPantallaRanking();
 
     public void refrescar();
 

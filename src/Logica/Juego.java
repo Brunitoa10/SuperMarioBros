@@ -1,7 +1,5 @@
 package Logica;
 
-import java.util.List;
-
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.CreadorEntidad;
@@ -11,35 +9,36 @@ import Fabricas.FabricaSpritesOriginal;
 import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
+import java.util.List;
 
 public class Juego {
 
-    protected ControladorVistaJuego controlador_vistas;
-    protected GeneradorNivel generador_nivel;
-    protected FabricaSprites fabrica_sprites;
-    protected FabricaEntidad fabrica_entidades;
+    protected ControladorVistaJuego controladorVistas;
+    protected GeneradorNivel generadorNivel;
+    protected FabricaSprites fabricaSprites;
+    protected FabricaEntidad fabricaEntidades;
     protected Nivel nivelActual;
     protected static Juego instanciaJuego;
     protected LoopMario loopMario;
     protected OyenteTeclado oyenteTeclado;
 
     public Juego() {
-        fabrica_sprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
-        fabrica_entidades = new CreadorEntidad(fabrica_sprites);
-        generador_nivel = new GeneradorNivel(fabrica_entidades);
+        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
+        fabricaEntidades = new CreadorEntidad(fabricaSprites);
+        generadorNivel = new GeneradorNivel(fabricaEntidades);
 
     }
 
     // Comunicacion con parte grafica
-    public void set_controlador_vistas(ControladorVistaJuego controlador_vistas) {
-        this.controlador_vistas = controlador_vistas;
+    public void setControladorVistas(ControladorVistaJuego controlador_vistas) {
+        this.controladorVistas = controlador_vistas;
     }
 
     public void iniciar() {
-        nivelActual = generador_nivel.generarNivel(1);
-        registrar_observers();
+        nivelActual = generadorNivel.generarNivel(1);
+        registrarObservers();
         System.out.println("Logica mostrar modo de juego");
-        controlador_vistas.mostrar_pantalla_nivel();
+        controladorVistas.mostrarPantallaNivel();
         loopMario = new LoopMario(this);
         loopMario.comenzar();
     }
@@ -48,27 +47,27 @@ public class Juego {
         // Implemetar
     }
 
-    public void mostrar_pantalla_ranking() {
+    public void mostrarPantallaRanking() {
         System.out.println("Logica mostrar ranking");
-        controlador_vistas.mostrar_pantalla_ranking();
+        controladorVistas.mostrarPantallaRanking();
     }
 
-    protected void registrar_observers() {
-        registrar_observer_jugador(nivelActual.getJugador());
-        registrar_observers_para_entidades(nivelActual.getEnemigos());
-        registrar_observers_para_entidades(nivelActual.getPlataformas());
-        registrar_observers_para_entidades(nivelActual.getPowerUps());
-        registrar_observers_para_entidades(nivelActual.getProyectiles());
+    protected void registrarObservers() {
+        registrarObserverJugador(nivelActual.getJugador());
+        registrarObserversParaEntidades(nivelActual.getEnemigos());
+        registrarObserversParaEntidades(nivelActual.getPlataformas());
+        registrarObserversParaEntidades(nivelActual.getPowerUps());
+        registrarObserversParaEntidades(nivelActual.getProyectiles());
     }
 
-    protected void registrar_observer_jugador(Jugador jugador) {
-        Observer observer_jugador = controlador_vistas.registrar_entidad(jugador);
+    protected void registrarObserverJugador(Jugador jugador) {
+        Observer observer_jugador = controladorVistas.registrarEntidad(jugador);
         jugador.registrar_observer(observer_jugador);
     }
 
-    protected void registrar_observers_para_entidades(List<? extends Entidad> entidades) {
+    protected void registrarObserversParaEntidades(List<? extends Entidad> entidades) {
         for (Entidad entidad : entidades) {
-            Observer observer = controlador_vistas.registrar_entidad(entidad);
+            Observer observer = controladorVistas.registrarEntidad(entidad);
             entidad.registrar_observer(observer);
         }
     }
@@ -82,7 +81,7 @@ public class Juego {
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
-        return controlador_vistas;
+        return controladorVistas;
     }
 
     public Jugador getJugador() {

@@ -20,13 +20,13 @@ public class PanelPantallaPrincipal extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private ControladorVista controlador_vistas;
+    private ControladorVista controladorVistas;
     private JLabel imagen_fondo;
     private JButton btn_iniciar_juego;
     private JButton boton_puntajes;
 
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
-        this.controlador_vistas = controlador_vistas;
+        this.controladorVistas = controlador_vistas;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
         agregar_imagen_fondo();
         agregar_boton_iniciar();
@@ -82,7 +82,7 @@ public class PanelPantallaPrincipal extends JPanel {
         btn_iniciar_juego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
-                controlador_vistas.accionar_inicio_juego();
+                controladorVistas.accionarInicioJuego();
             }
         });
     }
@@ -90,7 +90,7 @@ public class PanelPantallaPrincipal extends JPanel {
     protected void registrar_oyente_boton_puntajes() {
         boton_puntajes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controlador_vistas.accionar_pantalla_ranking();
+                controladorVistas.accionarPantallaRanking();
             }
         });
     }

@@ -3,11 +3,11 @@ package Entidades;
 import Fabricas.Sprite;
 
 public interface EntidadLogica{
-    public Sprite get_sprite();
+    public Sprite getSprite();
 
-    public int get_posicion_x();
+    public int getPosicionEnX();
 
-    public int get_posicion_y();
+    public int getPosicionEnY();
 
-    public void actualizar_entidad();
+    public void actualizarEntidad();
 }

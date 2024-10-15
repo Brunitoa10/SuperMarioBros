@@ -3,15 +3,14 @@ package Vista.Paneles;
 import Logica.JugadorRanking;
 import Logica.Ranking;
 import Vista.Controladores.ControladorVista;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 
 public class PanelPantallaRanking extends JPanel {
@@ -19,21 +18,21 @@ public class PanelPantallaRanking extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JTable tabla_jugadores;
+	private final JTable tablaJugadores;
 	private final Ranking ranking;
-	private final JButton btn_volver;
+	private final JButton btnVolver;
 	
-	private JLabel lbl_columna_izquierda_1;
-	private JLabel lbl_columna_izquierda_2; 
-	private JLabel lbl_columna_derecha_3;
-	private JLabel lbl_columna_izquierda_4;
-	private JLabel lbl_imagen_mario;
-	private JLabel lbl_imagen_hongo;
-	private JLabel lbl_columna_derecha_1;
-	private JLabel lbl_columna_derecha_2; 
-	private JLabel lbl_columna_izquierda_3;
-	private JLabel lbl_columna_derecha_4;
-	private JLabel lbl_super;
+	private JLabel lblColumnaIzquierda1;
+	private JLabel lblColumnaIzquierda2; 
+	private JLabel lblColumnaDerecha3;
+	private JLabel lblColumnaIzquierda4;
+	private JLabel lblImagenMario;
+	private JLabel lblImagenHongo;
+	private JLabel lblColumnaDerecha1;
+	private JLabel lblColumnaDerecha2; 
+	private JLabel lblColumnaIzquierda3;
+	private JLabel lblColumnaDerecha4;
+	private JLabel lblSuper;
 	
 	private final ControladorVista controlador_vistas;
 
@@ -44,15 +43,15 @@ public class PanelPantallaRanking extends JPanel {
 		this.ranking = rankingParametro;
 		setLayout(null);
 		
-		tabla_jugadores = new JTable();
-		tabla_jugadores.setBackground(new Color(192, 192, 192));
-		tabla_jugadores.setBounds(189, 198, 453, 215);
-		add(tabla_jugadores);
+		tablaJugadores = new JTable();
+		tablaJugadores.setBackground(new Color(192, 192, 192));
+		tablaJugadores.setBounds(189, 198, 453, 215);
+		add(tablaJugadores);
 		
-		btn_volver = new JButton("Volver");
-		btn_volver.setBackground(Color.LIGHT_GRAY);
-		btn_volver.setBounds(317, 493, 173, 50);
-		add(btn_volver);
+		btnVolver = new JButton("Volver");
+		btnVolver.setBackground(Color.LIGHT_GRAY);
+		btnVolver.setBounds(317, 493, 173, 50);
+		add(btnVolver);
 		
 		crear_lbl_columna_derecha();
 		crear_lbl_columna_izquierda();
@@ -63,74 +62,74 @@ public class PanelPantallaRanking extends JPanel {
 	}
 
 	private void crear_lbl_adicionales() {
-		lbl_imagen_mario = new JLabel("");
-		lbl_imagen_mario.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/mario.png"))));
-		lbl_imagen_mario.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_imagen_mario.setBounds(267, 493, 27, 50);
-		add(lbl_imagen_mario);
+		lblImagenMario = new JLabel("");
+		lblImagenMario.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/mario.png"))));
+		lblImagenMario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImagenMario.setBounds(267, 493, 27, 50);
+		add(lblImagenMario);
 
-		lbl_imagen_hongo = new JLabel("");
-		lbl_imagen_hongo.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Sprites/Originales/mushroom.png"))));
-		lbl_imagen_hongo.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_imagen_hongo.setBounds(502, 493, 27, 50);
-		add(lbl_imagen_hongo);
+		lblImagenHongo = new JLabel("");
+		lblImagenHongo.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Sprites/Originales/mushroom.png"))));
+		lblImagenHongo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImagenHongo.setBounds(502, 493, 27, 50);
+		add(lblImagenHongo);
 
 
-		lbl_super = new JLabel("");
-		lbl_super.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/super.png"))));
-		lbl_super.setBounds(254, 11, 285, 115);
-		add(lbl_super);
+		lblSuper = new JLabel("");
+		lblSuper.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/super.png"))));
+		lblSuper.setBounds(254, 11, 285, 115);
+		add(lblSuper);
 	}
 
 	private void crear_lbl_columna_derecha() {
-		lbl_columna_derecha_1 = new JLabel("");
-		lbl_columna_derecha_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_derecha_1.setBounds(27, 58, 107, 107);
-		add(lbl_columna_derecha_1);
+		lblColumnaDerecha1 = new JLabel("");
+		lblColumnaDerecha1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaDerecha1.setBounds(27, 58, 107, 107);
+		add(lblColumnaDerecha1);
 		
-		lbl_columna_derecha_2 = new JLabel("");
-		lbl_columna_derecha_2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_derecha_2.setBounds(27, 188, 107, 107);
-		add(lbl_columna_derecha_2);
+		lblColumnaDerecha2 = new JLabel("");
+		lblColumnaDerecha2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaDerecha2.setBounds(27, 188, 107, 107);
+		add(lblColumnaDerecha2);
 		
-		lbl_columna_derecha_3 = new JLabel("");
-		lbl_columna_derecha_3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_derecha_3.setBounds(27, 322, 107, 107);
-		add(lbl_columna_derecha_3);
+		lblColumnaDerecha3 = new JLabel("");
+		lblColumnaDerecha3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaDerecha3.setBounds(27, 322, 107, 107);
+		add(lblColumnaDerecha3);
 		
-		lbl_columna_derecha_4 = new JLabel("");
-		lbl_columna_derecha_4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_derecha_4.setBounds(27, 446, 107, 107);
-		add(lbl_columna_derecha_4);
+		lblColumnaDerecha4 = new JLabel("");
+		lblColumnaDerecha4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaDerecha4.setBounds(27, 446, 107, 107);
+		add(lblColumnaDerecha4);
 	}
 	
 	private void crear_lbl_columna_izquierda() {
-		lbl_columna_izquierda_1 = new JLabel("");
-		lbl_columna_izquierda_1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_1.setBounds(675, 58, 107, 107);
-		add(lbl_columna_izquierda_1);
+		lblColumnaIzquierda1 = new JLabel("");
+		lblColumnaIzquierda1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaIzquierda1.setBounds(675, 58, 107, 107);
+		add(lblColumnaIzquierda1);
 
-		lbl_columna_izquierda_2 = new JLabel("");
-		lbl_columna_izquierda_2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_2.setBounds(675, 188, 107, 107);
-		add(lbl_columna_izquierda_2);
+		lblColumnaIzquierda2 = new JLabel("");
+		lblColumnaIzquierda2.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaIzquierda2.setBounds(675, 188, 107, 107);
+		add(lblColumnaIzquierda2);
 
-		lbl_columna_izquierda_3 = new JLabel("");
-		lbl_columna_izquierda_3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_3.setBounds(675, 322, 107, 107);
-		add(lbl_columna_izquierda_3);
+		lblColumnaIzquierda3 = new JLabel("");
+		lblColumnaIzquierda3.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaIzquierda3.setBounds(675, 322, 107, 107);
+		add(lblColumnaIzquierda3);
 		
-		lbl_columna_izquierda_4 = new JLabel("");
-		lbl_columna_izquierda_4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
-		lbl_columna_izquierda_4.setBounds(675, 446, 107, 107);
-		add(lbl_columna_izquierda_4);
+		lblColumnaIzquierda4 = new JLabel("");
+		lblColumnaIzquierda4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
+		lblColumnaIzquierda4.setBounds(675, 446, 107, 107);
+		add(lblColumnaIzquierda4);
 	}
 
 
 	protected void registrar_oyente_boton_volver() {
-		btn_volver.addActionListener(new ActionListener() {
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador_vistas.mostrar_pantalla_inicial();
+				controlador_vistas.mostrarPantallaInicial();
 			}
 		});
 	}
@@ -141,28 +140,28 @@ public class PanelPantallaRanking extends JPanel {
 				new String[]{"Nombre", "Puntaje"}
 		);
 
-		tabla_jugadores.setModel(tableModel);
+		tablaJugadores.setModel(tableModel);
 
 
-		tabla_jugadores.setRowHeight(30);
-		tabla_jugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
-		tabla_jugadores.setShowGrid(false);
+		tablaJugadores.setRowHeight(30);
+		tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
+		tablaJugadores.setShowGrid(false);
 		//tabla_jugadores.setSelectionBackground(new Color(255, 204, 51));
-		tabla_jugadores.setShowGrid(false); // Ocultar la cuadrícula
-		tabla_jugadores.setOpaque(false); // Hacer la tabla transparente
-		tabla_jugadores.setFillsViewportHeight(true); // Asegurar que las celdas llenen el viewport
+		tablaJugadores.setShowGrid(false); // Ocultar la cuadrícula
+		tablaJugadores.setOpaque(false); // Hacer la tabla transparente
+		tablaJugadores.setFillsViewportHeight(true); // Asegurar que las celdas llenen el viewport
 
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		tabla_jugadores.setDefaultRenderer(Object.class, centerRenderer);
+		tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
 
 
-		JTableHeader header = tabla_jugadores.getTableHeader();
+		JTableHeader header = tablaJugadores.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 20));
 		header.setBackground(new Color(102, 102, 102));
 		header.setForeground(Color.WHITE);
 
-		tabla_jugadores.setModel(tableModel);
+		tablaJugadores.setModel(tableModel);
 
 		Iterable<JugadorRanking> listaJugadores;
 		listaJugadores = ranking.mostrarRanking();

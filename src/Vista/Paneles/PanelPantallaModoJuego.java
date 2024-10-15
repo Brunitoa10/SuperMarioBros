@@ -16,10 +16,10 @@ public class PanelPantallaModoJuego extends JPanel {
     private static final long serialVersionUID = 1L;
     private JButton btn_original;
     private JButton btn_alternativo;
-    private ControladorVista controlador_vistas;
+    private ControladorVista controladorVistas;
 
     public PanelPantallaModoJuego(ControladorVista controlador_vistas) {
-    	this.controlador_vistas = controlador_vistas;
+    	this.controladorVistas = controlador_vistas;
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(null);
 
@@ -51,7 +51,7 @@ public class PanelPantallaModoJuego extends JPanel {
         // Aquí podrías agregar la lógica para cambiar a otro panel o iniciar el modo de juego
         System.out.println("Modo seleccionado: " + modo);
         // Ejemplo: Cambiar panel en la GUI principal
-        controlador_vistas.cambiar_modo_juego(modo);
+        controladorVistas.cambiarModoJuego(modo);
     }
 
     private void registrar_oyente_boton_original() {

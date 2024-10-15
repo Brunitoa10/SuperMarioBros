@@ -115,9 +115,9 @@ public class Nivel {
 
         public List<Sprite> spritesActualizables() {
             LinkedList<Sprite> sprites = new LinkedList<>();
-            jugador.get_sprite().setPosicionX(jugador.get_posicion_x());
-            jugador.get_sprite().setPosicionY(jugador.get_posicion_y());
-            sprites.addLast(jugador.get_sprite());
+            jugador.getSprite().setPosicionX(jugador.getPosicionEnX());
+            jugador.getSprite().setPosicionY(jugador.getPosicionEnY());
+            sprites.addLast(jugador.getSprite());
             return sprites;
         }
 
