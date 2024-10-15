@@ -231,6 +231,5 @@ public class PanelPantallaNivel extends JPanel {
     public void actualizarObserver() {
         observer_jugador.actualizar_observer();
         imagen_fondo_panel_nivel.add(observer_entidad);
-    }
 
 }

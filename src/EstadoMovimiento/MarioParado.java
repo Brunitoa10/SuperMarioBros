@@ -13,6 +13,7 @@ public class MarioParado implements EstadoMovimiento {
     public void saltar() {
         if(estaEnElSuelo()) {
             mario.setEstadoMovimiento(new MarioSaltando(mario));
+
         }else{
             System.out.println("No esta en una superficie");
         }

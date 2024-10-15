@@ -41,4 +41,10 @@ public class Sprite {
     public String get_ruta_imagen() {
         return ruta_a_imagen;
     }
+
+    public void set_ruta_imagen(String ruta_a_imagen) {
+        this.ruta_a_imagen = ruta_a_imagen;
+    }
+
+
 }
