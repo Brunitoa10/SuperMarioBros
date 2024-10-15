@@ -19,11 +19,11 @@ public class PanelPantallaPrincipal extends JPanel {
     /**
      * 
      */
-    private static final long serialVersionUID = 1L;
-    private ControladorVista controlador_vistas;
-    private JLabel imagen_fondo;
-    private JButton btn_iniciar_juego;
-    private JButton boton_puntajes;
+    protected static final long serialVersionUID = 1L;
+    protected ControladorVista controlador_vistas;
+    protected JLabel imagen_fondo;
+    protected JButton btn_iniciar_juego;
+    protected JButton boton_puntajes;
 
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
         this.controlador_vistas = controlador_vistas;

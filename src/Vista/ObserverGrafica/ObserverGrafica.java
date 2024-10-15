@@ -10,7 +10,7 @@ import Vista.AdaptadorPosicionPixel;
 
 public class ObserverGrafica extends JLabel implements Observer {
 
-    private EntidadLogica entidad_observada;
+    protected EntidadLogica entidad_observada;
 
     protected ObserverGrafica(EntidadLogica entidad_observada) {
         super();
@@ -22,7 +22,6 @@ public class ObserverGrafica extends JLabel implements Observer {
         actualizar_imagen();
         actualizar_posicion_tamanio();
     }
-
 
     protected void actualizar_imagen() {
 
