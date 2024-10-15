@@ -65,7 +65,11 @@ public class LoopMario implements Runnable {
 
         if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
             mario.saltar();
-            mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+            if(direccionLocal==1) {
+                mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+            }else{
+                mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
+            }
             actualizacionRequerida = true;
         }
 
