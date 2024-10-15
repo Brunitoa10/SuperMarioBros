@@ -1,11 +1,16 @@
 package Vista.Paneles;
 
+import Entidades.EntidadJugador;
+import Entidades.EntidadLogica;
+import Vista.Controladores.ConstantesVista;
+import Vista.ObserverGrafica.Observer;
+import Vista.ObserverGrafica.ObserverEntidad;
+import Vista.ObserverGrafica.ObserverJugador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -14,13 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
-import Entidades.EntidadJugador;
-import Entidades.EntidadLogica;
-import Vista.Controladores.ConstantesVista;
-import Vista.ObserverGrafica.Observer;
-import Vista.ObserverGrafica.ObserverEntidad;
-import Vista.ObserverGrafica.ObserverJugador;
 
 public class PanelPantallaNivel extends JPanel {
 
@@ -170,7 +168,7 @@ public class PanelPantallaNivel extends JPanel {
         panel_scroll_nivel = new JScrollPane(panelImagen);
         panel_scroll_nivel.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize());
 
-        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // CAMBIAR POR
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS); // CAMBIAR POR
                                                                                                          // NEVER
         panel_scroll_nivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 

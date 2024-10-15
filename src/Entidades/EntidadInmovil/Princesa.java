@@ -10,7 +10,7 @@ public class Princesa extends EntidadInmovil {
     }
 
     @Override
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         return false;
     }
 

@@ -11,7 +11,7 @@ public class BuzzyBeetle extends Enemigo {
         velocidad = 4;
     }
 
-    public boolean detectColision(Entidad c) {
+    public boolean detectarColision(Entidad c) {
         boolean colisionan = c.detectColission(this);
         return false;
     }
