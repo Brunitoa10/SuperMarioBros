@@ -1,16 +1,22 @@
 package Vista.Paneles;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Image;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
-import Logica.Juego;
-import Logica.OyenteTeclado;
 import Vista.GUI;
 import Vista.Controladores.ConstantesVista;
-import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
@@ -18,10 +24,10 @@ import Vista.ObserverGrafica.ObserverJugador;
 public class PanelPantallaNivel extends JPanel {
 
     /**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel panel_nivel;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private JPanel panel_nivel;
     private JPanel panel_informacion;
     private JLabel imagen_fondo_panel_nivel;
     private JLabel imagen_fondo_panel_informacion;
@@ -33,21 +39,14 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel label_tiempo;
     private JLabel label_tiempo_txt;
     private GUI controladorVista;
-    private JScrollPane scroll;
-    private ObserverEntidad observerJugador;
-    private ObserverJugador observer_Jugador1;
-
-
-
+    private ObserverEntidad observer_entidad;
+    private ObserverJugador observer_jugador;
 
     public PanelPantallaNivel(GUI controladorVista) {
         this.controladorVista = controladorVista;
 
-
-
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
-		setLayout(new BorderLayout());
-
+        setLayout(new BorderLayout());
 
         agregar_panel_nivel_con_fondo_y_scroll();
         JPanel panelSuperior = new JPanel();
@@ -61,38 +60,29 @@ public class PanelPantallaNivel extends JPanel {
         label_puntaje = new JLabel("Puntaje: 0");
         label_tiempo = new JLabel("Tiempo: 0");
         panelSuperior.add(label_vida);
-        panelSuperior.add(Box.createHorizontalGlue()); // Agregar espacio entre vidas y puntaje
+        panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(label_puntaje);
-        panelSuperior.add(Box.createHorizontalGlue()); // Agregar espacio entre puntaje y tiempo
+        panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(label_tiempo);
-        panelSuperior.add(Box.createHorizontalGlue()); // Agregar espacio al final
+        panelSuperior.add(Box.createHorizontalGlue());
 
         add(panelSuperior, BorderLayout.NORTH);
-        //agregar_panel_informacion();
+        // agregar_panel_informacion();
     }
 
     // Operaciones para ControladorVistas
 
     public Observer incorporar_entidad(EntidadLogica entidad_logica) {
-        observerJugador= new ObserverEntidad(entidad_logica);
-        imagen_fondo_panel_nivel.add(observerJugador);
-        return observerJugador;
+        observer_entidad = new ObserverEntidad(entidad_logica);
+        imagen_fondo_panel_nivel.add(observer_entidad);
+        return observer_entidad;
     }
 
     public Observer incorporar_entidad_jugador(EntidadJugador entidad_jugador) {
-        ObserverJugador observer_jugador = new ObserverJugador(this, entidad_jugador);
-        observer_Jugador1 = observer_jugador;
+        observer_jugador = new ObserverJugador(this, entidad_jugador);
         imagen_fondo_panel_nivel.add(observer_jugador);
         actualizar_info_jugador(entidad_jugador);
         return observer_jugador;
-    }
-
-    public Observer incorporar_silueta(EntidadLogica entidad_logica) {
-        ObserverEntidad observer_entidad = new ObserverEntidad(entidad_logica);
-        imagen_fondo_panel_nivel.setIcon(new ImageIcon(getClass().getClassLoader().getResource(entidad_logica.get_sprite().get_ruta_imagen())));
-        imagen_fondo_panel_nivel.setBounds(0, 0, imagen_fondo_panel_nivel.getIcon().getIconWidth(),imagen_fondo_panel_nivel.getIcon().getIconHeight());
-        panel_nivel.setPreferredSize(new Dimension(imagen_fondo_panel_nivel.getIcon().getIconWidth(), imagen_fondo_panel_nivel.getIcon().getIconHeight()));
-        return observer_entidad;
     }
 
     protected void actualizar_info_jugador(EntidadJugador jugador) {
@@ -138,35 +128,54 @@ public class PanelPantallaNivel extends JPanel {
 
     // Operacion para observer de jugador
 
-    protected void actualizar_scroll_hacia_jugador(EntidadJugador jugador) {
-        // To DO
-        // panel_scroll_carrera.getVerticalScrollBar().setValue(
-        // panel_scroll_carrera.getVerticalScrollBar().getValue() +
-        // jugador.get_velocidad() );
+    public void actualizar_scroll_hacia_jugador(EntidadJugador jugador) {
+
+        int posicion_jugador_x = jugador.get_posicion_x();
+
+        // Obtener el ancho de la ventana visible
+        int pantallaAncho = panel_scroll_nivel.getViewport().getWidth();
+        // Obtener la posición actual del scroll
+        int posicionDelScroll = panel_scroll_nivel.getHorizontalScrollBar().getValue();
+        // Obtener el máximo del scroll
+        int topeDelScroll = panel_scroll_nivel.getHorizontalScrollBar().getMaximum();
+
+        // Si el jugador se está acercando al borde derecho de la ventana visible
+        if (posicion_jugador_x > posicionDelScroll + pantallaAncho - 100 && posicionDelScroll < topeDelScroll) {
+            // Ajustamos la posición del scroll hacia la derecha
+            panel_scroll_nivel.getHorizontalScrollBar()
+                    .setValue(Math.min(posicion_jugador_x - pantallaAncho + 100, topeDelScroll));
+        }
+
+        // Si el jugador se está acercando al borde izquierdo de la ventana visible
+        if (posicion_jugador_x < posicionDelScroll + 100 && posicionDelScroll > 0) {
+            // Ajustamos la posición del scroll hacia la izquierda
+            panel_scroll_nivel.getHorizontalScrollBar().setValue(Math.max(posicion_jugador_x - 100, 0));
+        }
     }
 
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_nivel_con_fondo_y_scroll() {
-    	System.out.println("Cree imagen fondo");
+        System.out.println("Cree imagen fondo");
 
-    	imagen_fondo_panel_nivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png")));
-    	imagen_fondo_panel_nivel.setLayout(null);
-    	imagen_fondo_panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
-		this.add(imagen_fondo_panel_nivel);
-		imagen_fondo_panel_nivel.revalidate();
-		imagen_fondo_panel_nivel.repaint();
+        imagen_fondo_panel_nivel = new JLabel(
+                new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png")));
+        imagen_fondo_panel_nivel.setLayout(null);
+        imagen_fondo_panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
+        this.add(imagen_fondo_panel_nivel);
+        imagen_fondo_panel_nivel.revalidate();
+        imagen_fondo_panel_nivel.repaint();
 
-        JPanel panelImagen = new JPanel(new BorderLayout()); // Agregar un BorderLayout al JPanel
-        panelImagen.add(imagen_fondo_panel_nivel, BorderLayout.CENTER); // Agregar la imagen al centro del JPanel
+        JPanel panelImagen = new JPanel(new BorderLayout());
+        panelImagen.add(imagen_fondo_panel_nivel, BorderLayout.CENTER);
 
-        scroll = new JScrollPane(panelImagen);
-        scroll.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize()); // Ajustar el tamaño del JScrollPane al tamaño de la imagen
-        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        panel_scroll_nivel = new JScrollPane(panelImagen);
+        panel_scroll_nivel.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize());
 
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panel_scroll_nivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        this.add(scroll);
+        this.add(panel_scroll_nivel);
 
     }
 
@@ -208,22 +217,28 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void decorar_labels_informacion() {
-       /* label_puntaje.setBounds(90, 11, 150, 14);
-        label_vida.setBounds(250, 7, 95, 22);
-        label_tiempo.setBounds(52, 450, 150, 50);
-
-        label_puntaje.setForeground(Color.WHITE);
-        label_vida.setForeground(Color.WHITE);
-        label_tiempo.setForeground(Color.WHITE);
-
-        label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
-        label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
-        label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));*/
+        /*
+         * label_puntaje.setBounds(90, 11, 150, 14);
+         * label_vida.setBounds(250, 7, 95, 22);
+         * label_tiempo.setBounds(52, 450, 150, 50);
+         * 
+         * label_puntaje.setForeground(Color.WHITE);
+         * label_vida.setForeground(Color.WHITE);
+         * label_tiempo.setForeground(Color.WHITE);
+         * 
+         * label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
+         * 24));
+         * label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
+         * 24));
+         * label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
+         * 24));
+         */
     }
-    public void actualizarObserver(){
-        observer_Jugador1.actualizar_observer();
 
-        imagen_fondo_panel_nivel.add(observerJugador);
+    public void actualizarObserver() {
+        observer_jugador.actualizar_observer();
+
+        imagen_fondo_panel_nivel.add(observer_entidad);
     }
 
 }

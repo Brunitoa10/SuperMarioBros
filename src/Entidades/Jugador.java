@@ -66,13 +66,11 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public int get_tiempo() {
-        // TODO Auto-generated method stub
         return 300;
     }
 
     @Override
     public int get_vida() {
-        // TODO Auto-generated method stub
         return 3;
     }
 
@@ -87,8 +85,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void desplazarEnX(int direccion) {
-
         estadoMovimiento.desplazarEnX(direccion);
+
     }
 
     public void saltar() {
@@ -100,9 +98,5 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
         return ALTURA_MAXIMA_SALTO;
     }
-
-
-
-
 
 }

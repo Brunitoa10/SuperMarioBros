@@ -4,11 +4,13 @@ import java.util.List;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Fabricas.*;
+import Fabricas.CreadorEntidad;
+import Fabricas.FabricaEntidad;
+import Fabricas.FabricaSprites;
+import Fabricas.FabricaSpritesOriginal;
 import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
-
 
 public class Juego {
 
@@ -21,11 +23,10 @@ public class Juego {
     protected LoopMario loopMario;
     protected OyenteTeclado oyenteTeclado;
 
-
-    private Juego() {
+    public Juego() {
         fabrica_sprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
         fabrica_entidades = new CreadorEntidad(fabrica_sprites);
-        generador_nivel= new GeneradorNivel(fabrica_entidades);
+        generador_nivel = new GeneradorNivel(fabrica_entidades);
 
     }
 
@@ -41,11 +42,10 @@ public class Juego {
         controlador_vistas.mostrar_pantalla_nivel();
         loopMario = new LoopMario(this);
         loopMario.comenzar();
-
     }
 
     public void reiniciar(Nivel nivel) {
-        //Implemetar
+        // Implemetar
     }
 
     public void mostrar_pantalla_ranking() {
@@ -66,20 +66,11 @@ public class Juego {
         jugador.registrar_observer(observer_jugador);
     }
 
-
     protected void registrar_observers_para_entidades(List<? extends Entidad> entidades) {
-        for(Entidad entidad : entidades) {
+        for (Entidad entidad : entidades) {
             Observer observer = controlador_vistas.registrar_entidad(entidad);
             entidad.registrar_observer(observer);
         }
-    }
-
-
-    public static Juego SingletonInstancia() {
-        if (instanciaJuego == null) {
-            instanciaJuego = new Juego();
-        }
-        return instanciaJuego;
     }
 
     public Nivel getNivelActual() {
