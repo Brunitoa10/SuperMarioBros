@@ -24,7 +24,7 @@ public class ObserverGrafica extends JLabel implements Observer {
 
     protected void actualizar_imagen() {
 
-        String rutaImagen = entidad_observada.getSprite().get_ruta_imagen();
+        String rutaImagen = entidad_observada.getSprite().getRutaImagen();
         ImageIcon icono = new ImageIcon(rutaImagen);
 
         if (icono.getImageLoadStatus() == MediaTracker.ERRORED) {

@@ -1,7 +1,7 @@
 package Fabricas;
 
 public class Sprite {
-    protected String ruta_a_imagen;
+    protected String rutaImagen;
     protected int ancho;
     protected int alto;
     protected int posicionX;
@@ -10,7 +10,7 @@ public class Sprite {
     public Sprite(String ruta_a_imagen, int ancho, int alto) {
         this.ancho = ancho;
         this.alto = alto;
-        this.ruta_a_imagen = ruta_a_imagen;
+        this.rutaImagen = ruta_a_imagen;
         System.out.println("Ruta de imagen: " + ruta_a_imagen);
     }
 
@@ -30,20 +30,20 @@ public class Sprite {
         return posicionY;
     }
 
-    public int get_ancho() {
+    public int getAncho() {
         return ancho;
     }
 
-    public int get_alto() {
+    public int getAlto() {
         return alto;
     }
 
-    public String get_ruta_imagen() {
-        return ruta_a_imagen;
+    public String getRutaImagen() {
+        return rutaImagen;
     }
 
     public void setRutaImagen(String ruta_a_imagen) {
-        this.ruta_a_imagen = ruta_a_imagen;
+        this.rutaImagen = ruta_a_imagen;
     }
 
 
