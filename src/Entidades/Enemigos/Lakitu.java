@@ -5,8 +5,6 @@ import Fabricas.Sprite;
 import Visitor.Visitor;
 
 public class Lakitu extends Enemigo {
-    private int PuntajeDeath;
-
 
     public Lakitu(int x, int y, Sprite sprite) {
         super(x, y, sprite);

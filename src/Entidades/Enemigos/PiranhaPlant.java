@@ -5,8 +5,8 @@ import Fabricas.Sprite;
 import Visitor.Visitor;
 
 public class PiranhaPlant extends Enemigo {
-    private int PuntajeDeath;
-
+    
+    private int puntajeMuerteMario;
 
     public PiranhaPlant(int x, int y, Sprite sprite) {
         super(x, y, sprite);

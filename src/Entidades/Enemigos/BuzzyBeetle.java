@@ -6,6 +6,8 @@ import Visitor.Visitor;
 
 public class BuzzyBeetle extends Enemigo {
 
+    private int puntajeMuerteMario;
+
     public BuzzyBeetle(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         velocidad = 4;

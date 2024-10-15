@@ -6,6 +6,8 @@ import Visitor.Visitor;
 
 public class Goomba extends Enemigo {
 
+    private int puntajeMuerteMario;
+
     public Goomba(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         velocidad = 4;

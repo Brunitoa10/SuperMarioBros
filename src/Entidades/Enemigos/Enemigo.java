@@ -5,6 +5,8 @@ import Fabricas.Sprite;
 
 public abstract class Enemigo extends EntidadMovil {
 
+    private int puntajeDestruido;
+
     protected int puntajeKill;
     protected int posicionx;
     protected int posiciony;
