@@ -3,6 +3,10 @@ package Logica;
 import Entidades.Jugador;
 import Vista.Controladores.ControladorVistaJuego;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class LoopMario implements Runnable {
 
     private boolean ejecutando;
@@ -12,6 +16,8 @@ public class LoopMario implements Runnable {
     private static final int GRAVEDAD = 1;
     private static final int SUELO_Y = 420;
     private int direccionLocal=0;
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private boolean enIdle=false;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -43,12 +49,21 @@ public class LoopMario implements Runnable {
         }
     }
 
+    private void iniciarTemporizadorIdle() {
+        scheduler.scheduleAtFixedRate(() -> {
+
+            mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif");
+
+        }, 5, 5, TimeUnit.SECONDS); // 5 segundos de espera entre comprobaciones
+    }
+
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
         boolean actualizacionRequerida = false;
 
         // Movimiento lateral
         if (oyente.teclaIzquierda) {
+            enIdle = false;
             mario.desplazarEnX(-1);
             if(mario.getEstadoMovimiento().estaEnElSuelo()){
             mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif");
@@ -64,6 +79,7 @@ public class LoopMario implements Runnable {
         }
 
         if (oyente.teclaDerecha) {
+            enIdle = false;
             mario.desplazarEnX(1);
             if(mario.getEstadoMovimiento().estaEnElSuelo()) {
                 mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif");
@@ -80,6 +96,7 @@ public class LoopMario implements Runnable {
 
 
         if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
+            enIdle = false;
             mario.saltar();
             if(direccionLocal==1) {
                 mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
@@ -97,13 +114,17 @@ public class LoopMario implements Runnable {
             }
             actualizacionRequerida = true;
         }
+        if(!enIdle) {
+            if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
+                if (direccionLocal != -1) {
+                    System.out.println(mario.get_direccion());
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
+                } else {
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png");
+                }
+                enIdle = true;
+                iniciarTemporizadorIdle();
 
-        if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
-            if(direccionLocal!=-1){
-                System.out.println(mario.get_direccion());
-                mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
-            }else{
-                mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png");
             }
         }
 
