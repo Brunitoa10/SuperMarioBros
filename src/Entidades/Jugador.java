@@ -23,7 +23,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         this.puntaje = 0;
-        this.velocidad = 4;
+        this.velocidad = 3;
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
         this.controlTeclado = new ControlTeclado(this);

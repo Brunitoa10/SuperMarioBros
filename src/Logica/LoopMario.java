@@ -116,7 +116,6 @@ public class LoopMario implements Runnable {
         if(!enIdle) {
             if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
                 if (direccionLocal != -1) {
-                    System.out.println(mario.get_direccion());
                     mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
                 } else {
                     mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png");
