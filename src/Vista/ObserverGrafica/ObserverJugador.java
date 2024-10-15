@@ -20,4 +20,8 @@ public class ObserverJugador extends ObserverGrafica {
         super.actualizar_observer();
         // panel_pantalla_nivel.actualizar_estado_jugador(jugador_observado);
     }
+
+    public EntidadJugador getJugador_observado() {
+        return jugador_observado;
+    }
 }
