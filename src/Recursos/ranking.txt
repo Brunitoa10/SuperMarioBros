@@ -1,5 +1,5 @@
 Dino,10000
-Juan,1000
-Jugador2,300
-jugador5,250
+Lauti,9000
+Franco,777
+Bruno,250
 Piccio,206

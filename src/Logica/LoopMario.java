@@ -50,14 +50,30 @@ public class LoopMario implements Runnable {
         // Movimiento lateral
         if (oyente.teclaIzquierda) {
             mario.desplazarEnX(-1);
+            if(mario.getEstadoMovimiento().estaEnElSuelo()){
             mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif");
+            }else{
+                if(direccionLocal==1) {
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+                }else{
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
+                }
+            }
             actualizacionRequerida = true;
             direccionLocal=-1;
         }
 
         if (oyente.teclaDerecha) {
             mario.desplazarEnX(1);
-            mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif");
+            if(mario.getEstadoMovimiento().estaEnElSuelo()) {
+                mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif");
+            }else{
+                if(direccionLocal==1) {
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+                }else{
+                    mario.get_sprite().set_ruta_imagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
+                }
+            }
             actualizacionRequerida = true;
             direccionLocal=1;
         }
