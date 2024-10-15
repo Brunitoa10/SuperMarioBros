@@ -170,8 +170,8 @@ public class PanelPantallaNivel extends JPanel {
         panel_scroll_nivel = new JScrollPane(panelImagen);
         panel_scroll_nivel.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize());
 
-        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS); // CAMBIAR POR
-                                                                                                          // NEVER
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // CAMBIAR POR
+                                                                                                         // NEVER
         panel_scroll_nivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         this.add(panel_scroll_nivel);
