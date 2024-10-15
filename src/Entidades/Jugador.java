@@ -86,13 +86,16 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public void desplazarEnX(int direccion) {
         estadoMovimiento.desplazarEnX(direccion);
+
     }
 
     public void saltar() {
+
         estadoMovimiento.saltar();
     }
 
     public int getAlturaMaximaSalto() {
+
         return ALTURA_MAXIMA_SALTO;
     }
 

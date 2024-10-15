@@ -13,13 +13,13 @@ import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaModoJuego extends JPanel {
 
-    protected static final long serialVersionUID = 1L;
-    protected JButton btn_original;
-    protected JButton btn_alternativo;
-    protected ControladorVista controlador_vistas;
+    private static final long serialVersionUID = 1L;
+    private JButton btn_original;
+    private JButton btn_alternativo;
+    private ControladorVista controlador_vistas;
 
     public PanelPantallaModoJuego(ControladorVista controlador_vistas) {
-        this.controlador_vistas = controlador_vistas;
+    	this.controlador_vistas = controlador_vistas;
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(null);
 
@@ -40,30 +40,28 @@ public class PanelPantallaModoJuego extends JPanel {
         btn_alternativo.setBounds(394, 0, 406, 600);
         add(btn_alternativo);
     }
-
+    
     private void registrar_oyente_botones() {
-        registrar_oyente_boton_original();
-        registrar_oyente_boton_alternativo();
+    	registrar_oyente_boton_original();
+    	registrar_oyente_boton_alternativo();
     }
 
     // Método para manejar la selección del modo de juego
     private void seleccionarModo(String modo) {
-        // Aquí podrías agregar la lógica para cambiar a otro panel o iniciar el modo de
-        // juego
+        // Aquí podrías agregar la lógica para cambiar a otro panel o iniciar el modo de juego
         System.out.println("Modo seleccionado: " + modo);
         // Ejemplo: Cambiar panel en la GUI principal
         controlador_vistas.cambiar_modo_juego(modo);
     }
 
     private void registrar_oyente_boton_original() {
-        btn_original.addActionListener(new ActionListener() {
+    	btn_original.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 seleccionarModo("original");
             }
         });
     }
-
     private void registrar_oyente_boton_alternativo() {
         btn_alternativo.addActionListener(new ActionListener() {
             @Override

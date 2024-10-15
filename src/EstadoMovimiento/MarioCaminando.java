@@ -4,7 +4,7 @@ import Entidades.Jugador;
 
 public class MarioCaminando implements EstadoMovimiento {
 
-    protected Jugador mario;
+    Jugador mario;
 
     public MarioCaminando(Jugador mario) {
         this.mario = mario;
@@ -12,9 +12,9 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void saltar() {
-        if (estaEnElSuelo()) {
+        if(estaEnElSuelo()) {
             mario.setEstadoMovimiento(new MarioSaltando(mario));
-        } else {
+        }else{
             System.out.println("No esta en una superficie");
         }
     }
@@ -22,7 +22,6 @@ public class MarioCaminando implements EstadoMovimiento {
     public boolean estaEnElSuelo() {
         return mario.get_posicion_y() >= 420; // Suelo a nivel 420
     }
-
     @Override
     public void desplazarEnX(int direccion) {
         mario.set_direccion(direccion);
@@ -31,6 +30,6 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
-        mario.set_posicion_x(mario.get_posicion_x() + mario.get_direccion() * mario.get_velocidad());
+        mario.set_posicion_x(mario.get_posicion_x()+mario.get_direccion()*mario.get_velocidad());
     }
 }

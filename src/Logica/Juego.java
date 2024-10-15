@@ -49,6 +49,7 @@ public class Juego {
     }
 
     public void mostrar_pantalla_ranking() {
+        System.out.println("Logica mostrar ranking");
         controlador_vistas.mostrar_pantalla_ranking();
     }
 

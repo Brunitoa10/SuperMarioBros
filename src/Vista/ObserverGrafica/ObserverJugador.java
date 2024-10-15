@@ -5,8 +5,8 @@ import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverJugador extends ObserverGrafica {
 
-    protected PanelPantallaNivel panel_pantalla_nivel;
-    protected EntidadJugador jugador_observado;
+    private PanelPantallaNivel panel_pantalla_nivel;
+    private EntidadJugador jugador_observado;
 
     public ObserverJugador(PanelPantallaNivel panel_pantalla_nivel, EntidadJugador jugador_observado) {
         super(jugador_observado);

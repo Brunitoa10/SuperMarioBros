@@ -3,10 +3,10 @@ package EstadoMovimiento;
 import Entidades.Jugador;
 
 public class MarioSaltando implements EstadoMovimiento {
-    protected Jugador mario;
-    protected static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
-    protected static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
-    protected int velocidadY; // Velocidad vertical actual
+    private Jugador mario;
+    private static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
+    private static final int GRAVEDAD = 1;  // Gravedad constante que hará que baje
+    private int velocidadY;  // Velocidad vertical actual
 
     public MarioSaltando(Jugador mario) {
         this.mario = mario;

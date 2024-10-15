@@ -2,7 +2,6 @@ package Vista.Paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -28,19 +27,19 @@ public class PanelPantallaNivel extends JPanel {
     /**
      *
      */
-    protected static final long serialVersionUID = 1L;
-    protected JPanel panel_informacion;
-    protected JLabel imagen_fondo_panel_nivel;
-    protected JLabel imagen_fondo_panel_informacion;
-    protected JScrollPane panel_scroll_nivel;
-    protected JLabel label_puntaje;
-    protected JLabel label_puntaje_txt;
-    protected JLabel label_vida;
-    protected JLabel label_vida_txt;
-    protected JLabel label_tiempo;
-    protected JLabel label_tiempo_txt;
-    protected ObserverEntidad observer_entidad;
-    protected ObserverJugador observer_jugador;
+    private static final long serialVersionUID = 1L;
+    private JPanel panel_informacion;
+    private JLabel imagen_fondo_panel_nivel;
+    private JLabel imagen_fondo_panel_informacion;
+    private JScrollPane panel_scroll_nivel;
+    private JLabel label_puntaje;
+    private JLabel label_puntaje_txt;
+    private JLabel label_vida;
+    private JLabel label_vida_txt;
+    private JLabel label_tiempo;
+    private JLabel label_tiempo_txt;
+    private ObserverEntidad observer_entidad;
+    private ObserverJugador observer_jugador;
 
     public PanelPantallaNivel() {
 
@@ -49,50 +48,21 @@ public class PanelPantallaNivel extends JPanel {
 
         agregar_panel_nivel_con_fondo_y_scroll();
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setLayout(null);
+        panelSuperior.setLayout(new BorderLayout());
 
         BoxLayout boxLayout = new BoxLayout(panelSuperior, BoxLayout.X_AXIS);
         panelSuperior.setLayout(boxLayout);
-
-        Component horizontalGlue_4 = Box.createHorizontalGlue();
-        panelSuperior.add(horizontalGlue_4);
-
-        JLabel lbl_vida_txt = new JLabel("Vida");
-        panelSuperior.add(lbl_vida_txt);
-        Component horizontalGlue = Box.createHorizontalGlue();
-        horizontalGlue.setBounds(0, 7, 154, 12);
-        panelSuperior.add(horizontalGlue);
+        panelSuperior.add(Box.createHorizontalGlue());
 
         label_vida = new JLabel("Vidas: 0");
-        label_vida.setBounds(166, 0, 76, 14);
         label_puntaje = new JLabel("Puntaje: 0");
-        label_puntaje.setBounds(346, 0, 50, 14);
         label_tiempo = new JLabel("Tiempo: 0");
-        label_tiempo.setBounds(550, 0, 47, 14);
         panelSuperior.add(label_vida);
-        Component horizontalGlue_1 = Box.createHorizontalGlue();
-        horizontalGlue_1.setBounds(192, 7, 154, 12);
-        panelSuperior.add(horizontalGlue_1);
-
-        JLabel lbl_puntaje_txt = new JLabel("Puntaje");
-        panelSuperior.add(lbl_puntaje_txt);
-
-        Component horizontalGlue_1_1 = Box.createHorizontalGlue();
-        panelSuperior.add(horizontalGlue_1_1);
+        panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(label_puntaje);
-        Component horizontalGlue_2 = Box.createHorizontalGlue();
-        horizontalGlue_2.setBounds(396, 7, 154, 12);
-        panelSuperior.add(horizontalGlue_2);
-
-        JLabel lbl_tiempo_txt = new JLabel("Tiempo");
-        panelSuperior.add(lbl_tiempo_txt);
-
-        Component horizontalGlue_1_1_1 = Box.createHorizontalGlue();
-        panelSuperior.add(horizontalGlue_1_1_1);
+        panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(label_tiempo);
-        Component horizontalGlue_3 = Box.createHorizontalGlue();
-        horizontalGlue_3.setBounds(597, 7, 154, 12);
-        panelSuperior.add(horizontalGlue_3);
+        panelSuperior.add(Box.createHorizontalGlue());
 
         add(panelSuperior, BorderLayout.NORTH);
         // agregar_panel_informacion();
@@ -126,35 +96,33 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected String texto_con_cantidad_digitos(int numero, int digitos) {
-        /*
-         * String texto_autocompletado = "";
-         * if (en_rango(numero, 0, 9)) {
-         * texto_autocompletado = "0000" + numero;
-         * } else {
-         * if (en_rango(numero, 10, 99)) {
-         * texto_autocompletado = "000" + numero;
-         * } else {
-         * if (en_rango(numero, 100, 999)) {
-         * texto_autocompletado = "00" + numero;
-         * } else {
-         * if (en_rango(numero, 1000, 9999)) {
-         * texto_autocompletado = "0" + numero;
-         * } else {
-         * texto_autocompletado += numero;
-         * }
-         * }
-         * }
-         * }
-         * return texto_autocompletado;
-         */
-        return String.format("%0" + digitos + "d", numero);
+        String texto_autocompletado = "";
+        if (en_rango(numero, 0, 9)) {
+            texto_autocompletado = "0000" + numero;
+        } else {
+            if (en_rango(numero, 10, 99)) {
+                texto_autocompletado = "000" + numero;
+            } else {
+                if (en_rango(numero, 100, 999)) {
+                    texto_autocompletado = "00" + numero;
+                } else {
+                    if (en_rango(numero, 1000, 9999)) {
+                        texto_autocompletado = "0" + numero;
+                    } else {
+                        texto_autocompletado += numero;
+                    }
+                }
+            }
+        }
+        return texto_autocompletado;
     }
 
-    /*
-     * protected boolean en_rango(int numero, int piso, int techo) {
-     * return (numero >= piso)&& (numero <= techo);
-     * }
-     */
+    protected boolean en_rango(int numero, int piso, int techo) {
+        boolean retorno;
+        retorno = numero >= piso;
+        retorno = retorno && (numero <= techo);
+        return retorno;
+    }
 
     // Operacion para observer de jugador
 
@@ -186,32 +154,26 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_nivel_con_fondo_y_scroll() {
-        // Cargar la imagen de fondo
-        ImageIcon imagenIcon = new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png"));
-        imagen_fondo_panel_nivel = new JLabel(imagenIcon);
+        System.out.println("Cree imagen fondo");
 
-        // Obtener las dimensiones de la imagen
-        int anchoImagen = imagenIcon.getIconWidth();
-        int altoImagen = imagenIcon.getIconHeight();
-
-        // Establecer las dimensiones del panel según la imagen
+        imagen_fondo_panel_nivel = new JLabel(
+                new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png")));
         imagen_fondo_panel_nivel.setLayout(null);
-        imagen_fondo_panel_nivel.setBounds(0, 0, anchoImagen, altoImagen);
+        imagen_fondo_panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
+        this.add(imagen_fondo_panel_nivel);
+        imagen_fondo_panel_nivel.revalidate();
+        imagen_fondo_panel_nivel.repaint();
 
-        // Crear un JPanel que contenga la imagen
         JPanel panelImagen = new JPanel(new BorderLayout());
         panelImagen.add(imagen_fondo_panel_nivel, BorderLayout.CENTER);
 
-        // Establecer el JScrollPane con las dimensiones de la imagen
         panel_scroll_nivel = new JScrollPane(panelImagen);
-        panel_scroll_nivel.setPreferredSize(new Dimension(anchoImagen, altoImagen));
+        panel_scroll_nivel.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize());
 
-        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // con always
-                                                                                                         // se ve la
-                                                                                                         // barra
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS); // CAMBIAR POR
+                                                                                                          // NEVER
         panel_scroll_nivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        // Agregar el JScrollPane al panel
         this.add(panel_scroll_nivel);
 
     }
