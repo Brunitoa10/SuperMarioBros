@@ -34,19 +34,19 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Enemigos/PiranhaPlant/PlantaLoop.gif", 16, 16);
     }
     public Sprite crearSpriteMoneda() {
-        return new Sprite(ruta_carpeta + "/coin.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Pickupeables/Coin.png", 16, 16);
     }
     public Sprite crearSpriteChampinionVerde() {
-        return new Sprite(ruta_carpeta + "/life_mushroom.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Pickupeables/HongoVerde.png", 16, 16);
     }
     public Sprite crearSpriteEstrella() {
-        return new Sprite(ruta_carpeta + "/superstar.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Pickupeables/Estrella.png", 16, 16);
     }
     public Sprite crearSpriteFlorDeFuego() {
-        return new Sprite(ruta_carpeta + "/fire_flower.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Pickupeables/FlorDeFuego.png", 16, 16);
     }
     public Sprite crearSpriteSuperChampinion() {
-        return new Sprite(ruta_carpeta + "/mushroom.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Pickupeables/Hongo.png", 16, 16);
     }
     public Sprite crearSpriteBolaDeFuego() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
@@ -55,13 +55,13 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
     public Sprite crearSpriteLadrilloSolido() {
-        return new Sprite(ruta_carpeta + "/", 16, 16);
+        return new Sprite(ruta_carpeta + "/Bloques/Ladrillo.png", 16, 16);
     }
     public Sprite crearSpriteBloqueSolido() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
     public Sprite crearSpriteTuberia() {
-        return new Sprite(ruta_carpeta + "/", 16, 16);
+        return new Sprite(ruta_carpeta + "/Bloques/Tuberia.png", 16, 16);
     }
     public Sprite crearSpriteBloquePregunta() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
