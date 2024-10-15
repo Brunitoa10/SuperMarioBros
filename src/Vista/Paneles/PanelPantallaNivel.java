@@ -21,6 +21,7 @@ import Vista.Controladores.ConstantesVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
+import java.awt.Component;
 
 public class PanelPantallaNivel extends JPanel {
 
@@ -48,24 +49,53 @@ public class PanelPantallaNivel extends JPanel {
 
         agregar_panel_nivel_con_fondo_y_scroll();
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setLayout(new BorderLayout());
+        panelSuperior.setLayout(null);
 
         BoxLayout boxLayout = new BoxLayout(panelSuperior, BoxLayout.X_AXIS);
         panelSuperior.setLayout(boxLayout);
-        panelSuperior.add(Box.createHorizontalGlue());
+        
+        Component horizontalGlue_4 = Box.createHorizontalGlue();
+        panelSuperior.add(horizontalGlue_4);
+        
+        JLabel lbl_vida_txt = new JLabel("Vida");
+        panelSuperior.add(lbl_vida_txt);
+        Component horizontalGlue = Box.createHorizontalGlue();
+        horizontalGlue.setBounds(0, 7, 154, 12);
+        panelSuperior.add(horizontalGlue);
 
         label_vida = new JLabel("Vidas: 0");
+        label_vida.setBounds(166, 0, 76, 14);
         label_puntaje = new JLabel("Puntaje: 0");
+        label_puntaje.setBounds(346, 0, 50, 14);
         label_tiempo = new JLabel("Tiempo: 0");
+        label_tiempo.setBounds(550, 0, 47, 14);
         panelSuperior.add(label_vida);
-        panelSuperior.add(Box.createHorizontalGlue());
+        Component horizontalGlue_1 = Box.createHorizontalGlue();
+        horizontalGlue_1.setBounds(192, 7, 154, 12);
+        panelSuperior.add(horizontalGlue_1);
+        
+        JLabel lbl_puntaje_txt = new JLabel("Puntaje");
+        panelSuperior.add(lbl_puntaje_txt);
+        
+        Component horizontalGlue_1_1 = Box.createHorizontalGlue();
+        panelSuperior.add(horizontalGlue_1_1);
         panelSuperior.add(label_puntaje);
-        panelSuperior.add(Box.createHorizontalGlue());
+        Component horizontalGlue_2 = Box.createHorizontalGlue();
+        horizontalGlue_2.setBounds(396, 7, 154, 12);
+        panelSuperior.add(horizontalGlue_2);
+        
+        JLabel lbl_tiempo_txt = new JLabel("Tiempo");
+        panelSuperior.add(lbl_tiempo_txt);
+        
+        Component horizontalGlue_1_1_1 = Box.createHorizontalGlue();
+        panelSuperior.add(horizontalGlue_1_1_1);
         panelSuperior.add(label_tiempo);
-        panelSuperior.add(Box.createHorizontalGlue());
+        Component horizontalGlue_3 = Box.createHorizontalGlue();
+        horizontalGlue_3.setBounds(597, 7, 154, 12);
+        panelSuperior.add(horizontalGlue_3);
 
         add(panelSuperior, BorderLayout.NORTH);
-        // agregar_panel_informacion();
+        //agregar_panel_informacion();
     }
 
     // Operaciones para ControladorVistas
@@ -96,7 +126,7 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected String texto_con_cantidad_digitos(int numero, int digitos) {
-        String texto_autocompletado = "";
+       /* String texto_autocompletado = "";
         if (en_rango(numero, 0, 9)) {
             texto_autocompletado = "0000" + numero;
         } else {
@@ -114,15 +144,13 @@ public class PanelPantallaNivel extends JPanel {
                 }
             }
         }
-        return texto_autocompletado;
+        return texto_autocompletado;*/
+    	 return String.format("%0" + digitos + "d", numero);
     }
 
-    protected boolean en_rango(int numero, int piso, int techo) {
-        boolean retorno;
-        retorno = numero >= piso;
-        retorno = retorno && (numero <= techo);
-        return retorno;
-    }
+    /*protected boolean en_rango(int numero, int piso, int techo) {
+        return (numero >= piso)&& (numero <= techo);
+    }*/
 
     // Operacion para observer de jugador
 
@@ -154,25 +182,30 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones propias para construccion de PanelPantallaCarrera
 
     protected void agregar_panel_nivel_con_fondo_y_scroll() {
-        System.out.println("Cree imagen fondo");
+    	// Cargar la imagen de fondo
+        ImageIcon imagenIcon = new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png"));
+        imagen_fondo_panel_nivel = new JLabel(imagenIcon);
 
-        imagen_fondo_panel_nivel = new JLabel(
-                new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png")));
+        // Obtener las dimensiones de la imagen
+        int anchoImagen = imagenIcon.getIconWidth();
+        int altoImagen = imagenIcon.getIconHeight();
+
+        // Establecer las dimensiones del panel según la imagen
         imagen_fondo_panel_nivel.setLayout(null);
-        imagen_fondo_panel_nivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
-        this.add(imagen_fondo_panel_nivel);
-        imagen_fondo_panel_nivel.revalidate();
-        imagen_fondo_panel_nivel.repaint();
+        imagen_fondo_panel_nivel.setBounds(0, 0, anchoImagen, altoImagen);
 
+        // Crear un JPanel que contenga la imagen
         JPanel panelImagen = new JPanel(new BorderLayout());
         panelImagen.add(imagen_fondo_panel_nivel, BorderLayout.CENTER);
 
+        // Establecer el JScrollPane con las dimensiones de la imagen
         panel_scroll_nivel = new JScrollPane(panelImagen);
-        panel_scroll_nivel.setPreferredSize(imagen_fondo_panel_nivel.getPreferredSize());
+        panel_scroll_nivel.setPreferredSize(new Dimension(anchoImagen, altoImagen));
 
-        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panel_scroll_nivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // con always se ve la barra
         panel_scroll_nivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        // Agregar el JScrollPane al panel
         this.add(panel_scroll_nivel);
 
     }
@@ -202,8 +235,7 @@ public class PanelPantallaNivel extends JPanel {
         imagen_fondo_panel_informacion = new JLabel();
         ImageIcon icono_imagen = new ImageIcon("");
 
-        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_INFORMACION_ANCHO,
-                ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
+        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_INFORMACION_ANCHO,ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         imagen_fondo_panel_informacion.setIcon(icono_imagen_escalado);
         imagen_fondo_panel_informacion.setBounds(0, 0, 800, 97);
