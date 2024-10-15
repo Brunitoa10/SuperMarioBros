@@ -1,7 +1,9 @@
 package Vista.Paneles;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.Box;
@@ -26,7 +28,6 @@ public class PanelPantallaNivel extends JPanel {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JPanel panel_nivel;
     private JPanel panel_informacion;
     private JLabel imagen_fondo_panel_nivel;
     private JLabel imagen_fondo_panel_informacion;
@@ -214,22 +215,17 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void decorar_labels_informacion() {
-        /*
-         * label_puntaje.setBounds(90, 11, 150, 14);
-         * label_vida.setBounds(250, 7, 95, 22);
-         * label_tiempo.setBounds(52, 450, 150, 50);
-         * 
-         * label_puntaje.setForeground(Color.WHITE);
-         * label_vida.setForeground(Color.WHITE);
-         * label_tiempo.setForeground(Color.WHITE);
-         * 
-         * label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
-         * 24));
-         * label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
-         * 24));
-         * label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD,
-         * 24));
-         */
+        label_puntaje.setBounds(90, 11, 150, 14);
+        label_vida.setBounds(250, 7, 95, 22);
+        label_tiempo.setBounds(52, 450, 150, 50);
+
+        label_puntaje.setForeground(Color.WHITE);
+        label_vida.setForeground(Color.WHITE);
+        label_tiempo.setForeground(Color.WHITE);
+
+        label_puntaje.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
+        label_vida.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
+        label_tiempo.setFont(new Font(label_puntaje.getFont().getName(), Font.BOLD, 24));
     }
 
     public void actualizarObserver() {

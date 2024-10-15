@@ -54,6 +54,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
                 Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
+
         ventana.setVisible(true);
     }
 
