@@ -30,7 +30,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected Ranking ranking;
     protected OyenteTeclado oyente;
 
-
     protected Juego mi_juego;
     protected int nivel;
 
@@ -39,16 +38,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         this.mi_juego = juego;
         this.nivel = 1;
         registrar_oyente_ventana();
-        panel_pantalla_nivel = new PanelPantallaNivel(this);
-
+        panel_pantalla_nivel = new PanelPantallaNivel();
         panel_pantalla_principal = new PanelPantallaPrincipal(this);
         panel_pantalla_ranking = new PanelPantallaRanking(this, ranking);
         panel_pantalla_modo_juego = new PanelPantallaModoJuego(this);
         configurar_ventana();
 
     }
-
-
 
     protected void configurar_ventana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
@@ -58,6 +54,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
                 Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
+
         ventana.setVisible(true);
     }
 
@@ -69,7 +66,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     public void mostrar_pantalla_inicial() {
         ventana.setContentPane(panel_pantalla_principal);
-
 
         refrescar();
     }
@@ -113,9 +109,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void mostrar_pantalla_nivel() {
         ventana.setContentPane(panel_pantalla_nivel);
 
-
         oyente = new OyenteTeclado();
-        panel_pantalla_nivel .addKeyListener(oyente);
+        panel_pantalla_nivel.addKeyListener(oyente);
         panel_pantalla_nivel.setFocusable(true);
         panel_pantalla_nivel.requestFocusInWindow();
 
@@ -143,7 +138,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana.repaint();
     }
 
-    public void actualizarObserver(){
+    public void actualizarObserver() {
         panel_pantalla_nivel.actualizarObserver();
     }
 
@@ -151,6 +146,5 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public OyenteTeclado oyenteTeclado() {
         return oyente;
     }
-
 
 }
