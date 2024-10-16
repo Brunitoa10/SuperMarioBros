@@ -37,15 +37,19 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         this.miJuego = juego;
         this.nivel = 1;
         registrarOyenteVentana();
-        panelPantallaNivel = new PanelPantallaNivel();
-        panelPantallaPrincipal = new PanelPantallaPrincipal(this);
-        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
         configurarVentana();
-
+        configurarPaneles();
     }
 
-    protected void configurarVentana() {
+    private void configurarPaneles() {
+    	 panelPantallaNivel = new PanelPantallaNivel();
+         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
+         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+		
+	}
+
+	protected void configurarVentana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);

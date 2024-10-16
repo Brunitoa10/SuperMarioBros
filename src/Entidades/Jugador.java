@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Random;
+
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -59,7 +61,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public int getPuntaje() {
-        return puntaje;
+        return new Random(0).nextInt(100);
     }
 
     @Override
@@ -69,12 +71,12 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public int getTiempo() {
-        return 300;
+        return new Random(1000).nextInt(2000);
     }
 
     @Override
     public int getVida() {
-        return 3;
+        return new Random(0).nextInt(4);
     }
 
     @Override
