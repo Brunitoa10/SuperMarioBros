@@ -38,6 +38,7 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel labelTiempoTxt;
     private ObserverEntidad observerEntidad;
     private ObserverJugador observerJugador;
+    private boolean lovi=false;
 
     public PanelPantallaNivel() {
 
@@ -128,26 +129,24 @@ public class PanelPantallaNivel extends JPanel {
 
         int posicion_jugador_x = jugador.getPosicionEnX();
 
-        // Obtener el ancho de la ventana visible
-        int pantallaAncho = panelScrollNivel.getViewport().getWidth();
-        // Obtener la posición actual del scroll
-        int posicionDelScroll = panelScrollNivel.getHorizontalScrollBar().getValue();
-        // Obtener el máximo del scroll
-        int topeDelScroll = panelScrollNivel.getHorizontalScrollBar().getMaximum();
 
-        // Si el jugador se está acercando al borde derecho de la ventana visible
-        if (posicion_jugador_x > posicionDelScroll + pantallaAncho - 100 && posicionDelScroll < topeDelScroll) {
 
-            // Ajustamos la posición del scroll hacia la derecha
-            panelScrollNivel.getHorizontalScrollBar()
-                    .setValue(Math.min(posicion_jugador_x - pantallaAncho + 100, topeDelScroll));
-        }
 
-        // Si el jugador se está acercando al borde izquierdo de la ventana visible
-        if (posicion_jugador_x < posicionDelScroll + 100 && posicionDelScroll > 0) {
-            // Ajustamos la posición del scroll hacia la izquierda
-            panelScrollNivel.getHorizontalScrollBar().setValue(Math.max(posicion_jugador_x - 100, 0));
-        }
+
+            // Si el jugador se está acercando al borde derecho de la ventana visible
+        int anchoDeVentana=ConstantesVista.PANEL_ANCHO;
+
+            if (posicion_jugador_x < 0) {
+                panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
+            } else {
+                panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
+            }
+
+
+
+            // Si el jugador se está acercando al borde izquierdo de la ventana visible
+
+
     }
 
     // Operaciones propias para construccion de PanelPantallaCarrera
