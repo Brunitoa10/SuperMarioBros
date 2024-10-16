@@ -140,7 +140,7 @@ public class PanelPantallaNivel extends JPanel {
         System.out.println("Cree imagen fondo");
 
         imagenFondoPanelNivel = new JLabel(
-                new ImageIcon(getClass().getResource("/Recursos/Fondos/FondoLevel1.png")));
+                new ImageIcon(getClass().getResource("/Recursos/Fondos/original/FondoLevel1.png")));
         imagenFondoPanelNivel.setLayout(null);
         imagenFondoPanelNivel.setBounds(0, 0, ConstantesVista.PANEL_NIVEL_ANCHO, ConstantesVista.PANEL_NIVEL_ALTO);
         this.add(imagenFondoPanelNivel);

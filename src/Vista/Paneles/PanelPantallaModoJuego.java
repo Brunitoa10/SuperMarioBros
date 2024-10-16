@@ -29,12 +29,12 @@ public class PanelPantallaModoJuego extends JPanel {
 
     private void crearBotones() {
         btnOriginal = new JButton("btn_original");
-        btnOriginal.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original.png")));
+        btnOriginal.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original/original.png")));
         btnOriginal.setBounds(0, 0, 393, 600);
         add(btnOriginal);
 
         btnAlternativo = new JButton("btn_alternatvo");
-        btnAlternativo.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo.png")));
+        btnAlternativo.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo/alternativo.png")));
         btnAlternativo.setBounds(394, 0, 406, 600);
         add(btnAlternativo);
     }

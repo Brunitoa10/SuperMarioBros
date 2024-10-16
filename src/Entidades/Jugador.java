@@ -95,7 +95,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void saltar() {
-    	System.out.println("Fiiiiumbaaa sonido salto clase jugador");
     	sonido = SonidoFactory.crearSonido("salto");
     	sonido.reproducir();
         estadoMovimiento.saltar();

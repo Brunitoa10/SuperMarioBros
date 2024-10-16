@@ -23,7 +23,7 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
 
     public Juego() {
-        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/Originales");
+        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/original");
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
 
