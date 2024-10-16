@@ -14,36 +14,36 @@ import Vista.Controladores.ControladorVista;
 public class PanelPantallaModoJuego extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private JButton btn_original;
-    private JButton btn_alternativo;
+    private JButton btnOriginal;
+    private JButton btnAlternativo;
     private ControladorVista controladorVistas;
 
-    public PanelPantallaModoJuego(ControladorVista controlador_vistas) {
-    	this.controladorVistas = controlador_vistas;
+    public PanelPantallaModoJuego(ControladorVista controladorVistas) {
+    	this.controladorVistas = controladorVistas;
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(null);
 
-        crear_botones();
-        registrar_oyente_botones();
+        crearBotones();
+        registrarOyenteBotones();
     }
 
-    private void crear_botones() {
-        btn_original = new JButton("New button");
-        btn_original
+    private void crearBotones() {
+        btnOriginal = new JButton("New button");
+        btnOriginal
                 .setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original.png")));
-        btn_original.setBounds(0, 0, 393, 600);
-        add(btn_original);
+        btnOriginal.setBounds(0, 0, 393, 600);
+        add(btnOriginal);
 
-        btn_alternativo = new JButton("New button");
-        btn_alternativo
+        btnAlternativo = new JButton("New button");
+        btnAlternativo
                 .setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo.png")));
-        btn_alternativo.setBounds(394, 0, 406, 600);
-        add(btn_alternativo);
+        btnAlternativo.setBounds(394, 0, 406, 600);
+        add(btnAlternativo);
     }
     
-    private void registrar_oyente_botones() {
-    	registrar_oyente_boton_original();
-    	registrar_oyente_boton_alternativo();
+    private void registrarOyenteBotones() {
+    	registrarOyenteBotonOriginal();
+    	registrarOyenteBotonAlternativo();
     }
 
     // Método para manejar la selección del modo de juego
@@ -54,16 +54,16 @@ public class PanelPantallaModoJuego extends JPanel {
         controladorVistas.cambiarModoJuego(modo);
     }
 
-    private void registrar_oyente_boton_original() {
-    	btn_original.addActionListener(new ActionListener() {
+    private void registrarOyenteBotonOriginal() {
+    	btnOriginal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 seleccionarModo("original");
             }
         });
     }
-    private void registrar_oyente_boton_alternativo() {
-        btn_alternativo.addActionListener(new ActionListener() {
+    private void registrarOyenteBotonAlternativo() {
+        btnAlternativo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 seleccionarModo("alternativo");

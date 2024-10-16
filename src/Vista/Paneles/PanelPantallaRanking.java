@@ -53,15 +53,15 @@ public class PanelPantallaRanking extends JPanel {
 		btnVolver.setBounds(317, 493, 173, 50);
 		add(btnVolver);
 		
-		crear_lbl_columna_derecha();
-		crear_lbl_columna_izquierda();
-		crear_lbl_adicionales();
+		crearLblColumnaDerecha();
+		crearLblColumnaIzquierda();
+		crearLblAdicionales();
 		
 		llenarTabla();
-		registrar_oyente_boton_volver();
+		registrarOyenteBotonVolver();
 	}
 
-	private void crear_lbl_adicionales() {
+	private void crearLblAdicionales() {
 		lblImagenMario = new JLabel("");
 		lblImagenMario.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/mario.png"))));
 		lblImagenMario.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,7 +81,7 @@ public class PanelPantallaRanking extends JPanel {
 		add(lblSuper);
 	}
 
-	private void crear_lbl_columna_derecha() {
+	private void crearLblColumnaDerecha() {
 		lblColumnaDerecha1 = new JLabel("");
 		lblColumnaDerecha1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
 		lblColumnaDerecha1.setBounds(27, 58, 107, 107);
@@ -103,7 +103,7 @@ public class PanelPantallaRanking extends JPanel {
 		add(lblColumnaDerecha4);
 	}
 	
-	private void crear_lbl_columna_izquierda() {
+	private void crearLblColumnaIzquierda() {
 		lblColumnaIzquierda1 = new JLabel("");
 		lblColumnaIzquierda1.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/bloque_pregunta.png"))));
 		lblColumnaIzquierda1.setBounds(675, 58, 107, 107);
@@ -126,7 +126,7 @@ public class PanelPantallaRanking extends JPanel {
 	}
 
 
-	protected void registrar_oyente_boton_volver() {
+	protected void registrarOyenteBotonVolver() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador_vistas.mostrarPantallaInicial();

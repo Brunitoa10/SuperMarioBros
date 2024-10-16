@@ -22,18 +22,18 @@ public class PanelPantallaPrincipal extends JPanel {
     private static final long serialVersionUID = 1L;
     private ControladorVista controladorVistas;
     private JLabel imagen_fondo;
-    private JButton btn_iniciar_juego;
+    private JButton btnIniciarJuego;
     private JButton boton_puntajes;
 
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
         this.controladorVistas = controlador_vistas;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
-        agregar_imagen_fondo();
-        agregar_boton_iniciar();
-        agregar_boton_puntaje();
+        agregarImagenFondo();
+        agregarBotonIniciar();
+        agregarBotonPuntaje();
     }
 
-    protected void agregar_imagen_fondo() {
+    protected void agregarImagenFondo() {
         imagen_fondo = new JLabel();
         ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/Inicio.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
@@ -45,41 +45,41 @@ public class PanelPantallaPrincipal extends JPanel {
         add(imagen_fondo);
     }
 
-    protected void agregar_boton_iniciar() {
+    protected void agregarBotonIniciar() {
 
         System.out.println("Agregue boton inicio");
 
-        btn_iniciar_juego = new JButton("");
-        btn_iniciar_juego.setBounds(300, 391, 230, 57);
+        btnIniciarJuego = new JButton("");
+        btnIniciarJuego.setBounds(300, 391, 230, 57);
 
-        decorar_boton_iniciar();
-        add(btn_iniciar_juego);
+        decorarBotonIniciar();
+        add(btnIniciarJuego);
 
-        registrar_oyente_boton_iniciar();
+        registrarOyenteBotonIniciar();
     }
 
-    protected void agregar_boton_puntaje() {
+    protected void agregarBotonPuntaje() {
         boton_puntajes = new JButton();
         // boton_puntajes.setBounds(270, 484, 380, 76);
-        decorar_boton_puntajes();
-        registrar_oyente_boton_puntajes();
+        decorarBotonPuntajes();
+        registrarOyenteBotonPuntajes();
         add(boton_puntajes);
     }
 
-    protected void decorar_boton_iniciar() {
+    protected void decorarBotonIniciar() {
         System.out.println("Decorando boton inicio");
-        btn_iniciar_juego.setBackground(new Color(255, 255, 255));
-        transparentar_boton(btn_iniciar_juego);
+        btnIniciarJuego.setBackground(new Color(255, 255, 255));
+        transparentarBoton(btnIniciarJuego);
     }
 
-    protected void decorar_boton_puntajes() {
-        transparentar_boton(boton_puntajes);
+    protected void decorarBotonPuntajes() {
+        transparentarBoton(boton_puntajes);
         boton_puntajes.setBounds(176, 487, 471, 65);
     }
 
-    protected void registrar_oyente_boton_iniciar() {
+    protected void registrarOyenteBotonIniciar() {
         System.out.println("Registrando boton inicio");
-        btn_iniciar_juego.addActionListener(new ActionListener() {
+        btnIniciarJuego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
                 controladorVistas.accionarInicioJuego();
@@ -87,7 +87,7 @@ public class PanelPantallaPrincipal extends JPanel {
         });
     }
 
-    protected void registrar_oyente_boton_puntajes() {
+    protected void registrarOyenteBotonPuntajes() {
         boton_puntajes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.accionarPantallaRanking();
@@ -95,7 +95,7 @@ public class PanelPantallaPrincipal extends JPanel {
         });
     }
 
-    protected void transparentar_boton(JButton boton) {
+    protected void transparentarBoton(JButton boton) {
         boton.setOpaque(false);
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);

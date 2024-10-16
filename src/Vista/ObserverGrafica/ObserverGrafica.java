@@ -8,23 +8,23 @@ import javax.swing.JLabel;
 
 public class ObserverGrafica extends JLabel implements Observer {
 
-    private EntidadLogica entidad_observada;
+    private EntidadLogica entidadObservada;
 
-    protected ObserverGrafica(EntidadLogica entidad_observada) {
+    protected ObserverGrafica(EntidadLogica entidadObservada) {
         super();
-        this.entidad_observada = entidad_observada;
+        this.entidadObservada = entidadObservada;
     }
 
     @Override
     public void actualizarObserver() {
-        actualizar_imagen();
-        actualizar_posicion_tamanio();
+        actualizarImagen();
+        actualizarPosicionTamanio();
     }
 
 
-    protected void actualizar_imagen() {
+    protected void actualizarImagen() {
 
-        String rutaImagen = entidad_observada.getSprite().getRutaImagen();
+        String rutaImagen = entidadObservada.getSprite().getRutaImagen();
         ImageIcon icono = new ImageIcon(rutaImagen);
 
         if (icono.getImageLoadStatus() == MediaTracker.ERRORED) {
@@ -45,9 +45,9 @@ public class ObserverGrafica extends JLabel implements Observer {
      * setBounds(x, y, ancho, alto);
      * }
      */
-    protected void actualizar_posicion_tamanio() {
-        int x = AdaptadorPosicionPixel.transformar_x(entidad_observada.getPosicionEnX());
-        int y = AdaptadorPosicionPixel.transformar_y(entidad_observada.getPosicionEnY());
+    protected void actualizarPosicionTamanio() {
+        int x = AdaptadorPosicionPixel.transformarX(entidadObservada.getPosicionEnX());
+        int y = AdaptadorPosicionPixel.transformarY(entidadObservada.getPosicionEnY());
 
         if (getIcon() != null) {
             int ancho = getIcon().getIconWidth();
