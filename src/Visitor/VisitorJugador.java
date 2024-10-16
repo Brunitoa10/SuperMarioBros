@@ -36,12 +36,17 @@ public class VisitorJugador implements Visitor {
     }
 
     public void visit(Plataforma p){
-        if(mario.getEstadoMovimiento().estaEnElSuelo()) {
+        if(mario.getEstadoMovimiento().estaEnElSuelo() && mario.getPiso()==420) {
             mario.set_velocidad(0);
         }
-    }
+        }
 
-    public void visit(Proyectil proyectil){
+    @Override
+    public void visit(Proyectil proyectil) {
 
     }
 }
+
+
+
+

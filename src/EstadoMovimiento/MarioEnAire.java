@@ -30,9 +30,9 @@ public class MarioEnAire implements EstadoMovimiento{
     public void actualizar() {
         mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
         if(mario.getPosicionEnY()>=alturaMax) {
-            if(mario.getPosicionEnY()>420) {
+            if(mario.getPosicionEnY()>mario.getPiso()) {
                 mario.setPosicionEnY(mario.getPosicionEnY() - VELOCIDAD_SALTO);
-                if(mario.getPosicionEnY()==420) {
+                if(mario.getPosicionEnY()==mario.getPiso()) {
                     VELOCIDAD_SALTO=0;
                     mario.setEstadoMovimiento(new MarioParado(mario));
                 }
