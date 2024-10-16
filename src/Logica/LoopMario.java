@@ -10,15 +10,15 @@ public class LoopMario implements Runnable {
 
     private boolean ejecutando;
     private Jugador mario;
-    private OyenteTeclado oyenteTeclado;
     private ControladorVistaJuego controlador;
     private static final int GRAVEDAD = 1;
     private static final int SUELO_Y = 420;
-    private int direccionLocal=0;
+    private int direccionLocal = 0;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private boolean enIdle=false;
-    private boolean TerminoIdle=false;
-    private static final String MARIO_AFK="src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif";
+    private boolean enIdle = false;
+    private static final String MARIO_AFK = "src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif";
+    private long lastUpdateTime = System.nanoTime();
+    private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -34,27 +34,30 @@ public class LoopMario implements Runnable {
 
     public synchronized void detener() {
         ejecutando = false;
+        scheduler.shutdown();
     }
 
     @Override
     public void run() {
         while (ejecutando) {
-            tick();
-            renderizar();
-
-            try {
-                Thread.sleep(16);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            long now = System.nanoTime();
+            if (now - lastUpdateTime >= updateInterval) {
+                lastUpdateTime = now;
+                tick();
+                renderizar();
             }
         }
     }
 
     private void iniciarTemporizadorIdle() {
-        scheduler.scheduleAtFixedRate(() -> {
-            mario.getSprite().setRutaImagen(MARIO_AFK);
-
-        }, 3, 3, TimeUnit.SECONDS); // 5 segundos de espera entre comprobaciones
+        if (scheduler.isShutdown()) {
+            scheduler = Executors.newSingleThreadScheduledExecutor();
+            scheduler.scheduleAtFixedRate(() -> {
+                if (enIdle) {
+                    mario.getSprite().setRutaImagen(MARIO_AFK);
+                }
+            }, 3, 3, TimeUnit.SECONDS);
+        }
     }
 
     private void tick() {
@@ -62,98 +65,60 @@ public class LoopMario implements Runnable {
         boolean actualizacionRequerida = false;
 
         // Movimiento lateral
-        if (oyente.teclaIzquierda) {
+        if (oyente.teclaIzquierda || oyente.teclaDerecha) {
             enIdle = false;
-            mario.desplazarEnX(-1);
-            if(mario.getEstadoMovimiento().estaEnElSuelo()){
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif");
-            }else{
-                if(direccionLocal==1) {
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
-                }else{
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
-                }
+            if (oyente.teclaIzquierda) {
+                mario.desplazarEnX(-1);
+                direccionLocal = -1;
+                actualizacionRequerida = true;
+            } else {
+                mario.desplazarEnX(1);
+                direccionLocal = 1;
+                actualizacionRequerida = true;
             }
-            actualizacionRequerida = true;
-            direccionLocal=-1;
+
+            // Actualiza el sprite basado en el estado
+            String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
+                    ? (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
+                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
+                    : (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png"
+                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+            mario.getSprite().setRutaImagen(spritePath);
+        } else {
+            // Lógica para idle
+            if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
+                enIdle = true;
+                mario.getSprite().setRutaImagen(direccionLocal == -1
+                        ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png"
+                        : "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
+                iniciarTemporizadorIdle();
+            }
         }
 
-        if (oyente.teclaDerecha) {
-            enIdle = false;
-            mario.desplazarEnX(1);
-            if(mario.getEstadoMovimiento().estaEnElSuelo()) {
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif");
-            }else{
-                if(direccionLocal==1) {
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
-                }else{
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
-                }
-            }
-            actualizacionRequerida = true;
-            direccionLocal=1;
-        }
-
-
+        // Lógica de salto
         if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
             enIdle = false;
             mario.saltar();
-            if(direccionLocal==1) {
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
-            }else {
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png");
-            }
+            String jumpSprite = direccionLocal == 1
+                    ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png"
+                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
+            mario.getSprite().setRutaImagen(jumpSprite);
             actualizacionRequerida = true;
         }
 
+        // Gravedad
         if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
             mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
-
             if (mario.getPosicionEnY() >= SUELO_Y) {
                 mario.setPosicionEnY(SUELO_Y);
             }
             actualizacionRequerida = true;
         }
 
-        if(!enIdle){
-            reiniciarTemporizadorIdle();
-        }
-
-            if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
-                if(!enIdle) {
-                    System.out.println("true");
-                    enIdle = true;
-
-                    if (direccionLocal != -1) {
-                        mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
-                        System.out.println("Parado");
-
-                    } else {
-                        mario.getSprite().setRutaImagen("src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png");
-                        System.out.println("Parado");
-                    }
-
-                }else{
-
-                        iniciarTemporizadorIdle();
-                        actualizacionRequerida = true;
-
-                }
-
-
-            }
-
         if (actualizacionRequerida) {
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
         }
-    }
-
-
-    private void reiniciarTemporizadorIdle() {
-        scheduler.shutdownNow(); // Detiene el scheduler actual
-        scheduler = Executors.newSingleThreadScheduledExecutor(); // Crea un nuevo scheduler
-        iniciarTemporizadorIdle(); // Inicia el nuevo temporizador
     }
 
     private void renderizar() {
