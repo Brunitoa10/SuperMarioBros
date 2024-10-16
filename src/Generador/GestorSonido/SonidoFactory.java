@@ -9,7 +9,7 @@ public class SonidoFactory {
     // Bloque estático para registrar los tipos de sonido
     static {
         System.out.println("Me cree");
-        registroSonidos.put("salto", () -> new SonidoSalto("Recursos/Sonidos/Jump.wav"));
+        registroSonidos.put("salto", () -> new SonidoSalto("src/Recursos/Sonidos/Jump.wav"));
         // registroSonidos.put("MusicaNivel", () -> new
         // SonidoNivel("Recursos/Sonidos/Song.wav"));
         // Puedes registrar otros tipos de sonido aquí, por ejemplo:

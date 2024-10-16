@@ -28,15 +28,13 @@ public class PanelPantallaModoJuego extends JPanel {
     }
 
     private void crearBotones() {
-        btnOriginal = new JButton("New button");
-        btnOriginal
-                .setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original.png")));
+        btnOriginal = new JButton("btn_original");
+        btnOriginal.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original.png")));
         btnOriginal.setBounds(0, 0, 393, 600);
         add(btnOriginal);
 
-        btnAlternativo = new JButton("New button");
-        btnAlternativo
-                .setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo.png")));
+        btnAlternativo = new JButton("btn_alternatvo");
+        btnAlternativo.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo.png")));
         btnAlternativo.setBounds(394, 0, 406, 600);
         add(btnAlternativo);
     }
@@ -48,9 +46,9 @@ public class PanelPantallaModoJuego extends JPanel {
 
     // Método para manejar la selección del modo de juego
     private void seleccionarModo(String modo) {
-        // Aquí podrías agregar la lógica para cambiar a otro panel o iniciar el modo de juego
-        System.out.println("Modo seleccionado: " + modo);
-        // Ejemplo: Cambiar panel en la GUI principal
+      
+        System.out.println("Modo seleccionado panelModoJuego: " + modo);
+       
         controladorVistas.cambiarModoJuego(modo);
     }
 

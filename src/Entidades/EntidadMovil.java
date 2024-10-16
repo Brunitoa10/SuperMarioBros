@@ -1,12 +1,14 @@
 package Entidades;
 
 import Fabricas.Sprite;
+import Generador.GestorSonido.Sonido;
 
 public abstract class EntidadMovil extends Entidad {
 
     protected int direccion;
     protected int velocidad;
     protected boolean estaVivo;
+    protected Sonido sonido;
 
     public EntidadMovil(int x, int y, Sprite sprite) {
         super(x, y, sprite);

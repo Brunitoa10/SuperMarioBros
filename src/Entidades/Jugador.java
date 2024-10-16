@@ -5,6 +5,8 @@ import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
+import Generador.GestorSonido.Sonido;
+import Generador.GestorSonido.SonidoFactory;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 import Vista.Controladores.ControlTeclado;
@@ -19,6 +21,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected int puntaje;
     protected VisitorJugador VJ;
     protected boolean estaSaltando;
+    protected Sonido sonido;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -92,7 +95,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void saltar() {
-
+    	System.out.println("Fiiiiumbaaa sonido salto clase jugador");
+    	sonido = SonidoFactory.crearSonido("salto");
+    	sonido.reproducir();
         estadoMovimiento.saltar();
     }
 

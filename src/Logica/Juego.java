@@ -18,7 +18,6 @@ public class Juego {
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidad fabricaEntidades;
     protected Nivel nivelActual;
-    protected static Juego instanciaJuego;
     protected LoopMario loopMario;
     protected OyenteTeclado oyenteTeclado;
 
@@ -48,7 +47,6 @@ public class Juego {
     }
 
     public void mostrarPantallaRanking() {
-        System.out.println("Logica mostrar ranking");
         controladorVistas.mostrarPantallaRanking();
     }
 

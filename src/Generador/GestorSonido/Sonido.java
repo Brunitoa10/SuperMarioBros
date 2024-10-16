@@ -6,4 +6,5 @@ public interface Sonido {
     public void pausar();
 
     public void detener();
+
 }
