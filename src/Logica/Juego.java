@@ -19,6 +19,7 @@ public class Juego {
     protected FabricaEntidad fabricaEntidades;
     protected Nivel nivelActual;
     protected LoopMario loopMario;
+    protected HiloRestoEntidades hiloRestoEntidades;
     protected OyenteTeclado oyenteTeclado;
 
     public Juego() {
@@ -40,6 +41,9 @@ public class Juego {
         controladorVistas.mostrarPantallaNivel();
         loopMario = new LoopMario(this);
         loopMario.comenzar();
+        hiloRestoEntidades = new HiloRestoEntidades(this);
+        hiloRestoEntidades.comenzar();
+
     }
 
     public void reiniciar(Nivel nivel) {
