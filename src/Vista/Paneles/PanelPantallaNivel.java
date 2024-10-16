@@ -126,27 +126,9 @@ public class PanelPantallaNivel extends JPanel {
     // Operacion para observer de jugador
 
     public void actualizarScrollHaciaJugador(EntidadJugador jugador) {
-
         int posicion_jugador_x = jugador.getPosicionEnX();
-
-
-
-
-
-            // Si el jugador se está acercando al borde derecho de la ventana visible
         int anchoDeVentana=ConstantesVista.PANEL_ANCHO;
-
-            if (posicion_jugador_x < 0) {
-                panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
-            } else {
-                panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
-            }
-
-
-
-            // Si el jugador se está acercando al borde izquierdo de la ventana visible
-
-
+            panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
     }
 
     // Operaciones propias para construccion de PanelPantallaCarrera
@@ -169,7 +151,7 @@ public class PanelPantallaNivel extends JPanel {
         panelScrollNivel.setPreferredSize(imagenFondoPanelNivel.getPreferredSize());
 
         panelScrollNivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS); // CAMBIAR POR
-                                                                                                         // NEVER
+        // NEVER
         panelScrollNivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         this.add(panelScrollNivel);
