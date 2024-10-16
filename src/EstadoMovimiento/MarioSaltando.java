@@ -9,7 +9,8 @@ public class MarioSaltando implements EstadoMovimiento {
     private int velocidadY; // Velocidad vertical actual
 
     public MarioSaltando(Jugador mario) {
-        this.velocidadY = VELOCIDAD_INICIAL_SALTO; // Empieza subiendo con velocidad inicial
+        this.velocidadY = VELOCIDAD_INICIAL_SALTO;
+        this.mario = mario;// Empieza subiendo con velocidad inicial
     }
 
     @Override
