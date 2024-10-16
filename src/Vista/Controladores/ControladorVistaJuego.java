@@ -6,9 +6,9 @@ import Logica.OyenteTeclado;
 import Vista.ObserverGrafica.Observer;
 
 public interface ControladorVistaJuego {
-    public Observer registrarEntidad(EntidadLogica entidad_logica);
+    public Observer registrarEntidad(EntidadLogica entidadLogica);
 
-    public Observer registrarEntidad(EntidadJugador entidad_jugador);
+    public Observer registrarEntidad(EntidadJugador entidadJugador);
 
     public void mostrarPantallaNivel();
 

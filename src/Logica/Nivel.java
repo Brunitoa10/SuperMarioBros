@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Nivel {
 
-    protected String ruta_nivel_txt;
+    protected String rutaNivelTxt;
     protected List<Enemigo> enemigos;
     protected List<Plataforma> plataformas;
     protected List<PowerUp> powerUps;
