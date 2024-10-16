@@ -70,7 +70,7 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones para ControladorVistas
 
     public Observer incorporarEntidad(EntidadLogica entidad_logica) {
-        observerEntidad = new ObserverEntidad(entidad_logica);
+        observerEntidad = new ObserverEntidad(entidad_logica,this);
         imagenFondoPanelNivel.add(observerEntidad);
         return observerEntidad;
     }
