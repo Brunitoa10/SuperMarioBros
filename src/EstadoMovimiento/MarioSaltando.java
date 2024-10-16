@@ -5,11 +5,10 @@ import Entidades.Jugador;
 public class MarioSaltando implements EstadoMovimiento {
     private Jugador mario;
     private static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
-    private static final int GRAVEDAD = 1;  // Gravedad constante que hará que baje
-    private int velocidadY;  // Velocidad vertical actual
+    private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
+    private int velocidadY; // Velocidad vertical actual
 
     public MarioSaltando(Jugador mario) {
-        this.mario = mario;
         this.velocidadY = VELOCIDAD_INICIAL_SALTO; // Empieza subiendo con velocidad inicial
     }
 
@@ -26,6 +25,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
         // Verificar si Mario toca el suelo
         if (estaEnElSuelo()) {
+
             // Cambiar al estado de caminar si está en el suelo
             mario.setPosicionEnY(420); // Ajustar la posición exacta del suelo
             mario.setEstadoMovimiento(new MarioCaminando(mario));
