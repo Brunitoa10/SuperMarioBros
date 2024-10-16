@@ -16,19 +16,19 @@ public abstract class EntidadMovil extends Entidad {
         estaVivo = true;
     }
 
-    public int get_direccion() {
+    public int getDireccion() {
         return direccion;
     }
 
-    public void set_direccion(int direccion) {
+    public void setDireccion(int direccion) {
         this.direccion = direccion;
     }
 
-    public int get_velocidad() {
+    public int getVelocidad() {
         return velocidad;
     }
 
-    public void set_velocidad(int velocidad) {
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 

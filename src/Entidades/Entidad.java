@@ -40,7 +40,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         posicionY = y;
     }
 
-    public void registrar_observer(Observer observer) {
+    public void registrarObserver(Observer observer) {
         this.observer = observer;
     }
 

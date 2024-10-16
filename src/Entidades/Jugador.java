@@ -58,7 +58,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public int get_puntaje() {
+    public int getPuntaje() {
         return puntaje;
     }
 
@@ -68,12 +68,12 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public int get_tiempo() {
+    public int getTiempo() {
         return 300;
     }
 
     @Override
-    public int get_vida() {
+    public int getVida() {
         return 3;
     }
 
