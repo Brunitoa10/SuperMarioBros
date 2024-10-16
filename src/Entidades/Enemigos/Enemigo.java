@@ -23,9 +23,9 @@ public abstract class Enemigo extends EntidadMovil {
     }
 
     public void actualizar() {
-        // Mover al enemigo horizontalmente
-        posicionx = posicionx + 1;
+        caminar();
         setPosicionEnX(posicionx);
     }
+
 
 }

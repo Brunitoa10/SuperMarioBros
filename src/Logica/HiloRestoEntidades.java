@@ -45,7 +45,7 @@ public class HiloRestoEntidades implements Runnable {
             enemigo.actualizar();
         }
         for (Enemigo enemigo : cargarEntidades.getEnemigos()){
-            System.out.println(enemigo.getPosicionEnX());
+
 
         }
 

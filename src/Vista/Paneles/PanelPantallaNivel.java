@@ -70,8 +70,10 @@ public class PanelPantallaNivel extends JPanel {
     // Operaciones para ControladorVistas
 
     public Observer incorporarEntidad(EntidadLogica entidad_logica) {
-        observerEntidad = new ObserverEntidad(entidad_logica,this);
+        observerEntidad = new ObserverEntidad(entidad_logica, this);
         imagenFondoPanelNivel.add(observerEntidad);
+        System.out.println("Entidad añadida al panel: " + entidad_logica.getClass().getName());
+        actualizarObserver();
         return observerEntidad;
     }
 
@@ -212,6 +214,7 @@ public class PanelPantallaNivel extends JPanel {
 
     public void actualizarObserver() {
         observerJugador.actualizarObserver();
+        observerEntidad.actualizarObserver();
         imagenFondoPanelNivel.add(observerEntidad);
     }
 }
