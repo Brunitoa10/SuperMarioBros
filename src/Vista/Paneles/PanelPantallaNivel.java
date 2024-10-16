@@ -91,9 +91,9 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void actualizarLabelsInformacion(EntidadJugador jugador) {
-        labelPuntaje.setText(textoConCantidadDigitos(jugador.get_puntaje(), 5));
-        labelVida.setText(textoConCantidadDigitos(jugador.get_vida(), 5));
-        labelTiempo.setText(textoConCantidadDigitos(jugador.get_tiempo(), 5));
+        labelPuntaje.setText(textoConCantidadDigitos(jugador.getPuntaje(), 5));
+        labelVida.setText(textoConCantidadDigitos(jugador.getVida(), 5));
+        labelTiempo.setText(textoConCantidadDigitos(jugador.getTiempo(), 5));
     }
 
     protected String textoConCantidadDigitos(int numero, int digitos) {

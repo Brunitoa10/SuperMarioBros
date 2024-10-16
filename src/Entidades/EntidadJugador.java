@@ -1,10 +1,10 @@
 package Entidades;
 
 public interface EntidadJugador extends EntidadLogica {
-    public int get_puntaje();
+    public int getPuntaje();
 
-    public int get_tiempo();
+    public int getTiempo();
 
-    public int get_vida();
+    public int getVida();
 
 }
