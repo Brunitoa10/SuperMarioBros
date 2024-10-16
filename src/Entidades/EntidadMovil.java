@@ -9,6 +9,7 @@ public abstract class EntidadMovil extends Entidad {
     protected int velocidad;
     protected boolean estaVivo;
     protected Sonido sonido;
+    protected int Piso;
 
     public EntidadMovil(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -34,5 +35,13 @@ public abstract class EntidadMovil extends Entidad {
 
     public boolean estaVivo() {
         return estaVivo;
+    }
+
+    public void setPiso(int piso) {
+        Piso=piso;
+    }
+
+    public int get_piso() {
+        return Piso;
     }
 }

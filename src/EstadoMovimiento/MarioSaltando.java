@@ -7,6 +7,7 @@ public class MarioSaltando implements EstadoMovimiento {
     private static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
     private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
     private int velocidadY; // Velocidad vertical actual
+    protected int Piso;
 
     public MarioSaltando(Jugador mario) {
         this.velocidadY = VELOCIDAD_INICIAL_SALTO;
@@ -33,9 +34,9 @@ public class MarioSaltando implements EstadoMovimiento {
         }
     }
 
-    @Override
-    public void saltar() {
-        // No hace nada porque ya está saltando
+    public void saltar(Jugador mario) {
+        this.mario = mario;
+        mario.setEstadoMovimiento(new MarioEnAire(mario,velocidadY));
     }
 
     @Override
@@ -44,7 +45,7 @@ public class MarioSaltando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY() >= mario.getPiso(); // Suelo a nivel 420
     }
 
 }

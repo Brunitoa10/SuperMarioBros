@@ -125,7 +125,6 @@ public class LoopMario implements Runnable {
         }
 
         for(Plataforma p : plataformas) {
-            System.out.println(mario.detectarColision(p));
             if(mario.detectarColision((p))){
                 mario.getVJ().visit(p);
                 if(p.getPosicionEnX()>mario.getPosicionEnX()){
@@ -140,7 +139,6 @@ public class LoopMario implements Runnable {
                         mario.set_velocidad(VelocidadMario);
                     }
                 }
-
             }
         }
 

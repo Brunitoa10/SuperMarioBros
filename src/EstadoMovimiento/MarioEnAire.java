@@ -15,7 +15,8 @@ public class MarioEnAire implements EstadoMovimiento{
     }
 
     @Override
-    public void saltar() {
+    public void saltar(Jugador mario) {
+        this.mario = mario;
         System.out.println("Mario en el aire");
     }
 
@@ -29,12 +30,18 @@ public class MarioEnAire implements EstadoMovimiento{
     public void actualizar() {
         mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
         if(mario.getPosicionEnY()>=alturaMax) {
-            mario.setPosicionEnY(mario.getPosicionEnY() - VELOCIDAD_SALTO);
+            if(mario.getPosicionEnY()>420) {
+                mario.setPosicionEnY(mario.getPosicionEnY() - VELOCIDAD_SALTO);
+                if(mario.getPosicionEnY()==420) {
+                    VELOCIDAD_SALTO=0;
+                    mario.setEstadoMovimiento(new MarioParado(mario));
+                }
+            }
         }else{
             mario.setPosicionEnY(mario.getPosicionEnY() + VELOCIDAD_SALTO);
         }
     }
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY() >= mario.getPiso(); // Suelo a nivel 420
     }
 }

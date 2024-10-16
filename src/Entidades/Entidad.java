@@ -54,17 +54,13 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         observer.actualizarObserver();
     }
 
-    public boolean detectColission(Entidad e){
+    public boolean detectColission(EntidadMovil e){
         boolean detectado = false;
 
-        System.out.println(posicionY);
-        System.out.println(posicionY+alto);
-        System.out.println("Mario");
-        System.out.println(e.getPosicionEnX());
-        System.out.println(e.getPosicionEnY()+e.getSprite().getAlto());
+
         if(posicionX<e.getPosicionEnX()){//Si la entidad receptora se encuentra a la izquierda de la del parametro
-            System.out.println(posicionX+""+e.getPosicionEnX());
-            System.out.println("EstoyIzquierda1");
+
+
             if(posicionX+ancho/2>=e.getPosicionEnX()-e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte derecha de la receptora con la parte izquierda con la de del parametro
                 System.out.println("EstoyIzquierda");
                 System.out.println(detectado = posicionY >= e.getPosicionEnY());
@@ -73,24 +69,23 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
                 }
             }else{//Si la entidad receptora se encuentra a la derecha de la que entra por parametro
                 System.out.println("EstoyDerecha");
-                System.out.println(posicionX+""+e.getPosicionEnX());
                     if(posicionX-ancho/2<=e.getPosicionEnX()+e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte izquierda de la receptora con la parte derecha con la de del parametro
-                        System.out.println(posicionX-ancho/2);
-                        System.out.println(e.getPosicionEnX()+e.getSprite().getAncho()/2);
-                            System.out.println(detectado = posicionY >= e.getPosicionEnY());
                             detectado = posicionY >= e.getPosicionEnY();
                     }
 
             }
-    if(detectado){
-        if(e.getPosicionEnX()>=posicionX-ancho/2 && e.getPosicionEnX()<=posicionX+ancho/2){
-            if(e.getPosicionEnY()>posicionY+alto){
-                System.out.println("Estoy arriba, cambiar Piso");
+
+        int ExtremoIzquierdo=this.getPosicionEnX()-this.getSprite().getAncho()/2;
+        int ExtremoDerecho=this.getPosicionEnX()+this.getSprite().getAncho()/2;
+        if(e.getPosicionEnX()>ExtremoIzquierdo && e.getPosicionEnX()<ExtremoDerecho){
+            System.out.println("EstoyEnElMedio");
+            System.out.println(this.getPosicionEnY()+this.getSprite().getAlto());
+            System.out.println(e.getPosicionEnY());
+            if(this.getPosicionEnY()-this.getSprite().getAlto()-5>e.getPosicionEnY()){
+                e.setPiso(this.getPosicionEnY()-this.getSprite().getAlto()-5);
+                detectado=true;
             }
-
-        }
     }
-
         return detectado;
     }
 }

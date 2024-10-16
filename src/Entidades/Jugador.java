@@ -100,10 +100,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void saltar() {
-    	System.out.println("Fiiiiumbaaa sonido salto clase jugador");
+
     	sonido = SonidoFactory.crearSonido("salto");
     	sonido.reproducir();
-        estadoMovimiento.saltar();
+        estadoMovimiento.saltar(this);
     }
 
     public int getAlturaMaximaSalto() {
@@ -113,5 +113,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public VisitorJugador getVJ() {
         return VJ;
+    }
+
+    public void setPiso(int piso) {
+        Piso=piso;
+    }
+
+    public int getPiso() {
+        return Piso;
     }
 }

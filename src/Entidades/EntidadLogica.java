@@ -11,4 +11,5 @@ public interface EntidadLogica{
 
     public void actualizarEntidad();
 
+
 }

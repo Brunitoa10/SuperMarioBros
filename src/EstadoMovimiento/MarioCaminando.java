@@ -11,7 +11,8 @@ public class MarioCaminando implements EstadoMovimiento {
     }
 
     @Override
-    public void saltar() {
+    public void saltar(Jugador mario) {
+        this.mario = mario;
         if(estaEnElSuelo()) {
             mario.setEstadoMovimiento(new MarioSaltando(mario));
         }else{
@@ -20,7 +21,7 @@ public class MarioCaminando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY() >= mario.getPiso(); // Suelo a nivel 420
     }
     @Override
     public void desplazarEnX(int direccion) {
