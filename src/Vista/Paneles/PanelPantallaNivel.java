@@ -129,6 +129,7 @@ public class PanelPantallaNivel extends JPanel {
         int posicion_jugador_x = jugador.getPosicionEnX();
         int anchoDeVentana=ConstantesVista.PANEL_ANCHO;
             panelScrollNivel.getHorizontalScrollBar().setValue(posicion_jugador_x + anchoDeVentana/2+30);
+
     }
 
     // Operaciones propias para construccion de PanelPantallaCarrera
