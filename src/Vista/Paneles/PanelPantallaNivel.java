@@ -137,6 +137,7 @@ public class PanelPantallaNivel extends JPanel {
 
         // Si el jugador se está acercando al borde derecho de la ventana visible
         if (posicion_jugador_x > posicionDelScroll + pantallaAncho - 100 && posicionDelScroll < topeDelScroll) {
+
             // Ajustamos la posición del scroll hacia la derecha
             panelScrollNivel.getHorizontalScrollBar()
                     .setValue(Math.min(posicion_jugador_x - pantallaAncho + 100, topeDelScroll));
