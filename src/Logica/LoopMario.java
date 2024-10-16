@@ -1,7 +1,11 @@
 package Logica;
 
 import Entidades.Jugador;
+import Entidades.Plataformas.Plataforma;
 import Vista.Controladores.ControladorVistaJuego;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +14,7 @@ public class LoopMario implements Runnable {
 
     private boolean ejecutando;
     private Jugador mario;
+    private int VelocidadMario;
     private ControladorVistaJuego controlador;
     private static final int GRAVEDAD = 1;
     private static final int SUELO_Y = 420;
@@ -19,15 +24,19 @@ public class LoopMario implements Runnable {
     private static final String MARIO_AFK = "src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif";
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
+    protected List<Plataforma> plataformas;
+
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
+        this.plataformas = juego.getNivelActual().getPlataformas();
         this.controlador = juego.getControladorVistaJuego();
         ejecutando = false;
     }
 
     public synchronized void comenzar() {
         ejecutando = true;
+        VelocidadMario=mario.get_velocidad();
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -113,6 +122,26 @@ public class LoopMario implements Runnable {
                 mario.setPosicionEnY(SUELO_Y);
             }
             actualizacionRequerida = true;
+        }
+
+        for(Plataforma p : plataformas) {
+            System.out.println(mario.detectarColision(p));
+            if(mario.detectarColision((p))){
+                mario.getVJ().visit(p);
+                if(p.getPosicionEnX()>mario.getPosicionEnX()){
+                    if(p.getPosicionEnY()+32<mario.getPosicionEnY()){
+                        mario.set_velocidad(VelocidadMario);
+                    }
+                    if(direccionLocal==-1){
+                        mario.set_velocidad(VelocidadMario);
+                    }
+                }else{
+                    if(direccionLocal==1){
+                        mario.set_velocidad(VelocidadMario);
+                    }
+                }
+
+            }
         }
 
         if (actualizacionRequerida) {

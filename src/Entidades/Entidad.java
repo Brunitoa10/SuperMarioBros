@@ -15,6 +15,11 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         this.posicionX = x;
         this.posicionY = y;
         this.sprite = sprite;
+        this.ancho= 32;
+        this.alto = 32;
+
+
+
     }
 
     @Override
@@ -51,29 +56,41 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
     public boolean detectColission(Entidad e){
         boolean detectado = false;
+
+        System.out.println(posicionY);
+        System.out.println(posicionY+alto);
+        System.out.println("Mario");
+        System.out.println(e.getPosicionEnX());
+        System.out.println(e.getPosicionEnY()+e.getSprite().getAlto());
         if(posicionX<e.getPosicionEnX()){//Si la entidad receptora se encuentra a la izquierda de la del parametro
+            System.out.println(posicionX+""+e.getPosicionEnX());
+            System.out.println("EstoyIzquierda1");
             if(posicionX+ancho/2>=e.getPosicionEnX()-e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte derecha de la receptora con la parte izquierda con la de del parametro
-                if(posicionY>=e.getPosicionEnX()){//Si la entidad 1 esta arriba de la entidad 2 chequeo que se toquen con la posicion Y sin contemplar la altura y Entidad 2 contemplandola
-                    if(posicionY<=e.getPosicionEnY()+e.getSprite().getAlto()){//Chequeo si la parte de abajo de entidad 1 esta chocando con la parte mas alta de entidad 2
-                        detectado = true;
-                    }
-                }else{//La entidad 1 esta por debajo de la entidad 2
-                    if(posicionY+alto<=e.getPosicionEnY()){//Chequeo si la parte de arriba de entidad 1 esta chocando con la parte mas baja
-                        detectado = true;
-                    }
+                System.out.println("EstoyIzquierda");
+                System.out.println(detectado = posicionY >= e.getPosicionEnY());
+
+                detectado = posicionY >= e.getPosicionEnY();
                 }
             }else{//Si la entidad receptora se encuentra a la derecha de la que entra por parametro
+                System.out.println("EstoyDerecha");
+                System.out.println(posicionX+""+e.getPosicionEnX());
                     if(posicionX-ancho/2<=e.getPosicionEnX()+e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte izquierda de la receptora con la parte derecha con la de del parametro
-                        if(posicionY<=e.getPosicionEnY()+e.getSprite().getAlto()){//Chequeo si la parte de abajo de entidad 1 esta chocando con la parte mas alta de entidad 2
-                            detectado = true;
-                        }
-                    }else{//La entidad 1 esta por debajo de la entidad 2
-                        if(posicionY+alto<=e.getPosicionEnY()){//Chequeo si la parte de arriba de entidad 1 esta chocando con la parte mas baja
-                            detectado = true;
-                        }
+                        System.out.println(posicionX-ancho/2);
+                        System.out.println(e.getPosicionEnX()+e.getSprite().getAncho()/2);
+                            System.out.println(detectado = posicionY >= e.getPosicionEnY());
+                            detectado = posicionY >= e.getPosicionEnY();
                     }
+
             }
+    if(detectado){
+        if(e.getPosicionEnX()>=posicionX-ancho/2 && e.getPosicionEnX()<=posicionX+ancho/2){
+            if(e.getPosicionEnY()>posicionY+alto){
+                System.out.println("Estoy arriba, cambiar Piso");
+            }
+
         }
+    }
+
         return detectado;
     }
 }

@@ -10,4 +10,5 @@ public interface EntidadLogica{
     public int getPosicionEnY();
 
     public void actualizarEntidad();
+
 }

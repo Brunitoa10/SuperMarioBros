@@ -22,9 +22,11 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected VisitorJugador VJ;
     protected boolean estaSaltando;
     protected Sonido sonido;
+    protected int Piso=420;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        VJ = new VisitorJugador(this);
         this.puntaje = 0;
         this.velocidad = 3;
         this.estadoJugador = new Mario(this);
@@ -67,6 +69,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
+
+
     @Override
     public int get_tiempo() {
         return 300;
@@ -79,6 +83,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public boolean detectarColision(Entidad c) {
+
         return c.detectColission(this);
     }
 
@@ -106,4 +111,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return ALTURA_MAXIMA_SALTO;
     }
 
+    public VisitorJugador getVJ() {
+        return VJ;
+    }
 }
