@@ -30,6 +30,6 @@ public class MarioParado implements EstadoMovimiento {
 
 
     public void actualizar() {
-        mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
+        mario.setPosicionEnX(mario.getPosicionEnX()+mario.getDireccion()*mario.getVelocidad());
     }
 }
