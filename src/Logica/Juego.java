@@ -30,8 +30,8 @@ public class Juego {
     }
 
     // Comunicacion con parte grafica
-    public void setControladorVistas(ControladorVistaJuego controlador_vistas) {
-        this.controladorVistas = controlador_vistas;
+    public void setControladorVistas(ControladorVistaJuego controladorVistas) {
+        this.controladorVistas = controladorVistas;
     }
 
     public void iniciar() {

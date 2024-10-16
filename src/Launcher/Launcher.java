@@ -11,9 +11,9 @@ public class Launcher {
             public void run() {
                 try {
                     Juego juego = new Juego();
-                    GUI controlador_vistas = new GUI(juego);
-                    juego.setControladorVistas(controlador_vistas);
-                    controlador_vistas.mostrarPantallaModoJuego();
+                    GUI controladorVistas = new GUI(juego);
+                    juego.setControladorVistas(controladorVistas);
+                    controladorVistas.mostrarPantallaModoJuego();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
