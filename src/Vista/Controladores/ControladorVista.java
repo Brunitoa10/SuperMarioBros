@@ -7,7 +7,7 @@ public interface ControladorVista {
 
     public void accionarPantallaRanking();
 
-    public void cambiarModoJuego(String modo_juego);
+    public void cambiarModoJuego(String modoJuego);
 
     public void mostrarPantallaInicial();
 

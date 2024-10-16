@@ -5,23 +5,23 @@ import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverJugador extends ObserverGrafica {
 
-    private PanelPantallaNivel panel_pantalla_nivel;
-    private EntidadJugador jugador_observado;
+    private PanelPantallaNivel panelPantallaNivel;
+    private EntidadJugador jugadorObservado;
 
-    public ObserverJugador(PanelPantallaNivel panel_pantalla_nivel, EntidadJugador jugador_observado) {
-        super(jugador_observado);
-        this.panel_pantalla_nivel = panel_pantalla_nivel;
-        this.jugador_observado = jugador_observado;
+    public ObserverJugador(PanelPantallaNivel panelPantallaNivel, EntidadJugador jugadorObservado) {
+        super(jugadorObservado);
+        this.panelPantallaNivel = panelPantallaNivel;
+        this.jugadorObservado = jugadorObservado;
         actualizarObserver();
     }
 
     @Override
     public void actualizarObserver() {
         super.actualizarObserver();
-        panel_pantalla_nivel.actualizarScrollHaciaJugador(jugador_observado);
+        panelPantallaNivel.actualizarScrollHaciaJugador(jugadorObservado);
     }
 
-    public EntidadJugador getJugador_observado() {
-        return jugador_observado;
+    public EntidadJugador getJugadorObservado() {
+        return jugadorObservado;
     }
 }

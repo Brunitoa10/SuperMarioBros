@@ -20,77 +20,77 @@ public class PanelPantallaPrincipal extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private ControladorVista controlador_vistas;
-    private JLabel imagen_fondo;
-    private JButton btn_iniciar_juego;
-    private JButton boton_puntajes;
+    private ControladorVista controladorVistas;
+    private JLabel imagenFondo;
+    private JButton btnIniciarJuego;
+    private JButton botonPuntajes;
 
-    public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
-        this.controlador_vistas = controlador_vistas;
+    public PanelPantallaPrincipal(ControladorVista controladorVistas) {
+        this.controladorVistas = controladorVistas;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
-        agregar_imagen_fondo();
-        agregar_boton_iniciar();
-        agregar_boton_puntaje();
+        agregarImagenFondo();
+        agregarBotonIniciar();
+        agregarBotonPuntaje();
     }
 
-    protected void agregar_imagen_fondo() {
-        imagen_fondo = new JLabel();
-        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/original/Inicio.png"));
+    protected void agregarImagenFondo() {
+        imagenFondo = new JLabel();
+        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/Inicio.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
                 ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         setLayout(null);
-        imagen_fondo.setIcon(icono_imagen_escalado);
-        imagen_fondo.setBounds(0, 5, 800, 600);
-        add(imagen_fondo);
+        imagenFondo.setIcon(icono_imagen_escalado);
+        imagenFondo.setBounds(0, 5, 800, 600);
+        add(imagenFondo);
     }
 
-    protected void agregar_boton_iniciar() {
+    protected void agregarBotonIniciar() {
 
         System.out.println("Agregue boton inicio");
 
-        btn_iniciar_juego = new JButton("");
-        btn_iniciar_juego.setBounds(300, 391, 230, 57);
+        btnIniciarJuego = new JButton("");
+        btnIniciarJuego.setBounds(300, 391, 230, 57);
 
-        decorar_boton_iniciar();
-        add(btn_iniciar_juego);
+        decorarBotonIniciar();
+        add(btnIniciarJuego);
 
-        registrar_oyente_boton_iniciar();
+        registrarOyenteBotonIniciar();
     }
 
-    protected void agregar_boton_puntaje() {
-        boton_puntajes = new JButton();
+    protected void agregarBotonPuntaje() {
+        botonPuntajes = new JButton();
         // boton_puntajes.setBounds(270, 484, 380, 76);
-        decorar_boton_puntajes();
-        registrar_oyente_boton_puntajes();
-        add(boton_puntajes);
+        decorarBotonPuntajes();
+        registrarOyenteBotonPuntajes();
+        add(botonPuntajes);
     }
 
-    protected void decorar_boton_iniciar() {
+    protected void decorarBotonIniciar() {
         System.out.println("Decorando boton inicio");
-        btn_iniciar_juego.setBackground(new Color(255, 255, 255));
-        transparentar_boton(btn_iniciar_juego);
+        btnIniciarJuego.setBackground(new Color(255, 255, 255));
+        transparentar_boton(btnIniciarJuego);
     }
 
-    protected void decorar_boton_puntajes() {
-        transparentar_boton(boton_puntajes);
-        boton_puntajes.setBounds(176, 487, 471, 65);
+    protected void decorarBotonPuntajes() {
+        transparentar_boton(botonPuntajes);
+        botonPuntajes.setBounds(176, 487, 471, 65);
     }
 
-    protected void registrar_oyente_boton_iniciar() {
+    protected void registrarOyenteBotonIniciar() {
         System.out.println("Registrando boton inicio");
-        btn_iniciar_juego.addActionListener(new ActionListener() {
+        btnIniciarJuego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
-                controlador_vistas.accionarInicioJuego();
+                controladorVistas.accionarInicioJuego();
             }
         });
     }
 
-    protected void registrar_oyente_boton_puntajes() {
-        boton_puntajes.addActionListener(new ActionListener() {
+    protected void registrarOyenteBotonPuntajes() {
+        botonPuntajes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controlador_vistas.accionarPantallaRanking();
+                controladorVistas.accionarPantallaRanking();
             }
         });
     }

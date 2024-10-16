@@ -34,12 +34,12 @@ public class PanelPantallaRanking extends JPanel {
 	private JLabel lblColumnaDerecha4;
 	private JLabel lblSuper;
 	
-	private final ControladorVista controlador_vistas;
+	private final ControladorVista controladorVistas;
 
-	public PanelPantallaRanking(ControladorVista controlador_vistas, Ranking rankingParametro){
+	public PanelPantallaRanking(ControladorVista controladorVistas, Ranking rankingParametro){
 		setBackground(new Color(0, 0, 0));
 		setForeground(new Color(0, 0, 0));
-		this.controlador_vistas = controlador_vistas;
+		this.controladorVistas = controladorVistas;
 		this.ranking = rankingParametro;
 		setLayout(null);
 		
@@ -129,7 +129,7 @@ public class PanelPantallaRanking extends JPanel {
 	protected void registrarOyenteBotonVolver() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador_vistas.mostrarPantallaInicial();
+				controladorVistas.mostrarPantallaInicial();
 			}
 		});
 	}

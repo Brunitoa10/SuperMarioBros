@@ -63,8 +63,8 @@ public class Juego {
     }
 
     protected void registrarObserverJugador(Jugador jugador) {
-        Observer observer_jugador = controladorVistas.registrarEntidad(jugador);
-        jugador.registrarObserver(observer_jugador);
+        Observer observerJugador = controladorVistas.registrarEntidad(jugador);
+        jugador.registrarObserver(observerJugador);
     }
 
     protected void registrarObserversParaEntidades(List<? extends Entidad> entidades) {
