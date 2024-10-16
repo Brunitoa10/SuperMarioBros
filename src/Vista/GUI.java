@@ -123,6 +123,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         refrescar();
     }
 
+    @Override
     public void mostrarPantallaFinJuego() {
         ventana.setContentPane(panelPantallaFinJuego);
         refrescar();

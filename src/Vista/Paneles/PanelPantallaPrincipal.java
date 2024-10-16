@@ -80,6 +80,7 @@ public class PanelPantallaPrincipal extends JPanel {
     protected void registrarOyenteBotonIniciar() {
         System.out.println("Registrando boton inicio");
         btnIniciarJuego.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
                 controladorVistas.accionarInicioJuego();
@@ -89,6 +90,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void registrarOyenteBotonPuntajes() {
         boton_puntajes.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.accionarPantallaRanking();
             }

@@ -20,11 +20,13 @@ public class Moneda extends EntidadInmovil{
     }
 
 
+    @Override
     public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectColission(this);
         return false;
     }
 
+    @Override
     public void accept(Visitor v) {
         v.visit(this);
     }
