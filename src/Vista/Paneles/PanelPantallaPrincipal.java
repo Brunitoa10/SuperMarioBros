@@ -20,20 +20,20 @@ public class PanelPantallaPrincipal extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private ControladorVista controladorVistas;
+    private ControladorVista controlador_vistas;
     private JLabel imagen_fondo;
-    private JButton btnIniciarJuego;
+    private JButton btn_iniciar_juego;
     private JButton boton_puntajes;
 
     public PanelPantallaPrincipal(ControladorVista controlador_vistas) {
-        this.controladorVistas = controlador_vistas;
+        this.controlador_vistas = controlador_vistas;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
-        agregarImagenFondo();
-        agregarBotonIniciar();
-        agregarBotonPuntaje();
+        agregar_imagen_fondo();
+        agregar_boton_iniciar();
+        agregar_boton_puntaje();
     }
 
-    protected void agregarImagenFondo() {
+    protected void agregar_imagen_fondo() {
         imagen_fondo = new JLabel();
         ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/Inicio.png"));
         Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
@@ -45,59 +45,57 @@ public class PanelPantallaPrincipal extends JPanel {
         add(imagen_fondo);
     }
 
-    protected void agregarBotonIniciar() {
+    protected void agregar_boton_iniciar() {
 
         System.out.println("Agregue boton inicio");
 
-        btnIniciarJuego = new JButton("");
-        btnIniciarJuego.setBounds(300, 391, 230, 57);
+        btn_iniciar_juego = new JButton("");
+        btn_iniciar_juego.setBounds(300, 391, 230, 57);
 
-        decorarBotonIniciar();
-        add(btnIniciarJuego);
+        decorar_boton_iniciar();
+        add(btn_iniciar_juego);
 
-        registrarOyenteBotonIniciar();
+        registrar_oyente_boton_iniciar();
     }
 
-    protected void agregarBotonPuntaje() {
+    protected void agregar_boton_puntaje() {
         boton_puntajes = new JButton();
         // boton_puntajes.setBounds(270, 484, 380, 76);
-        decorarBotonPuntajes();
-        registrarOyenteBotonPuntajes();
+        decorar_boton_puntajes();
+        registrar_oyente_boton_puntajes();
         add(boton_puntajes);
     }
 
-    protected void decorarBotonIniciar() {
+    protected void decorar_boton_iniciar() {
         System.out.println("Decorando boton inicio");
-        btnIniciarJuego.setBackground(new Color(255, 255, 255));
-        transparentarBoton(btnIniciarJuego);
+        btn_iniciar_juego.setBackground(new Color(255, 255, 255));
+        transparentar_boton(btn_iniciar_juego);
     }
 
-    protected void decorarBotonPuntajes() {
-        transparentarBoton(boton_puntajes);
+    protected void decorar_boton_puntajes() {
+        transparentar_boton(boton_puntajes);
         boton_puntajes.setBounds(176, 487, 471, 65);
     }
 
-    protected void registrarOyenteBotonIniciar() {
+    protected void registrar_oyente_boton_iniciar() {
         System.out.println("Registrando boton inicio");
-        btnIniciarJuego.addActionListener(new ActionListener() {
-            @Override
+        btn_iniciar_juego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
-                controladorVistas.accionarInicioJuego();
+                controlador_vistas.accionarInicioJuego();
             }
         });
     }
 
-    protected void registrarOyenteBotonPuntajes() {
+    protected void registrar_oyente_boton_puntajes() {
         boton_puntajes.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                controladorVistas.accionarPantallaRanking();
+                controlador_vistas.accionarPantallaRanking();
             }
         });
     }
 
-    protected void transparentarBoton(JButton boton) {
+    protected void transparentar_boton(JButton boton) {
         boton.setOpaque(false);
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);
