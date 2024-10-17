@@ -2,20 +2,22 @@ package Entidades;
 
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
+import Generador.GestorSonido.SonidoFactory;
+import Logica.ConfiguracionJuego;
 
 public abstract class EntidadMovil extends Entidad {
 
     protected int direccion;
     protected int velocidad;
     protected boolean estaVivo;
-    protected Sonido sonido;
+    
 
     public EntidadMovil(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         direccion = 0;
         estaVivo = true;
     }
-
+    
     public int getDireccion() {
         return direccion;
     }
@@ -34,5 +36,11 @@ public abstract class EntidadMovil extends Entidad {
 
     public boolean estaVivo() {
         return estaVivo;
+    }
+    
+    //Sonidos
+    public void saltar() {
+    	sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "salto");
+    	sonido.reproducir();
     }
 }

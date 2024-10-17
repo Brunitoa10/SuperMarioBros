@@ -24,10 +24,12 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
+    protected ConfiguracionJuego configuracion;
 
     public Juego(ControladorVistaJuego controladorVistas) {
     	 this.controladorVistas = controladorVistas;
     	 this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
+    	 configuracion = ConfiguracionJuego.obtenerInstancia();
     }
 
     // Comunicacion con parte grafica
@@ -38,6 +40,7 @@ public class Juego {
     public void iniciar(String modoJuego) {
     	
     	this.modoJuego = modoJuego;
+    	configuracion.setModoJuego(modoJuego);
     	System.out.println("Modojuego juego "+modoJuego);
     	 fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
         

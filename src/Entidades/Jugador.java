@@ -23,7 +23,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected int puntaje;
     protected VisitorJugador VJ;
     protected boolean estaSaltando;
-    protected Sonido sonido;
+ 
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -97,8 +97,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void saltar() {
-    	sonido = SonidoFactory.crearSonido("salto");
-    	sonido.reproducir();
+    	super.saltar();
         estadoMovimiento.saltar();
     }
 

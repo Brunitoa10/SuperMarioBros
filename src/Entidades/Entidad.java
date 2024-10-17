@@ -1,6 +1,7 @@
 package Entidades;
 
 import Fabricas.Sprite;
+import Generador.GestorSonido.Sonido;
 import Vista.ObserverGrafica.Observer;
 
 public abstract class Entidad implements EntidadLogica,Colisionable {
@@ -10,6 +11,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
     protected int alto;
     protected Sprite sprite;
     protected Observer observer;
+    protected Sonido sonido;
 
     public Entidad(int x, int y, Sprite sprite) {
         this.posicionX = x;

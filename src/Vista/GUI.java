@@ -74,7 +74,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     // De interfaz ControladorDeVistas
     @Override
     public void accionarInicioJuego(String modoJuego) {
-        System.out.println("accionarInicioJuego GUI " + modoJuego);
         miJuego.iniciar(modoJuego);
     }
 
