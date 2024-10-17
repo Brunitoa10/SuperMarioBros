@@ -15,6 +15,7 @@ public abstract class EntidadMovil extends Entidad {
         super(x, y, sprite);
         direccion = 0;
         estaVivo = true;
+        Piso=420;
     }
 
     public int get_direccion() {

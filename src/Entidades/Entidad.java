@@ -63,7 +63,6 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
             if(posicionX+ancho/2>=e.getPosicionEnX()-e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte derecha de la receptora con la parte izquierda con la de del parametro
                 System.out.println("EstoyIzquierda");
-                System.out.println(detectado = posicionY >= e.getPosicionEnY());
 
                 detectado = posicionY >= e.getPosicionEnY();
                 }
@@ -79,12 +78,13 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         int ExtremoDerecho=this.getPosicionEnX()+this.getSprite().getAncho()/2;
         if(e.getPosicionEnX()>ExtremoIzquierdo && e.getPosicionEnX()<ExtremoDerecho){
             System.out.println("EstoyEnElMedio");
-            System.out.println(this.getPosicionEnY()+this.getSprite().getAlto());
-            System.out.println(e.getPosicionEnY());
-            if(this.getPosicionEnY()-this.getSprite().getAlto()-5>e.getPosicionEnY()){
-                e.setPiso(this.getPosicionEnY()-this.getSprite().getAlto()-5);
+            if(this.getPosicionEnY()-32-5>e.getPosicionEnY()){
+                System.out.println("EntreALIf");
+                System.out.println(e.get_piso());
+                e.setPiso(this.getPosicionEnY()-32-5);
                 detectado=true;
             }
+            e.actualizarEntidad();
     }
         return detectado;
     }

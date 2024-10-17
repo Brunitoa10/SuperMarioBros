@@ -116,7 +116,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void setPiso(int piso) {
+        System.out.println("PICHO");
         Piso=piso;
+        actualizarEntidad();
+        System.out.println("PISO:"+" "+Piso);
     }
 
     public int getPiso() {

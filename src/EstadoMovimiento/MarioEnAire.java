@@ -7,11 +7,13 @@ public class MarioEnAire implements EstadoMovimiento{
     protected Jugador mario;
     protected int VELOCIDAD_SALTO;
     protected static int alturaMax;
+    public int piso;
 
     public MarioEnAire(Jugador mario,int Velocidad) {
         VELOCIDAD_SALTO = Velocidad;
         this.mario = mario;
         alturaMax = mario.getPosicionEnY()+50;
+        piso= mario.get_piso();
     }
 
     @Override
@@ -28,12 +30,13 @@ public class MarioEnAire implements EstadoMovimiento{
 
     @Override
     public void actualizar() {
+        piso=mario.get_piso();
         mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
         if(mario.getPosicionEnY()>=alturaMax) {
             if(mario.getPosicionEnY()>mario.getPiso()) {
                 mario.setPosicionEnY(mario.getPosicionEnY() - VELOCIDAD_SALTO);
-                if(mario.getPosicionEnY()==mario.getPiso()) {
-                    VELOCIDAD_SALTO=0;
+                if(mario.getPosicionEnY()<=mario.getPiso()) {
+
                     mario.setEstadoMovimiento(new MarioParado(mario));
                 }
             }
