@@ -1,7 +1,8 @@
 package Launcher;
 
-import Vista.GUI;
 import java.awt.EventQueue;
+
+import Vista.GUI;
 
 public class Launcher {
     public static void main(String[] args) {
