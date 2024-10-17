@@ -21,12 +21,10 @@ public class Juego {
     protected LoopMario loopMario;
     protected HiloRestoEntidades hiloRestoEntidades;
     protected OyenteTeclado oyenteTeclado;
+    protected String modoJuego;
 
-    public Juego() {
-        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/original");
-        fabricaEntidades = new CreadorEntidad(fabricaSprites);
-        generadorNivel = new GeneradorNivel(fabricaEntidades);
-
+    public Juego(ControladorVistaJuego controladorVistas) {
+    	 this.controladorVistas = controladorVistas;
     }
 
     // Comunicacion con parte grafica
@@ -34,11 +32,29 @@ public class Juego {
         this.controladorVistas = controladorVistas;
     }
 
-    public void iniciar() {
+    public void iniciar(String modoJuego) {
+    	
+    	this.modoJuego = modoJuego;
+    	System.out.println("Modojuego juego "+modoJuego);
+        // Inicializar fábricas antes de generar el nivel
+        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/" + modoJuego);
+        fabricaEntidades = new CreadorEntidad(fabricaSprites);
+        generadorNivel = new GeneradorNivel(fabricaEntidades);
+        
+        System.out.println("Antes generar nivel juego ");
+        // Generar el nivel actual
         nivelActual = generadorNivel.generarNivel(1);
+        System.out.println("Despues generar nivel juego ");
+        // Registrar los observers
+        System.out.println("Antes registrar observers");
         registrarObservers();
-        System.out.println("Logica mostrar modo de juego");
+        System.out.println("Despues registrarObservers");
+        System.out.println("Logica mostrar modo de juego: " + modoJuego);
+        
+        // Mostrar la pantalla del nivel
         controladorVistas.mostrarPantallaNivel();
+        
+        // Iniciar el bucle del juego y otros hilos
         loopMario = new LoopMario(this);
         loopMario.comenzar();
         hiloRestoEntidades = new HiloRestoEntidades(this);

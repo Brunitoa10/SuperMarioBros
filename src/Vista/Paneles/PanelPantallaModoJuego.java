@@ -17,6 +17,7 @@ public class PanelPantallaModoJuego extends JPanel {
     private JButton btnOriginal;
     private JButton btnAlternativo;
     private ControladorVista controladorVistas;
+ 
 
     public PanelPantallaModoJuego(ControladorVista controladorVistas) {
     	this.controladorVistas = controladorVistas;
@@ -68,4 +69,6 @@ public class PanelPantallaModoJuego extends JPanel {
             }
         });
     }
+
+	
 }

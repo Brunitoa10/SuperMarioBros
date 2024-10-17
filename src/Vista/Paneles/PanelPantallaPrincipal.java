@@ -24,9 +24,11 @@ public class PanelPantallaPrincipal extends JPanel {
     private JLabel imagenFondo;
     private JButton btnIniciarJuego;
     private JButton botonPuntajes;
+    protected String modoJuego;
 
-    public PanelPantallaPrincipal(ControladorVista controladorVistas) {
+    public PanelPantallaPrincipal(ControladorVista controladorVistas,String modoJuego) {
         this.controladorVistas = controladorVistas;
+        this.modoJuego = modoJuego;
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
         agregarImagenFondo();
         agregarBotonIniciar();
@@ -35,9 +37,8 @@ public class PanelPantallaPrincipal extends JPanel {
 
     protected void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/original/Inicio.png"));
-        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO,
-                ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
+        ImageIcon icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/"+modoJuego+"/Inicio.png"));
+        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         setLayout(null);
         imagenFondo.setIcon(icono_imagen_escalado);
@@ -82,7 +83,7 @@ public class PanelPantallaPrincipal extends JPanel {
         btnIniciarJuego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Boton inicio apretado");
-                controladorVistas.accionarInicioJuego();
+                controladorVistas.accionarInicioJuego(modoJuego);
             }
         });
     }

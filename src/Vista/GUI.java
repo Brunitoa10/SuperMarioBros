@@ -27,36 +27,34 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaModoJuego panelPantallaModoJuego;
     protected Ranking ranking;
     protected OyenteTeclado oyente;
+    protected String modoJuego;
 
     protected Juego miJuego;
-    protected int nivel;
+   // protected int nivel;
 
-    
-    public GUI(Juego juego) {
+    public GUI() {
         ranking = new Ranking();
-        this.miJuego = juego;
-        this.nivel = 1;
+        this.miJuego = new Juego(this);
+       // this.nivel = 1;
+       
         registrarOyenteVentana();
         configurarVentana();
         configurarPaneles();
     }
 
     private void configurarPaneles() {
-    	 panelPantallaNivel = new PanelPantallaNivel();
-         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
-         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
-		
-	}
+        panelPantallaNivel = new PanelPantallaNivel();
+        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+    }
 
-	protected void configurarVentana() {
+    protected void configurarVentana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
-
         ventana.setVisible(true);
     }
 
@@ -66,21 +64,21 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     // De interfaz para launcher
     @Override
-    public void mostrarPantallaInicial() {
-        ventana.setContentPane(panelPantallaPrincipal);
-
+    public void mostrarPantallaInicial(String modoJuego) {
+        ventana.setContentPane(new PanelPantallaPrincipal(this, modoJuego));
         refrescar();
     }
 
     // De interfaz ControladorDeVistas
     @Override
-    public void accionarInicioJuego() {
-        miJuego.iniciar();
+    public void accionarInicioJuego(String modoJuego) {
+        System.out.println("accionarInicioJuego GUI " + modoJuego);
+        miJuego.iniciar(modoJuego);
     }
 
     @Override
     public void accionarPantallaRanking() {
-        miJuego.mostrarPantallaRanking() ;
+        miJuego.mostrarPantallaRanking();
     }
 
     @Override
@@ -93,13 +91,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void cambiarModoJuego(String modo) {
         // Lógica para cambiar el modo de juego
         System.out.println("Modo seleccionado: " + modo);
-        // Dependiendo del modo, podrías inicializar configuraciones o cambiar la lógica
-        // del juego.
-        mostrarPantallaInicial(); // Vuelve a la pantalla principal o inicia el juego
+        this.modoJuego = modo;
+        mostrarPantallaInicial(modo); // Vuelve a la pantalla principal o inicia el juego
     }
 
     // De interfaz ComandosJuegoVista
-
     @Override
     public Observer registrarEntidad(EntidadLogica entidadLogica) {
         Observer observerEntidad = panelPantallaNivel.incorporarEntidad(entidadLogica);
@@ -117,12 +113,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public void mostrarPantallaNivel() {
         ventana.setContentPane(panelPantallaNivel);
-
         oyente = new OyenteTeclado();
         panelPantallaNivel.addKeyListener(oyente);
         panelPantallaNivel.setFocusable(true);
         panelPantallaNivel.requestFocusInWindow();
-
         refrescar();
     }
 
@@ -159,4 +153,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         return oyente;
     }
 
+    @Override
+    public String obtenerModoJuego() {
+        return modoJuego;
+    }
 }

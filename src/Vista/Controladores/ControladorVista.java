@@ -1,7 +1,7 @@
 package Vista.Controladores;
 
 public interface ControladorVista {
-    public void accionarInicioJuego();
+    public void accionarInicioJuego(String modoJuego);
 
     public void accionarPantallaModoJuego();
 
@@ -9,9 +9,12 @@ public interface ControladorVista {
 
     public void cambiarModoJuego(String modoJuego);
 
-    public void mostrarPantallaInicial();
+    public void mostrarPantallaInicial(String modoJuego);
 
     public void mostrarPantallaRanking();
 
     public void refrescar();
+
+	public String obtenerModoJuego();
+
 }

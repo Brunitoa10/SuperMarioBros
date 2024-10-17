@@ -129,7 +129,7 @@ public class PanelPantallaRanking extends JPanel {
 	protected void registrarOyenteBotonVolver() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorVistas.mostrarPantallaInicial();
+				controladorVistas.mostrarPantallaInicial(controladorVistas.obtenerModoJuego());
 			}
 		});
 	}
