@@ -43,8 +43,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     private void configurarPaneles() {
-        panelPantallaNivel = new PanelPantallaNivel();
-        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+    	
         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
     }
 
@@ -65,7 +64,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     // De interfaz para launcher
     @Override
     public void mostrarPantallaInicial(String modoJuego) {
-        ventana.setContentPane(new PanelPantallaPrincipal(this, modoJuego));
+    	panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
+    	panelPantallaNivel = new PanelPantallaNivel(this);
+        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+        ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
 
@@ -155,6 +157,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public String obtenerModoJuego() {
-        return modoJuego;
+        return panelPantallaPrincipal.obtenerModoJuego();
     }
 }

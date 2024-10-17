@@ -6,6 +6,7 @@ import Entidades.Enemigos.BuzzyBeetle;
 import Entidades.Enemigos.Goomba;
 import Entidades.Enemigos.KoopaTroopa;
 import Entidades.Enemigos.Lakitu;
+import Entidades.Enemigos.Loco;
 import Entidades.Enemigos.PiranhaPlant;
 import Entidades.Enemigos.Spiny;
 import Entidades.EntidadInmovil.Bandera;

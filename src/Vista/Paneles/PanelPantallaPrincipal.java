@@ -101,4 +101,8 @@ public class PanelPantallaPrincipal extends JPanel {
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);
     }
+    
+    public String obtenerModoJuego() {
+    	return modoJuego;
+    }
 }

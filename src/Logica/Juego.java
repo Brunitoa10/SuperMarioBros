@@ -4,6 +4,7 @@ import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
+import Fabricas.FabricaSpriteRegistro;
 import Fabricas.FabricaSprites;
 import Fabricas.FabricaSpritesOriginal;
 import Generador.GeneradorNivel;
@@ -22,9 +23,11 @@ public class Juego {
     protected HiloRestoEntidades hiloRestoEntidades;
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
+    protected FabricaSpriteRegistro fabricaSpritesRegistry;
 
     public Juego(ControladorVistaJuego controladorVistas) {
     	 this.controladorVistas = controladorVistas;
+    	 this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
 
     // Comunicacion con parte grafica
@@ -36,32 +39,28 @@ public class Juego {
     	
     	this.modoJuego = modoJuego;
     	System.out.println("Modojuego juego "+modoJuego);
-        // Inicializar fábricas antes de generar el nivel
-        fabricaSprites = new FabricaSpritesOriginal("src/Recursos/Sprites/" + modoJuego);
+    	 fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
+        
+
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
         
-        System.out.println("Antes generar nivel juego ");
-        // Generar el nivel actual
         nivelActual = generadorNivel.generarNivel(1);
-        System.out.println("Despues generar nivel juego ");
-        // Registrar los observers
-        System.out.println("Antes registrar observers");
+   
         registrarObservers();
-        System.out.println("Despues registrarObservers");
+
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
-        
-        // Mostrar la pantalla del nivel
+
         controladorVistas.mostrarPantallaNivel();
-        
-        // Iniciar el bucle del juego y otros hilos
+        iniciarLoops();
+    }
+    
+    private void iniciarLoops() {
         loopMario = new LoopMario(this);
         loopMario.comenzar();
         hiloRestoEntidades = new HiloRestoEntidades(this);
         hiloRestoEntidades.comenzar();
-
     }
-
     public void reiniciar(Nivel nivel) {
         // Implemetar
     }

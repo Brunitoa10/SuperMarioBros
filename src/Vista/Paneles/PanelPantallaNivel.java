@@ -3,6 +3,7 @@ package Vista.Paneles;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Controladores.ConstantesVista;
+import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
@@ -24,8 +25,10 @@ public class PanelPantallaNivel extends JPanel {
     protected JScrollPane panelScrollNivel;
     protected JPanel panelSuperior;
     protected JPanel panelImagen;
+    protected ControladorVista controladorVista;
 
-    public PanelPantallaNivel() {
+    public PanelPantallaNivel(ControladorVista controladorVista) {
+    	this.controladorVista = controladorVista;
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(new BorderLayout());
         inicializarComponentes();
@@ -65,7 +68,7 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     private void agregarPanelNivelConFondoYScroll() {
-        imagenFondoPanelNivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/original/FondoLevel1.png")));
+        imagenFondoPanelNivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/"+controladorVista.obtenerModoJuego()+"/FondoLevel1.png")));
         imagenFondoPanelNivel.setLayout(null);
 
         panelImagen = new JPanel(new BorderLayout());
