@@ -6,6 +6,7 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import EstadoMovimiento.MarioParado;
 
 public class VisitorJugador implements Visitor {
 
@@ -36,8 +37,14 @@ public class VisitorJugador implements Visitor {
     }
 
     public void visit(Plataforma p){
-        if(mario.getEstadoMovimiento().estaEnElSuelo() && mario.getPiso()==420) {
-            mario.set_velocidad(0);
+        if (mario.colisionArriba(p)) {
+            mario.setPiso((int)p.getHitbox().getMinY() - mario.getHitbox().height);
+            System.out.println("colision arriba");
+        }
+        else if (mario.colisionIzquierda(p)) {
+            mario.setPosicionEnX((int) p.getHitbox().getMinX() - mario.getHitbox().width);
+            System.out.println((int) p.getHitbox().getMinX() - mario.getHitbox().width);
+            System.out.println(mario.getPosicionEnX());
         }
     }
 

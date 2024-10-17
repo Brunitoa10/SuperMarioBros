@@ -45,4 +45,25 @@ public abstract class EntidadMovil extends Entidad {
     public int get_piso() {
         return Piso;
     }
+
+    @Override
+    public boolean detectarColision(Entidad entidad) {
+        return this.getHitbox().intersects(entidad.getHitbox());
+    }
+
+    public boolean colisionArriba(Entidad entidad) {
+        return this.getHitbox().getMaxY() <= entidad.getHitbox().getMinY();
+    }
+
+    public boolean colisionAbajo(Entidad entidad) {
+        return this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY();
+    }
+
+    public boolean colisionIzquierda(Entidad entidad) {
+        return this.getHitbox().getMaxX() <= entidad.getHitbox().getMinX();
+    }
+
+    public boolean colisionDerecha(Entidad entidad) {
+        return this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX();
+    }
 }

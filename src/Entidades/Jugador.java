@@ -82,12 +82,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public boolean detectarColision(Entidad c) {
-
-        return c.detectColission(this);
-    }
-
-    @Override
     public void accept(Visitor v) {
 
     }
@@ -113,13 +107,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public VisitorJugador getVJ() {
         return VJ;
-    }
-
-    public void setPiso(int piso) {
-        System.out.println("PICHO");
-        Piso=piso;
-        actualizarEntidad();
-        System.out.println("PISO:"+" "+Piso);
     }
 
     public int getPiso() {

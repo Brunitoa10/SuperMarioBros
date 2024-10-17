@@ -2,6 +2,8 @@ package Entidades;
 
 import Fabricas.Sprite;
 
+import java.awt.*;
+
 public interface EntidadLogica{
     public Sprite getSprite();
 
@@ -10,6 +12,8 @@ public interface EntidadLogica{
     public int getPosicionEnY();
 
     public void actualizarEntidad();
+
+    public Rectangle getHitbox();
 
 
 }

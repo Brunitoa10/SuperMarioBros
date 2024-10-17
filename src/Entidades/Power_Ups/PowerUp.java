@@ -15,8 +15,8 @@ public abstract class PowerUp extends EntidadMovil {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan =c.detectColission(this);
-        return false;
+        boolean colisionan = c.detectarColision(this);
+        return colisionan;
     }
 
     public void accept(Visitor v) {

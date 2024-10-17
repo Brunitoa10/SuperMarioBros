@@ -126,19 +126,12 @@ public class LoopMario implements Runnable {
 
         for(Plataforma p : plataformas) {
             if(mario.detectarColision((p))){
+                System.out.println("mario min x hitbox: " + mario.getHitbox().getMaxX());
+                int valor3 = mario.getPosicionEnX() + mario.getSprite().getAncho()/2;
+                System.out.println("mario max x sprite: " + valor3);
+                System.out.println("mario x position: " + mario.getPosicionEnX());
+                System.out.println("mario hitbox x position: " + mario.getHitbox().x);
                 mario.getVJ().visit(p);
-                if(p.getPosicionEnX()>mario.getPosicionEnX()){
-                    if(p.getPosicionEnY()+32<mario.getPosicionEnY()){
-                        mario.set_velocidad(VelocidadMario);
-                    }
-                    if(direccionLocal==-1){
-                        mario.set_velocidad(VelocidadMario);
-                    }
-                }else{
-                    if(direccionLocal==1){
-                        mario.set_velocidad(VelocidadMario);
-                    }
-                }
             }
         }
 

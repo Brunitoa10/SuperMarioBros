@@ -14,7 +14,7 @@ public class PiranhaPlant extends Enemigo {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan =c.detectColission(this);
+        boolean colisionan =c.detectarColision(this);
         return false;
     }
 

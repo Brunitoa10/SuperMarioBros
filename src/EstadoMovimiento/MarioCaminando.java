@@ -31,6 +31,5 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
-        mario.setPosicionEnX(mario.getPosicionEnX()+mario.get_direccion()*mario.get_velocidad());
     }
 }
