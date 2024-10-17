@@ -11,10 +11,10 @@ import Vista.AdaptadorPosicionPixel;
 public class ObserverGrafica extends JLabel implements Observer {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private EntidadLogica entidadObservada;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private EntidadLogica entidadObservada;
 
     protected ObserverGrafica(EntidadLogica entidadObservada) {
         super();

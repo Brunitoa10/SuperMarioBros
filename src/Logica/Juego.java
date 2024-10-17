@@ -1,16 +1,16 @@
 package Logica;
 
+import java.util.List;
+
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
 import Fabricas.FabricaSprites;
-import Fabricas.FabricaSpritesOriginal;
 import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
-import java.util.List;
 
 public class Juego {
 
@@ -24,12 +24,10 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
-    protected ConfiguracionJuego configuracion;
 
     public Juego(ControladorVistaJuego controladorVistas) {
-    	 this.controladorVistas = controladorVistas;
-    	 this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
-    	 configuracion = ConfiguracionJuego.obtenerInstancia();
+        this.controladorVistas = controladorVistas;
+        this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
 
     // Comunicacion con parte grafica
@@ -38,18 +36,17 @@ public class Juego {
     }
 
     public void iniciar(String modoJuego) {
-    	
-    	this.modoJuego = modoJuego;
-    	configuracion.setModoJuego(modoJuego);
-    	System.out.println("Modojuego juego "+modoJuego);
-    	 fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
-        
+
+        this.modoJuego = modoJuego;
+
+        System.out.println("Modojuego juego " + modoJuego);
+        fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
 
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
-        
+
         nivelActual = generadorNivel.generarNivel(1);
-   
+
         registrarObservers();
 
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
@@ -57,13 +54,14 @@ public class Juego {
         controladorVistas.mostrarPantallaNivel();
         iniciarLoops();
     }
-    
+
     private void iniciarLoops() {
         loopMario = new LoopMario(this);
         loopMario.comenzar();
         hiloRestoEntidades = new HiloRestoEntidades(this);
         hiloRestoEntidades.comenzar();
     }
+
     public void reiniciar(Nivel nivel) {
         // Implemetar
     }
