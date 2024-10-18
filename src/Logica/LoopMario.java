@@ -124,6 +124,9 @@ public class LoopMario implements Runnable {
         if (actualizacionRequerida) {
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
+            if (mario.getPosicionEnY() == 420){
+                mario.setPiso(420);
+            }
         }
     }
 
