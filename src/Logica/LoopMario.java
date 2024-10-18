@@ -90,42 +90,23 @@ public class LoopMario implements Runnable {
                 actualizacionRequerida = true;
             }
 
-            // Actualiza el sprite basado en el estado
-            String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
-                    ? (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
-                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
-                    : (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png"
-                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
-            mario.getSprite().setRutaImagen(spritePath);
+            actualizarSprite();
+
         } else {
-            // Lógica para idle
-            if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
-                enIdle = true;
-                mario.getSprite().setRutaImagen(direccionLocal == -1
-                        ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png"
-                        : "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
-                iniciarTemporizadorIdle();
-            }
+                estadoIdle();
+
         }
 
         // Lógica de salto
         if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
             enIdle = false;
-            mario.saltar();
-            String jumpSprite = direccionLocal == 1
-                    ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png"
-                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
-            mario.getSprite().setRutaImagen(jumpSprite);
+            saltar();
             actualizacionRequerida = true;
         }
 
         // Gravedad
         if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
-            mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
-            if (mario.getPosicionEnY() >= SUELO_Y) {
-                mario.setPosicionEnY(SUELO_Y);
-                mario.setEstadoMovimiento(new MarioParado(mario));
-            }
+            gravedad();
             actualizacionRequerida = true;
         }
 
@@ -149,5 +130,41 @@ public class LoopMario implements Runnable {
     private void renderizar() {
         controlador.actualizarObserver();
         controlador.refrescar();
+    }
+
+
+
+
+    private void actualizarSprite(){
+        String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
+                ? (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
+                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
+                : (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png"
+                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+        mario.getSprite().setRutaImagen(spritePath);
+    }
+
+    private void estadoIdle(){
+        if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
+            enIdle = true;
+            mario.getSprite().setRutaImagen(direccionLocal == -1
+                    ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png"
+                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
+            iniciarTemporizadorIdle();
+        }
+    }
+    private void saltar(){
+        mario.saltar();
+        String jumpSprite = direccionLocal == 1
+                ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png"
+                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
+        mario.getSprite().setRutaImagen(jumpSprite);
+    }
+    private void gravedad(){
+        mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
+        if (mario.getPosicionEnY() >= SUELO_Y) {
+            mario.setPosicionEnY(SUELO_Y);
+            mario.setEstadoMovimiento(new MarioParado(mario));
+        }
     }
 }
