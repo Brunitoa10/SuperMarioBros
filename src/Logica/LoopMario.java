@@ -99,6 +99,7 @@ public class LoopMario implements Runnable {
 
         // Lógica de salto
         if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
+
             enIdle = false;
             saltar();
             actualizacionRequerida = true;
@@ -112,9 +113,11 @@ public class LoopMario implements Runnable {
 
         for(Plataforma p : plataformas) {
             if(mario.detectarColision((p))){
+                System.out.println("detecte");
                 mario.getVisitorJugador().visit(p);
             }
         }
+
         for(Vacio vacio : vacios) {
             if (mario.detectarColision(vacio)) {
                 mario.getVisitorJugador().visit(vacio);
@@ -124,9 +127,11 @@ public class LoopMario implements Runnable {
         if (actualizacionRequerida) {
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
+
             if (mario.getPosicionEnY() == 420){
                 mario.setPiso(420);
             }
+
         }
     }
 
