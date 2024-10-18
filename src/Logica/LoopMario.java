@@ -3,6 +3,7 @@ package Logica;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Vacio;
+import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 import Vista.Controladores.ControladorVistaJuego;
 
@@ -114,20 +115,29 @@ public class LoopMario implements Runnable {
 
         for(Plataforma p : plataformas) {
             if(mario.detectarColision((p))){
-                System.out.println("detecte");
                 mario.getVisitorJugador().visit(p);
             }
         }
 
         for(Vacio vacio : vacios) {
-            if (mario.detectarColision(vacio)) {
-                System.out.println("ESTOY SOBRE UN VACIO");
-                mario.getVisitorJugador().visit(vacio);
+            System.out.println("Hitbox superior vacio"+(vacio.getPosicionEnY()));
+            System.out.println(mario.getPosicionEnY()+mario.getHitbox().getHeight());
+            if(mario.getPosicionEnX()-mario.getHitbox().getWidth()<=vacio.getPosicionEnX()-vacio.getHitbox().getWidth()) {
+                if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
+                    System.out.println("EstoyarribaDeVacio");
+                    mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
+                    mario.setPiso(420);
+                }
             }
+            if (mario.detectarColision(vacio)) {
+                System.out.println("detecto vacio");
+                mario.getVisitorJugador().visit(vacio);
+
+                }
         }
 
-        if (!mario.estaEnPlataforma())
-            mario.setPiso(SUELO_Y);
+
+
 
         if (actualizacionRequerida) {
             mario.actualizarEntidad();

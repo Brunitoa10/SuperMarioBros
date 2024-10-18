@@ -12,17 +12,10 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void saltar(Jugador mario) {
-        this.mario = mario;
-        if(estaEnElSuelo()) {
+
             mario.setEstadoMovimiento(new MarioSaltando(mario));
-        }else{
-            System.out.println("No esta en una superficie");
-        }
     }
 
-    public boolean estaEnElSuelo() {
-        return true;
-    }
 
     @Override
     public void desplazarEnX(int direccion) {
@@ -32,5 +25,10 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
+    }
+
+    @Override
+    public boolean estaEnElSuelo() {
+        return mario.getPosicionEnY()==mario.getPiso();
     }
 }

@@ -68,8 +68,11 @@ public abstract class EntidadMovil extends Entidad {
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
         int rangoColision = (int)(entidad.getHitbox().getMaxY() - entidad.getHitbox().getHeight()/2);
         boolean colisiona = (this.getHitbox().getMinY() <= entidad.getHitbox().getMaxY()) && (this.getHitbox().getMinY() >= rangoColision);
-        return colisiona && (solapamientoX >= solapamientoY);
+        return colisiona && (solapamientoX >= solapamientoY) || posicionY== entidad.getPosicionEnY();
     }
+
+
+
 
     public boolean colisionAbajo(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());

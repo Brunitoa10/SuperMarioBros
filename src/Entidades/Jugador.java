@@ -109,6 +109,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return VisitorJugador;
     }
 
+    public void NoestaEnPlataforma(){
+        enPlataforma = false;
+    };
+
     public boolean estaEnPlataforma() {
         return enPlataforma;
     }
