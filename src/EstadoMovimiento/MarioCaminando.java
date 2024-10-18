@@ -31,4 +31,5 @@ public class MarioCaminando implements EstadoMovimiento {
     public boolean estaEnElSuelo() {
         return mario.getPosicionEnY()==mario.getPiso();
     }
+
 }

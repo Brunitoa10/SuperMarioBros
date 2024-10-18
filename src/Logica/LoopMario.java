@@ -3,6 +3,7 @@ package Logica;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Vacio;
+import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 import Vista.Controladores.ControladorVistaJuego;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import EstadoMovimiento.MarioCaminando;
+import EstadoMovimiento.MarioParado;
 
 public class LoopMario implements Runnable {
 
@@ -41,7 +44,7 @@ public class LoopMario implements Runnable {
 
     public synchronized void comenzar() {
         ejecutando = true;
-        VelocidadMario=mario.get_velocidad();
+        VelocidadMario = mario.get_velocidad();
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -94,13 +97,13 @@ public class LoopMario implements Runnable {
             actualizarSprite();
 
         } else {
-                estadoIdle();
+            estadoIdle();
 
         }
 
         // Lógica de salto
         if (oyente.teclaArriba && (mario.getEstadoMovimiento().estaEnElSuelo() || mario.estaEnPlataforma())) {
-            if(mario.estaEnPlataforma())
+            if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
             enIdle = false;
             saltar();
@@ -113,37 +116,30 @@ public class LoopMario implements Runnable {
             actualizacionRequerida = true;
         }
 
-        for(Plataforma p : plataformas) {
-            if(mario.detectarColision((p))){
+        for (Plataforma p : plataformas) {
+            if (mario.detectarColision((p))) {
                 mario.getVisitorJugador().visit(p);
             }
         }
 
-        for(Vacio vacio : vacios) {
-            System.out.println("Hitbox superior vacio"+(vacio.getPosicionEnY()));
-            System.out.println(mario.getPosicionEnY()+mario.getHitbox().getHeight());
-            if(mario.getPosicionEnX()-mario.getHitbox().getWidth()<=vacio.getPosicionEnX()-vacio.getHitbox().getWidth()) {
-                if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
-                    System.out.println("EstoyarribaDeVacio");
+        for (Vacio vacio : vacios) {
+            if(VacioColisionoAbajo(vacio)){
                     mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
                     mario.setPiso(420);
-                }
             }
             if (mario.detectarColision(vacio)) {
                 System.out.println("detecto vacio");
                 mario.getVisitorJugador().visit(vacio);
 
-                }
+            }
         }
-
-
 
 
         if (actualizacionRequerida) {
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
 
-            if (mario.getPosicionEnY() == 420){
+            if (mario.getPosicionEnY() == 420) {
                 mario.setPiso(420);
             }
 
@@ -156,9 +152,7 @@ public class LoopMario implements Runnable {
     }
 
 
-
-
-    private void actualizarSprite(){
+    private void actualizarSprite() {
         String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
                 ? (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
                 : "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
@@ -167,7 +161,7 @@ public class LoopMario implements Runnable {
         mario.getSprite().setRutaImagen(spritePath);
     }
 
-    private void estadoIdle(){
+    private void estadoIdle() {
         if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
             enIdle = true;
             mario.getSprite().setRutaImagen(direccionLocal == -1
@@ -176,18 +170,32 @@ public class LoopMario implements Runnable {
             iniciarTemporizadorIdle();
         }
     }
-    private void saltar(){
+
+    private void saltar() {
         mario.saltar();
         String jumpSprite = direccionLocal == 1
                 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png"
                 : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
         mario.getSprite().setRutaImagen(jumpSprite);
     }
-    private void gravedad(){
+
+    private void gravedad() {
         mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
         if (mario.getPosicionEnY() >= SUELO_Y) {
             mario.setPosicionEnY(SUELO_Y);
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
+    }
+
+    private boolean VacioColisionoAbajo(Vacio vacio) {
+        boolean Colisiono = false;
+        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX())|| mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()) {
+            if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
+                System.out.println("EstoyarribaDeVacio");
+                Colisiono = true;
+
+            }
+        }
+        return Colisiono;
     }
 }
