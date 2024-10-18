@@ -124,15 +124,14 @@ public class LoopMario implements Runnable {
 
         for (Vacio vacio : vacios) {
             if(VacioColisionoAbajo(vacio)){
-                    mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
+                    mario.setEstadoMovimiento(new MarioEnAire(mario, 2));
                     mario.setPiso(420);
+                    mario.setEnPlataforma(false);
             }
-            if (mario.detectarColision(vacio)) {
-                System.out.println("detecto vacio");
-                mario.getVisitorJugador().visit(vacio);
+
 
             }
-        }
+
 
 
         if (actualizacionRequerida) {
@@ -189,11 +188,10 @@ public class LoopMario implements Runnable {
 
     private boolean VacioColisionoAbajo(Vacio vacio) {
         boolean Colisiono = false;
-        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX())|| mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()) {
+        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth() && mario.estaEnPlataforma()) {
             if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
                 System.out.println("EstoyarribaDeVacio");
                 Colisiono = true;
-
             }
         }
         return Colisiono;
