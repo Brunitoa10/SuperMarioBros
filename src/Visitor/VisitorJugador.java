@@ -67,7 +67,7 @@ public class VisitorJugador implements Visitor {
 
 public void visit(Vacio vacio) {
     // Aumentar la tolerancia en la colisión abajo
-    int tolerancia = 5;
+    int tolerancia = 32;
     if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
         mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
     }

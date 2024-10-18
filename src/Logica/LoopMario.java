@@ -120,6 +120,7 @@ public class LoopMario implements Runnable {
 
         for(Vacio vacio : vacios) {
             if (mario.detectarColision(vacio)) {
+                System.out.println("ESTOY SOBRE UN VACIO");
                 mario.getVisitorJugador().visit(vacio);
             }
         }
