@@ -29,8 +29,8 @@ public class MarioSaltando implements EstadoMovimiento {
         if (estaEnElSuelo()) {
 
             // Cambiar al estado de caminar si está en el suelo
-            mario.setPosicionEnY(420); // Ajustar la posición exacta del suelo
             mario.setEstadoMovimiento(new MarioCaminando(mario));
+
         }
     }
 

@@ -50,7 +50,7 @@ public class VisitorJugador implements Visitor {
         else if (mario.colisionAbajo(plataforma)){
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
-            mario.setPiso((int) plataforma.getHitbox().getMinY());
+            mario.setPiso((int) plataforma.getHitbox().getMinY()-plataforma.getSprite().getAlto());
             mario.setEnPlataforma(true);
         }
         else if (mario.colisionArriba(plataforma)) {
@@ -63,11 +63,15 @@ public class VisitorJugador implements Visitor {
 
     }
 
-    public void visit(Vacio vacio) {
-        if (mario.colisionAbajo(vacio)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
-        }
+    // ... (resto de tu código)
+
+public void visit(Vacio vacio) {
+    // Aumentar la tolerancia en la colisión abajo
+    int tolerancia = 5;
+    if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
+        mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
     }
+}
 }
 
 

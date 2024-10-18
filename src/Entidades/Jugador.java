@@ -19,13 +19,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
-    protected VisitorJugador VJ;
+    protected VisitorJugador VisitorJugador;
     protected boolean enPlataforma;
     protected Sonido sonido;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        VJ = new VisitorJugador(this);
+        VisitorJugador = new VisitorJugador(this);
         this.puntaje = 0;
         this.velocidad = 3;
         this.estadoJugador = new Mario(this);
@@ -106,7 +106,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public VisitorJugador getVisitorJugador() {
-        return VJ;
+        return VisitorJugador;
     }
 
     public boolean estaEnPlataforma() {
