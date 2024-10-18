@@ -63,11 +63,15 @@ public class VisitorJugador implements Visitor {
 
     }
 
-    public void visit(Vacio vacio) {
-        if (mario.colisionAbajo(vacio)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
-        }
+    // ... (resto de tu código)
+
+public void visit(Vacio vacio) {
+    // Aumentar la tolerancia en la colisión abajo
+    int tolerancia = 5;
+    if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
+        mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
     }
+}
 }
 
 
