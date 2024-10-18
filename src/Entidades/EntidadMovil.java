@@ -3,6 +3,8 @@ package Entidades;
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
 
+import java.awt.*;
+
 public abstract class EntidadMovil extends Entidad {
 
     protected int direccion;
@@ -51,23 +53,45 @@ public abstract class EntidadMovil extends Entidad {
         return this.getHitbox().intersects(entidad.getHitbox());
     }
 
+    private int calcularSolapamientoX(Rectangle hitbox1, Rectangle hitbox2) {
+        int solapamientoX = (int) Math.abs(Math.min(hitbox1.getMaxX(), hitbox2.getMaxX()) - Math.max(hitbox1.getMinX(), hitbox2.getMinX()));
+        return Math.max(solapamientoX, 0); // Asegurar que no sea negativo
+    }
+
+    private int calcularSolapamientoY(Rectangle hitbox1, Rectangle hitbox2) {
+        int solapamientoY = (int) Math.abs(Math.min(hitbox1.getMaxY(), hitbox2.getMaxY()) - Math.max(hitbox1.getMinY(), hitbox2.getMinY()));
+        return Math.max(solapamientoY, 0); // Asegurar que no sea negativo
+    }
+
     public boolean colisionArriba(Entidad entidad) {
+        int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
+        int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
         int rangoColision = (int)(entidad.getHitbox().getMaxY() - entidad.getHitbox().getHeight()/2);
-        return (this.getHitbox().getMinY() <= entidad.getHitbox().getMaxY()) && (this.getHitbox().getMinY() >= rangoColision);
+        boolean colisiona = (this.getHitbox().getMinY() <= entidad.getHitbox().getMaxY()) && (this.getHitbox().getMinY() >= rangoColision);
+        return colisiona && (solapamientoX >= solapamientoY);
     }
 
     public boolean colisionAbajo(Entidad entidad) {
+        int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
+        int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
         int rangoColision = (int)(entidad.getHitbox().getMinY() + entidad.getHitbox().getHeight()/2);
-        return (this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY()) && (this.getHitbox().getMaxY() <= rangoColision);
+        boolean colisiona = (this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY()) && (this.getHitbox().getMaxY() <= rangoColision);
+        return colisiona && (solapamientoX >= solapamientoY);
     }
 
     public boolean colisionIzquierda(Entidad entidad) {
+        int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
+        int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
         int rangoColision = (int)(entidad.getHitbox().getMaxX() - entidad.getHitbox().getWidth()/2);
-        return (this.getHitbox().getMinX() <= entidad.getHitbox().getMaxX()) && (this.getHitbox().getMinX() >= rangoColision);
+        boolean colisiona = (this.getHitbox().getMinX() <= entidad.getHitbox().getMaxX()) && (this.getHitbox().getMinX() >= rangoColision);
+        return colisiona && (solapamientoY > solapamientoX);
     }
 
     public boolean colisionDerecha(Entidad entidad) {
+        int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
+        int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
         int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth()/2);
-        return (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
+        boolean colisiona = (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
+        return colisiona && (solapamientoY > solapamientoX);
     }
 }
