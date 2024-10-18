@@ -20,9 +20,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
     protected VisitorJugador VJ;
-    protected boolean estaSaltando;
+    protected boolean enPlataforma;
     protected Sonido sonido;
-    protected int Piso=420;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -32,6 +31,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
         this.controlTeclado = new ControlTeclado(this);
+        this.enPlataforma = false;
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -105,11 +105,15 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return ALTURA_MAXIMA_SALTO;
     }
 
-    public VisitorJugador getVJ() {
+    public VisitorJugador getVisitorJugador() {
         return VJ;
     }
 
-    public int getPiso() {
-        return Piso;
+    public boolean estaEnPlataforma() {
+        return enPlataforma;
+    }
+
+    public void setEnPlataforma(boolean enPlataforma) {
+        this.enPlataforma = enPlataforma;
     }
 }

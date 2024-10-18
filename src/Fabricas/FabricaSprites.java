@@ -76,4 +76,7 @@ public abstract class FabricaSprites {
     public Sprite crearSpritePrincesa() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
+    public Sprite crearSpriteVacio() {
+        return new Sprite(ruta_carpeta + "/", 32, 32);
+    }
 }

@@ -1,8 +1,10 @@
 package Vista.Paneles;
 
+import Entidades.Enemigos.Enemigo;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Controladores.ConstantesVista;
+import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
@@ -38,10 +40,11 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel labelTiempoTxt;
     private ObserverEntidad observerEntidad;
     private ObserverJugador observerJugador;
+    private ControladorVista controladorVista;
     private boolean lovi=false;
 
-    public PanelPantallaNivel() {
-
+    public PanelPantallaNivel(ControladorVista GUI) {
+        controladorVista=GUI;
         setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
         setLayout(new BorderLayout());
 

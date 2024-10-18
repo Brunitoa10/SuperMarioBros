@@ -1,5 +1,7 @@
 package Vista.Controladores;
 
+import Logica.Juego;
+
 public interface ControladorVista {
     public void accionarInicioJuego();
 
@@ -14,4 +16,6 @@ public interface ControladorVista {
     public void mostrarPantallaRanking();
 
     public void refrescar();
+
+    public Juego getJuego();
 }

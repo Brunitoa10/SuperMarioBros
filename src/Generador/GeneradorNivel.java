@@ -75,6 +75,9 @@ public class GeneradorNivel {
             case 18:
                 nivel.agregarPrincesa(fabricaEntidades.crearPrincesa(x,y));
                 break;
+            case 19:
+                nivel.agregarVacio(fabricaEntidades.crearVacio(x,y));
+                break;
         }
     }
 

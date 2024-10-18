@@ -6,6 +6,8 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import Entidades.Vacio;
+import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 
 public class VisitorJugador implements Visitor {
@@ -36,21 +38,35 @@ public class VisitorJugador implements Visitor {
 
     }
 
-    public void visit(Plataforma p){
-        if (mario.colisionArriba(p)) {
-            mario.setPiso((int)p.getHitbox().getMinY() - mario.getHitbox().height);
-            System.out.println("colision arriba");
+    public void visit(Plataforma plataforma){
+        if (mario.colisionDerecha(plataforma)){
+            int posicionATeletransportar = (int) (plataforma.getHitbox().getMinX() - mario.getHitbox().getWidth());
+            mario.setPosicionEnX(posicionATeletransportar);
         }
-        else if (mario.colisionIzquierda(p)) {
-            mario.setPosicionEnX((int) p.getHitbox().getMinX() - mario.getHitbox().width);
-            System.out.println((int) p.getHitbox().getMinX() - mario.getHitbox().width);
-            System.out.println(mario.getPosicionEnX());
+        else if (mario.colisionIzquierda(plataforma)){
+            int posicionATeletransportar = (int) (plataforma.getHitbox().getMaxX());
+            mario.setPosicionEnX(posicionATeletransportar);
+        }
+        else if (mario.colisionAbajo(plataforma)){
+            mario.setEstadoMovimiento(new MarioParado(mario));
+            mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
+            mario.setPiso((int) plataforma.getHitbox().getMinY());
+            mario.setEnPlataforma(true);
+        }
+        else if (mario.colisionArriba(plataforma)) {
+            System.out.println("colision arriba!");
         }
     }
 
     @Override
     public void visit(Proyectil proyectil) {
 
+    }
+
+    public void visit(Vacio vacio) {
+        if (mario.colisionAbajo(vacio)) {
+            mario.setEstadoMovimiento(new MarioEnAire(mario, 1));
+        }
     }
 }
 

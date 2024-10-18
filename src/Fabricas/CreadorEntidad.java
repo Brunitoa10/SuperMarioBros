@@ -21,6 +21,7 @@ import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.ProyectilSpiny;
+import Entidades.Vacio;
 
 public class CreadorEntidad implements FabricaEntidad {
 
@@ -155,5 +156,11 @@ public class CreadorEntidad implements FabricaEntidad {
     public Princesa crearPrincesa(int x, int y) {
         Sprite princesaSprite = fabricaSprites.crearSpritePrincesa();
         return new Princesa(x, y, princesaSprite);
+    }
+
+    @Override
+    public Vacio crearVacio(int x, int y) {
+        Sprite vacioSprite = fabricaSprites.crearSpriteVacio();
+        return new Vacio(x, y, vacioSprite);
     }
 }

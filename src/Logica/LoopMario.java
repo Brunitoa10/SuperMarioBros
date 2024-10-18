@@ -2,6 +2,8 @@ package Logica;
 
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
+import Entidades.Vacio;
+import EstadoMovimiento.MarioParado;
 import Vista.Controladores.ControladorVistaJuego;
 
 import java.util.ArrayList;
@@ -25,11 +27,13 @@ public class LoopMario implements Runnable {
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected List<Plataforma> plataformas;
+    protected List<Vacio> vacios;
 
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.plataformas = juego.getNivelActual().getPlataformas();
+        this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
         ejecutando = false;
     }
@@ -120,18 +124,19 @@ public class LoopMario implements Runnable {
             mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
             if (mario.getPosicionEnY() >= SUELO_Y) {
                 mario.setPosicionEnY(SUELO_Y);
+                mario.setEstadoMovimiento(new MarioParado(mario));
             }
             actualizacionRequerida = true;
         }
 
         for(Plataforma p : plataformas) {
             if(mario.detectarColision((p))){
-                System.out.println("mario min x hitbox: " + mario.getHitbox().getMaxX());
-                int valor3 = mario.getPosicionEnX() + mario.getSprite().getAncho()/2;
-                System.out.println("mario max x sprite: " + valor3);
-                System.out.println("mario x position: " + mario.getPosicionEnX());
-                System.out.println("mario hitbox x position: " + mario.getHitbox().x);
-                mario.getVJ().visit(p);
+                mario.getVisitorJugador().visit(p);
+            }
+        }
+        for(Vacio vacio : vacios) {
+            if (mario.detectarColision(vacio)) {
+                mario.getVisitorJugador().visit(vacio);
             }
         }
 

@@ -8,23 +8,19 @@ public abstract class Enemigo extends EntidadMovil {
     private int puntajeDestruido;
 
     protected int puntajeKill;
-    protected int posicionx;
-    protected int posiciony;
 
 
     public Enemigo(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        posicionx = x;
-        posiciony = y;
     }
 
     public void caminar() {
-        posicionx += sprite.getPosicionX() + 3;
+        posicionX += this.get_velocidad();
     }
 
     public void actualizar() {
         caminar();
-        setPosicionEnX(posicionx);
+        super.actualizarEntidad();
     }
 
 

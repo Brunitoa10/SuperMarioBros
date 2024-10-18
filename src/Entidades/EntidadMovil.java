@@ -42,7 +42,7 @@ public abstract class EntidadMovil extends Entidad {
         Piso=piso;
     }
 
-    public int get_piso() {
+    public int getPiso() {
         return Piso;
     }
 
@@ -52,18 +52,22 @@ public abstract class EntidadMovil extends Entidad {
     }
 
     public boolean colisionArriba(Entidad entidad) {
-        return this.getHitbox().getMaxY() <= entidad.getHitbox().getMinY();
+        int rangoColision = (int)(entidad.getHitbox().getMaxY() - entidad.getHitbox().getHeight()/2);
+        return (this.getHitbox().getMinY() <= entidad.getHitbox().getMaxY()) && (this.getHitbox().getMinY() >= rangoColision);
     }
 
     public boolean colisionAbajo(Entidad entidad) {
-        return this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY();
+        int rangoColision = (int)(entidad.getHitbox().getMinY() + entidad.getHitbox().getHeight()/2);
+        return (this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY()) && (this.getHitbox().getMaxY() <= rangoColision);
     }
 
     public boolean colisionIzquierda(Entidad entidad) {
-        return this.getHitbox().getMaxX() <= entidad.getHitbox().getMinX();
+        int rangoColision = (int)(entidad.getHitbox().getMaxX() - entidad.getHitbox().getWidth()/2);
+        return (this.getHitbox().getMinX() <= entidad.getHitbox().getMaxX()) && (this.getHitbox().getMinX() >= rangoColision);
     }
 
     public boolean colisionDerecha(Entidad entidad) {
-        return this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX();
+        int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth()/2);
+        return (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
     }
 }

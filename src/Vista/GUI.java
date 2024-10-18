@@ -37,7 +37,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         this.miJuego = juego;
         this.nivel = 1;
         registrarOyenteVentana();
-        panelPantallaNivel = new PanelPantallaNivel();
+        panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
@@ -155,4 +155,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         return oyente;
     }
 
+    public Juego getJuego() {
+        return miJuego;
+    }
 }

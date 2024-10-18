@@ -21,8 +21,9 @@ public class MarioCaminando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= mario.getPiso(); // Suelo a nivel 420
+        return true;
     }
+
     @Override
     public void desplazarEnX(int direccion) {
         mario.set_direccion(direccion);

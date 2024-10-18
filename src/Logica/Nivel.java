@@ -20,6 +20,7 @@ public class Nivel {
     protected List<PowerUp> powerUps;
     protected List<Proyectil> proyectiles;
     protected List<Moneda> monedas;
+    protected List<Vacio> vacios;
     protected Jugador jugador;
     protected Bandera bandera;
     protected Princesa princesa;
@@ -35,6 +36,7 @@ public class Nivel {
             this.powerUps = new LinkedList<PowerUp>();
             this.proyectiles = new LinkedList<Proyectil>();
             this.monedas = new LinkedList<Moneda>();
+            this.vacios = new LinkedList<Vacio>();
         }
 
         public Jugador getJugador() {
@@ -55,6 +57,14 @@ public class Nivel {
 
         public List<Proyectil> getProyectiles() {
             return proyectiles;
+        }
+
+        public List<Vacio> getVacios() {
+            return vacios;
+        }
+
+        public List<Moneda> getMonedas() {
+            return monedas;
         }
 
         public void agregarJugador(Jugador jugador) {
@@ -87,6 +97,10 @@ public class Nivel {
 
         public void agregarPrincesa(Princesa princesa) {
             this.princesa = princesa;
+        }
+
+        public void agregarVacio(Vacio vacio) {
+            this.vacios.addLast(vacio);
         }
 
         public void sumarVida(int cantVidas) {

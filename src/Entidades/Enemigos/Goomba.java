@@ -10,7 +10,7 @@ public class Goomba extends Enemigo {
 
     public Goomba(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        velocidad = 4;
+        velocidad = 3;
     }
 
     public boolean detectarColision(Entidad c) {

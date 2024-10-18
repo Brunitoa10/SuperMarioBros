@@ -44,10 +44,6 @@ public class HiloRestoEntidades implements Runnable {
         for (Enemigo enemigo : cargarEntidades.getEnemigos()){
             enemigo.actualizar();
         }
-        for (Enemigo enemigo : cargarEntidades.getEnemigos()){
-
-
-        }
 
 
     }
