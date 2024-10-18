@@ -6,12 +6,12 @@ import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverEntidad extends ObserverGrafica {
 
-    private PanelPantallaNivel panel_pantalla_nivel;
+    private PanelPantallaNivel panelPantallaNivel;
     private EntidadLogica entidadObservada;
 
-    public ObserverEntidad(EntidadLogica entidadObservada,PanelPantallaNivel panel_pantalla_nivel) {
+    public ObserverEntidad(EntidadLogica entidadObservada,PanelPantallaNivel panelPantallaNivel) {
         super(entidadObservada);
-        this.panel_pantalla_nivel = panel_pantalla_nivel;
+        this.panelPantallaNivel = panelPantallaNivel;
         this.entidadObservada = entidadObservada;
         actualizarObserver();
     }

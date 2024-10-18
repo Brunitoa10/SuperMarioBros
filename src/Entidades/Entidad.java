@@ -1,6 +1,7 @@
 package Entidades;
 
 import Fabricas.Sprite;
+import Generador.GestorSonido.Sonido;
 import Vista.ObserverGrafica.Observer;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
     protected Sprite sprite;
     protected Observer observer;
     protected Rectangle hitbox;
+    protected Sonido sonido;
 
     public Entidad(int x, int y, Sprite sprite) {
         this.posicionX = x;
@@ -48,7 +50,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         hitbox.y = y;
     }
 
-    public void registrar_observer(Observer observer) {
+    public void registrarObserver(Observer observer) {
         this.observer = observer;
     }
 

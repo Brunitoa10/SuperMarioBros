@@ -15,5 +15,4 @@ public interface EntidadLogica{
 
     public Rectangle getHitbox();
 
-
 }

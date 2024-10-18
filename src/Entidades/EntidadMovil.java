@@ -2,6 +2,8 @@ package Entidades;
 
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
+import Generador.GestorSonido.SonidoFactory;
+import Logica.ConfiguracionJuego;
 
 import java.awt.*;
 
@@ -19,20 +21,20 @@ public abstract class EntidadMovil extends Entidad {
         estaVivo = true;
         Piso=420;
     }
-
-    public int get_direccion() {
+    
+    public int getDireccion() {
         return direccion;
     }
 
-    public void set_direccion(int direccion) {
+    public void setDireccion(int direccion) {
         this.direccion = direccion;
     }
 
-    public int get_velocidad() {
+    public int getVelocidad() {
         return velocidad;
     }
 
-    public void set_velocidad(int velocidad) {
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
@@ -71,9 +73,6 @@ public abstract class EntidadMovil extends Entidad {
         return colisiona && (solapamientoX >= solapamientoY) || posicionY== entidad.getPosicionEnY();
     }
 
-
-
-
     public boolean colisionAbajo(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
@@ -96,5 +95,10 @@ public abstract class EntidadMovil extends Entidad {
         int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth()/2);
         boolean colisiona = (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
         return colisiona && (solapamientoY > solapamientoX);
+    
+    //Sonidos
+    public void saltar() {
+    	sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "salto");
+    	sonido.reproducir();
     }
 }

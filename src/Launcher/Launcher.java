@@ -1,8 +1,8 @@
 package Launcher;
 
-import Logica.Juego;
-import Vista.GUI;
 import java.awt.EventQueue;
+
+import Vista.GUI;
 
 public class Launcher {
     public static void main(String[] args) {
@@ -11,9 +11,7 @@ public class Launcher {
 
             public void run() {
                 try {
-                    Juego juego = new Juego();
-                    GUI controladorVistas = new GUI(juego);
-                    juego.setControladorVistas(controladorVistas);
+                    GUI controladorVistas = new GUI();
                     controladorVistas.mostrarPantallaModoJuego();
                 } catch (Exception e) {
                     e.printStackTrace();

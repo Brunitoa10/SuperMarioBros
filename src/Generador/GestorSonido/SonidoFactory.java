@@ -6,28 +6,27 @@ import java.util.Map;
 public class SonidoFactory {
     protected static final Map<String, CreadorSonido> registroSonidos = new HashMap<>();
 
-    // Bloque estático para registrar los tipos de sonido
     static {
-        System.out.println("Me cree");
-        registroSonidos.put("salto", () -> new SonidoSalto("src/Recursos/Sonidos/Jump.wav"));
-        // registroSonidos.put("MusicaNivel", () -> new
-        // SonidoNivel("Recursos/Sonidos/Song.wav"));
-        // Puedes registrar otros tipos de sonido aquí, por ejemplo:
-        // registroSonidos.put("musica", () -> new
-        // SonidoMusica("ruta/al/musica_de_fondo.wav"));
+        // Registro de sonidos para el modo original
+        registroSonidos.put("original_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/Original/Jump.wav"));
+        registroSonidos.put("original_musicaNivel", () -> new SonidoGenerico("src/Recursos/Sonidos/Original/Song.wav"));
+
+        // Registro de sonidos para el modo alternativo
+        registroSonidos.put("alternativo_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/Alternativo/Jump.wav"));
+        registroSonidos.put("alternativo_musicaNivel", () -> new SonidoGenerico("src/Recursos/Sonidos/Alternativo/Song.wav"));
     }
 
-    // Método para crear un sonido a partir de su tipo
-    public static Sonido crearSonido(String tipo) {
-        CreadorSonido creador = registroSonidos.get(tipo);
+    public static Sonido crearSonido(String modoJuego, String tipoSonido) {
+        String clave = modoJuego + "_" + tipoSonido;  // Construye la clave usando modo y tipo
+        CreadorSonido creador = registroSonidos.get(clave);
         if (creador == null) {
-            throw new IllegalArgumentException("Tipo de sonido no soportado: " + tipo);
+            throw new IllegalArgumentException("Sonido no soportado para este modo: " + clave);
         }
         return creador.crearSonido();
     }
 
-    // Método para registrar nuevos tipos de sonido
-    public static void registrarSonido(String tipo, CreadorSonido creadorSonido) {
-        registroSonidos.put(tipo, creadorSonido);
+    public static void registrarSonido(String modoJuego, String tipoSonido, CreadorSonido creadorSonido) {
+        String clave = modoJuego + "_" + tipoSonido;
+        registroSonidos.put(clave, creadorSonido);
     }
 }

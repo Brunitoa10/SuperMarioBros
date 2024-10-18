@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioParado;
 
+import Animador.AnimadorMario;
+
 public class LoopMario implements Runnable {
 
     private boolean ejecutando;
@@ -27,7 +29,6 @@ public class LoopMario implements Runnable {
     private int direccionLocal = 0;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private boolean enIdle = false;
-    private static final String MARIO_AFK = "src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif";
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected List<Plataforma> plataformas;
@@ -71,7 +72,7 @@ public class LoopMario implements Runnable {
             scheduler = Executors.newSingleThreadScheduledExecutor();
             scheduler.scheduleAtFixedRate(() -> {
                 if (enIdle) {
-                    mario.getSprite().setRutaImagen(MARIO_AFK);
+                    mario.getSprite().setRutaImagen(AnimadorMario.MARIO_AFK);
                 }
             }, 3, 3, TimeUnit.SECONDS);
         }
@@ -93,12 +94,10 @@ public class LoopMario implements Runnable {
                 direccionLocal = 1;
                 actualizacionRequerida = true;
             }
-
             actualizarSprite();
 
         } else {
             estadoIdle();
-
         }
 
         // Lógica de salto
@@ -106,7 +105,7 @@ public class LoopMario implements Runnable {
             if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
             enIdle = false;
-            saltar();
+            saltar(); //TODO: CAMBIAR SPRITE CON ANIMADORMARIO
             actualizacionRequerida = true;
         }
 

@@ -3,19 +3,21 @@ package Vista.Controladores;
 import Logica.Juego;
 
 public interface ControladorVista {
-    public void accionarInicioJuego();
+    public void accionarInicioJuego(String modoJuego);
 
     public void accionarPantallaModoJuego();
 
     public void accionarPantallaRanking();
 
-    public void cambiarModoJuego(String modo_juego);
+    public void cambiarModoJuego(String modoJuego);
 
-    public void mostrarPantallaInicial();
+    public void mostrarPantallaInicial(String modoJuego);
 
     public void mostrarPantallaRanking();
 
     public void refrescar();
 
     public Juego getJuego();
+  
+	  public String obtenerModoJuego();
 }

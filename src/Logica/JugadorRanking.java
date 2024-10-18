@@ -1,8 +1,8 @@
 package Logica;
 
 public class JugadorRanking {
-    String nombre;
-    int puntaje;
+    protected String nombre;
+    protected int puntaje;
 
     public JugadorRanking(String nombre, int puntaje) {
         this.nombre = nombre;

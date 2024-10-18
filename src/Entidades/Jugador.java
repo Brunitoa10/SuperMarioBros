@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Random;
+
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -60,8 +62,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public int get_puntaje() {
-        return puntaje;
+    public int getPuntaje() {
+        return new Random(0).nextInt(100);
     }
 
     @Override
@@ -72,13 +74,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
 
     @Override
-    public int get_tiempo() {
-        return 300;
+    public int getTiempo() {
+        return new Random(1000).nextInt(2000);
     }
 
     @Override
-    public int get_vida() {
-        return 3;
+    public int getVida() {
+        return new Random(0).nextInt(4);
     }
 
     @Override
@@ -94,10 +96,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void saltar() {
-
-    	sonido = SonidoFactory.crearSonido("salto");
-    	sonido.reproducir();
-        estadoMovimiento.saltar(this);
+    	super.saltar();
+      estadoMovimiento.saltar(this);
     }
 
     public int getAlturaMaximaSalto() {

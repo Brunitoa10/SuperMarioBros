@@ -1,6 +1,4 @@
 package Fabricas;
-import Entidades.Entidad;
-import Entidades.EntidadInmovil.Bandera;
 
 public abstract class FabricaSprites {
 
