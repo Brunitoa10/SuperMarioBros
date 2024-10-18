@@ -37,7 +37,7 @@ public class MarioSaltando implements EstadoMovimiento {
     public void saltar(Jugador mario) {
         this.mario = mario;
         mario.setPosicionEnY(VELOCIDAD_INICIAL_SALTO+ mario.getPosicionEnY());
-        mario.setEstadoMovimiento(new MarioEnAire(mario,velocidadY));
+        mario.setEstadoMovimiento(new MarioEnAire(mario));
     }
 
     @Override
