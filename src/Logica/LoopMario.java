@@ -98,7 +98,7 @@ public class LoopMario implements Runnable {
         }
 
         // Lógica de salto
-        if (oyente.teclaArriba && mario.getEstadoMovimiento().estaEnElSuelo()) {
+        if (oyente.teclaArriba && (mario.getEstadoMovimiento().estaEnElSuelo() || mario.estaEnPlataforma())) {
             if(mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
             enIdle = false;
