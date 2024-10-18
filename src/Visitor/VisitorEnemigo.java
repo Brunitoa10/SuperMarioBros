@@ -35,7 +35,9 @@ public class VisitorEnemigo implements Visitor {
     }
 
     public void visit(Plataforma p) {
-
+        if (enemigo.colisionDerecha(p)) {
+            enemigo.setDireccion(enemigo.getDireccion()*(-1));
+        }
     }
 
     public void visit(Proyectil proyectil){

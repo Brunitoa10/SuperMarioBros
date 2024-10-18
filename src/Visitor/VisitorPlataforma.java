@@ -19,7 +19,7 @@ public class VisitorPlataforma implements Visitor {
     @Override
     public void visit(Jugador j) {
         if(j.getEstadoMovimiento().estaEnElSuelo()) {
-            j.set_velocidad(0);
+            j.setVelocidad(0);
         }
     }
 

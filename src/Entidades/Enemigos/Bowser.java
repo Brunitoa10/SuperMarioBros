@@ -15,7 +15,7 @@ public class Bowser extends Enemigo {
 
     @Override
     public boolean detectarColision(Entidad c) {
-        boolean colisionan = c.detectColission(this);
+        boolean colisionan = c.detectarColision(this);
         if (colisionan) {
             setComportamientoIA(new IAAtacar());
         }

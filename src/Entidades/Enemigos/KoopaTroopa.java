@@ -16,7 +16,7 @@ public class KoopaTroopa extends Enemigo {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan = c.detectColission(this);
+        boolean colisionan = c.detectarColision(this);
         if (colisionan) {
             setComportamientoIA(new IAAtacar());
         }

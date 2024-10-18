@@ -15,7 +15,7 @@ public class Spiny extends Enemigo {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan = c.detectColission(this);
+        boolean colisionan = c.detectarColision(this);
         if (colisionan) {
             // Si hay colisión con el jugador, cambia el comportamiento a atacar
             setComportamientoIA(new IAAtacar());

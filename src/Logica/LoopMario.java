@@ -45,7 +45,7 @@ public class LoopMario implements Runnable {
 
     public synchronized void comenzar() {
         ejecutando = true;
-        VelocidadMario = mario.get_velocidad();
+        VelocidadMario = mario.getVelocidad();
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -152,10 +152,10 @@ public class LoopMario implements Runnable {
 
     private void actualizarSprite() {
         String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
-                ? (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
-                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
-                : (direccionLocal == -1 ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png"
-                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png");
+                ? (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
+                : "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
+                : (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png"
+                : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png");
         mario.getSprite().setRutaImagen(spritePath);
     }
 
@@ -163,8 +163,8 @@ public class LoopMario implements Runnable {
         if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
             enIdle = true;
             mario.getSprite().setRutaImagen(direccionLocal == -1
-                    ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png"
-                    : "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png");
+                    ? "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioLeft.png"
+                    : "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioRigth.png");
             iniciarTemporizadorIdle();
         }
     }
@@ -172,8 +172,8 @@ public class LoopMario implements Runnable {
     private void saltar() {
         mario.saltar();
         String jumpSprite = direccionLocal == 1
-                ? "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png"
-                : "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
+                ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png"
+                : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png";
         mario.getSprite().setRutaImagen(jumpSprite);
     }
 

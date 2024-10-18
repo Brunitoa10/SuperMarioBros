@@ -19,9 +19,9 @@ public abstract class EntidadMovil extends Entidad {
         super(x, y, sprite);
         direccion = 0;
         estaVivo = true;
-        Piso=420;
+        Piso = 420;
     }
-    
+
     public int getDireccion() {
         return direccion;
     }
@@ -43,7 +43,7 @@ public abstract class EntidadMovil extends Entidad {
     }
 
     public void setPiso(int piso) {
-        Piso=piso;
+        Piso = piso;
     }
 
     public int getPiso() {
@@ -68,15 +68,15 @@ public abstract class EntidadMovil extends Entidad {
     public boolean colisionArriba(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
-        int rangoColision = (int)(entidad.getHitbox().getMaxY() - entidad.getHitbox().getHeight()/2);
+        int rangoColision = (int) (entidad.getHitbox().getMaxY() - entidad.getHitbox().getHeight() / 2);
         boolean colisiona = (this.getHitbox().getMinY() <= entidad.getHitbox().getMaxY()) && (this.getHitbox().getMinY() >= rangoColision);
-        return colisiona && (solapamientoX >= solapamientoY) || posicionY== entidad.getPosicionEnY();
+        return colisiona && (solapamientoX >= solapamientoY) || posicionY == entidad.getPosicionEnY();
     }
 
     public boolean colisionAbajo(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
-        int rangoColision = (int)(entidad.getHitbox().getMinY() + entidad.getHitbox().getHeight()/2);
+        int rangoColision = (int) (entidad.getHitbox().getMinY() + entidad.getHitbox().getHeight() / 2);
         boolean colisiona = (this.getHitbox().getMaxY() >= entidad.getHitbox().getMinY()) && (this.getHitbox().getMaxY() <= rangoColision);
         return colisiona && (solapamientoX >= solapamientoY);
     }
@@ -84,7 +84,7 @@ public abstract class EntidadMovil extends Entidad {
     public boolean colisionIzquierda(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
-        int rangoColision = (int)(entidad.getHitbox().getMaxX() - entidad.getHitbox().getWidth()/2);
+        int rangoColision = (int) (entidad.getHitbox().getMaxX() - entidad.getHitbox().getWidth() / 2);
         boolean colisiona = (this.getHitbox().getMinX() <= entidad.getHitbox().getMaxX()) && (this.getHitbox().getMinX() >= rangoColision);
         return colisiona && (solapamientoY > solapamientoX);
     }
@@ -92,13 +92,13 @@ public abstract class EntidadMovil extends Entidad {
     public boolean colisionDerecha(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
         int solapamientoX = calcularSolapamientoX(this.getHitbox(), entidad.getHitbox());
-        int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth()/2);
+        int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth() / 2);
         boolean colisiona = (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
         return colisiona && (solapamientoY > solapamientoX);
-    
-    //Sonidos
+    }
+
     public void saltar() {
-    	sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "salto");
-    	sonido.reproducir();
+        sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "salto");
+        sonido.reproducir();
     }
 }
