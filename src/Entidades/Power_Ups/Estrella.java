@@ -11,7 +11,7 @@ public class Estrella extends PowerUp {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan =c.detectColission(this);
+        boolean colisionan =c.detectarColision(this);
         return false;
     }
 

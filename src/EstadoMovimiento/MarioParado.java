@@ -10,17 +10,8 @@ public class MarioParado implements EstadoMovimiento {
     }
 
     @Override
-    public void saltar() {
-        if(estaEnElSuelo()) {
+    public void saltar(Jugador mario) {
             mario.setEstadoMovimiento(new MarioSaltando(mario));
-
-        }else{
-            System.out.println("No esta en una superficie");
-        }
-    }
-
-    public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
     }
 
     @Override
@@ -31,5 +22,9 @@ public class MarioParado implements EstadoMovimiento {
 
     public void actualizar() {
         mario.setPosicionEnX(mario.getPosicionEnX()+mario.getDireccion()*mario.getVelocidad());
+    }
+
+    public boolean estaEnElSuelo() {
+        return mario.getPosicionEnY()==mario.getPiso();
     }
 }

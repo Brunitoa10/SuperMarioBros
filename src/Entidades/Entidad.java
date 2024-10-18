@@ -4,19 +4,25 @@ import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
 import Vista.ObserverGrafica.Observer;
 
+import java.awt.*;
+
 public abstract class Entidad implements EntidadLogica,Colisionable {
     protected int posicionX;
     protected int posicionY;
-    protected int ancho;
-    protected int alto;
     protected Sprite sprite;
     protected Observer observer;
+    protected Rectangle hitbox;
     protected Sonido sonido;
 
     public Entidad(int x, int y, Sprite sprite) {
         this.posicionX = x;
         this.posicionY = y;
         this.sprite = sprite;
+        inicializarHitbox();
+    }
+
+    private void inicializarHitbox() {
+        this.hitbox = new Rectangle(posicionX, posicionY, sprite.getAncho(), sprite.getAlto());
     }
 
     @Override
@@ -31,6 +37,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
     public void setPosicionEnX(int x) {
         posicionX = x;
+        hitbox.x = x;
     }
 
     @Override
@@ -40,6 +47,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
     public void setPosicionEnY(int y) {
         posicionY = y;
+        hitbox.y = y;
     }
 
     public void registrarObserver(Observer observer) {
@@ -51,31 +59,8 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         observer.actualizarObserver();
     }
 
-    public boolean detectColission(Entidad e){
-        boolean detectado = false;
-        if(posicionX<e.getPosicionEnX()){//Si la entidad receptora se encuentra a la izquierda de la del parametro
-            if(posicionX+ancho/2>=e.getPosicionEnX()-e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte derecha de la receptora con la parte izquierda con la de del parametro
-                if(posicionY>=e.getPosicionEnX()){//Si la entidad 1 esta arriba de la entidad 2 chequeo que se toquen con la posicion Y sin contemplar la altura y Entidad 2 contemplandola
-                    if(posicionY<=e.getPosicionEnY()+e.getSprite().getAlto()){//Chequeo si la parte de abajo de entidad 1 esta chocando con la parte mas alta de entidad 2
-                        detectado = true;
-                    }
-                }else{//La entidad 1 esta por debajo de la entidad 2
-                    if(posicionY+alto<=e.getPosicionEnY()){//Chequeo si la parte de arriba de entidad 1 esta chocando con la parte mas baja
-                        detectado = true;
-                    }
-                }
-            }else{//Si la entidad receptora se encuentra a la derecha de la que entra por parametro
-                    if(posicionX-ancho/2<=e.getPosicionEnX()+e.getSprite().getAncho()/2){//chequeo si llegan a chocarse la parte izquierda de la receptora con la parte derecha con la de del parametro
-                        if(posicionY<=e.getPosicionEnY()+e.getSprite().getAlto()){//Chequeo si la parte de abajo de entidad 1 esta chocando con la parte mas alta de entidad 2
-                            detectado = true;
-                        }
-                    }else{//La entidad 1 esta por debajo de la entidad 2
-                        if(posicionY+alto<=e.getPosicionEnY()){//Chequeo si la parte de arriba de entidad 1 esta chocando con la parte mas baja
-                            detectado = true;
-                        }
-                    }
-            }
-        }
-        return detectado;
+    public Rectangle getHitbox() {
+        return hitbox;
     }
+
 }

@@ -1,21 +1,21 @@
-package Entidades.Plataformas;
+package Entidades;
 
-import Entidades.Entidad;
+import Entidades.EntidadInmovil.EntidadInmovil;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
-public class BloqueSolido extends Plataforma {
-
-    public BloqueSolido(int x, int y, Sprite sprite) {
+public class Vacio extends EntidadInmovil {
+    public Vacio(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
 
+    @Override
     public boolean detectarColision(Entidad c) {
-
         return false;
     }
 
+    @Override
     public void accept(Visitor v) {
-        v.visit(this);
+
     }
 }

@@ -1,5 +1,6 @@
 package Vista.Paneles;
 
+import Entidades.Enemigos.Enemigo;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Controladores.ConstantesVista;
@@ -21,17 +22,16 @@ public class PanelPantallaNivel extends JPanel {
 
     private ObserverEntidad observerEntidad;
     private ObserverJugador observerJugador;
-    
     protected JScrollPane panelScrollNivel;
     protected JPanel panelSuperior;
     protected JPanel panelImagen;
     protected ControladorVista controladorVista;
 
     public PanelPantallaNivel(ControladorVista controladorVista) {
-    	this.controladorVista = controladorVista;
-        setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
-        setLayout(new BorderLayout());
-        inicializarComponentes();
+      this.controladorVista = controladorVista;
+      setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
+      setLayout(new BorderLayout());
+      inicializarComponentes();
     }
 
     private void inicializarComponentes() {

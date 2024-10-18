@@ -7,6 +7,7 @@ import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.ProyectilSpiny;
+import Entidades.Vacio;
 
 public interface FabricaEntidad {
     public Goomba crearGoomba(int x, int y);
@@ -30,5 +31,5 @@ public interface FabricaEntidad {
     public Jugador crearJugador(int x, int y);
     public Bandera crearBandera(int x, int y);
     public Princesa crearPrincesa(int x, int y);
-   
+    public Vacio crearVacio(int x, int y);
 }

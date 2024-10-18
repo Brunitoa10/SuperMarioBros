@@ -52,9 +52,11 @@ public abstract class FabricaSprites {
     public Sprite crearSpriteProyectilSpiny() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
+
     public Sprite crearSpriteLadrilloSolido() {
-        return new Sprite(ruta_carpeta + "/Bloques/Ladrillo.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Bloques/Ladrillo.png", 32, 32);
     }
+
     public Sprite crearSpriteBloqueSolido() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
@@ -66,12 +68,15 @@ public abstract class FabricaSprites {
     }
     public Sprite crearSpriteJugador() {
 
-        return new Sprite(ruta_carpeta + "/Jugador/PNGMario/StandingMarioLeft.png", 16, 16);
+        return new Sprite(ruta_carpeta + "/Jugador/PNGMario/StandingMarioLeft.png", 32, 32);
     }
     public Sprite crearSpriteBandera() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
     public Sprite crearSpritePrincesa() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
+    }
+    public Sprite crearSpriteVacio() {
+        return new Sprite(ruta_carpeta + "/", 32, 32);
     }
 }

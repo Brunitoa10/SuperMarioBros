@@ -11,7 +11,7 @@ public class Tuberia extends Plataforma {
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan =c.detectColission(this);
+
         return false;
     }
 

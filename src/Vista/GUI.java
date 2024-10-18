@@ -158,6 +158,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         return oyente;
     }
 
+    public Juego getJuego() {
+        return miJuego;
+    }
+  
     @Override
     public String obtenerModoJuego() {
         return panelPantallaPrincipal.obtenerModoJuego();

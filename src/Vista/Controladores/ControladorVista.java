@@ -1,5 +1,7 @@
 package Vista.Controladores;
 
+import Logica.Juego;
+
 public interface ControladorVista {
     public void accionarInicioJuego(String modoJuego);
 
@@ -15,6 +17,7 @@ public interface ControladorVista {
 
     public void refrescar();
 
-	public String obtenerModoJuego();
-
+    public Juego getJuego();
+  
+	  public String obtenerModoJuego();
 }

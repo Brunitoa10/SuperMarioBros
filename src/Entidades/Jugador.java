@@ -21,17 +21,19 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
     protected int puntaje;
-    protected VisitorJugador VJ;
-    protected boolean estaSaltando;
- 
+    protected VisitorJugador VisitorJugador;
+    protected boolean enPlataforma;
+    protected Sonido sonido;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        VisitorJugador = new VisitorJugador(this);
         this.puntaje = 0;
         this.velocidad = 3;
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
         this.controlTeclado = new ControlTeclado(this);
+        this.enPlataforma = false;
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -69,6 +71,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
+
+
     @Override
     public int getTiempo() {
         return new Random(1000).nextInt(2000);
@@ -77,11 +81,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     @Override
     public int getVida() {
         return new Random(0).nextInt(4);
-    }
-
-    @Override
-    public boolean detectarColision(Entidad c) {
-        return c.detectColission(this);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public void saltar() {
     	super.saltar();
-        estadoMovimiento.saltar();
+      estadoMovimiento.saltar(this);
     }
 
     public int getAlturaMaximaSalto() {
@@ -106,4 +105,19 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return ALTURA_MAXIMA_SALTO;
     }
 
+    public VisitorJugador getVisitorJugador() {
+        return VisitorJugador;
+    }
+
+    public void NoestaEnPlataforma(){
+        enPlataforma = false;
+    };
+
+    public boolean estaEnPlataforma() {
+        return enPlataforma;
+    }
+
+    public void setEnPlataforma(boolean enPlataforma) {
+        this.enPlataforma = enPlataforma;
+    }
 }

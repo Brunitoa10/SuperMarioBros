@@ -11,11 +11,11 @@ public class Goomba extends Enemigo {
 
     public Goomba(int x, int y, Sprite sprite) {
         super(x, y, sprite,new IACaminar());
-        velocidad = 4;
+        velocidad = 3;
     }
 
     public boolean detectarColision(Entidad c) {
-        boolean colisionan = c.detectColission(this);
+        boolean colisionan = c.detectarColision(this);
         return false;
     }
 

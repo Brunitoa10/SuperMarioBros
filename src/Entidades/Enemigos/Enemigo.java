@@ -19,12 +19,6 @@ public abstract class Enemigo extends EntidadMovil {
         this.comportamientoIA = comportamientoIA;
     }
 
-    // Método para hacer caminar al enemigo
-    /*public void caminar() {
-        // La posición en X se ajusta de acuerdo a la dirección
-        posicionx += direccion * (velocidad != 0 ? velocidad : 3);  // Si tiene velocidad, la usa; si no, usa 3
-        setPosicionEnX(posicionx);
-    }*/
 
     // Método de actualización que puede extenderse en subclases
     public void actualizar() {

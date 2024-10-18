@@ -6,6 +6,9 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import Entidades.Vacio;
+import EstadoMovimiento.MarioEnAire;
+import EstadoMovimiento.MarioParado;
 
 public class VisitorJugador implements Visitor {
 
@@ -35,11 +38,52 @@ public class VisitorJugador implements Visitor {
 
     }
 
-    public void visit(Plataforma p){
+    public void visit(Plataforma plataforma){
+        if (mario.colisionDerecha(plataforma)){
+            int posicionATeletransportar = (int) (plataforma.getHitbox().getMinX() - mario.getHitbox().getWidth());
+            mario.setPosicionEnX(posicionATeletransportar);
+        }
+        else if (mario.colisionIzquierda(plataforma)){
+            int posicionATeletransportar = (int) (plataforma.getHitbox().getMaxX());
+            mario.setPosicionEnX(posicionATeletransportar);
+        }
+        else if (mario.colisionAbajo(plataforma)){
+            mario.setEnPlataforma(true);
+            mario.setEstadoMovimiento(new MarioParado(mario));
+            mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
+            mario.setPiso((int) plataforma.getHitbox().getMinY()-plataforma.getSprite().getAlto());
+
+        }
+        else if (mario.colisionArriba(plataforma)) {
+            mario.setEstadoMovimiento(new MarioEnAire(mario));
+            System.out.println("colision arriba!");
+        }
+    }
+
+    @Override
+    public void visit(Proyectil proyectil) {
 
     }
 
-    public void visit(Proyectil proyectil){
+    // ... (resto de tu código)
 
+public void visit(Vacio vacio) {
+        // Aumentar la tolerancia en la colisión abajo
+        int tolerancia = 5;
+        if (mario.colisionAbajo(vacio)) {
+            System.out.println("colision abajo!");}
+        if (mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia)
+            System.out.println("picho");
+        if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
+            System.out.println("colision abajo!");
+
+            mario.setPiso(420);
+            mario.setEstadoMovimiento(new MarioEnAire(mario));
+
+        }
     }
 }
+
+
+
+

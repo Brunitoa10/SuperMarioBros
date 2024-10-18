@@ -7,15 +7,18 @@ public class MarioEnAire implements EstadoMovimiento{
     protected Jugador mario;
     protected int VELOCIDAD_SALTO;
     protected static int alturaMax;
+    protected int piso;
+    private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
+    private int velocidadY;
 
-    public MarioEnAire(Jugador mario,int Velocidad) {
-        VELOCIDAD_SALTO = Velocidad;
+    public MarioEnAire(Jugador mario) {
         this.mario = mario;
         alturaMax = mario.getPosicionEnY()+50;
+        piso = mario.getPiso();
     }
 
     @Override
-    public void saltar() {
+    public void saltar(Jugador mario) {
         System.out.println("Mario en el aire");
     }
 
@@ -27,14 +30,26 @@ public class MarioEnAire implements EstadoMovimiento{
 
     @Override
     public void actualizar() {
-        mario.setPosicionEnX(mario.getPosicionEnX()+mario.getDireccion()*mario.getVelocidad());
-        if(mario.getPosicionEnY()>=alturaMax) {
-            mario.setPosicionEnY(mario.getPosicionEnY() - VELOCIDAD_SALTO);
-        }else{
-            mario.setPosicionEnY(mario.getPosicionEnY() + VELOCIDAD_SALTO);
+        // Movimiento horizontal
+        mario.setPosicionEnX(mario.getPosicionEnX() + mario.get_direccion() * mario.get_velocidad());
+
+        // Aplicar gravedad (para que empiece a bajar eventualmente)
+        velocidadY += GRAVEDAD;
+
+        // Movimiento vertical
+        mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
+
+        // Verificar si Mario toca el suelo
+        if (estaEnElSuelo()) {
+
+        // Cambiar al estado de caminar si está en el suelo
+        mario.setEstadoMovimiento(new MarioCaminando(mario));
+
         }
     }
+
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY() >= 420; // Suelo a nivel 420
+        return mario.getPosicionEnY()==mario.getPiso();
     }
+
 }

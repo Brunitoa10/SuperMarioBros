@@ -57,9 +57,8 @@ public class HiloRestoEntidades implements Runnable {
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {
-        List<Enemigo> enemigos = cargarEntidades.getEnemigos();
-        for (Enemigo enemigo : enemigos) {
-            enemigo.actualizar(); // Actualiza cada enemigo
+        for (Enemigo enemigo : cargarEntidades.getEnemigos()) {
+            enemigo.actualizar();
         }
     }
 
