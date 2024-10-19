@@ -29,6 +29,6 @@ public class Estrella extends PowerUp {
     }
 
     public void Consumir(){
-        this.setPosicionEnY(1000);
+        sprite=null;
     }
 }

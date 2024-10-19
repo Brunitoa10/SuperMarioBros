@@ -19,4 +19,8 @@ public class SuperMario implements EstadoJugador{
     public void lanzarBolaFuego() {
 
     }
+
+    public void actualizar(){
+
+    }
 }
