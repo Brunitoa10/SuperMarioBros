@@ -8,15 +8,12 @@ import EstadoMovimiento.EstadoMovimiento;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
-import Generador.GestorSonido.SonidoFactory;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
-import Vista.Controladores.ControlTeclado;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
     protected static final int ALTURA_MAXIMA_SALTO = 200;
-    protected ControlTeclado controlTeclado;
     protected EstadoJugador estadoJugador;
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
@@ -29,10 +26,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         super(x, y, sprite);
         VisitorJugador = new VisitorJugador(this);
         this.puntaje = 0;
-        this.velocidad = 3;
+        this.velocidad = 4;
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
-        this.controlTeclado = new ControlTeclado(this);
         this.enPlataforma = false;
     }
 
@@ -89,6 +85,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void desplazarEnX(int direccion) {
+        if(direccion != 0)
         estadoMovimiento.desplazarEnX(direccion);
         if(posicionX < -800) {
             posicionX = -800;
@@ -120,4 +117,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public void setEnPlataforma(boolean enPlataforma) {
         this.enPlataforma = enPlataforma;
     }
+
+
 }

@@ -7,6 +7,13 @@ public class MarioParado implements EstadoMovimiento {
 
     public MarioParado(Jugador mario) {
         this.mario = mario;
+        System.out.println("Mario Parado");
+        mario.getEstadoJugador().actualizarSprite();
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png");
+        }
     }
 
     @Override
@@ -16,15 +23,22 @@ public class MarioParado implements EstadoMovimiento {
 
     @Override
     public void desplazarEnX(int direccion) {
+
         mario.setEstadoMovimiento(new MarioCaminando(mario));
     }
 
 
     public void actualizar() {
-        mario.setPosicionEnX(mario.getPosicionEnX()+mario.getDireccion()*mario.getVelocidad());
+
+        mario.getEstadoJugador().actualizarSprite();
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png");
+        }
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY()==mario.getPiso();
+        return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
 }

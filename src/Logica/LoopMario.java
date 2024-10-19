@@ -2,6 +2,7 @@ package Logica;
 
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
+import Entidades.Power_Ups.PowerUp;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioEnAire;
@@ -28,16 +29,19 @@ public class LoopMario implements Runnable {
     private static final int SUELO_Y = 420;
     private int direccionLocal = 0;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private boolean enIdle = false;
+    private boolean enIdle;
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected List<Plataforma> plataformas;
     protected List<Vacio> vacios;
+    protected List<PowerUp> powerUps;
     protected boolean caerAlInfinito = false;
+    protected boolean EstadoActivado = false;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.plataformas = juego.getNivelActual().getPlataformas();
+        this.powerUps=juego.getNivelActual().getPowerUps();
         this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
         ejecutando = false;
@@ -83,37 +87,33 @@ public class LoopMario implements Runnable {
         boolean actualizacionRequerida = false;
 
         // Movimiento lateral
-        if (oyente.teclaIzquierda || oyente.teclaDerecha) {
+        if (oyente.teclaIzquierda || oyente.teclaDerecha ) {
             enIdle = false;
             if (oyente.teclaIzquierda) {
+                mario.setVelocidad(VelocidadMario);
                 mario.desplazarEnX(-1);
                 direccionLocal = -1;
-                actualizacionRequerida = true;
+
             } else {
+                mario.setVelocidad(VelocidadMario);
                 mario.desplazarEnX(1);
                 direccionLocal = 1;
-                actualizacionRequerida = true;
             }
-            actualizarSprite();
 
-        } else {
-            estadoIdle();
         }
 
-        // Lógica de salto
-        if (oyente.teclaArriba && (mario.getEstadoMovimiento().estaEnElSuelo() || mario.estaEnPlataforma())) {
+
+
+        // LÃ³gica de salto
+        if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
             if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
             enIdle = false;
-            saltar(); //TODO: CAMBIAR SPRITE CON ANIMADORMARIO
+            mario.saltar();
             actualizacionRequerida = true;
         }
+        mario.setDireccion(direccionLocal);
 
-        // Gravedad
-        if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
-            gravedad();
-            actualizacionRequerida = true;
-        }
 
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
@@ -121,85 +121,57 @@ public class LoopMario implements Runnable {
             }
         }
 
+        for(PowerUp p : powerUps) {
+            if (mario.detectarColision((p))) {
+                p.getVisitor().visit(mario);
+                powerUps.remove(p);
+                actualizacionRequerida=true;
+                mario.getEstadoJugador().actualizarSprite();
+            }
+        }
+
         for (Vacio vacio : vacios) {
             if(VacioColisionoAbajo(vacio)){
-                System.out.println("Entreaca");
+
+
                 if (mario.estaEnPlataforma()) {
-                    mario.setPiso(420);
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
                     mario.setEnPlataforma(false);
                 }
+                else{
 
+                }
+
+                //hacer
                 if (mario.getPosicionEnY() == SUELO_Y){
                     caerAlInfinito=true;
-                    System.out.println(mario.getEstadoMovimiento().estaEnElSuelo());
-                    mario.setPiso(459);
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
 
                 }
+
             }
         }
-
-
 
         if (actualizacionRequerida) {
-            mario.actualizarEntidad();
-            mario.desplazarEnX(0);
 
-            if (mario.getPosicionEnY() == 420) {
-                mario.setPiso(420);
-            }
-
+             // Evitar movimiento no deseado
         }
+        mario.getEstadoJugador().actualizarSprite();
+        mario.actualizarEntidad();
+        mario.desplazarEnX(0);
     }
+
 
     private void renderizar() {
         controlador.actualizarObserver();
         controlador.refrescar();
     }
-
-
-    private void actualizarSprite() {
-        String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
-                ? (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
-                : "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
-                : (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png"
-                : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png");
-        mario.getSprite().setRutaImagen(spritePath);
-    }
-
-    private void estadoIdle() {
-        if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
-            enIdle = true;
-            mario.getSprite().setRutaImagen(direccionLocal == -1
-                    ? "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioLeft.png"
-                    : "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioRigth.png");
-            iniciarTemporizadorIdle();
-        }
-    }
-
-    private void saltar() {
-        mario.saltar();
-        String jumpSprite = direccionLocal == 1
-                ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png"
-                : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png";
-        mario.getSprite().setRutaImagen(jumpSprite);
-    }
-
-    private void gravedad() {
-        mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
-        if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
-            mario.setPosicionEnY(SUELO_Y);
-            mario.setEstadoMovimiento(new MarioParado(mario));
-        }
-    }
-
+  
     private boolean VacioColisionoAbajo(Vacio vacio) {
         boolean Colisiono = false;
         int tolerancia=5;
         if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia ) {
             if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
-                System.out.println("EstoyarribaDeVacio");
                 Colisiono = true;
             }
         }

@@ -1,5 +1,7 @@
 package Generador;
 
+import Entidades.Plataformas.SueloNivel;
+
 import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
@@ -23,7 +25,7 @@ public class GeneradorNivel {
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);
         String ruta_a_nivel = "src/Recursos/Niveles/nivel" + numero + ".txt";
-        generarVaciosNivel(nivel);
+        generarVaciosYSuelosNivel(nivel);
         try (BufferedReader br = new BufferedReader(new FileReader(ruta_a_nivel))) {
             System.out.println(ruta_a_nivel);
             String linea;
@@ -58,12 +60,6 @@ public class GeneradorNivel {
             e.printStackTrace();
         }
         return nivel;
-    }
-
-    private void generarVaciosNivel(Nivel nivel) {
-        nivel.agregarVacio(new Vacio(1624, 457,new Sprite("/",70,32)));
-        nivel.agregarVacio(new Vacio(2222, 457, new Sprite("/",104,32)));
-        nivel.agregarVacio(new Vacio(4575, 457, new Sprite("/",70,32)));
     }
 
     private void restoCasos(int idEntidad, int x, int y, Nivel nivel) {
@@ -129,6 +125,13 @@ public class GeneradorNivel {
                 nivel.agregarPowerUp(fabricaEntidades.crearSuperChampinion(x,y));
                 break;
         }
+    }
+
+    private void generarVaciosYSuelosNivel(Nivel nivel) {
+        nivel.agregarVacio(new Vacio(1624, 457,new Sprite("/",70,32)));
+        nivel.agregarVacio(new Vacio(2222, 457, new Sprite("/",104,32)));
+        nivel.agregarVacio(new Vacio(4575, 457, new Sprite("/",70,32)));
+        nivel.agregarPlataforma(new SueloNivel(-800, 452,new Sprite("/",2423,69)));
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {

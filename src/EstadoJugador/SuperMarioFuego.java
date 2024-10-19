@@ -16,6 +16,11 @@ public class SuperMarioFuego implements EstadoJugador{
     public void lanzarBolaFuego() {
     }
 
+    @Override
+    public void actualizarSprite() {
+        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp");
+    }
+  
     public boolean puedeRomperBloques(){
         return true;
     }
