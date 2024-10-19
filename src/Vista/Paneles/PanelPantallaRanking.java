@@ -138,24 +138,23 @@ public class PanelPantallaRanking extends JPanel {
 		DefaultTableModel tableModel = new DefaultTableModel(
 				new Object[][]{},
 				new String[]{"Nombre", "Puntaje"}
-		) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false; // Hace que todas las celdas no sean editables
-			}
-		};
+		);
 
 		tablaJugadores.setModel(tableModel);
+
 
 		tablaJugadores.setRowHeight(30);
 		tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
 		tablaJugadores.setShowGrid(false);
-		tablaJugadores.setOpaque(false);
-		tablaJugadores.setFillsViewportHeight(true);
+		//tabla_jugadores.setSelectionBackground(new Color(255, 204, 51));
+		tablaJugadores.setShowGrid(false); // Ocultar la cuadrícula
+		tablaJugadores.setOpaque(false); // Hacer la tabla transparente
+		tablaJugadores.setFillsViewportHeight(true); // Asegurar que las celdas llenen el viewport
 
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
+
 
 		JTableHeader header = tablaJugadores.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 20));
@@ -164,7 +163,8 @@ public class PanelPantallaRanking extends JPanel {
 
 		tablaJugadores.setModel(tableModel);
 
-		Iterable<JugadorRanking> listaJugadores = ranking.mostrarRanking();
+		Iterable<JugadorRanking> listaJugadores;
+		listaJugadores = ranking.mostrarRanking();
 		for (JugadorRanking jugador : listaJugadores) {
 			Object[] fila = new Object[2];
 			fila[0] = jugador.getNombre();
@@ -173,5 +173,4 @@ public class PanelPantallaRanking extends JPanel {
 			tableModel.addRow(fila);
 		}
 	}
-
 }

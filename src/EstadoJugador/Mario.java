@@ -25,8 +25,5 @@ public class Mario implements EstadoJugador {
             mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario");
 
     }
-  
-    public boolean puedeRomperBloques(){
-        return false;
-    }
+
 }

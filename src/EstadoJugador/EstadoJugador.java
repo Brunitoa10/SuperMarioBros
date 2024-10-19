@@ -6,5 +6,5 @@ public interface EstadoJugador {
     public void recibeDanio(Nivel nivel);
     public void lanzarBolaFuego();
     public void actualizarSprite();
-    public boolean puedeRomperBloques();
+
 }
