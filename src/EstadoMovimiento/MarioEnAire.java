@@ -31,7 +31,7 @@ public class MarioEnAire implements EstadoMovimiento{
     @Override
     public void actualizar() {
         // Movimiento horizontal
-        mario.setPosicionEnX(mario.getPosicionEnX() + mario.getDireccion() * mario.getVelocidad());
+
 
         // Aplicar gravedad (para que empiece a bajar eventualmente)
         velocidadY += GRAVEDAD;
@@ -49,7 +49,7 @@ public class MarioEnAire implements EstadoMovimiento{
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY()==mario.getPiso();
+        return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
 
 }

@@ -2,6 +2,7 @@ package Logica;
 
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
+import Entidades.Power_Ups.PowerUp;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioEnAire;
@@ -33,11 +34,14 @@ public class LoopMario implements Runnable {
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected List<Plataforma> plataformas;
     protected List<Vacio> vacios;
+    protected List<PowerUp> powerUps;
     protected boolean caerAlInfinito = false;
+    protected boolean EstadoActivado = false;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.plataformas = juego.getNivelActual().getPlataformas();
+        this.powerUps=juego.getNivelActual().getPowerUps();
         this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
         ejecutando = false;
@@ -111,13 +115,25 @@ public class LoopMario implements Runnable {
 
         // Gravedad
         if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
-            gravedad();
-            actualizacionRequerida = true;
+
+                gravedad();
+                actualizacionRequerida = true;
+
         }
 
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
                 mario.getVisitorJugador().visit(p);
+            }
+        }
+
+        for(PowerUp p : powerUps) {
+            if (mario.detectarColision((p))) {
+                p.getVisitor().visit(mario);
+                AplicarEfecto(p);
+                EstadoActivado=true;
+                powerUps.remove(p);
+                actualizacionRequerida=true;
             }
         }
 
@@ -153,6 +169,18 @@ public class LoopMario implements Runnable {
         }
     }
 
+    private void AplicarEfecto(PowerUp p) {
+        String spritePath = p.getPuntaje() == 100
+                ? (direccionLocal == -1
+                ? "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/LeftSuperMario.png"
+                : "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/RightSuperMario.png")
+                : "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/RightSuperMario.png"; // Ruta por defecto si el puntaje no es 100
+
+        // Asignar la ruta al sprite de Mario (o alguna otra acción)
+        mario.getSprite().setRutaImagen(spritePath);
+    }
+
+
     private void renderizar() {
         controlador.actualizarObserver();
         controlador.refrescar();
@@ -160,36 +188,45 @@ public class LoopMario implements Runnable {
 
 
     private void actualizarSprite() {
-        String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
-                ? (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
-                : "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
-                : (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png"
-                : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png");
-        mario.getSprite().setRutaImagen(spritePath);
+            String spritePath = mario.getEstadoMovimiento().estaEnElSuelo()
+                    ? (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoLeft.gif"
+                    : "src/Recursos/Sprites/original/Jugador/PNGMario/RunningLoop/MarioCaminandoRight.gif")
+                    : (direccionLocal == -1 ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png"
+                    : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png");
+        if(!EstadoActivado)
+            mario.getSprite().setRutaImagen(spritePath);
+
     }
 
     private void estadoIdle() {
-        if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
-            enIdle = true;
-            mario.getSprite().setRutaImagen(direccionLocal == -1
-                    ? "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioLeft.png"
-                    : "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioRigth.png");
-            iniciarTemporizadorIdle();
+        if(!EstadoActivado){
+            if (!enIdle && mario.getEstadoMovimiento().estaEnElSuelo()) {
+                enIdle = true;
+                mario.getSprite().setRutaImagen(direccionLocal == -1
+                        ? "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioLeft.png"
+                        : "src/Recursos/Sprites/original/Jugador/PNGMario/StandingMarioRigth.png");
+                iniciarTemporizadorIdle();
+            }
         }
     }
 
     private void saltar() {
         mario.saltar();
+
         String jumpSprite = direccionLocal == 1
                 ? "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioRigth.png"
                 : "src/Recursos/Sprites/original/Jugador/PNGMario/JumpingMarioLeft.png";
-        mario.getSprite().setRutaImagen(jumpSprite);
+        if(!EstadoActivado)
+            mario.getSprite().setRutaImagen(jumpSprite);
+
     }
 
     private void gravedad() {
         mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
+        int posicionFutura=(int)(SUELO_Y+32-mario.getHitbox().getHeight());
         if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
-            mario.setPosicionEnY(SUELO_Y);
+
+            mario.setPosicionEnY(posicionFutura);
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
     }

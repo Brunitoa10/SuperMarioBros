@@ -46,7 +46,7 @@ public class MarioSaltando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY()==mario.getPiso();
+        return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
 
 }

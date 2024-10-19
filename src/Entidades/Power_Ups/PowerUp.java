@@ -4,13 +4,15 @@ import Entidades.Entidad;
 import Entidades.EntidadMovil;
 import Fabricas.Sprite;
 import Visitor.Visitor;
+import Visitor.VisitorPowerUp;
 
 public abstract class PowerUp extends EntidadMovil {
 
     protected int puntaje;
-
+    protected VisitorPowerUp visitor;
     public PowerUp(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        visitor = new VisitorPowerUp(this);
         puntaje = 0;
     }
 
@@ -21,6 +23,18 @@ public abstract class PowerUp extends EntidadMovil {
 
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+    public VisitorPowerUp getVisitor() {
+        return visitor;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void Consumir(){
+        this.setPosicionEnY(1000);
     }
 
 }
