@@ -131,6 +131,9 @@ public class GeneradorNivel {
         nivel.agregarVacio(new Vacio(2222, 457, new Sprite("/",104,32)));
         nivel.agregarVacio(new Vacio(4575, 457, new Sprite("/",70,32)));
         nivel.agregarPlataforma(new SueloNivel(-800, 452,new Sprite("/",2423,69)));
+        nivel.agregarPlataforma(new SueloNivel(1695, 452,new Sprite("/",526,69)));
+        nivel.agregarPlataforma(new SueloNivel(2327, 452, new Sprite("/", 2247,69)));
+        nivel.agregarPlataforma(new SueloNivel(4646, 452, new Sprite("/", 2423,69)));
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {
