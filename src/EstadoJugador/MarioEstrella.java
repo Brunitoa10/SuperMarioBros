@@ -23,4 +23,8 @@ public class MarioEstrella implements EstadoJugador{
     public void actualizarSprite() {
 
     }
+  
+    public boolean puedeRomperBloques(){
+        return false;
+    }
 }

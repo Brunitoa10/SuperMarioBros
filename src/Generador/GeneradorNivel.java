@@ -1,6 +1,7 @@
 package Generador;
 
 import Entidades.Plataformas.SueloNivel;
+
 import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
@@ -37,7 +38,7 @@ public class GeneradorNivel {
                 int posicionY = Integer.parseInt(datos[2]);
                 int idPowerUp = 0;
                 if (idEntidad == 3) {
-                   idPowerUp = Integer.parseInt(datos[3]);
+                    idPowerUp = Integer.parseInt(datos[3]);
                 }
                 if (idEntidad >= 1 && idEntidad <= 4) {
                     this.casoPlataformas(idEntidad, posicionX, posicionY, idPowerUp, nivel);
