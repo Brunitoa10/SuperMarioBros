@@ -162,12 +162,7 @@ public class LoopMario implements Runnable {
             }
         }
 
-        if(mario.getPosicionEnY()>420){
-            mario.setPosicionEnY(420+32-mario.getSprite().getAlto());
 
-            mario.setEstadoMovimiento(new MarioParado(mario));
-            mario.desplazarEnX(0);
-        }
 
         if (actualizacionRequerida) {
             mario.getEstadoJugador().actualizarSprite();
@@ -188,9 +183,8 @@ public class LoopMario implements Runnable {
     private void gravedad() {
         mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
         int posicionFutura=(int)(SUELO_Y+32-mario.getHitbox().getHeight());
-        if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
-
-            mario.setPosicionEnY(posicionFutura);
+        if (mario.getPosicionEnY() > SUELO_Y && !caerAlInfinito) {
+            mario.setPosicionEnY(420);
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
     }

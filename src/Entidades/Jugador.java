@@ -89,6 +89,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public void desplazarEnX(int direccion) {
+        if(direccion != 0)
         estadoMovimiento.desplazarEnX(direccion);
         if(posicionX < -800) {
             posicionX = -800;

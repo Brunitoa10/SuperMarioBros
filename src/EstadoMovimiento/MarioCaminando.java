@@ -9,6 +9,7 @@ public class MarioCaminando implements EstadoMovimiento {
     public MarioCaminando(Jugador mario) {
         this.mario = mario;
         mario.getEstadoJugador().actualizarSprite();
+        mario.setPosicionEnX(mario.getPosicionEnX()+mario.getVelocidad()*mario.getDireccion());
         System.out.println("Me cree por alguna razon");
         if(mario.getDireccion()==1) {
             mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif");
