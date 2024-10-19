@@ -62,7 +62,8 @@ public class GeneradorNivel {
 
     private void generarVaciosNivel(Nivel nivel) {
         nivel.agregarVacio(new Vacio(1624, 457,new Sprite("/",70,32)));
-
+        nivel.agregarVacio(new Vacio(2222, 457, new Sprite("/",104,32)));
+        nivel.agregarVacio(new Vacio(4575, 457, new Sprite("/",70,32)));
     }
 
     private void restoCasos(int idEntidad, int x, int y, Nivel nivel) {
