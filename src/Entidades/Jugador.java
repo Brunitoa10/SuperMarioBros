@@ -120,4 +120,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public void setEnPlataforma(boolean enPlataforma) {
         this.enPlataforma = enPlataforma;
     }
+
+
 }

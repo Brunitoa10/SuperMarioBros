@@ -19,4 +19,8 @@ public class MarioEstrella implements EstadoJugador{
     public void lanzarBolaFuego() {
 
     }
+
+    public void actualizarSprite() {
+
+    }
 }

@@ -8,6 +8,13 @@ public class MarioCaminando implements EstadoMovimiento {
 
     public MarioCaminando(Jugador mario) {
         this.mario = mario;
+        mario.getEstadoJugador().actualizarSprite();
+        System.out.println("Me cree por alguna razon");
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif");
+        }
     }
 
     @Override
@@ -25,6 +32,12 @@ public class MarioCaminando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
+        mario.getEstadoJugador().actualizarSprite();
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif");
+        }
     }
 
     @Override

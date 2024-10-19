@@ -10,14 +10,20 @@ public class MarioSaltando implements EstadoMovimiento {
     protected int Piso;
 
     public MarioSaltando(Jugador mario) {
+
         this.velocidadY = VELOCIDAD_INICIAL_SALTO;
         this.mario = mario;// Empieza subiendo con velocidad inicial
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
+        }
     }
 
     @Override
     public void actualizar() {
         // Movimiento horizontal
-        mario.setPosicionEnX(mario.getPosicionEnX() + mario.getDireccion() * mario.getVelocidad());
+        mario.getEstadoJugador().actualizarSprite();
 
         // Aplicar gravedad (para que empiece a bajar eventualmente)
         velocidadY += GRAVEDAD;
@@ -25,13 +31,12 @@ public class MarioSaltando implements EstadoMovimiento {
         // Movimiento vertical
         mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
-        // Verificar si Mario toca el suelo
-        if (estaEnElSuelo()) {
-
-            // Cambiar al estado de caminar si está en el suelo
-            mario.setEstadoMovimiento(new MarioCaminando(mario));
-
+        if(mario.getDireccion()==1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+        }else{
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
         }
+
     }
 
     public void saltar(Jugador mario) {
@@ -42,7 +47,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     @Override
     public void desplazarEnX(int direccion) {
-        mario.setDireccion(direccion);
+        mario.setPosicionEnX(mario.getPosicionEnX()+direccion*mario.getVelocidad());
     }
 
     public boolean estaEnElSuelo() {
