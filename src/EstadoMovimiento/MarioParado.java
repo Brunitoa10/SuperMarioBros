@@ -6,6 +6,7 @@ public class MarioParado implements EstadoMovimiento {
     Jugador mario;
 
     public MarioParado(Jugador mario) {
+        System.out.println("MarioParado");
         this.mario = mario;
         mario.getEstadoJugador().actualizarSprite();
         if(mario.getDireccion()==1) {
@@ -22,7 +23,9 @@ public class MarioParado implements EstadoMovimiento {
 
     @Override
     public void desplazarEnX(int direccion) {
-        mario.setEstadoMovimiento(new MarioCaminando(mario));
+        if (direccion!=0) {
+            mario.setEstadoMovimiento(new MarioCaminando(mario));
+        }
     }
 
 

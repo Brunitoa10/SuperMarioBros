@@ -108,18 +108,22 @@ public class LoopMario implements Runnable {
             if(mario.getEstadoMovimiento().estaEnElSuelo()){
                 mario.setEstadoMovimiento(new MarioParado(mario));
             }
+
         }
 
 
         // LÃ³gica de salto
         if (oyente.teclaArriba && (mario.getEstadoMovimiento().estaEnElSuelo() || mario.estaEnPlataforma())) {
             mario.saltar();
+
             if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
+
             enIdle = false;
             actualizacionRequerida = true;
         }
-        mario.setDireccion(direccionLocal);
+
+
 
         // Gravedad
         if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
@@ -153,7 +157,7 @@ public class LoopMario implements Runnable {
 
                 if (mario.getPosicionEnY() == SUELO_Y){
                     caerAlInfinito=true;
-                    System.out.println(mario.getEstadoMovimiento().estaEnElSuelo());
+
                     mario.setPiso(459);
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
 
@@ -164,15 +168,13 @@ public class LoopMario implements Runnable {
 
         if(mario.getPosicionEnY()>420){
             mario.setPosicionEnY(420+32-mario.getSprite().getAlto());
-
             mario.setEstadoMovimiento(new MarioParado(mario));
-            mario.desplazarEnX(0);
         }
 
         if (actualizacionRequerida) {
             mario.getEstadoJugador().actualizarSprite();
             mario.actualizarEntidad();
-            mario.desplazarEnX(0); // Evitar movimiento no deseado
+            mario.desplazarEnX(0);
         }
     }
 
@@ -188,8 +190,8 @@ public class LoopMario implements Runnable {
     private void gravedad() {
         mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
         int posicionFutura=(int)(SUELO_Y+32-mario.getHitbox().getHeight());
-        if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
 
+        if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
             mario.setPosicionEnY(posicionFutura);
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
