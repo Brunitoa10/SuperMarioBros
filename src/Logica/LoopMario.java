@@ -168,6 +168,7 @@ public class LoopMario implements Runnable {
     }
   
     private boolean VacioColisionoAbajo(Vacio vacio) {
+        //visito
         boolean Colisiono = false;
         int tolerancia=5;
         if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia ) {
@@ -177,4 +178,5 @@ public class LoopMario implements Runnable {
         }
         return Colisiono;
     }
+
 }
