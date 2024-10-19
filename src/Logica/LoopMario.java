@@ -33,7 +33,7 @@ public class LoopMario implements Runnable {
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected List<Plataforma> plataformas;
     protected List<Vacio> vacios;
-
+    protected boolean caerAlInfinito = false;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -123,13 +123,22 @@ public class LoopMario implements Runnable {
 
         for (Vacio vacio : vacios) {
             if(VacioColisionoAbajo(vacio)){
-                    mario.setEstadoMovimiento(new MarioEnAire(mario));
+                System.out.println("Entreaca");
+                if (mario.estaEnPlataforma()) {
                     mario.setPiso(420);
+                    mario.setEstadoMovimiento(new MarioEnAire(mario));
                     mario.setEnPlataforma(false);
-            }
+                }
 
+                if (mario.getEstadoMovimiento().estaEnElSuelo()){
+                    caerAlInfinito=true;
+                    System.out.println(mario.getEstadoMovimiento().estaEnElSuelo());
+                    mario.setPiso(459);
+                    mario.setEstadoMovimiento(new MarioEnAire(mario));
 
+                }
             }
+        }
 
 
 
@@ -179,7 +188,7 @@ public class LoopMario implements Runnable {
 
     private void gravedad() {
         mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
-        if (mario.getPosicionEnY() >= SUELO_Y) {
+        if (mario.getPosicionEnY() >= SUELO_Y && !caerAlInfinito) {
             mario.setPosicionEnY(SUELO_Y);
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
@@ -188,7 +197,7 @@ public class LoopMario implements Runnable {
     private boolean VacioColisionoAbajo(Vacio vacio) {
         boolean Colisiono = false;
         int tolerancia=5;
-        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia && mario.estaEnPlataforma()) {
+        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia ) {
             if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
                 System.out.println("EstoyarribaDeVacio");
                 Colisiono = true;
