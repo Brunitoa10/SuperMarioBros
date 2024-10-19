@@ -1,5 +1,6 @@
 package Generador;
 
+import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
 
@@ -22,7 +23,7 @@ public class GeneradorNivel {
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);
         String ruta_a_nivel = "src/Recursos/Niveles/nivel" + numero + ".txt";
-
+        generarVaciosNivel(nivel);
         try (BufferedReader br = new BufferedReader(new FileReader(ruta_a_nivel))) {
             System.out.println(ruta_a_nivel);
             String linea;
@@ -122,6 +123,11 @@ public class GeneradorNivel {
                 nivel.agregarPowerUp(fabricaEntidades.crearSuperChampinion(x,y));
                 break;
         }
+    }
+
+    private void generarVaciosNivel(Nivel nivel) {
+        nivel.agregarVacio(new Vacio(1624, 457,new Sprite("/",70,32)));
+
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {
