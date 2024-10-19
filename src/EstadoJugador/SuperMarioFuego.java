@@ -16,4 +16,8 @@ public class SuperMarioFuego implements EstadoJugador{
     public void lanzarBolaFuego() {
     }
 
+    public boolean puedeRomperBloques(){
+        return true;
+    }
+
 }

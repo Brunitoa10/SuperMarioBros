@@ -55,8 +55,15 @@ public class VisitorJugador implements Visitor {
 
         }
         else if (mario.colisionArriba(plataforma)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
-            System.out.println("colision arriba!");
+                System.out.println("le pegue");
+            if(!mario.getEstadoJugador().puedeRomperBloques()) {
+                mario.setEstadoMovimiento(new MarioEnAire(mario));
+            } else {
+                System.out.println("lo romp");
+                plataforma.getSprite().setRutaImagen(null);
+                plataforma.setPosicionEnY(1000);
+            }
+
         }
     }
 
