@@ -94,14 +94,10 @@ public class LoopMario implements Runnable {
                 mario.desplazarEnX(-1);
                 direccionLocal = -1;
 
-
-                actualizacionRequerida = true;
             } else {
                 mario.setVelocidad(VelocidadMario);
                 mario.desplazarEnX(1);
                 direccionLocal = 1;
-
-                actualizacionRequerida = true;
             }
 
         }
@@ -109,8 +105,7 @@ public class LoopMario implements Runnable {
 
 
         // LÃ³gica de salto
-        if (oyente.teclaArriba && (mario.getEstadoMovimiento().estaEnElSuelo() || mario.estaEnPlataforma())) {
-
+        if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
             if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
             enIdle = false;
@@ -119,11 +114,6 @@ public class LoopMario implements Runnable {
         }
         mario.setDireccion(direccionLocal);
 
-        // Gravedad
-        if (!mario.getEstadoMovimiento().estaEnElSuelo()) {
-                gravedad();
-                actualizacionRequerida = true;
-        }
 
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
@@ -142,17 +132,18 @@ public class LoopMario implements Runnable {
 
         for (Vacio vacio : vacios) {
             if(VacioColisionoAbajo(vacio)){
-                System.out.println("Entreaca");
+
                 if (mario.estaEnPlataforma()) {
-                    mario.setPiso(420);
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
                     mario.setEnPlataforma(false);
                 }
+                else{
 
+                }
+
+                //hacer
                 if (mario.getPosicionEnY() == SUELO_Y){
                     caerAlInfinito=true;
-                    System.out.println(mario.getEstadoMovimiento().estaEnElSuelo());
-                    mario.setPiso(459);
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
 
                 }
@@ -160,18 +151,14 @@ public class LoopMario implements Runnable {
             }
         }
 
-
-
         if (actualizacionRequerida) {
-            mario.getEstadoJugador().actualizarSprite();
-            mario.actualizarEntidad();
-            mario.desplazarEnX(0); // Evitar movimiento no deseado
-        }
-        if(mario.getPosicionEnY()==SUELO_Y){
-            mario.setPiso(SUELO_Y);
-        }
-    }
 
+             // Evitar movimiento no deseado
+        }
+        mario.getEstadoJugador().actualizarSprite();
+        mario.actualizarEntidad();
+        mario.desplazarEnX(0);
+    }
 
 
     private void renderizar() {
@@ -179,23 +166,11 @@ public class LoopMario implements Runnable {
         controlador.refrescar();
     }
 
-
-
-    private void gravedad() {
-        mario.setPosicionEnY(mario.getPosicionEnY() + GRAVEDAD);
-        int posicionFutura=(int)(SUELO_Y+32-mario.getHitbox().getHeight());
-        if (mario.getPosicionEnY() > SUELO_Y && !caerAlInfinito) {
-            mario.setPosicionEnY(420);
-            mario.setEstadoMovimiento(new MarioParado(mario));
-        }
-    }
-
     private boolean VacioColisionoAbajo(Vacio vacio) {
         boolean Colisiono = false;
         int tolerancia=5;
         if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia ) {
             if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
-                System.out.println("EstoyarribaDeVacio");
                 Colisiono = true;
             }
         }

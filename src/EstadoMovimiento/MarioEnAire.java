@@ -37,22 +37,17 @@
         public void actualizar() {
             // Movimiento horizontal
             mario.getEstadoJugador().actualizarSprite();
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen());
-            if(mario.getDireccion()==1) {
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
-            }else{
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
-            }
+
             // Aplicar gravedad (para que empiece a bajar eventualmente)
             velocidadY += GRAVEDAD;
 
             // Movimiento vertical
             mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
-            // Verificar si Mario toca el suelo
-            if (estaEnElSuelo()) {
-            // Cambiar al estado de caminar si está en el suelo
-                mario.setEstadoMovimiento(new MarioParado(mario));
+            if(mario.getDireccion()==1) {
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+            }else{
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
             }
         }
 

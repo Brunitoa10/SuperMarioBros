@@ -48,6 +48,7 @@ public class VisitorJugador implements Visitor {
             mario.setPosicionEnX(posicionATeletransportar);
         }
         else if (mario.colisionAbajo(plataforma)){
+            System.out.println("estoy colisionando mi rey");
             mario.setEnPlataforma(true);
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
