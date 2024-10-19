@@ -130,7 +130,7 @@ public class LoopMario implements Runnable {
                     mario.setEnPlataforma(false);
                 }
 
-                if (mario.getEstadoMovimiento().estaEnElSuelo()){
+                if (mario.getPosicionEnY() == SUELO_Y){
                     caerAlInfinito=true;
                     System.out.println(mario.getEstadoMovimiento().estaEnElSuelo());
                     mario.setPiso(459);
