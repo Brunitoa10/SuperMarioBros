@@ -37,7 +37,6 @@ public class LoopMario implements Runnable {
     protected List<PowerUp> powerUps;
     protected boolean caerAlInfinito = false;
     protected boolean EstadoActivado = false;
-    protected boolean Mori=false;
     protected Nivel nivel;
 
     public LoopMario(Juego juego) {
@@ -88,7 +87,7 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
         boolean actualizacionRequerida = false;
-    if(!Mori) {
+    if(mario.estaVivo()) {
         // Movimiento lateral
         if (oyente.teclaIzquierda || oyente.teclaDerecha) {
             enIdle = false;
@@ -156,7 +155,7 @@ public class LoopMario implements Runnable {
             }
         }
         if(mario.getPosicionEnY()>460)
-            Mori = true;
+            mario.setEstaVivo(false);
 
 
 
