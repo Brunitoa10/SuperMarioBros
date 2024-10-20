@@ -19,6 +19,7 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel labelPuntaje;
     private JLabel labelVida;
     private JLabel labelTiempo;
+    private JLabel labelVidas;
 
     private ObserverEntidad observerEntidad;
     private ObserverJugador observerJugador;

@@ -3,9 +3,11 @@ package Entidades.Enemigos;
 import Entidades.EntidadMovil;
 import Fabricas.Sprite;
 import IA.ComportamientoIA;
+import Visitor.VisitorEnemigo;
 
 public abstract class Enemigo extends EntidadMovil {
 
+    protected VisitorEnemigo visitorEnemigo;
     private int puntajeDestruido;
     protected int puntajeKill;
     protected int posicionx;
@@ -19,6 +21,9 @@ public abstract class Enemigo extends EntidadMovil {
         this.comportamientoIA = comportamientoIA;
     }
 
+    public VisitorEnemigo getVisitorEnemigo() {
+        return visitorEnemigo;
+    }
 
     // Método de actualización que puede extenderse en subclases
     public void actualizar() {
