@@ -23,9 +23,6 @@ public abstract class FabricaSprites {
     public Sprite crearSpriteSpiny() {
         return new Sprite(ruta_carpeta + "/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif", 32, 32);
     }
-    public Sprite crearSpriteBowser() {
-        return new Sprite(ruta_carpeta + "/Enemigos/Bowser/Bowser.png", 32, 32);
-    }
     public Sprite crearSpritePiranhaPlant() {
         return new Sprite(ruta_carpeta + "/Enemigos/PiranhaPlant/PlantaLoop.gif", 32, 32);
     }

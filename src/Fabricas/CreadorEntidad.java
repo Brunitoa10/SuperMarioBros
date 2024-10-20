@@ -61,12 +61,6 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public Bowser crearBowser(int x, int y) {
-        Sprite bowserSprite = fabricaSprites.crearSpriteBowser();
-        return new Bowser(x, y, bowserSprite);
-    }
-
-    @Override
     public PiranhaPlant crearPiranhaPlant(int x, int y) {
         Sprite piranhaPlantSprite = fabricaSprites.crearSpritePiranhaPlant();
         return new PiranhaPlant(x, y, piranhaPlantSprite);

@@ -35,7 +35,7 @@ public class BuzzyBeetle extends Enemigo {
         if(mario.colisionAbajo(this)) {
             this.aEliminar = true;
             mario.setEstadoMovimiento(new MarioEnAire(mario));
-            mario.setPuntaje(mario.getPuntaje()+ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
+            //mario.setPuntaje(mario.getPuntaje()+ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
         }
         else if(mario.colisionDerecha(this)) {
 

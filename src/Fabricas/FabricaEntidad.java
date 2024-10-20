@@ -15,7 +15,6 @@ public interface FabricaEntidad {
     public KoopaTroopa crearKoopaTroopa(int x, int y);
     public Lakitu crearLakitu(int x, int y);
     public Spiny crearSpiny(int x, int y);
-    public Bowser crearBowser(int x, int y);
     public PiranhaPlant crearPiranhaPlant(int x, int y);
     public Moneda crearMoneda(int x, int y);
     public ChampinionVerde crearChampinionVerde(int x, int y);

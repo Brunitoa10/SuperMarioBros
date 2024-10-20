@@ -85,9 +85,6 @@ public class GeneradorNivel {
 
     private void casoEnemigos(int idEntidad, int x, int y, Nivel nivel) {
         switch (idEntidad) {
-            case 10:
-                nivel.agregarEnemigo(fabricaEntidades.crearBowser(x,y));
-                break;
             case 11:
                 nivel.agregarEnemigo(fabricaEntidades.crearBuzzyBeetle(x,y));
                 break;
