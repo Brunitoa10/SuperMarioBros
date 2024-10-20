@@ -12,6 +12,7 @@ public abstract class Plataforma extends EntidadInmovil {
     protected boolean solido;
     protected boolean rompible;
     protected VisitorPlataforma visitor;
+    protected boolean meRompi=false;
 
 
     public Plataforma(int x, int y, Sprite sprite) {
@@ -33,5 +34,9 @@ public abstract class Plataforma extends EntidadInmovil {
     }
     public void interactuar(Jugador j){
 
+    }
+
+    public boolean Roto(){
+        return meRompi;
     }
 }

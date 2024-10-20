@@ -120,12 +120,17 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = enPlataforma;
     }
 
+
     public boolean puedeRomperBloques() {
         return getEstadoJugador().puedeRomperBloques();
     }
 
     public void setEstaVivo(boolean estaVivo) {
         this.estaVivo = estaVivo;
+    }
+  
+    public boolean puedeLanzarBolaDeFuego() {
+        return estadoJugador.puedeLanzarBolaFuego();
     }
 
     public boolean estaVivo() {

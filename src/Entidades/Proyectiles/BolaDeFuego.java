@@ -8,11 +8,12 @@ public class BolaDeFuego extends Proyectil {
 
     public BolaDeFuego(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        this.velocidad = 10;
     }
 
-    public boolean detectarColision(Entidad c) {
-        boolean colisionan =c.detectarColision(this);
-        return false;
+    @Override
+    public void actualizarEntidad() {
+        posicionX += velocidad * direccion;
     }
 
     public void accept(Visitor v) {

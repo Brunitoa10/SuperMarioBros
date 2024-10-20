@@ -7,16 +7,8 @@ import Visitor.Visitor;
 
 public class Moneda extends EntidadInmovil{
 
-
     public Moneda(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-    }
-
-    public void addPuntaje(Nivel nivel) {
-
-        int puntaje = 1;
-        nivel.addPuntaje(puntaje);
-
     }
 
 

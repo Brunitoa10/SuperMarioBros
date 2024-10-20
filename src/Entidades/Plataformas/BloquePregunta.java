@@ -14,6 +14,7 @@ public class BloquePregunta extends Plataforma{
     protected int recompensa;
     protected EstadoBloquePregunta estado;
     protected VisitorPlataforma visitor;
+    protected boolean meRompi=false;
 
     public BloquePregunta(int x, int y, Sprite sprite, int recompensa) {
         super(x, y, sprite);
@@ -42,4 +43,7 @@ public class BloquePregunta extends Plataforma{
         this.estado = estado;
     }
 
+    public boolean Roto(){
+        return meRompi;
+    }
 }

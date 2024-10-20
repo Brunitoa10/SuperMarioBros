@@ -83,8 +83,8 @@ public class Nivel {
             this.powerUps.addLast(powerUp);
         }
 
-        public void agregarProyectil(Proyectil proyectiles) {
-            this.proyectiles.addLast(proyectiles);
+        public void agregarProyectil(Proyectil proyectil) {
+            this.proyectiles.addLast(proyectil);
         }
 
         public void agregarMoneda(Moneda monedas) {

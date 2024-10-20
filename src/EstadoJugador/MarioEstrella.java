@@ -16,8 +16,8 @@ public class MarioEstrella implements EstadoJugador{
     }
 
     @Override
-    public void lanzarBolaFuego() {
-
+    public boolean puedeLanzarBolaFuego() {
+        return false;
     }
 
     public void actualizarSprite() {

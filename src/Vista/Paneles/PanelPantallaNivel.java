@@ -19,6 +19,7 @@ public class PanelPantallaNivel extends JPanel {
     private JLabel labelPuntaje;
     private JLabel labelVida;
     private JLabel labelTiempo;
+    private JLabel labelVidas;
 
     private ObserverEntidad observerEntidad;
     private ObserverJugador observerJugador;
@@ -93,10 +94,10 @@ public class PanelPantallaNivel extends JPanel {
         return observerEntidad;
     }
 
-    public Observer incorporarEntidadJugador(EntidadJugador entidad_jugador) {
-        observerJugador = new ObserverJugador(this, entidad_jugador);
+    public Observer incorporarEntidadJugador(EntidadJugador entidadJugador) {
+        observerJugador = new ObserverJugador(this, entidadJugador);
         imagenFondoPanelNivel.add(observerJugador);
-        actualizarInfoJugador(entidad_jugador);
+        actualizarInfoJugador(entidadJugador);
         return observerJugador;
     }
 

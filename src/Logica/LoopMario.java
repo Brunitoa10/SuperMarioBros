@@ -1,12 +1,18 @@
 package Logica;
 
+import Entidades.Entidad;
+import Entidades.Enemigos.Enemigo;
+import Entidades.EntidadInmovil.Moneda;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
+import Fabricas.Sprite;
 import Vista.Controladores.ControladorVistaJuego;
 
 import java.util.ArrayList;
@@ -18,6 +24,7 @@ import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioParado;
 
 import Animador.AnimadorMario;
+
 
 public class LoopMario implements Runnable {
 
@@ -32,20 +39,17 @@ public class LoopMario implements Runnable {
     private boolean enIdle;
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
-    protected List<Plataforma> plataformas;
-    protected List<Vacio> vacios;
-    protected List<PowerUp> powerUps;
     protected boolean caerAlInfinito = false;
     protected boolean EstadoActivado = false;
     protected Nivel nivel;
+    protected PartidaActual partidaActual;
+    protected List<Entidad> EntidadesEliminar;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
-        this.plataformas = juego.getNivelActual().getPlataformas();
-        this.powerUps=juego.getNivelActual().getPowerUps();
-        this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
         this.nivel = juego.getNivelActual();
+        this.EntidadesEliminar=new ArrayList<Entidad>();
         ejecutando = false;
     }
 
@@ -117,25 +121,58 @@ public class LoopMario implements Runnable {
         }
         mario.setDireccion(direccionLocal);
 
+        //Logica para lanzar bola de fuego
+        if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego()) {
+            System.out.println("Quiero lanzar un proyectil");
+            Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
+            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), (int) mario.getHitbox().getMaxY(), sprite);
+            bolaDeFuego.setDireccion(mario.getDireccion());
+            nivel.agregarProyectil(bolaDeFuego);
+        }
 
-        for (Plataforma p : plataformas) {
+        for (Plataforma p : nivel.getPlataformas()) {
             if (mario.detectarColision((p))) {
+                int PosicionReemplazarX=p.getPosicionEnX();
+                int PosicionReemplazarY=p.getPosicionEnY();
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
+                if(p.Roto()){
+                    nivel.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
+                    EntidadesEliminar.add(p);
+                }
             }
         }
 
-        for (PowerUp p : powerUps) {
+        for (Enemigo e : nivel.getEnemigos()) {
+            if(mario.detectarColision(e)) {
+                e.getVisitorEnemigo().visit(mario);
+                e.actualizarEntidad();
+            }
+        }
+
+        for(Moneda m : nivel.getMonedas()) {
+            if(mario.detectarColision(m)) {
+                mario.getVisitorJugador().visit(m);
+                m.actualizarEntidad();
+                partidaActual.setPuntaje(partidaActual.getPuntaje()+ConstantesPuntaje.PUNTAJE_MONEDA);
+            }
+        }
+
+        for (Proyectil proyectil : nivel.getProyectiles()) {
+            proyectil.actualizarEntidad();
+        }
+
+        for (PowerUp p : nivel.getPowerUps()) {
             if (mario.detectarColision((p))) {
                 p.getVisitor().visit(mario);
                 p.actualizarEntidad();
-                powerUps.remove(p);
                 actualizacionRequerida = true;
                 mario.getEstadoJugador().actualizarSprite();
+                EntidadesEliminar.add(p);
             }
         }
 
-        for (Vacio vacio : vacios) {
+        for (Vacio vacio : nivel.getVacios()) {
             if (VacioColisionoAbajo(vacio)) {
 
                 if (mario.estaEnPlataforma()) {
@@ -157,15 +194,12 @@ public class LoopMario implements Runnable {
         if(mario.getPosicionEnY()>460)
             mario.setEstaVivo(false);
 
-
-
-        if (actualizacionRequerida) {
-
-             // Evitar movimiento no deseado
+        while(!EntidadesEliminar.isEmpty()) {
+            EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
-        mario.getEstadoJugador().actualizarSprite();
-        mario.actualizarEntidad();
-        mario.desplazarEnX(0);
+            mario.getEstadoJugador().actualizarSprite();
+            mario.actualizarEntidad();
+            mario.desplazarEnX(0);
     }else{
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }

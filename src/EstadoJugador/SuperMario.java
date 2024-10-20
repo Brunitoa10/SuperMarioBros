@@ -18,8 +18,8 @@ public class SuperMario implements EstadoJugador{
     }
 
     @Override
-    public void lanzarBolaFuego() {
-
+    public boolean puedeLanzarBolaFuego() {
+        return false;
     }
 
     public void actualizar(){

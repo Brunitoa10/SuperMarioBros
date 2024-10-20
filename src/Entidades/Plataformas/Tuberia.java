@@ -6,7 +6,7 @@ import Fabricas.Sprite;
 import Visitor.Visitor;
 
 public class Tuberia extends Plataforma {
-
+    protected boolean meRompi=false;
     public Tuberia(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
@@ -26,5 +26,9 @@ public class Tuberia extends Plataforma {
 
     public void interactuar(Jugador j){
 
+    }
+
+    public boolean Roto(){
+        return meRompi;
     }
 }

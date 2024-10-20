@@ -34,8 +34,8 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(Moneda m) {
-
+    public void visit(Moneda moneda) {
+        //moneda.getSprite(null);
     }
 
     public void visit(Plataforma plataforma){
@@ -67,10 +67,8 @@ public class VisitorJugador implements Visitor {
 
     }
 
-    // ... (resto de tu código)
 
 public void visit(Vacio vacio) {
-        // Aumentar la tolerancia en la colisión abajo
         int tolerancia = 5;
         if (mario.colisionAbajo(vacio)) {
             System.out.println("colision abajo!");}

@@ -25,8 +25,9 @@ public class VisitorEnemigo implements Visitor {
     }
 
     @Override
-    public void visit(Moneda p) {
+    public void visit(Moneda m) {
 
+        //m.eliminar();
     }
 
     @Override
