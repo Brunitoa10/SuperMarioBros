@@ -23,10 +23,11 @@ public class LadrilloSolido extends Plataforma {
         v.visit(this);
     }
 
-    public void Interactuar(Jugador j){
-        this.getSprite().setPosicionY(-100);
-        this.setPosicionEnY(-100);
-
+    public void interactuar(Jugador jugador) {
+        if (jugador.puedeRomperBloques()) {
+            this.getSprite().setPosicionY(-100);
+            this.setPosicionEnY(-100);
+        }
     }
 
     public Visitor getVisitor() {

@@ -31,7 +31,7 @@ public abstract class Plataforma extends EntidadInmovil {
     public Visitor getVisitor() {
         return visitor;
     }
-    public void Interactuar(Jugador j){
+    public void interactuar(Jugador j){
 
     }
 }

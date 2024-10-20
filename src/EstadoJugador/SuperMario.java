@@ -29,4 +29,9 @@ public class SuperMario implements EstadoJugador{
     public void actualizarSprite() {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp");
     }
+
+    @Override
+    public boolean puedeRomperBloques() {
+        return true;
+    }
 }
