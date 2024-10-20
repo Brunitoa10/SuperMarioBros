@@ -16,7 +16,7 @@ public class VisitorEnemigo implements Visitor {
     }
 
     public void visit(Jugador j) {
-        
+        enemigo.interactuar(j);
     }
 
     @Override

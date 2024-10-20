@@ -1,6 +1,7 @@
 package Entidades.Enemigos;
 
 import Entidades.EntidadMovil;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import IA.ComportamientoIA;
 import Visitor.VisitorEnemigo;
@@ -41,4 +42,9 @@ public abstract class Enemigo extends EntidadMovil {
     public void cambiarDireccion() {
         direccion = -direccion; // Invierte la dirección
     }
+
+    public void interactuar(Jugador jugador) {
+
+    }
+
 }

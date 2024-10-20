@@ -1,7 +1,6 @@
 package Fabricas;
 
 import Entidades.Jugador;
-import Entidades.Enemigos.Bowser;
 import Entidades.Enemigos.BuzzyBeetle;
 import Entidades.Enemigos.Goomba;
 import Entidades.Enemigos.KoopaTroopa;
