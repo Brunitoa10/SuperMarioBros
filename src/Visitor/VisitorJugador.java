@@ -57,6 +57,7 @@ public class VisitorJugador implements Visitor {
         }
         else if (mario.colisionArriba(plataforma)) {
             mario.setEstadoMovimiento(new MarioEnAire(mario));
+            plataforma.getVisitor().visit(mario);
             System.out.println("colision arriba!");
         }
     }

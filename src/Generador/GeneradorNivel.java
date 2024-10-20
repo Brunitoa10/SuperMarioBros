@@ -35,7 +35,7 @@ public class GeneradorNivel {
                 System.out.println("El identidad es" + idEntidad );
                 int posicionX = Integer.parseInt(datos[1]);
                 int posicionY = Integer.parseInt(datos[2]);
-                int idPowerUp = 0;
+                int idPowerUp = 5;
                 if (idEntidad == 3) {
                    idPowerUp = Integer.parseInt(datos[3]);
                 }

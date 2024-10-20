@@ -1,11 +1,14 @@
 package Entidades.Power_Ups;
 import Entidades.Entidad;
+import Entidades.Jugador;
+import EstadoJugador.SuperMario;
 import Fabricas.Sprite;
 import Visitor.VisitorPowerUp;
 import Visitor.Visitor;
 
 public class SuperChampinion extends PowerUp{
     protected VisitorPowerUp Visitor;
+
     public SuperChampinion(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         visitor = new VisitorPowerUp(this);
@@ -14,7 +17,7 @@ public class SuperChampinion extends PowerUp{
 
     public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectarColision(this);
-        return false;
+        return colisionan;
     }
 
     public void accept(Visitor v) {
@@ -29,4 +32,7 @@ public class SuperChampinion extends PowerUp{
         this.setPosicionEnY(1000);
     }
 
+    public void setEstadoMario(Jugador j){
+        j.setEstadoJugador(new SuperMario(j));
+    }
 }

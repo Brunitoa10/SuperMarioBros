@@ -2,6 +2,7 @@ package Entidades.Power_Ups;
 
 import Entidades.Entidad;
 import Entidades.EntidadMovil;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorPowerUp;
@@ -35,6 +36,10 @@ public abstract class PowerUp extends EntidadMovil {
 
     public void Consumir(){
         this.setPosicionEnY(1000);
+    }
+
+    public void setEstadoMario(Jugador j){
+
     }
 
 }

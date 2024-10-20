@@ -9,6 +9,8 @@ public class SuperMario implements EstadoJugador{
 
     public SuperMario(Jugador mario) {
         this.mario = mario;
+        mario.setPosicionEnY(mario.getPosicionEnY()-16);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),33,48);
     }
 
     public void recibeDanio(Nivel nivel) {

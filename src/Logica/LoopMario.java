@@ -101,6 +101,9 @@ public class LoopMario implements Runnable {
             }
 
         }
+            if(!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
+                mario.setEstadoMovimiento(new MarioParado(mario));
+
 
 
 
@@ -118,12 +121,14 @@ public class LoopMario implements Runnable {
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
                 mario.getVisitorJugador().visit(p);
+                p.actualizarEntidad();
             }
         }
 
         for(PowerUp p : powerUps) {
             if (mario.detectarColision((p))) {
                 p.getVisitor().visit(mario);
+                p.actualizarEntidad();
                 powerUps.remove(p);
                 actualizacionRequerida=true;
                 mario.getEstadoJugador().actualizarSprite();

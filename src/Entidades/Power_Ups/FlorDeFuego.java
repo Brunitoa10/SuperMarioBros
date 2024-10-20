@@ -1,6 +1,9 @@
 package Entidades.Power_Ups;
 
 import Entidades.Entidad;
+import Entidades.Jugador;
+import EstadoJugador.SuperMario;
+import EstadoJugador.SuperMarioFuego;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorPowerUp;
@@ -17,7 +20,7 @@ public class FlorDeFuego extends PowerUp {
 
     public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectarColision(this);
-        return false;
+        return colisionan;
     }
 
     public void accept(Visitor v) {
@@ -34,5 +37,9 @@ public class FlorDeFuego extends PowerUp {
 
     public void Consumir(){
         this.setPosicionEnY(1000);
+    }
+
+    public void setEstadoMario(Jugador j){
+        j.setEstadoJugador(new SuperMarioFuego(j));
     }
 }
