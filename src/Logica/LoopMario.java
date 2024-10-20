@@ -1,5 +1,6 @@
 package Logica;
 
+import Entidades.EntidadInmovil.Moneda;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
@@ -42,6 +43,7 @@ public class LoopMario implements Runnable {
     protected boolean EstadoActivado = false;
     protected boolean Mori=false;
     protected Nivel nivel;
+    protected PartidaActual partidaActual;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -135,6 +137,14 @@ public class LoopMario implements Runnable {
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
 
+            }
+        }
+
+        for(Moneda m : nivel.monedas) {
+            if(mario.detectarColision(m)) {
+                mario.getVisitorJugador().visit(m);
+                m.actualizarEntidad();
+                partidaActual.setPuntaje(partidaActual.getPuntaje()+ConstantesPuntaje.PUNTAJE_MONEDA);
             }
         }
 
