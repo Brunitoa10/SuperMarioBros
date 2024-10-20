@@ -198,11 +198,11 @@ public class LoopMario implements Runnable {
 
 
 
-        if (actualizacionRequerida) {
+
             mario.getEstadoJugador().actualizarSprite();
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
-        }
+
     }else{
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }
