@@ -8,6 +8,8 @@ import Visitor.VisitorPlataforma;
 
 public class BloqueSolido extends Plataforma {
     protected VisitorPlataforma visitor;
+    protected boolean meRompi=false;
+
     public BloqueSolido(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         visitor = new VisitorPlataforma(this);
@@ -28,5 +30,9 @@ public class BloqueSolido extends Plataforma {
 
     public void Interactuar(Jugador j){
 
+    }
+
+    public boolean Roto(){
+        return meRompi;
     }
 }

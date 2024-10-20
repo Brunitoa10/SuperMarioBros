@@ -1,5 +1,6 @@
 package Logica;
 
+import Entidades.Entidad;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
@@ -44,6 +45,7 @@ public class LoopMario implements Runnable {
     protected boolean Mori=false;
     protected Nivel nivel;
     protected PartidaActual partidaActual;
+    protected List<Entidad> EntidadesEliminar;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -52,6 +54,7 @@ public class LoopMario implements Runnable {
         this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
         this.nivel = juego.getNivelActual();
+        this.EntidadesEliminar=new ArrayList<Entidad>();
         ejecutando = false;
     }
 
@@ -134,8 +137,14 @@ public class LoopMario implements Runnable {
 
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
+                int PosicionReemplazarX=p.getPosicionEnX();
+                int PosicionReemplazarY=p.getPosicionEnY();
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
+                if(p.Roto()){
+                    vacios.add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
+                    EntidadesEliminar.add(p);
+                }
 
             }
         }
@@ -156,9 +165,9 @@ public class LoopMario implements Runnable {
             if (mario.detectarColision((p))) {
                 p.getVisitor().visit(mario);
                 p.actualizarEntidad();
-                powerUps.remove(p);
                 actualizacionRequerida = true;
                 mario.getEstadoJugador().actualizarSprite();
+                EntidadesEliminar.add(p);
             }
         }
 
@@ -181,18 +190,19 @@ public class LoopMario implements Runnable {
 
             }
         }
+        while(!EntidadesEliminar.isEmpty()) {
+            EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+        }
         if(mario.getPosicionEnY()>460)
             Mori = true;
 
 
 
         if (actualizacionRequerida) {
-
-             // Evitar movimiento no deseado
+            mario.getEstadoJugador().actualizarSprite();
+            mario.actualizarEntidad();
+            mario.desplazarEnX(0);
         }
-        mario.getEstadoJugador().actualizarSprite();
-        mario.actualizarEntidad();
-        mario.desplazarEnX(0);
     }else{
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }
