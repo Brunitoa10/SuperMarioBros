@@ -148,7 +148,6 @@ public class LoopMario implements Runnable {
             if(mario.detectarColision(e)) {
                 e.getVisitorEnemigo().visit(mario);
                 e.actualizarEntidad();
-
             }
         }
 
