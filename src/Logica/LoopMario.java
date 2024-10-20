@@ -38,6 +38,7 @@ public class LoopMario implements Runnable {
     protected boolean caerAlInfinito = false;
     protected boolean EstadoActivado = false;
     protected boolean Mori=false;
+    protected Nivel nivel;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -45,6 +46,7 @@ public class LoopMario implements Runnable {
         this.powerUps=juego.getNivelActual().getPowerUps();
         this.vacios = juego.getNivelActual().getVacios();
         this.controlador = juego.getControladorVistaJuego();
+        this.nivel = juego.getNivelActual();
         ejecutando = false;
     }
 
@@ -121,6 +123,7 @@ public class LoopMario implements Runnable {
             if (mario.detectarColision((p))) {
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
+
             }
         }
 
@@ -153,7 +156,7 @@ public class LoopMario implements Runnable {
 
             }
         }
-        if(mario.getPosicionEnY()>480)
+        if(mario.getPosicionEnY()>460)
             Mori = true;
 
 

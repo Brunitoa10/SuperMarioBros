@@ -18,7 +18,7 @@ public class BloquePregunta extends Plataforma{
 
     public BloquePregunta(int x, int y, Sprite sprite, int recompensa) {
         super(x, y, sprite);
-        this.estado = new BloquePreguntaLleno();
+        this.estado = new BloquePreguntaLleno(this);
         this.recompensa = recompensa;
         visitor = new VisitorPlataforma(this);
 
@@ -39,6 +39,9 @@ public class BloquePregunta extends Plataforma{
 
     public void Interactuar(Jugador j){
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueDePreguntaVacio.png");
+    }
 
+    public void setEstado(EstadoBloquePregunta estado) {
+        this.estado = estado;
     }
 }
