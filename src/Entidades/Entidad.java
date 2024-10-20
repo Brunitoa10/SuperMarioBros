@@ -64,7 +64,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         return hitbox;
     }
 
-    public void eliminar() {
+    public void setAEliminar() {
         aEliminar = true;
     }
 
