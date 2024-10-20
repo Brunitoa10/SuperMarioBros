@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 public class OyenteTeclado implements KeyListener {
 
 
-    protected boolean teclaArriba,teclaDerecha,teclaIzquierda;
+    protected boolean teclaArriba,teclaDerecha,teclaIzquierda,teclaEspacio;
 
     public OyenteTeclado() {
 
@@ -34,6 +34,10 @@ public class OyenteTeclado implements KeyListener {
             teclaDerecha = true;
         }
 
+        if(code == KeyEvent.VK_SPACE) {
+            teclaEspacio = true;
+        }
+
     }
 
     @Override
@@ -50,6 +54,10 @@ public class OyenteTeclado implements KeyListener {
         }
         if (code == KeyEvent.VK_D) {
             teclaDerecha = false;
+        }
+
+        if(code == KeyEvent.VK_SPACE) {
+            teclaEspacio = false;
         }
 
     }

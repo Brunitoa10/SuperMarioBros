@@ -118,5 +118,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = enPlataforma;
     }
 
+    public boolean puedeLanzarBolaDeFuego() {
+        return estadoJugador.puedeLanzarBolaFuego();
+    }
+
+
 
 }

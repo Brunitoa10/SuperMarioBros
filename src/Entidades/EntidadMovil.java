@@ -52,7 +52,7 @@ public abstract class EntidadMovil extends Entidad {
 
     @Override
     public boolean detectarColision(Entidad entidad) {
-        return this.getHitbox().intersects(entidad.getHitbox());
+            return this.getHitbox().intersects(entidad.getHitbox());
     }
 
     private int calcularSolapamientoX(Rectangle hitbox1, Rectangle hitbox2) {

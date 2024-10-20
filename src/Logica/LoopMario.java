@@ -3,10 +3,13 @@ package Logica;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
+import Fabricas.Sprite;
 import Vista.Controladores.ControladorVistaJuego;
 
 import java.util.ArrayList;
@@ -118,6 +121,14 @@ public class LoopMario implements Runnable {
         }
         mario.setDireccion(direccionLocal);
 
+        //Logica para lanzar bola de fuego
+        if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego()) {
+            System.out.println("Quiero lanzar un proyectil");
+            Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
+            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), (int) mario.getHitbox().getMaxY(), sprite);
+            bolaDeFuego.setDireccion(mario.getDireccion());
+            nivel.agregarProyectil(bolaDeFuego);
+        }
 
         for (Plataforma p : plataformas) {
             if (mario.detectarColision((p))) {
@@ -125,6 +136,10 @@ public class LoopMario implements Runnable {
                 p.actualizarEntidad();
 
             }
+        }
+
+        for (Proyectil proyectil : nivel.getProyectiles()) {
+            proyectil.actualizarEntidad();
         }
 
         for (PowerUp p : powerUps) {
