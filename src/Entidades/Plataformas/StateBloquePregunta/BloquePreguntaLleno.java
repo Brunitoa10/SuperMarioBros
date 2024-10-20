@@ -15,6 +15,5 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
 
     public void interactuar(Jugador j) {
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));
-
     }
 }

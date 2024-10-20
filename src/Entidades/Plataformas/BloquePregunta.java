@@ -15,7 +15,6 @@ public class BloquePregunta extends Plataforma{
     protected EstadoBloquePregunta estado;
     protected VisitorPlataforma visitor;
 
-
     public BloquePregunta(int x, int y, Sprite sprite, int recompensa) {
         super(x, y, sprite);
         this.estado = new BloquePreguntaLleno(this);
@@ -42,4 +41,5 @@ public class BloquePregunta extends Plataforma{
     public void setEstado(EstadoBloquePregunta estado) {
         this.estado = estado;
     }
+
 }

@@ -123,7 +123,6 @@ public class LoopMario implements Runnable {
             if (mario.detectarColision((p))) {
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
-
             }
         }
 

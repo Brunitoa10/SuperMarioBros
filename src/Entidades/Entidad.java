@@ -13,6 +13,7 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
     protected Observer observer;
     protected Rectangle hitbox;
     protected Sonido sonido;
+    protected boolean aEliminar;
 
     public Entidad(int x, int y, Sprite sprite) {
         this.posicionX = x;
@@ -61,6 +62,10 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
 
     public Rectangle getHitbox() {
         return hitbox;
+    }
+
+    public void eliminar() {
+        aEliminar = true;
     }
 
 }
