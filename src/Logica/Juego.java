@@ -63,7 +63,7 @@ public class Juego {
     }
 
     public void reiniciar(Nivel nivel) {
-        // Implemetar
+
     }
 
     public void mostrarPantallaRanking() {
