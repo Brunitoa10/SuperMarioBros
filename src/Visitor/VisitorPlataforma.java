@@ -18,7 +18,7 @@ public class VisitorPlataforma implements Visitor {
 
     @Override
     public void visit(Jugador j) {
-        plataforma.Interactuar(j);
+        plataforma.interactuar(j);
     }
 
     @Override

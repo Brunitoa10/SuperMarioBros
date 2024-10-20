@@ -23,4 +23,9 @@ public class MarioEstrella implements EstadoJugador{
     public void actualizarSprite() {
 
     }
+
+    @Override
+    public boolean puedeRomperBloques() {
+        return false;
+    }
 }

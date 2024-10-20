@@ -13,7 +13,7 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
             this.bloquePregunta=bloquePregunta;
     }
 
-    public void Interactuar(Jugador j) {
+    public void interactuar(Jugador j) {
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));
     }
 }

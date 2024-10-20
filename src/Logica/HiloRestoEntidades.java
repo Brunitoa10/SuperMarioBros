@@ -15,11 +15,10 @@ public class HiloRestoEntidades implements Runnable {
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     private long lastRenderTime = System.nanoTime();
     private final long renderInterval = 16_000_000; // Render cada 16ms (60 FPS)
-
-    private CargarEntidades cargarEntidades;
+    private Nivel nivelActual;
 
     public HiloRestoEntidades(Juego juego) {
-        cargarEntidades = new CargarEntidades(juego);
+        nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
     }
 
@@ -57,7 +56,7 @@ public class HiloRestoEntidades implements Runnable {
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {
-        for (Enemigo enemigo : cargarEntidades.getEnemigos()) {
+        for (Enemigo enemigo : nivelActual.getEnemigos()) {
             enemigo.actualizar();
         }
     }

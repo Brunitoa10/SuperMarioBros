@@ -127,14 +127,6 @@ public class Nivel {
             puntajeTotal = puntajeSetter;
         }
 
-        public List<Sprite> spritesActualizables() {
-            LinkedList<Sprite> sprites = new LinkedList<>();
-            jugador.getSprite().setPosicionX(jugador.getPosicionEnX());
-            jugador.getSprite().setPosicionY(jugador.getPosicionEnY());
-            sprites.addLast(jugador.getSprite());
-            return sprites;
-        }
-
 
 
     }

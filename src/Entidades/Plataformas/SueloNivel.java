@@ -19,7 +19,7 @@ public class SueloNivel extends Plataforma {
         v.visit(this);
     }
 
-    public void Interactuar(Jugador j){
+    public void interactuar(Jugador j){
 
     }
 }

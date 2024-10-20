@@ -21,12 +21,10 @@ public class BloquePregunta extends Plataforma{
         this.estado = new BloquePreguntaLleno(this);
         this.recompensa = recompensa;
         visitor = new VisitorPlataforma(this);
-
     }
 
-    public boolean detectarColision(Entidad c) {
-
-        return false;
+    public int getRecompensa() {
+        return recompensa;
     }
 
     public void accept(Visitor v) {
@@ -37,8 +35,8 @@ public class BloquePregunta extends Plataforma{
         return visitor;
     }
 
-    public void Interactuar(Jugador j){
-        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueDePreguntaVacio.png");
+    public void interactuar(Jugador j){
+        estado.interactuar(j);
     }
 
     public void setEstado(EstadoBloquePregunta estado) {

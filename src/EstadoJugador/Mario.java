@@ -26,4 +26,9 @@ public class Mario implements EstadoJugador {
 
     }
 
+    @Override
+    public boolean puedeRomperBloques() {
+        return false;
+    }
+
 }

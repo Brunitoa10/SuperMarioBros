@@ -27,5 +27,11 @@ public class SuperMarioFuego implements EstadoJugador {
     public void actualizarSprite() {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego");
     }
+  
+    @Override
+    public boolean puedeRomperBloques() {
+        return true;
+    }
 
 }
+
