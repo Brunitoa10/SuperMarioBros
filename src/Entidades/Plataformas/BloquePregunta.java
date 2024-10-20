@@ -38,7 +38,7 @@ public class BloquePregunta extends Plataforma{
     }
 
     public void Interactuar(Jugador j){
-
+        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueDePreguntaVacio.png");
 
     }
 }

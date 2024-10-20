@@ -37,6 +37,7 @@ public class LoopMario implements Runnable {
     protected List<PowerUp> powerUps;
     protected boolean caerAlInfinito = false;
     protected boolean EstadoActivado = false;
+    protected boolean Mori=false;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -85,9 +86,9 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
         boolean actualizacionRequerida = false;
-
+    if(!Mori) {
         // Movimiento lateral
-        if (oyente.teclaIzquierda || oyente.teclaDerecha ) {
+        if (oyente.teclaIzquierda || oyente.teclaDerecha) {
             enIdle = false;
             if (oyente.teclaIzquierda) {
                 mario.setVelocidad(VelocidadMario);
@@ -101,10 +102,8 @@ public class LoopMario implements Runnable {
             }
 
         }
-            if(!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
-                mario.setEstadoMovimiento(new MarioParado(mario));
-
-
+        if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
+            mario.setEstadoMovimiento(new MarioParado(mario));
 
 
         // LÃ³gica de salto
@@ -125,36 +124,39 @@ public class LoopMario implements Runnable {
             }
         }
 
-        for(PowerUp p : powerUps) {
+        for (PowerUp p : powerUps) {
             if (mario.detectarColision((p))) {
                 p.getVisitor().visit(mario);
                 p.actualizarEntidad();
                 powerUps.remove(p);
-                actualizacionRequerida=true;
+                actualizacionRequerida = true;
                 mario.getEstadoJugador().actualizarSprite();
             }
         }
 
         for (Vacio vacio : vacios) {
-            if(VacioColisionoAbajo(vacio)){
+            if (VacioColisionoAbajo(vacio)) {
 
                 if (mario.estaEnPlataforma()) {
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
                     mario.setEnPlataforma(false);
-                }
-                else{
+                } else {
 
                 }
 
                 //hacer
-                if (mario.getPosicionEnY() == SUELO_Y){
-                    caerAlInfinito=true;
+                if (mario.getPosicionEnY() == SUELO_Y) {
+                    caerAlInfinito = true;
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
 
                 }
 
             }
         }
+        if(mario.getPosicionEnY()>480)
+            Mori = true;
+
+
 
         if (actualizacionRequerida) {
 
@@ -163,6 +165,9 @@ public class LoopMario implements Runnable {
         mario.getEstadoJugador().actualizarSprite();
         mario.actualizarEntidad();
         mario.desplazarEnX(0);
+    }else{
+        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
+    }
     }
 
 
