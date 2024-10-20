@@ -108,7 +108,7 @@ public class LoopMario implements Runnable {
             mario.setEstadoMovimiento(new MarioParado(mario));
 
 
-        // LÃ³gica de salto
+        // Logica de salto
         if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
             if (mario.estaEnPlataforma())
                 mario.setEnPlataforma(false);
