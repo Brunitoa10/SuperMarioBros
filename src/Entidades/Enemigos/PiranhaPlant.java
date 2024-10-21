@@ -5,13 +5,15 @@ import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
 import Visitor.Visitor;
+import Visitor.VisitorEnemigo;
 
 public class PiranhaPlant extends Enemigo {
-    
-    private int puntajeMuerteMario;
+
+    protected VisitorEnemigo visitor;
 
     public PiranhaPlant(int x, int y, Sprite sprite) {
         super(x, y, sprite,new IACaminar());
+        visitor = new VisitorEnemigo(this);
         velocidad = 0;
     }
 

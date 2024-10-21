@@ -5,12 +5,11 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import IA.ComportamientoIA;
 import Visitor.VisitorEnemigo;
+import Visitor.Visitor;
 
 public abstract class Enemigo extends EntidadMovil {
 
     protected VisitorEnemigo visitorEnemigo;
-    private int puntajeDestruido;
-    protected int puntajeKill;
     protected int posicionx;
     protected int posiciony;
     protected ComportamientoIA comportamientoIA;
@@ -19,6 +18,7 @@ public abstract class Enemigo extends EntidadMovil {
         super(x, y, sprite);
         posicionx = x;
         posiciony = y;
+        visitorEnemigo = new VisitorEnemigo(this);
         this.comportamientoIA = comportamientoIA;
     }
 

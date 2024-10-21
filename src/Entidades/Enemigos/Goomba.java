@@ -1,17 +1,21 @@
 package Entidades.Enemigos;
 
 import Entidades.Entidad;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import IA.IACaminar;
+import Logica.ConstantesPuntaje;
+import Visitor.VisitorEnemigo;
 import Visitor.Visitor;
 
 public class Goomba extends Enemigo {
 
-    private int puntajeMuerteMario;
+    protected VisitorEnemigo visitor;
 
     public Goomba(int x, int y, Sprite sprite) {
         super(x, y, sprite,new IACaminar());
-        velocidad = 3;
+        visitor = new VisitorEnemigo(this);
+        velocidad = 1;
     }
 
     public boolean detectarColision(Entidad c) {
@@ -22,4 +26,22 @@ public class Goomba extends Enemigo {
     public void accept(Visitor v) {
         v.visit(this);
     }
+
+    public void interactuar(Jugador mario) {
+        if(mario.colisionAbajo(this)) {
+            this.setAEliminar();
+            this.setPosicionEnY(-100);
+            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
+        }
+        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+            if(!mario.getEstadoJugador().recibeDanio()) {
+                this.setAEliminar();
+                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
+            }
+            else {
+                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO);
+            }
+        }
+    }
+
 }

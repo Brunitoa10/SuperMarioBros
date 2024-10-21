@@ -11,8 +11,9 @@ public class Mario implements EstadoJugador {
         this.mario = mario;
     }
 
-    public void recibeDanio(Nivel nivel) {
-        nivel.perdioVida();
+    public boolean recibeDanio() {
+        mario.setVidas(mario.getVidas()-1);
+        return true;
     }
 
     @Override
@@ -21,8 +22,7 @@ public class Mario implements EstadoJugador {
     }
 
     public void actualizarSprite(){
-
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario");
+        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario");
 
     }
 

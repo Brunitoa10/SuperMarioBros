@@ -91,7 +91,7 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
         boolean actualizacionRequerida = false;
-        if(mario.estaVivo()) {
+        if(!mario.estaVivo()) {
             // Movimiento lateral
             if (oyente.teclaIzquierda || oyente.teclaDerecha) {
                 enIdle = false;
@@ -145,7 +145,7 @@ public class LoopMario implements Runnable {
 
         for (Enemigo e : nivel.getEnemigos()) {
             if(mario.detectarColision(e)) {
-                mario.getVisitorJugador().visit(e);
+                e.getVisitorEnemigo().visit(mario);
                 e.actualizarEntidad();
             }
         }
@@ -154,7 +154,7 @@ public class LoopMario implements Runnable {
             if(mario.detectarColision(m)) {
                 mario.getVisitorJugador().visit(m);
                 m.actualizarEntidad();
-                partidaActual.setPuntaje(partidaActual.getPuntaje()+ConstantesPuntaje.PUNTAJE_MONEDA);
+                mario.setPuntaje(partidaActual.getPuntaje()+ConstantesPuntaje.PUNTAJE_MONEDA);
             }
         }
 

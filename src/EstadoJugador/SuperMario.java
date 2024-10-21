@@ -13,8 +13,9 @@ public class SuperMario implements EstadoJugador{
         mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,48);
     }
 
-    public void recibeDanio(Nivel nivel) {
+    public boolean recibeDanio() {
         mario.setEstadoJugador(new Mario(mario));
+        return true;
     }
 
     @Override

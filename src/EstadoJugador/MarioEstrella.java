@@ -8,11 +8,11 @@ public class MarioEstrella implements EstadoJugador{
     protected Jugador mario;
 
     public MarioEstrella(Jugador mario) {
-        this.mario = mario; 
+        this.mario = mario;
     }
 
-    public void recibeDanio(Nivel nivel) {
-        
+    public boolean recibeDanio() {
+        return false;
     }
 
     @Override
@@ -23,6 +23,7 @@ public class MarioEstrella implements EstadoJugador{
     public void actualizarSprite() {
 
     }
+
 
     @Override
     public boolean puedeRomperBloques() {

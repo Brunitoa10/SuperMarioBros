@@ -17,11 +17,12 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected EstadoJugador estadoJugador;
     protected EstadoJugador estadoJugadorAnterior;
     protected EstadoMovimiento estadoMovimiento;
-    protected int puntaje;
     protected VisitorJugador VisitorJugador;
     protected boolean enPlataforma;
     protected Sonido sonido;
     protected boolean estaVivo;
+    protected int puntaje;
+    protected int vidas;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -57,11 +58,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
 
         this.estadoMovimiento = estadoMovimiento;
-    }
-
-    @Override
-    public int getPuntaje() {
-        return new Random(0).nextInt(100);
     }
 
     @Override
@@ -134,6 +130,23 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     public boolean estaVivo() {
-        return estaVivo;
+        return vidas != 0;
     }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
 }
