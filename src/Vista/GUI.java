@@ -30,11 +30,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected PanelPantallaModoJuego panelPantallaModoJuego;
     protected Ranking ranking;
     protected OyenteTeclado oyente;
-    protected String modoJuego;
-    protected ConfiguracionJuego configuracion; // Nueva instancia
-
+    protected ConfiguracionJuego configuracion;
     protected Juego miJuego;
-    // protected int nivel;
 
     public GUI() {
         configuracion = ConfiguracionJuego.obtenerInstancia();
@@ -54,8 +51,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
-        ventana.setIconImage(
-                Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png")));
+        ventana.setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(GUI.class.getResource("/Recursos/imagenes/" + configuracion.getModoJuego() + "/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
@@ -68,6 +65,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     // De interfaz para launcher
     @Override
     public void mostrarPantallaInicial(String modoJuego) {
+        configuracion.setModoJuego(modoJuego); // Actualizamos el modo de juego en ConfiguracionJuego
         panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
@@ -78,6 +76,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     // De interfaz ControladorDeVistas
     @Override
     public void accionarInicioJuego(String modoJuego) {
+        configuracion.setModoJuego(modoJuego); // Actualizar el modo de juego
         miJuego.iniciar(modoJuego);
     }
 
@@ -94,9 +93,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public void cambiarModoJuego(String modo) {
-        // Lógica para cambiar el modo de juego
+        // Actualizamos el modo de juego en ConfiguracionJuego
         System.out.println("Modo seleccionado: " + modo);
-        this.configuracion.setModoJuego(modo);
+        configuracion.setModoJuego(modo);
         mostrarPantallaInicial(modo); // Vuelve a la pantalla principal o inicia el juego
     }
 
@@ -161,9 +160,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public Juego getJuego() {
         return miJuego;
     }
-  
+
     @Override
     public String obtenerModoJuego() {
-        return panelPantallaPrincipal.obtenerModoJuego();
+        return configuracion.getModoJuego(); // Obtenemos el modo directamente de ConfiguracionJuego
     }
 }

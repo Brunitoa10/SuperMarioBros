@@ -1,8 +1,6 @@
 package Launcher;
 
 import java.awt.EventQueue;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 
 import Vista.GUI;
 

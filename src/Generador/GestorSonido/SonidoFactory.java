@@ -7,17 +7,28 @@ public class SonidoFactory {
     protected static final Map<String, CreadorSonido> registroSonidos = new HashMap<>();
 
     static {
-        // Registro de sonidos para el modo original
-        registroSonidos.put("original_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/Original/Jump.wav"));
-        registroSonidos.put("original_musicaNivel", () -> new SonidoGenerico("src/Recursos/Sonidos/Original/Song.wav"));
+        registroSonidos.put("alternativo_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/Jump.wav"));
+        // registroSonidos.put("alternativo_musicaNivel", () -> new
+        // SonidoGenerico("src/Recursos/Sonidos/alternativo/Song.wav"));
+        registroSonidos.put("alternativo_boton",
+                () -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/boton.wav"));
+        // registroSonidos.put("alternativo_perdiste",() -> new
+        // SonidoGenerico("src/Recursos/Sonidos/alternativo/gameOver.wav"));
+        // registroSonidos.put("alternativo_ranking",() -> new
+        // SonidoGenerico("src/Recursos/Sonidos/alternativo/Song.wav"));
 
-        // Registro de sonidos para el modo alternativo
-        registroSonidos.put("alternativo_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/Alternativo/Jump.wav"));
-        registroSonidos.put("alternativo_musicaNivel", () -> new SonidoGenerico("src/Recursos/Sonidos/Alternativo/Song.wav"));
+        registroSonidos.put("original_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/original/Jump.wav"));
+        // registroSonidos.put("original_musicaNivel", () -> new
+        // SonidoGenerico("src/Recursos/Sonidos/original/Song.wav"));
+        registroSonidos.put("original_boton", () -> new SonidoGenerico("src/Recursos/Sonidos/original/boton.wav"));
+        // registroSonidos.put("original_perdiste",() -> new
+        // SonidoGenerico("src/Recursos/Sonidos/original/gameOver.wav"));
+        // registroSonidos.put("original_ranking", () -> new
+        // SonidoGenerico("src/Recursos/Sonidos/original/Song.wav"));
     }
 
     public static Sonido crearSonido(String modoJuego, String tipoSonido) {
-        String clave = modoJuego + "_" + tipoSonido;  // Construye la clave usando modo y tipo
+        String clave = modoJuego + "_" + tipoSonido; // Construye la clave usando modo y tipo
         CreadorSonido creador = registroSonidos.get(clave);
         if (creador == null) {
             throw new IllegalArgumentException("Sonido no soportado para este modo: " + clave);
