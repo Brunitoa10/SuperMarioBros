@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import EstadoJugador.MarioEstrella;
 import EstadoMovimiento.MarioEnAire;
 import Fabricas.Sprite;
@@ -52,4 +53,11 @@ public class BuzzyBeetle extends Enemigo {
             }
         }
     }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
+        System.out.println("Le pegue con la bola de fuego");
+        this.setAEliminar();
+        this.setPosicionEnY(-100);
+    }
+
 }

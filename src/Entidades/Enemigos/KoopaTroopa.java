@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioSaltando;
 import Fabricas.Sprite;
@@ -56,6 +57,12 @@ public class KoopaTroopa extends Enemigo {
                 mario.setVidas(mario.getVidas() - 1);
             }
         }
+    }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
+        System.out.println("Le pegue con la bola de fuego");
+        this.setAEliminar();
+        this.setPosicionEnY(-100);
     }
 
 }

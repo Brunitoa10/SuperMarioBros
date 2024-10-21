@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
@@ -40,6 +41,12 @@ public class Lakitu extends Enemigo {
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
             }
         }
+    }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
+        System.out.println("Le pegue con la bola de fuego");
+        this.setAEliminar();
+        this.setPosicionEnY(-100);
     }
 
 }

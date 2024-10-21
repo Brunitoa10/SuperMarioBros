@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
@@ -43,6 +44,12 @@ public class Spiny extends Enemigo {
                 mario.setVidas(mario.getVidas() - 1);
             }
         }
+    }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
+        System.out.println("Le pegue con la bola de fuego");
+        this.setAEliminar();
+        this.setPosicionEnY(-100);
     }
 
 }
