@@ -28,7 +28,4 @@ public class Tuberia extends Plataforma {
 
     }
 
-    public boolean Roto(){
-        return meRompi;
-    }
 }

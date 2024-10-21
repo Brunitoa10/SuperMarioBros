@@ -68,4 +68,8 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         aEliminar = true;
     }
 
+    public boolean aEliminar() {
+        return aEliminar;
+    }
+
 }

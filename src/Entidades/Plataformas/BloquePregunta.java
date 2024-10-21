@@ -42,8 +42,4 @@ public class BloquePregunta extends Plataforma{
     public void setEstado(EstadoBloquePregunta estado) {
         this.estado = estado;
     }
-
-    public boolean Roto(){
-        return meRompi;
-    }
 }

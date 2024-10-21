@@ -136,7 +136,7 @@ public class LoopMario implements Runnable {
                 int PosicionReemplazarY=p.getPosicionEnY();
                 mario.getVisitorJugador().visit(p);
                 p.actualizarEntidad();
-                if(p.Roto()){
+                if(p.aEliminar()){
                     nivel.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
                     EntidadesEliminar.add(p);
                 }

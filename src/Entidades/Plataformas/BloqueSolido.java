@@ -32,7 +32,4 @@ public class BloqueSolido extends Plataforma {
 
     }
 
-    public boolean Roto(){
-        return meRompi;
-    }
 }
