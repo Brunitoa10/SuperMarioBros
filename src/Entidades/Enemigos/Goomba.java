@@ -46,7 +46,6 @@ public class Goomba extends Enemigo {
             else {
                 mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO);
-                mario.setVidas(mario.getVidas() - 1);
 
             }
         }

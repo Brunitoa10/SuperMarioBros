@@ -49,7 +49,6 @@ public class BuzzyBeetle extends Enemigo {
             else {
                 mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO);
-                mario.setVidas(mario.getVidas() - 1);
             }
         }
     }

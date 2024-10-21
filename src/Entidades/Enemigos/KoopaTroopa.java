@@ -54,7 +54,6 @@ public class KoopaTroopa extends Enemigo {
             else {
                 mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO);
-                mario.setVidas(mario.getVidas() - 1);
             }
         }
     }

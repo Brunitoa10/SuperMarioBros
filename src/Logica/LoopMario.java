@@ -196,8 +196,14 @@ public class LoopMario implements Runnable {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
         empezarCooldownMorir();
         if (timerAnimacionMorir == 100) {
-                if (mario.getVidas()!=0)
-            juego.reiniciar(juego.modoJuego);
+            juego.perderVida();
+
+                if (juego.getVidas()!=0) {
+                    juego.reiniciar(juego.modoJuego);
+                }
+                else{
+                    juego.mostrarPantallaFinJuego();
+                }
 
         }
 

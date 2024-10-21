@@ -108,7 +108,7 @@ public class PanelPantallaNivel extends JPanel {
 
     protected void actualizarLabelsInformacion(EntidadJugador jugador) {
         labelPuntaje.setText(formatTexto(jugador.getPuntaje()));
-        labelVida.setText(formatTexto(jugador.getVida()));
+        labelVida.setText(formatTexto(3));
         labelTiempo.setText(formatTexto(jugador.getTiempo()));
     }
 

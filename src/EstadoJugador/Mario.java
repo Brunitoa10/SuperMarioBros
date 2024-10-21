@@ -14,7 +14,6 @@ public class Mario implements EstadoJugador {
     }
 
     public void recibeDanio() {
-        mario.setVidas(mario.getVidas()-1);
         mario.setMorir(true);
     }
 
