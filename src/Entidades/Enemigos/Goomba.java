@@ -12,6 +12,7 @@ import Visitor.Visitor;
 public class Goomba extends Enemigo {
 
     protected VisitorEnemigo visitor;
+    protected boolean Mori;
 
     public Goomba(int x, int y, Sprite sprite) {
         super(x, y, sprite,new IACaminar());
@@ -29,9 +30,12 @@ public class Goomba extends Enemigo {
     }
 
     public void interactuar(Jugador mario) {
+        if(!Mori)
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
-            this.setPosicionEnY(-100);
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
+            this.setPosicionEnY(436);
+            Mori=true;
             mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {

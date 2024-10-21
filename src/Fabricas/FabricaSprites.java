@@ -9,7 +9,7 @@ public abstract class FabricaSprites {
     }
 
     public Sprite crearSpriteGoomba() {
-        return new Sprite(ruta_carpeta + "/Enemigos/Goomba/Goomba_caminando1.png", 32, 32);
+        return new Sprite(ruta_carpeta + "/Enemigos/Goomba/GoombacaminandoLoop.gif", 32, 32);
     }
     public Sprite crearSpriteBuzzyBeetle() {
         return new Sprite(ruta_carpeta + "/Enemigos/BuzzyBeetle/BuzzyBeetleLeftLoop.gif", 32, 32);
