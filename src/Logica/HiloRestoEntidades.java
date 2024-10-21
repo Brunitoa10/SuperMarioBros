@@ -1,6 +1,7 @@
 package Logica;
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
 import java.util.List;
 
@@ -58,6 +59,15 @@ public class HiloRestoEntidades implements Runnable {
     private void tick() {
         for (Enemigo enemigo : nivelActual.getEnemigos()) {
             enemigo.actualizar();
+            for(Proyectil proyectil : nivelActual.getProyectiles()) {
+                proyectil.actualizarEntidad();
+                int tolerancia = 5;
+                if(proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
+                proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
+                    enemigo.getVisitorEnemigo().visit(proyectil);
+                    enemigo.actualizarEntidad();
+                }
+            }
         }
     }
 

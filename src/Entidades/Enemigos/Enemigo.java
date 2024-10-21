@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.EntidadMovil;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.ComportamientoIA;
 import Visitor.VisitorEnemigo;
@@ -44,6 +45,10 @@ public abstract class Enemigo extends EntidadMovil {
     }
 
     public void interactuar(Jugador jugador) {
+
+    }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
 
     }
 

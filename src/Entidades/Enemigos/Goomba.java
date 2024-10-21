@@ -2,6 +2,7 @@ package Entidades.Enemigos;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IACaminar;
 import Logica.ConstantesPuntaje;
@@ -45,6 +46,12 @@ public class Goomba extends Enemigo {
 
             }
         }
+    }
+
+    public void interactuarConProyectil(Proyectil proyectil) {
+        System.out.println("Le pegue con la bola de fuego");
+        this.setAEliminar();
+        this.setPosicionEnY(-100);
     }
 
 }

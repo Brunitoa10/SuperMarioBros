@@ -171,7 +171,7 @@ public class LoopMario implements Runnable {
         }
 
         for (Proyectil proyectil : nivel.getProyectiles()) {
-            proyectil.actualizarEntidad();
+//            proyectil.actualizarEntidad();
         }
 
         for (PowerUp p : nivel.getPowerUps()) {
