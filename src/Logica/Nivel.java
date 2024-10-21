@@ -87,8 +87,8 @@ public class Nivel {
             this.proyectiles.addLast(proyectil);
         }
 
-        public void agregarMoneda(Moneda monedas) {
-            this.monedas.addLast(monedas);
+        public void agregarMoneda(Moneda moneda) {
+            this.monedas.addLast(moneda);
         }
 
         public void agregarBandera(Bandera bandera) {

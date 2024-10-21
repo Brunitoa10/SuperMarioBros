@@ -154,7 +154,6 @@ public class LoopMario implements Runnable {
             if(mario.detectarColision(m)) {
                 mario.getVisitorJugador().visit(m);
                 m.actualizarEntidad();
-                mario.setPuntaje(partidaActual.getPuntaje()+ConstantesPuntaje.PUNTAJE_MONEDA);
             }
         }
 

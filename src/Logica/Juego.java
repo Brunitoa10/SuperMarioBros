@@ -76,6 +76,7 @@ public class Juego {
         registrarObserversParaEntidades(nivelActual.getPlataformas());
         registrarObserversParaEntidades(nivelActual.getPowerUps());
         registrarObserversParaEntidades(nivelActual.getProyectiles());
+        registrarObserversParaEntidades(nivelActual.getMonedas());
     }
 
     protected void registrarObserverJugador(Jugador jugador) {

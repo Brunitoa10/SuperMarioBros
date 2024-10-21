@@ -9,6 +9,7 @@ import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
+import Logica.ConstantesPuntaje;
 
 public class VisitorJugador implements Visitor {
 
@@ -37,6 +38,7 @@ public class VisitorJugador implements Visitor {
     public void visit(Moneda moneda) {
         moneda.setAEliminar();
         moneda.setPosicionEnY(-100);
+        mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_MONEDA);
     }
 
     public void visit(Plataforma plataforma){
