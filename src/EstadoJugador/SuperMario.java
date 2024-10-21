@@ -14,7 +14,7 @@ public class SuperMario implements EstadoJugador{
     }
 
     public void recibeDanio() {
-        mario.setEstadoJugador(new Mario(mario));
+        mario.setEstadoJugador(new MarioInvencible(mario));
     }
 
     @Override
@@ -44,5 +44,9 @@ public class SuperMario implements EstadoJugador{
     @Override
     public boolean esInmortal() {
         return false;
+    }
+
+    public String finalAnimacion(){
+        return "";
     }
 }

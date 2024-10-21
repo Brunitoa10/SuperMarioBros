@@ -15,9 +15,9 @@
             this.mario = mario;
             alturaMax = mario.getPosicionEnY()+50;
             if(mario.getDireccion()==1) {
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
             }else{
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
             }
         }
 
@@ -44,14 +44,16 @@
             mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
             if(mario.getDireccion()==1) {
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
             }else{
-                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
             }
         }
 
         public boolean estaEnElSuelo() {
             return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
         }
+
+
 
     }

@@ -10,7 +10,7 @@ public class Mario implements EstadoJugador {
     public Mario(Jugador mario) {
         this.mario = mario;
         mario.setPosicionEnY(mario.getPosicionEnY() + 16);
-        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 28, 35);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
     }
 
     public void recibeDanio() {
@@ -43,5 +43,7 @@ public class Mario implements EstadoJugador {
     public boolean puedeSerMarioFuego(){
         return true;
     }
-
+    public String finalAnimacion(){
+        return "";
+    }
 }

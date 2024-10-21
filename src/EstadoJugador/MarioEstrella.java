@@ -39,4 +39,7 @@ public class MarioEstrella implements EstadoJugador{
     public boolean puedeSerMarioFuego(){
         return true;
     }
+    public String finalAnimacion(){
+        return "";
+    }
 }

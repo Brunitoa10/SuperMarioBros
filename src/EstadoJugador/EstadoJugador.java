@@ -10,5 +10,5 @@ public interface EstadoJugador {
     public boolean elHongoLoHaceSuperMario();
     public boolean puedeSerMarioFuego();
     public boolean esInmortal();
-
+    public String finalAnimacion();
 }

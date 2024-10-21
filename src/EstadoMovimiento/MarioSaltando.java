@@ -14,9 +14,9 @@ public class MarioSaltando implements EstadoMovimiento {
         this.velocidadY = VELOCIDAD_INICIAL_SALTO;
         this.mario = mario;// Empieza subiendo con velocidad inicial
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -32,9 +32,9 @@ public class MarioSaltando implements EstadoMovimiento {
         mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
         }
 
     }
@@ -53,5 +53,6 @@ public class MarioSaltando implements EstadoMovimiento {
     public boolean estaEnElSuelo() {
         return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
+
 
 }

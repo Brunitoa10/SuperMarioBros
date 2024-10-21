@@ -212,6 +212,10 @@ public class LoopMario implements Runnable {
     } else {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }
+        if(mario.getEstadoJugador().esInmortal()){
+
+        }
+
     }
 
     private void empezarCooldown() {

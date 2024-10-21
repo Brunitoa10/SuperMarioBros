@@ -9,9 +9,9 @@ public class MarioParado implements EstadoMovimiento {
         this.mario = mario;
         mario.getEstadoJugador().actualizarSprite();
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -31,13 +31,15 @@ public class MarioParado implements EstadoMovimiento {
 
         mario.getEstadoJugador().actualizarSprite();
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
         }
     }
 
     public boolean estaEnElSuelo() {
         return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
+
+
 }

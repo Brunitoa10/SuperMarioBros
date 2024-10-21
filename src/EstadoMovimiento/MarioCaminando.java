@@ -12,9 +12,9 @@ public class MarioCaminando implements EstadoMovimiento {
         mario.setPosicionEnX(mario.getPosicionEnX()+mario.getVelocidad()*mario.getDireccion());
         System.out.println("Me cree por alguna razon");
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif"+mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -34,9 +34,9 @@ public class MarioCaminando implements EstadoMovimiento {
     public void actualizar() {
         mario.getEstadoJugador().actualizarSprite();
         if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif"+mario.getEstadoJugador().finalAnimacion());
         }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif");
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif"+mario.getEstadoJugador().finalAnimacion());
         }
     }
 
