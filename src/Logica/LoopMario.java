@@ -32,7 +32,6 @@ public class LoopMario implements Runnable {
     private Jugador mario;
     private int VelocidadMario;
     private ControladorVistaJuego controlador;
-    private static final int GRAVEDAD = 1;
     private static final int SUELO_Y = 420;
     private int direccionLocal = 0;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
@@ -125,9 +124,10 @@ public class LoopMario implements Runnable {
         if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego()) {
             System.out.println("Quiero lanzar un proyectil");
             Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
-            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), (int) mario.getHitbox().getMaxY(), sprite);
+            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), (int) (mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2)), sprite);
             bolaDeFuego.setDireccion(mario.getDireccion());
             nivel.agregarProyectil(bolaDeFuego);
+            controlador.registrarEntidad(bolaDeFuego);
         }
 
         for (Plataforma p : nivel.getPlataformas()) {
