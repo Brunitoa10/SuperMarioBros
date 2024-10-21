@@ -11,13 +11,13 @@ import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
 import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
+import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
-import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
 
 public class Juego {
 
-    protected GUI controladorVistas;
+    protected ControladorVista controladorVistas;
     protected GeneradorNivel generadorNivel;
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidad fabricaEntidades;
@@ -29,13 +29,13 @@ public class Juego {
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
 
-    public Juego(GUI controladorVistas) {
+    public Juego(ControladorVista controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
 
     // Comunicacion con parte grafica
-    public void setControladorVistas(GUI controladorVistas) {
+    public void setControladorVistas(ControladorVista controladorVistas) {
         this.controladorVistas = controladorVistas;
     }
 

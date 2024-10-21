@@ -19,5 +19,7 @@ public interface ControladorVista {
 
     public Juego getJuego();
   
-	  public String obtenerModoJuego();
+    public String obtenerModoJuego();
+
+    public void mostrarPantallaFinJuego();
 }
