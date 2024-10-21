@@ -39,7 +39,10 @@ public class Goomba extends Enemigo {
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
             }
             else {
+                System.out.println("m revente");
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO);
+                mario.setVidas(mario.getVidas() - 1);
+
             }
         }
     }

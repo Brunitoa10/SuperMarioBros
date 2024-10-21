@@ -9,10 +9,13 @@ public class Mario implements EstadoJugador {
 
     public Mario(Jugador mario) {
         this.mario = mario;
+        mario.setPosicionEnY(mario.getPosicionEnY() + 16);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 28, 35);
     }
 
     public boolean recibeDanio() {
         mario.setVidas(mario.getVidas()-1);
+        mario.setMorir(true);
         return true;
     }
 

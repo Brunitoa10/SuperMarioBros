@@ -43,6 +43,9 @@ public class LoopMario implements Runnable {
     protected Nivel nivel;
     protected PartidaActual partidaActual;
     protected List<Entidad> EntidadesEliminar;
+    protected int cooldownBola = 60;
+    protected boolean empezarCooldown;
+    protected Proyectil bolaDeFuego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -121,14 +124,23 @@ public class LoopMario implements Runnable {
         mario.setDireccion(direccionLocal);
 
         //Logica para lanzar bola de fuego
-        if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego()) {
+        if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
+            cooldownBola=0;
             int mitadDeMario = (int)(mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2));
             System.out.println("Quiero lanzar un proyectil");
             Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
-            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), mitadDeMario, sprite);
+            bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), mitadDeMario, sprite);
             bolaDeFuego.setDireccion(mario.getDireccion());
             nivel.agregarProyectil(bolaDeFuego);
             controlador.registrarEntidad(bolaDeFuego);
+            empezarCooldown = true;
+        }
+        if (cooldownBola==20){
+            bolaDeFuego.setPosicionEnY(-100);
+        }
+
+        if (empezarCooldown){
+            cooldownBola++;
         }
 
         for (Plataforma p : nivel.getPlataformas()) {
@@ -200,6 +212,10 @@ public class LoopMario implements Runnable {
     } else {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }
+    }
+
+    private void empezarCooldown() {
+        cooldownBola++;
     }
 
 

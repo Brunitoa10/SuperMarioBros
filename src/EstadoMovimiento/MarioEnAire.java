@@ -14,7 +14,6 @@
         public MarioEnAire(Jugador mario) {
             this.mario = mario;
             alturaMax = mario.getPosicionEnY()+50;
-            piso = mario.getPiso();
             if(mario.getDireccion()==1) {
                 mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png");
             }else{

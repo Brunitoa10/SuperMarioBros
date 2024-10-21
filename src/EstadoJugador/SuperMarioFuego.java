@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Entidades.Jugador;
+import EstadoMovimiento.MarioEnAire;
 import Logica.Nivel;
 import Entidades.Proyectiles.BolaDeFuego;
 
