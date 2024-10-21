@@ -40,6 +40,7 @@ public class Spiny extends Enemigo {
             else {
                 mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO);
+                mario.setVidas(mario.getVidas() - 1);
             }
         }
     }

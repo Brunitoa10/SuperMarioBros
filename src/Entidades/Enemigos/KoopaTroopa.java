@@ -3,6 +3,7 @@ package Entidades.Enemigos;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import EstadoMovimiento.MarioEnAire;
+import EstadoMovimiento.MarioSaltando;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
@@ -13,11 +14,13 @@ import Visitor.VisitorEnemigo;
 public class KoopaTroopa extends Enemigo {
 
     protected VisitorEnemigo visitor;
+    protected int vidas;
 
     public KoopaTroopa(int x, int y, Sprite sprite) {
         super(x, y, sprite,new IACaminar());
         visitor = new VisitorEnemigo(this);
-        velocidad = 4;
+        velocidad = 1;
+        vidas = 2;
     }
 
     public boolean detectarColision(Entidad c) {
@@ -34,9 +37,12 @@ public class KoopaTroopa extends Enemigo {
 
     public void interactuar(Jugador mario) {
         if(mario.colisionAbajo(this)) {
-            this.setAEliminar();
-            this.setPosicionEnY(-100);
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
+            this.vidas--;
+            if (vidas == 0) {
+                this.setAEliminar();
+                this.setPosicionEnY(-100);
+            }
+            mario.setEstadoMovimiento(new MarioSaltando(mario));
             mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO);
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
@@ -47,6 +53,7 @@ public class KoopaTroopa extends Enemigo {
             else {
                 mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO);
+                mario.setVidas(mario.getVidas() - 1);
             }
         }
     }
