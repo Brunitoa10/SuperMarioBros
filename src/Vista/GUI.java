@@ -51,8 +51,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
-        ventana.setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(GUI.class.getResource("/Recursos/imagenes/" + configuracion.getModoJuego() + "/Mario.png")));
+        ventana.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png")));
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
