@@ -4,6 +4,8 @@ import java.util.List;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
@@ -130,6 +132,7 @@ public class Juego {
     public void moverMario(int direccionMario, Jugador mario) {
         mario.desplazarEnX(direccionMario);
         mario.setDireccion(direccionMario);
+        mario.desplazarEnX(0);
     }
 
     public void saltarMario(Jugador mario) {
@@ -144,5 +147,26 @@ public class Juego {
 
     public Jugador getJugador() {
         return nivelActual.getJugador();
+    }
+
+    public Proyectil dispararBolaFuego(Jugador mario) {
+        Proyectil bolaDeFuego = new BolaDeFuego(mario);
+        getNivelActual().agregarProyectil(bolaDeFuego);
+
+        return bolaDeFuego;
+    }
+
+    public void manejarMuerte() {
+        perderVida();
+        if (getVidas()!=0) {
+            reiniciar(modoJuego);
+        }
+        else{
+            mostrarPantallaFinJuego();
+        }
+    }
+
+    public void mostrarMarioMuerte(Jugador mario) {
+        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
     }
 }

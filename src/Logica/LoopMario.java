@@ -1,16 +1,8 @@
 package Logica;
 
 import Entidades.Entidad;
-import Entidades.Enemigos.Enemigo;
-import Entidades.EntidadInmovil.Moneda;
 import Entidades.Jugador;
-import Entidades.Plataformas.Plataforma;
-import Entidades.Power_Ups.PowerUp;
-import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
-import Entidades.Vacio;
-import EstadoMovimiento.MarioCaminando;
-import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Vista.Controladores.ControladorVistaJuego;
@@ -30,14 +22,11 @@ public class LoopMario implements Runnable {
 
     private boolean ejecutando;
     private Jugador mario;
-    private int VelocidadMario;
-    private ControladorVistaJuego controlador;
     private int direccionLocal = 0;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private boolean enIdle;
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
-    protected Nivel nivel;
     protected List<Entidad> EntidadesEliminar;
     protected int cooldownBola = 60;
     protected boolean empezarCooldown;
@@ -48,17 +37,14 @@ public class LoopMario implements Runnable {
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
-        this.controlador = juego.getControladorVistaJuego();
-        this.nivel = juego.getNivelActual();
         this.EntidadesEliminar=new ArrayList<Entidad>();
-        this.controladorColisiones = new ControladorColisiones(nivel, EntidadesEliminar);
+        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(), EntidadesEliminar);
         ejecutando = false;
         this.juego = juego;
     }
 
     public synchronized void comenzar() {
         ejecutando = true;
-        VelocidadMario = mario.getVelocidad();
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -92,7 +78,7 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
-        OyenteTeclado oyente = controlador.oyenteTeclado();
+        OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
 
             // Movimiento lateral
@@ -120,17 +106,13 @@ public class LoopMario implements Runnable {
         mario.setDireccion(direccionLocal);
 
         //Logica para lanzar bola de fuego
-        if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
-            cooldownBola=0;
-            int mitadDeMario = (int)(mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2));
-            System.out.println("Quiero lanzar un proyectil");
-            Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
-            bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), mitadDeMario, sprite);
-            bolaDeFuego.setDireccion(mario.getDireccion());
-            nivel.agregarProyectil(bolaDeFuego);
-            controlador.registrarEntidad(bolaDeFuego);
-            empezarCooldown = true;
-        }
+            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
+                cooldownBola=0;
+                bolaDeFuego = juego.dispararBolaFuego(mario);
+                juego.getControladorVistaJuego().registrarEntidad(bolaDeFuego);
+                empezarCooldown = true;
+            }
+
         if (cooldownBola==20){
             bolaDeFuego.setPosicionEnY(-100);
         }
@@ -139,75 +121,55 @@ public class LoopMario implements Runnable {
             cooldownBola++;
         }
 
-        controladorColisiones.colisionMarioConPlataforma(nivel.getPlataformas(), mario);
+        controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 
         while(!EntidadesEliminar.isEmpty()) {
-                nivel.getPlataformas().remove(EntidadesEliminar.getFirst());
+                juego.getNivelActual().getPlataformas().remove(EntidadesEliminar.getFirst());
                 EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
 
-        controladorColisiones.colisionMarioConEnemigos(nivel.getEnemigos(), mario);
+        controladorColisiones.colisionMarioConEnemigos(juego.getNivelActual().getEnemigos(), mario);
 
         while(!EntidadesEliminar.isEmpty()) {
-            nivel.getEnemigos().remove(EntidadesEliminar.getFirst());
+            juego.getNivelActual().getEnemigos().remove(EntidadesEliminar.getFirst());
             EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
 
-        controladorColisiones.colisionMarioConMonedas(nivel.getMonedas(), mario);
+        controladorColisiones.colisionMarioConMonedas(juego.getNivelActual().getMonedas(), mario);
 
         while(!EntidadesEliminar.isEmpty()) {
-            nivel.getMonedas().remove(EntidadesEliminar.getFirst());
+            juego.getNivelActual().getMonedas().remove(EntidadesEliminar.getFirst());
             EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
 
-        for (Proyectil proyectil : nivel.getProyectiles()) {
-//            proyectil.actualizarEntidad();
-        }
+        controladorColisiones.colisionMarioConPowerUps(juego.getNivelActual().getPowerUps(), mario);
 
         while(!EntidadesEliminar.isEmpty()) {
-            nivel.getProyectiles().remove(EntidadesEliminar.getFirst());
+            juego.getNivelActual().getPowerUps().remove(EntidadesEliminar.getFirst());
             EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
 
-        controladorColisiones.colisionMarioConPowerUps(nivel.getPowerUps(), mario);
+        controladorColisiones.colisionMarioConVacio(juego.getNivelActual().getVacios(), mario);
 
         while(!EntidadesEliminar.isEmpty()) {
-            nivel.getPowerUps().remove(EntidadesEliminar.getFirst());
+            juego.getNivelActual().getVacios().remove(EntidadesEliminar.getFirst());
             EntidadesEliminar.remove(EntidadesEliminar.getFirst());
         }
 
-        controladorColisiones.colisionMarioConVacio(nivel.getVacios(), mario);
-
-        while(!EntidadesEliminar.isEmpty()) {
-            nivel.getVacios().remove(EntidadesEliminar.getFirst());
-            EntidadesEliminar.remove(EntidadesEliminar.getFirst());
-        }
-        if(mario.getPosicionEnY()>460)
+        if(mario.getPosicionEnY()>460) {
             mario.setMorir(true);
+        }
+
         mario.getEstadoJugador().actualizarSprite();
         mario.actualizarEntidad();
-        mario.desplazarEnX(0);
+
     } else {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
-        empezarCooldownMorir();
-        if (timerAnimacionMorir == 100) {
-            juego.perderVida();
-
-                if (juego.getVidas()!=0) {
-                    juego.reiniciar(juego.modoJuego);
-                }
-                else{
-                    juego.mostrarPantallaFinJuego();
-                }
-
+            juego.mostrarMarioMuerte(mario);
+            empezarCooldownMorir();
+            if (timerAnimacionMorir == 100) {
+                juego.manejarMuerte();
+            }
         }
-
-
-        }
-        if(mario.getEstadoJugador().esInmortal()){
-
-        }
-
     }
 
     private void empezarCooldownMorir() {
@@ -220,7 +182,7 @@ public class LoopMario implements Runnable {
 
 
     private void renderizar() {
-        controlador.actualizarObserver();
-        controlador.refrescar();
+        juego.getControladorVistaJuego().actualizarObserver();
+        juego.getControladorVistaJuego().refrescar();
     }
 }

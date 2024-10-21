@@ -21,7 +21,7 @@ public interface FabricaEntidad {
     public Estrella crearEstrella(int x, int y);
     public FlorDeFuego crearFlorDeFuego(int x, int y);
     public SuperChampinion crearSuperChampinion(int x, int y);
-    public BolaDeFuego crearBolaDeFuego(int x, int y);
+    public BolaDeFuego crearBolaDeFuego(Jugador jugador);
     public ProyectilSpiny crearProyectilSpiny(int x, int y);
     public LadrilloSolido crearLadrilloSolido(int x, int y);
     public BloqueSolido crearBloqueSolido(int x, int y);
