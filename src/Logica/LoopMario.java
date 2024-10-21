@@ -93,34 +93,29 @@ public class LoopMario implements Runnable {
 
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
-        boolean actualizacionRequerida = false;
         if(!mario.getMorir()) {
+
             // Movimiento lateral
             if (oyente.teclaIzquierda || oyente.teclaDerecha) {
                 enIdle = false;
-                if (oyente.teclaIzquierda) {
-                    mario.setVelocidad(VelocidadMario);
-                    mario.desplazarEnX(-1);
-                    direccionLocal = -1;
-
-                } else {
-                    mario.setVelocidad(VelocidadMario);
-                    mario.desplazarEnX(1);
-                    direccionLocal = 1;
+                if(oyente.teclaIzquierda) {
+                    juego.moverMario(-1, mario);
                 }
-
+                else {
+                    enIdle = false;
+                    juego.moverMario(1, mario);
+                }
+                direccionLocal = mario.getDireccion();
             }
+
         if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
             mario.setEstadoMovimiento(new MarioParado(mario));
 
 
         // Logica de salto
         if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
-            if (mario.estaEnPlataforma())
-                mario.setEnPlataforma(false);
             enIdle = false;
-            mario.saltar();
-            actualizacionRequerida = true;
+            juego.saltarMario(mario);
         }
         mario.setDireccion(direccionLocal);
 

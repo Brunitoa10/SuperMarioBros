@@ -67,8 +67,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
-
-
     @Override
     public int getTiempo() {
         return new Random(1000).nextInt(2000);

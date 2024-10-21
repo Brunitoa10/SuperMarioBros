@@ -127,6 +127,17 @@ public class Juego {
         return oyenteTeclado;
     }
 
+    public void moverMario(int direccionMario, Jugador mario) {
+        mario.desplazarEnX(direccionMario);
+        mario.setDireccion(direccionMario);
+    }
+
+    public void saltarMario(Jugador mario) {
+        if (mario.estaEnPlataforma())
+            mario.setEnPlataforma(false);
+        mario.saltar();
+    }
+
     public ControladorVistaJuego getControladorVistaJuego() {
         return controladorVistas;
     }
