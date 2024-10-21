@@ -4,6 +4,8 @@ import Entidades.Enemigos.Enemigo;
 import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class HiloRestoEntidades implements Runnable {
 
@@ -17,6 +19,7 @@ public class HiloRestoEntidades implements Runnable {
     private long lastRenderTime = System.nanoTime();
     private final long renderInterval = 16_000_000; // Render cada 16ms (60 FPS)
     private Nivel nivelActual;
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public HiloRestoEntidades(Juego juego) {
         nivelActual = juego.getNivelActual();
@@ -29,31 +32,23 @@ public class HiloRestoEntidades implements Runnable {
         hilo.start();
     }
 
+    public synchronized void detener() {
+        ejecutando = false;
+        scheduler.shutdown();
+    }
+
     @Override
     public void run() {
         while (ejecutando) {
             long now = System.nanoTime();
-
-            // Actualización de entidades
             if (now - lastUpdateTime >= updateInterval) {
                 lastUpdateTime = now;
                 tick();
-            }
-
-            // Renderizado de entidades
-            if (now - lastRenderTime >= renderInterval) {
-                lastRenderTime = now;
                 renderizar();
-            }
-
-            // Pausa para aliviar la carga del CPU
-            try {
-                Thread.sleep(1); // Una pequeña pausa para evitar la sobrecarga
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
+
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {

@@ -34,6 +34,7 @@ public class PanelPantallaNivel extends JPanel {
       inicializarComponentes();
     }
 
+
     private void inicializarComponentes() {
         agregarPanelSuperior();
         agregarPanelNivelConFondoYScroll();

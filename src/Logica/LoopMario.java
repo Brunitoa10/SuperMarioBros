@@ -43,6 +43,8 @@ public class LoopMario implements Runnable {
     protected boolean empezarCooldown;
     protected Proyectil bolaDeFuego;
     protected ControladorColisiones controladorColisiones;
+    protected int timerAnimacionMorir =0;
+    protected Juego juego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -51,6 +53,7 @@ public class LoopMario implements Runnable {
         this.EntidadesEliminar=new ArrayList<Entidad>();
         this.controladorColisiones = new ControladorColisiones(nivel, EntidadesEliminar);
         ejecutando = false;
+        this.juego = juego;
     }
 
     public synchronized void comenzar() {
@@ -191,11 +194,23 @@ public class LoopMario implements Runnable {
         mario.desplazarEnX(0);
     } else {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
-    }
+        empezarCooldownMorir();
+        if (timerAnimacionMorir == 100) {
+                if (mario.getVidas()!=0)
+            juego.reiniciar(juego.modoJuego);
+
+        }
+
+
+        }
         if(mario.getEstadoJugador().esInmortal()){
 
         }
 
+    }
+
+    private void empezarCooldownMorir() {
+        timerAnimacionMorir++;
     }
 
     private void empezarCooldown() {

@@ -43,6 +43,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         configurarPaneles();
     }
 
+    public void reiniciarPanelPantallaNivel(){
+        panelPantallaNivel = new PanelPantallaNivel(this);
+    }
+
     private void configurarPaneles() {
         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
     }

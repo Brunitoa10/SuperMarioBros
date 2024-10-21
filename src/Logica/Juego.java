@@ -10,11 +10,12 @@ import Fabricas.FabricaSpriteRegistro;
 import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
 import Vista.Controladores.ControladorVistaJuego;
+import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
 
 public class Juego {
 
-    protected ControladorVistaJuego controladorVistas;
+    protected GUI controladorVistas;
     protected GeneradorNivel generadorNivel;
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidad fabricaEntidades;
@@ -25,13 +26,13 @@ public class Juego {
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
 
-    public Juego(ControladorVistaJuego controladorVistas) {
+    public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
 
     // Comunicacion con parte grafica
-    public void setControladorVistas(ControladorVistaJuego controladorVistas) {
+    public void setControladorVistas(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
     }
 
@@ -62,7 +63,11 @@ public class Juego {
         hiloRestoEntidades.comenzar();
     }
 
-    public void reiniciar(Nivel nivel) {
+    public void reiniciar(String nivelactual) {
+        loopMario.detener();
+        hiloRestoEntidades.detener();
+        controladorVistas.reiniciarPanelPantallaNivel();
+        iniciar(nivelactual);
 
     }
 
@@ -85,6 +90,12 @@ public class Juego {
     }
 
     protected void registrarObserversParaEntidades(List<? extends Entidad> entidades) {
+        for (Entidad entidad : entidades) {
+            Observer observer = controladorVistas.registrarEntidad(entidad);
+            entidad.registrarObserver(observer);
+        }
+    }
+    public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
         for (Entidad entidad : entidades) {
             Observer observer = controladorVistas.registrarEntidad(entidad);
             entidad.registrarObserver(observer);
