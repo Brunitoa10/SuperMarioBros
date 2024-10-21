@@ -122,9 +122,10 @@ public class LoopMario implements Runnable {
 
         //Logica para lanzar bola de fuego
         if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego()) {
+            int mitadDeMario = (int)(mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2));
             System.out.println("Quiero lanzar un proyectil");
             Sprite sprite = new Sprite("src/Recursos/Sprites/original/fireball.png", 16, 16);
-            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), (int) (mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2)), sprite);
+            BolaDeFuego bolaDeFuego = new BolaDeFuego((int) mario.getHitbox().getMaxX(), mitadDeMario, sprite);
             bolaDeFuego.setDireccion(mario.getDireccion());
             nivel.agregarProyectil(bolaDeFuego);
             controlador.registrarEntidad(bolaDeFuego);
