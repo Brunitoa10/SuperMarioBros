@@ -178,8 +178,6 @@ public class LoopMario implements Runnable {
                 if (mario.estaEnPlataforma()) {
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
                     mario.setEnPlataforma(false);
-                } else {
-
                 }
 
                 //hacer
@@ -213,9 +211,9 @@ public class LoopMario implements Runnable {
 
     private boolean VacioColisionoAbajo(Vacio vacio) {
         boolean Colisiono = false;
-        int tolerancia=5;
-        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-tolerancia) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+tolerancia ) {
-            if (mario.getPosicionEnY() + mario.getHitbox().getHeight() <= vacio.getPosicionEnY()) {
+        int toleranciaX=5;
+        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX()-toleranciaX) && mario.getPosicionEnX()+mario.getHitbox().getWidth() <= vacio.getPosicionEnX()+vacio.getHitbox().getWidth()+toleranciaX ) {
+            if ((mario.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
                 Colisiono = true;
             }
         }
