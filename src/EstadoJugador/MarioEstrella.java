@@ -11,8 +11,12 @@ public class MarioEstrella implements EstadoJugador{
         this.mario = mario;
     }
 
-    public boolean recibeDanio() {
-        return false;
+    public void recibeDanio() {
+    }
+
+    @Override
+    public boolean esInmortal() {
+        return true;
     }
 
     @Override

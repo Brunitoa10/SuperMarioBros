@@ -41,11 +41,12 @@ public class BuzzyBeetle extends Enemigo {
             mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(!mario.getEstadoJugador().recibeDanio()) {
+            if(mario.getEstadoJugador().esInmortal()) {
                 this.setAEliminar();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
             }
             else {
+                mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO);
             }
         }

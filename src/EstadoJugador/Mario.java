@@ -13,10 +13,13 @@ public class Mario implements EstadoJugador {
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 28, 35);
     }
 
-    public boolean recibeDanio() {
+    public void recibeDanio() {
         mario.setVidas(mario.getVidas()-1);
         mario.setMorir(true);
-        return true;
+    }
+
+    public boolean esInmortal(){
+        return false;
     }
 
     @Override

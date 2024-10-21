@@ -32,17 +32,13 @@ public class Spiny extends Enemigo {
     }
 
     public void interactuar(Jugador mario) {
-        if(mario.colisionAbajo(this)) {
-            this.setAEliminar();
-            this.setPosicionEnY(-100);
-            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO);
-        }
-        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(!mario.getEstadoJugador().recibeDanio()) {
+        if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+            if(mario.getEstadoJugador().esInmortal())  {
                 this.setAEliminar();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO);
             }
             else {
+                mario.getEstadoJugador().recibeDanio();
                 mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO);
             }
         }

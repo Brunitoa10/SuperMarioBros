@@ -15,9 +15,13 @@ public class SuperMarioFuego implements EstadoJugador {
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 48);
     }
 
-    public boolean recibeDanio() {
+    public void recibeDanio() {
         mario.setEstadoJugador(new Mario(mario));
-        return true;
+    }
+
+    @Override
+    public boolean esInmortal() {
+        return false;
     }
 
     @Override
