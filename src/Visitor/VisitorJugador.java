@@ -35,7 +35,8 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Moneda moneda) {
-        //moneda.getSprite(null);
+        moneda.setAEliminar();
+        moneda.setPosicionEnY(-100);
     }
 
     public void visit(Plataforma plataforma){

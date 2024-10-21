@@ -1,9 +1,11 @@
 package Entidades.Enemigos;
 
 import Entidades.Entidad;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
+import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 
 public class Lakitu extends Enemigo {
@@ -25,4 +27,19 @@ public class Lakitu extends Enemigo {
     public void accept(Visitor v) {
         v.visit(this);
     }
+
+    public void interactuar(Jugador mario) {
+        if(mario.colisionAbajo(this)) {
+            this.setAEliminar();
+            this.setPosicionEnY(-100);
+            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
+        }
+        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+            if(!mario.getEstadoJugador().recibeDanio()) {
+                this.setAEliminar();
+                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
+            }
+        }
+    }
+
 }
