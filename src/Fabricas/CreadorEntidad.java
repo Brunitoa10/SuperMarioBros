@@ -14,10 +14,7 @@ import Entidades.Plataformas.BloquePregunta;
 import Entidades.Plataformas.BloqueSolido;
 import Entidades.Plataformas.LadrilloSolido;
 import Entidades.Plataformas.Tuberia;
-import Entidades.Power_Ups.ChampinionVerde;
-import Entidades.Power_Ups.Estrella;
-import Entidades.Power_Ups.FlorDeFuego;
-import Entidades.Power_Ups.SuperChampinion;
+import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
@@ -128,9 +125,9 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public BloquePregunta crearBloquePregunta(int x, int y, int recompensa) {
+    public BloquePregunta crearBloquePregunta(int x, int y, PowerUp p) {
         Sprite bloquePreguntaSprite = fabricaSprites.crearSpriteBloquePregunta();
-        return new BloquePregunta(x, y, bloquePreguntaSprite, recompensa);
+        return new BloquePregunta(x, y, bloquePreguntaSprite, p);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Generador;
 
 import Entidades.Plataformas.SueloNivel;
+import Entidades.Power_Ups.PowerUp;
 import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
@@ -106,21 +107,29 @@ public class GeneradorNivel {
         }
     }
 
-    private void casoPowerUps(int idEntidad, int x, int y, Nivel nivel) {
+    private PowerUp casoPowerUps(int idEntidad, int x, int y, Nivel nivel) {
+        PowerUp Creado=fabricaEntidades.crearSuperChampinion(x,y);
+
         switch (idEntidad) {
             case 5:
-                nivel.agregarPowerUp(fabricaEntidades.crearFlorDeFuego(x,y));
+                Creado=fabricaEntidades.crearFlorDeFuego(x,y);
+                nivel.agregarPowerUp(Creado);
                 break;
             case 6:
-                nivel.agregarPowerUp(fabricaEntidades.crearEstrella(x,y));
+                Creado=fabricaEntidades.crearEstrella(x,y);
+                nivel.agregarPowerUp(Creado);
                 break;
             case 7:
-                nivel.agregarPowerUp(fabricaEntidades.crearChampinionVerde(x,y));
+                Creado=fabricaEntidades.crearChampinionVerde(x,y);
+                nivel.agregarPowerUp(Creado);
                 break;
             case 8:
-                nivel.agregarPowerUp(fabricaEntidades.crearSuperChampinion(x,y));
+                Creado=fabricaEntidades.crearSuperChampinion(x,y);
+                nivel.agregarPowerUp(Creado);
                 break;
         }
+
+        return Creado;
     }
 
     private void generarVaciosYSuelosNivel(Nivel nivel) {
@@ -142,7 +151,7 @@ public class GeneradorNivel {
                 nivel.agregarPlataforma(fabricaEntidades.crearLadrilloSolido(x,y));
                 break;
             case 3:
-                nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x,y,idPowerUp));
+                nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x,y,casoPowerUps(idPowerUp,x,y-32,nivel)));
                 break;
             case 4:
                 nivel.agregarPlataforma(fabricaEntidades.crearTuberia(x,y));

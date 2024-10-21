@@ -26,7 +26,7 @@ public interface FabricaEntidad {
     public LadrilloSolido crearLadrilloSolido(int x, int y);
     public BloqueSolido crearBloqueSolido(int x, int y);
     public Tuberia crearTuberia(int x, int y);
-    public BloquePregunta crearBloquePregunta(int x, int y, int recompensa);
+    public BloquePregunta crearBloquePregunta(int x, int y, PowerUp p);
     public Jugador crearJugador(int x, int y);
     public Bandera crearBandera(int x, int y);
     public Princesa crearPrincesa(int x, int y);

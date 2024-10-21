@@ -14,6 +14,11 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
     }
 
     public void interactuar(Jugador j) {
+
+        PowerUp powerUp=bloquePregunta.getPowerUp();
+        powerUp.getHitbox().setBounds(powerUp.getPosicionEnX(),powerUp.getPosicionEnY(),32,32);
+        powerUp.getSprite().setRutaImagen(bloquePregunta.getRutaImagen()+".gif");
+        powerUp.actualizarEntidad();
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));
     }
 }
