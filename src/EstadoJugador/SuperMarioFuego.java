@@ -34,5 +34,14 @@ public class SuperMarioFuego implements EstadoJugador {
         return true;
     }
 
+    @Override
+    public boolean elHongoLoHaceSuperMario() {
+        return false;
+    }
+    public boolean puedeSerMarioFuego(){
+        return false;
+    }
+
+
 }
 

@@ -31,4 +31,11 @@ public class Mario implements EstadoJugador {
         return false;
     }
 
+    public boolean elHongoLoHaceSuperMario(){
+        return true;
+    }
+    public boolean puedeSerMarioFuego(){
+        return true;
+    }
+
 }

@@ -7,5 +7,7 @@ public interface EstadoJugador {
     public boolean puedeLanzarBolaFuego();
     public void actualizarSprite();
     public boolean puedeRomperBloques();
+    public boolean elHongoLoHaceSuperMario();
+    public boolean puedeSerMarioFuego();
 
 }

@@ -29,4 +29,10 @@ public class MarioEstrella implements EstadoJugador{
     public boolean puedeRomperBloques() {
         return false;
     }
+    public boolean elHongoLoHaceSuperMario(){
+        return false;
+    }
+    public boolean puedeSerMarioFuego(){
+        return true;
+    }
 }

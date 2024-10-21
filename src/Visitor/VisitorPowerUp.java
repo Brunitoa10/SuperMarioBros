@@ -18,9 +18,23 @@ public class VisitorPowerUp implements Visitor {
 
     @Override
     public void visit(Jugador j) {
+        if (j.getEstadoJugador().elHongoLoHaceSuperMario()) {
             powerUp.setEstadoMario(j);
             powerUp.setPosicionEnY(-100);
             powerUp.getSprite().setPosicionY(-100);
+        }
+        else if (j.getEstadoJugador().puedeSerMarioFuego()) {
+            powerUp.setEstadoMario(j);
+            powerUp.setPosicionEnY(-100);
+            powerUp.getSprite().setPosicionY(-100);
+        }
+        else{
+            j.setPuntaje(j.getPuntaje() + powerUp.getPuntaje());
+            powerUp.setPosicionEnY(-100);
+            powerUp.getSprite().setPosicionY(-100);
+        }
+
+
     }
 
     @Override
