@@ -81,7 +81,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     @Override
     public void accept(Visitor v) {
-
+        v.visit(this);
     }
 
     public void desplazarEnX(int direccion) {

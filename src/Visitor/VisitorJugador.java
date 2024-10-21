@@ -31,7 +31,21 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(PowerUp p) {
-
+        if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
+            p.setEstadoMario(mario);
+            p.setPosicionEnY(-100);
+            p.getSprite().setPosicionY(-100);
+        }
+        else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
+            p.setEstadoMario(mario);
+            p.setPosicionEnY(-100);
+            p.getSprite().setPosicionY(-100);
+        }
+        else{
+            mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
+            p.setPosicionEnY(-100);
+            p.getSprite().setPosicionY(-100);
+        }
     }
 
     @Override
@@ -60,7 +74,7 @@ public class VisitorJugador implements Visitor {
         }
         else if (mario.colisionArriba(plataforma)) {
             mario.setEstadoMovimiento(new MarioEnAire(mario));
-            plataforma.getVisitor().visit(mario);
+            plataforma.interactuar(mario);
             System.out.println("colision arriba!");
         }
     }

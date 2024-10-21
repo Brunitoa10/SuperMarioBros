@@ -5,16 +5,12 @@ import Entidades.Jugador;
 import Entidades.Plataformas.StateBloquePregunta.BloquePreguntaLleno;
 import Entidades.Plataformas.StateBloquePregunta.EstadoBloquePregunta;
 import Entidades.Power_Ups.PowerUp;
-import Fabricas.FabricaSprites;
 import Fabricas.Sprite;
-import Visitor.VisitorPlataforma;
-import Visitor.Visitor;
 
 public class BloquePregunta extends Plataforma{
 
     protected PowerUp powerUp;
     protected EstadoBloquePregunta estado;
-    protected VisitorPlataforma visitor;
     protected boolean meRompi=false;
     protected String nombre;
 
@@ -25,21 +21,12 @@ public class BloquePregunta extends Plataforma{
         nombre=p.getSprite().getRutaImagen();
         p.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
         this.estado = new BloquePreguntaLleno(this);
-        visitor = new VisitorPlataforma(this);
 
     }
 
     public boolean detectarColision(Entidad c) {
 
         return false;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
-    }
-
-    public Visitor getVisitor() {
-        return visitor;
     }
 
     public void interactuar(Jugador j){

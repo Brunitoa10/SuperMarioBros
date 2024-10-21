@@ -26,7 +26,7 @@ public class ControladorColisiones {
             if (mario.detectarColision((plataforma))) {
                 int PosicionReemplazarX=plataforma.getPosicionEnX();
                 int PosicionReemplazarY=plataforma.getPosicionEnY();
-                mario.getVisitorJugador().visit(plataforma);
+                plataforma.accept(mario.getVisitorJugador());
                 plataforma.actualizarEntidad();
                 if(plataforma.aEliminar()){
                     nivelActual.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
@@ -39,7 +39,7 @@ public class ControladorColisiones {
     public void colisionMarioConEnemigos(List<Enemigo> listaEnemigos, Jugador mario) {
         for (Enemigo enemigo : listaEnemigos) {
             if(mario.detectarColision(enemigo)) {
-                enemigo.getVisitorEnemigo().visit(mario);
+                mario.accept(enemigo.getVisitorEnemigo());
                 enemigo.actualizarEntidad();
             }
         }
@@ -48,7 +48,7 @@ public class ControladorColisiones {
     public void colisionMarioConMonedas(List<Moneda> listaMonedas, Jugador mario) {
         for(Moneda moneda : listaMonedas) {
             if(mario.detectarColision(moneda)) {
-                mario.getVisitorJugador().visit(moneda);
+                moneda.accept(mario.getVisitorJugador());
                 moneda.actualizarEntidad();
             }
         }
@@ -57,7 +57,7 @@ public class ControladorColisiones {
     public void colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
-                powerUp.getVisitor().visit(mario);
+                powerUp.accept(mario.getVisitorJugador());
                 powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 listaAEliminar.add(powerUp);

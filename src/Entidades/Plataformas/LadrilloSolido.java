@@ -3,15 +3,11 @@ package Entidades.Plataformas;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
-import Visitor.Visitor;
-import Visitor.VisitorPlataforma;
 
 
 public class LadrilloSolido extends Plataforma {
-    protected VisitorPlataforma visitor;
     public LadrilloSolido(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        visitor = new VisitorPlataforma(this);
     }
 
     public boolean detectarColision(Entidad c) {
@@ -20,20 +16,12 @@ public class LadrilloSolido extends Plataforma {
 
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
-    }
-
     public void interactuar(Jugador jugador) {
         if (jugador.puedeRomperBloques()) {
             setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
-
         }
     }
 
-    public Visitor getVisitor() {
-        return visitor;
-    }
 
 }
