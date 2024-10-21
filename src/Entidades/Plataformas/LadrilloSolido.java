@@ -27,8 +27,8 @@ public class LadrilloSolido extends Plataforma {
     public void interactuar(Jugador jugador) {
         if (jugador.puedeRomperBloques()) {
             setAEliminar();
-            this.getSprite().setPosicionY(-100);
-            this.setPosicionEnY(-100);
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
+
         }
     }
 
