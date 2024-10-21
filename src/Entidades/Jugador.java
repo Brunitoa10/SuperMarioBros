@@ -22,17 +22,19 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected Sonido sonido;
     protected boolean estaVivo;
     protected int puntaje;
+    protected boolean muerte;
     protected int vidas;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         VisitorJugador = new VisitorJugador(this);
         this.puntaje = 0;
-        this.velocidad = 4;
+        this.velocidad = 15;
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
         this.enPlataforma = false;
         this.estaVivo = true;
+        muerte=false;
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -131,6 +133,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public boolean estaVivo() {
         return vidas != 0;
+    }
+
+    public boolean getMorir(){
+        return muerte;
+    }
+    public void setMorir(boolean morir) {
+        muerte = morir;
     }
 
     public int getVidas() {

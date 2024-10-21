@@ -90,7 +90,7 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = controlador.oyenteTeclado();
         boolean actualizacionRequerida = false;
-        if(!mario.estaVivo()) {
+        if(!mario.getMorir()) {
             // Movimiento lateral
             if (oyente.teclaIzquierda || oyente.teclaDerecha) {
                 enIdle = false;
@@ -184,13 +184,12 @@ public class LoopMario implements Runnable {
                 if (mario.getPosicionEnY() == SUELO_Y) {
                     caerAlInfinito = true;
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
-
                 }
 
             }
         }
         if(mario.getPosicionEnY()>460)
-            mario.setEstaVivo(false);
+            mario.setMorir(true);
 
         while(!EntidadesEliminar.isEmpty()) {
             EntidadesEliminar.remove(EntidadesEliminar.getFirst());
