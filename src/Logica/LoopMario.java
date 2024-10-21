@@ -155,6 +155,10 @@ public class LoopMario implements Runnable {
                 }
             }
         }
+        while(!EntidadesEliminar.isEmpty()) {
+                nivel.getPlataformas().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
 
         for (Enemigo e : nivel.getEnemigos()) {
             if(mario.detectarColision(e)) {
@@ -163,16 +167,29 @@ public class LoopMario implements Runnable {
             }
         }
 
+            while(!EntidadesEliminar.isEmpty()) {
+                nivel.getEnemigos().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
+
         for(Moneda m : nivel.getMonedas()) {
             if(mario.detectarColision(m)) {
                 mario.getVisitorJugador().visit(m);
                 m.actualizarEntidad();
             }
         }
+            while(!EntidadesEliminar.isEmpty()) {
+                nivel.getMonedas().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
 
         for (Proyectil proyectil : nivel.getProyectiles()) {
 //            proyectil.actualizarEntidad();
         }
+            while(!EntidadesEliminar.isEmpty()) {
+                nivel.getProyectiles().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
 
         for (PowerUp p : nivel.getPowerUps()) {
             if (mario.detectarColision((p))) {
@@ -183,6 +200,11 @@ public class LoopMario implements Runnable {
                 EntidadesEliminar.add(p);
             }
         }
+
+            while(!EntidadesEliminar.isEmpty()) {
+                nivel.getPowerUps().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
 
         for (Vacio vacio : nivel.getVacios()) {
             if (VacioColisionoAbajo(vacio)) {
@@ -197,15 +219,14 @@ public class LoopMario implements Runnable {
                     caerAlInfinito = true;
                     mario.setEstadoMovimiento(new MarioEnAire(mario));
                 }
-
             }
         }
+            while(!EntidadesEliminar.isEmpty()) {
+                nivel.getVacios().remove(EntidadesEliminar.getFirst());
+                EntidadesEliminar.remove(EntidadesEliminar.getFirst());
+            }
         if(mario.getPosicionEnY()>460)
             mario.setMorir(true);
-
-        while(!EntidadesEliminar.isEmpty()) {
-            EntidadesEliminar.remove(EntidadesEliminar.getFirst());
-        }
             mario.getEstadoJugador().actualizarSprite();
             mario.actualizarEntidad();
             mario.desplazarEnX(0);
