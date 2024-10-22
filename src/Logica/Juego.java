@@ -30,13 +30,13 @@ public class Juego {
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
 
-    public Juego(GUI controladorVistas) {
+    public Juego(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
 
     // Comunicacion con parte grafica
-    public void setControladorVistas(GUI controladorVistas) {
+    public void setControladorVistas(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
     }
 

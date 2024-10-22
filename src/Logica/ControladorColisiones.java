@@ -6,6 +6,7 @@ import Entidades.EntidadInmovil.Moneda;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Jugador;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
 import Fabricas.Sprite;
@@ -14,11 +15,9 @@ import java.util.List;
 
 public class ControladorColisiones {
     protected Nivel nivelActual;
-    protected List<Entidad> listaAEliminar;
 
-    public ControladorColisiones(Nivel nivelActual, List<Entidad> listaEliminar) {
+    public ControladorColisiones(Nivel nivelActual) {
         this.nivelActual = nivelActual;
-        this.listaAEliminar = listaEliminar;
     }
 
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
@@ -30,7 +29,7 @@ public class ControladorColisiones {
                 plataforma.actualizarEntidad();
                 if(plataforma.aEliminar()){
                     nivelActual.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
-                    listaAEliminar.add(plataforma);
+                    nivelActual.getEntidadesAEliminar().add(plataforma);
                 }
             }
         }
@@ -60,7 +59,7 @@ public class ControladorColisiones {
                 powerUp.accept(mario.getVisitorJugador());
                 powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
-                listaAEliminar.add(powerUp);
+                nivelActual.getEntidadesAEliminar().add(powerUp);
             }
         }
     }
@@ -86,4 +85,21 @@ public class ControladorColisiones {
         }
         return Colisiono;
     }
+
+    public void colisionProyectilConEnemigo(List<Proyectil> listaProyectiles, Enemigo enemigo) {
+        for(Proyectil proyectil : listaProyectiles) {
+            proyectil.actualizarEntidad();
+            int tolerancia = 5;
+            if(proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
+                    proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
+                proyectil.accept(enemigo.getVisitorEnemigo());
+                enemigo.actualizarEntidad();
+                proyectil.actualizarEntidad();
+                nivelActual.getProyectiles().remove(proyectil);
+                nivelActual.getEnemigos().remove(enemigo);
+                //nivelActual.getEntidadesAEliminar().addLast(enemigo);
+            }
+        }
+    }
+
 }

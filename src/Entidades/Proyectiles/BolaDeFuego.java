@@ -9,7 +9,7 @@ public class BolaDeFuego extends Proyectil {
 
     public BolaDeFuego(Jugador mario) {
         super((int) mario.getHitbox().getMaxX(), calcularMitadDeMario(mario) , crearSprite());
-        this.velocidad = 10;
+        this.velocidad = 7;
         this.setDireccion(mario.getDireccion());
     }
 

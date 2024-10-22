@@ -14,19 +14,18 @@ import java.util.List;
 
 public class Nivel {
 
-    protected String rutaNivelTxt;
     protected List<Enemigo> enemigos;
     protected List<Plataforma> plataformas;
     protected List<PowerUp> powerUps;
     protected List<Proyectil> proyectiles;
     protected List<Moneda> monedas;
     protected List<Vacio> vacios;
+    protected List<Entidad> entidadesAEliminar;
     protected Jugador jugador;
     protected Bandera bandera;
     protected Princesa princesa;
     protected int vida;
     protected int puntajeTotal;
-    protected FabricaEntidad fabricaEntidades;
 
         public Nivel(int numero) {
             this.puntajeTotal = 0;
@@ -37,6 +36,7 @@ public class Nivel {
             this.proyectiles = new LinkedList<Proyectil>();
             this.monedas = new LinkedList<Moneda>();
             this.vacios = new LinkedList<Vacio>();
+            this.entidadesAEliminar = new LinkedList<Entidad>();
         }
 
         public Jugador getJugador() {
@@ -127,6 +127,8 @@ public class Nivel {
             puntajeTotal = puntajeSetter;
         }
 
-
+        public List<Entidad> getEntidadesAEliminar() {
+            return entidadesAEliminar;
+        }
 
     }
