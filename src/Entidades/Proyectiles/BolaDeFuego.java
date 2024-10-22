@@ -30,5 +30,12 @@ public class BolaDeFuego extends Proyectil {
         v.visit(this);
     }
 
+    public void hagoDaño(Jugador j){
+
+    }
+
+    public void Interactuar(Jugador j){
+
+    }
 
 }

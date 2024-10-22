@@ -1,6 +1,7 @@
 package Entidades.Proyectiles;
 
 import Entidades.Entidad;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
@@ -23,5 +24,13 @@ protected VisitorProyectil visitor;
 
     public VisitorProyectil getVisitor() {
         return visitor;
+    }
+
+    public void hagoDaño(Jugador j){
+        j.getEstadoJugador().recibeDanio();
+    }
+
+    public void Interactuar(Jugador j){
+
     }
 }

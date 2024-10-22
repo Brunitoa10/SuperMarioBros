@@ -82,14 +82,7 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Proyectil proyectil) {
-        if(proyectil.colisionIzquierda(mario)){
-            proyectil.setDireccion(1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
-        if(proyectil.colisionDerecha(mario)){
-            proyectil.setDireccion(-1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
+        proyectil.Interactuar(mario);
     }
 
 
