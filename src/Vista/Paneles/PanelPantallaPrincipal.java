@@ -18,6 +18,7 @@ import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 
+
 public class PanelPantallaPrincipal extends JPanel {
 
     private static final long serialVersionUID = 1L;

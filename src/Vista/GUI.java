@@ -1,8 +1,11 @@
 package Vista;
 
 import java.awt.Toolkit;
+import java.util.Stack;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
@@ -32,12 +35,14 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected OyenteTeclado oyente;
     protected ConfiguracionJuego configuracion;
     protected Juego miJuego;
+    protected Stack<JPanel> historialPaneles;
 
     public GUI() {
         configuracion = ConfiguracionJuego.obtenerInstancia();
         ranking = new Ranking();
         this.miJuego = new Juego(this);
-
+        historialPaneles = new Stack<>();
+        
         registrarOyenteVentana();
         configurarVentana();
         configurarPaneles();
@@ -70,6 +75,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void mostrarPantallaInicial(String modoJuego) {
         configuracion.setModoJuego(modoJuego); // Actualizamos el modo de juego en ConfiguracionJuego
         panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
+        historialPaneles.push(panelPantallaPrincipal);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
         panelPantallaFinJuego = new PanelPantallaFinJuego(this,modoJuego);
@@ -120,6 +126,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public void mostrarPantallaNivel() {
+    	historialPaneles.push(panelPantallaNivel);
         ventana.setContentPane(panelPantallaNivel);
         oyente = new OyenteTeclado();
         panelPantallaNivel.addKeyListener(oyente);
@@ -130,19 +137,34 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public void mostrarPantallaFinJuego() {
+    	historialPaneles.push(panelPantallaFinJuego);
         ventana.setContentPane(panelPantallaFinJuego);
         refrescar();
     }
 
     @Override
     public void mostrarPantallaRanking() {
+    	historialPaneles.push(panelPantallaRanking);
         ventana.setContentPane(panelPantallaRanking);
         refrescar();
     }
 
     public void mostrarPantallaModoJuego() {
+    	historialPaneles.push(panelPantallaModoJuego);
         ventana.setContentPane(panelPantallaModoJuego);
         refrescar();
+    }
+    
+    public void volverAlPanelAnterior() {
+        if (!historialPaneles.isEmpty()) {
+            JPanel panelAnterior = historialPaneles.pop(); // Obtiene y elimina el último panel
+            ventana.setContentPane(panelAnterior); // Muestra el panel anterior
+            refrescar();
+        }
+    }
+    
+    public void agregarOyenteBotonVolver(JButton botonVolver) {
+        botonVolver.addActionListener(e -> volverAlPanelAnterior());
     }
 
     @Override

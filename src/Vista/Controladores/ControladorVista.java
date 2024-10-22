@@ -22,4 +22,6 @@ public interface ControladorVista {
     public String obtenerModoJuego();
 
     public void mostrarPantallaFinJuego();
+
+	public void volverAlPanelAnterior();
 }

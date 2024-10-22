@@ -123,7 +123,9 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     public void actualizarObserver() {
-        observerJugador.actualizarObserver();
-        observerEntidad.actualizarObserver();
+    	if(observerJugador != null && observerEntidad != null) {
+    		observerJugador.actualizarObserver();
+    		observerEntidad.actualizarObserver();
+    	}
     }
 }
