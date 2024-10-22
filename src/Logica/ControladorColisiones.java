@@ -104,7 +104,6 @@ public class ControladorColisiones {
                 proyectil.accept(enemigo.getVisitorEnemigo());
                 enemigo.actualizarEntidad();
                 proyectil.actualizarEntidad();
-                nivelActual.getProyectiles().remove(proyectil);
                 nivelActual.getEnemigos().remove(enemigo);
                 //nivelActual.getEntidadesAEliminar().addLast(enemigo);
             }

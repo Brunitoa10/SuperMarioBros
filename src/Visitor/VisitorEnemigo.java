@@ -43,7 +43,5 @@ public class VisitorEnemigo implements Visitor {
 
     public void visit(Proyectil proyectil){
         enemigo.interactuarConProyectil(proyectil);
-        proyectil.setAEliminar();
-        proyectil.setPosicionEnY(-100);
     }
 }

@@ -36,10 +36,8 @@ public class VisitorProyectil implements Visitor {
 
     @Override
     public void visit(Plataforma p) {
-        System.out.println("Colisione anashe");
-        if(proyectil.colisionIzquierda(p) || proyectil.colisionDerecha(p)){
            proyectil.setDireccion(-1*proyectil.getDireccion());
-        }
+
     }
 
     @Override
