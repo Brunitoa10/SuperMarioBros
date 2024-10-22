@@ -1,19 +1,11 @@
 package Logica;
 
-import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import EstadoMovimiento.MarioParado;
-import Fabricas.Sprite;
-import Vista.Controladores.ControladorVistaJuego;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import EstadoMovimiento.MarioCaminando;
-import EstadoMovimiento.MarioParado;
 
 import Animador.AnimadorMario;
 
@@ -59,7 +51,6 @@ public class LoopMario implements Runnable {
             if (now - lastUpdateTime >= updateInterval) {
                 lastUpdateTime = now;
                 tick();
-                renderizar();
             }
         }
     }
@@ -172,15 +163,5 @@ public class LoopMario implements Runnable {
 
     private void empezarCooldownMorir() {
         timerAnimacionMorir++;
-    }
-
-    private void empezarCooldown() {
-        cooldownBola++;
-    }
-
-
-    private void renderizar() {
-        juego.getControladorVistaJuego().actualizarObserver();
-        juego.getControladorVistaJuego().refrescar();
     }
 }

@@ -39,6 +39,10 @@ public class Nivel {
             this.entidadesAEliminar = new LinkedList<Entidad>();
         }
 
+        public void reiniciarVidas(){
+            this.vida = 3;
+        }
+
         public Jugador getJugador() {
             return jugador;
         }

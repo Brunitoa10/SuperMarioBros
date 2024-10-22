@@ -13,13 +13,12 @@ public abstract class EntidadMovil extends Entidad {
     protected int velocidad;
     protected boolean estaVivo;
     protected Sonido sonido;
-    protected int Piso;
 
     public EntidadMovil(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         direccion = 0;
         estaVivo = true;
-        Piso = 420;
+
     }
 
     public int getDireccion() {
@@ -42,13 +41,6 @@ public abstract class EntidadMovil extends Entidad {
         return estaVivo;
     }
 
-    public void setPiso(int piso) {
-        Piso = piso;
-    }
-
-    public int getPiso() {
-        return Piso;
-    }
 
     @Override
     public boolean detectarColision(Entidad entidad) {

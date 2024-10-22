@@ -140,13 +140,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         muerte = morir;
     }
 
-    public int getVidas() {
-        return vidas;
-    }
-
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
 
     public int getPuntaje() {
         return puntaje;

@@ -6,8 +6,7 @@ public class MarioSaltando implements EstadoMovimiento {
     private Jugador mario;
     private static final int VELOCIDAD_INICIAL_SALTO = -15; // Velocidad negativa para subir
     private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
-    private int velocidadY; // Velocidad vertical actual
-    protected int Piso;
+    private int velocidadY;
 
     public MarioSaltando(Jugador mario) {
 
@@ -51,7 +50,7 @@ public class MarioSaltando implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
+        return false;
     }
 
 

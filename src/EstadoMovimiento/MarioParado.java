@@ -38,7 +38,7 @@ public class MarioParado implements EstadoMovimiento {
     }
 
     public boolean estaEnElSuelo() {
-        return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
+        return true;
     }
 
 
