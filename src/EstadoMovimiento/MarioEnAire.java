@@ -21,7 +21,6 @@
 
         @Override
         public void saltar(Jugador mario) {
-            System.out.println("Mario en el aire");
         }
 
         @Override

@@ -30,7 +30,7 @@ public class Juego {
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
 
-    public Juego(GUI  controladorVistas) {
+    public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
@@ -134,16 +134,9 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario(int direccionMario, Jugador mario) {
-        mario.desplazarEnX(direccionMario);
-        mario.setDireccion(direccionMario);
-        mario.desplazarEnX(0);
-    }
-
-    public void saltarMario(Jugador mario) {
-        if (mario.estaEnPlataforma())
-            mario.setEnPlataforma(false);
-        mario.saltar();
+    public void moverMario(Jugador mario, OyenteTeclado oyenteTeclado) {
+        ControladorMovimientoMario controladorMovimientoMario = new ControladorMovimientoMario(mario, oyenteTeclado);
+        controladorMovimientoMario.moverMario();
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
