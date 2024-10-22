@@ -194,4 +194,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     private void configurarPaneles() {
         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
     }
+
+	@Override
+	public Ranking obtenerRanking() {
+		return ranking;
+	}
 }

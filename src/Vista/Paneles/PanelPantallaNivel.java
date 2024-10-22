@@ -1,6 +1,7 @@
 package Vista.Paneles;
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Entidad;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Controladores.ConstantesVista;
@@ -10,6 +11,7 @@ import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 
 public class PanelPantallaNivel extends JPanel {
 
@@ -26,7 +28,8 @@ public class PanelPantallaNivel extends JPanel {
     protected JPanel panelSuperior;
     protected JPanel panelImagen;
     protected ControladorVista controladorVista;
-
+    private Map<Entidad, Observer> observers;
+    
     public PanelPantallaNivel(ControladorVista controladorVista) {
       this.controladorVista = controladorVista;
       setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
@@ -100,6 +103,9 @@ public class PanelPantallaNivel extends JPanel {
         actualizarInfoJugador(entidadJugador);
         return observerJugador;
     }
+    
+    //agregar eliminar observer entidad
+    
 
     protected void actualizarInfoJugador(EntidadJugador jugador) {
         actualizarLabelsInformacion(jugador);

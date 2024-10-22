@@ -125,7 +125,7 @@ public class Juego {
             entidad.registrarObserver(observer);
         }
     }
-
+    
     public Nivel getNivelActual() {
         return nivelActual;
     }
