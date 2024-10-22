@@ -72,7 +72,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-        panelPantallaFinJuego = new PanelPantallaFinJuego(1000);
+        panelPantallaFinJuego = new PanelPantallaFinJuego(this,modoJuego);
         ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
