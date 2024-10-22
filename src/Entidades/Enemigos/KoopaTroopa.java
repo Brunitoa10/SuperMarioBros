@@ -28,6 +28,16 @@ public class KoopaTroopa extends Enemigo {
         System.out.println("Me cree soy el koopa");
     }
 
+    public void actualizar() {
+        super.actualizar();
+        if(this.getDireccion()==1){
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/KoopaCaminandoRigth.gif");
+        }
+        if(this.getDireccion()==-1){
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/KoopaCaminandoLeft.gif");
+        }
+    }
+
     public boolean detectarColision(Entidad c) {
         boolean colisionan = c.detectarColision(this);
         if (colisionan) {

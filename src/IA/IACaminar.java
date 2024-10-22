@@ -24,7 +24,7 @@ public class IACaminar implements ComportamientoIA {
             direccionActual = random.nextBoolean() ? 1 : -1;
             contadorMovimientos = 0;
         }
-
+        enemigo.setDireccion(direccionActual);
         enemigo.setPosicionEnX(enemigo.getPosicionEnX() + (enemigo.getVelocidad() * direccionActual));
     }
 }
