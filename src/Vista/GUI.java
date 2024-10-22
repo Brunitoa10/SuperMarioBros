@@ -1,8 +1,7 @@
 package Vista;
 
+import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.Stack;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,13 +34,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected OyenteTeclado oyente;
     protected ConfiguracionJuego configuracion;
     protected Juego miJuego;
-    protected Stack<JPanel> historialPaneles;
+    protected HistorialPaneles historialPaneles; // Cambiado a HistorialPaneles
 
     public GUI() {
         configuracion = ConfiguracionJuego.obtenerInstancia();
         ranking = new Ranking();
         this.miJuego = new Juego(this);
-        historialPaneles = new Stack<>();
+        historialPaneles = new HistorialPaneles(); // Instancia de HistorialPaneles
         
         registrarOyenteVentana();
         configurarVentana();
@@ -52,15 +51,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panelPantallaNivel = new PanelPantallaNivel(this);
     }
 
-    private void configurarPaneles() {
-        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
-    }
-
     protected void configurarVentana() {
         ventana = new JFrame("Super Mario Bros - Equipo Basados");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
-        ventana.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png")));
+        ventana.setIconImage(cargarIcono());
         ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
@@ -78,7 +73,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         historialPaneles.push(panelPantallaPrincipal);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-        panelPantallaFinJuego = new PanelPantallaFinJuego(this,modoJuego);
+        panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego);
         ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
@@ -126,7 +121,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public void mostrarPantallaNivel() {
-    	historialPaneles.push(panelPantallaNivel);
+        historialPaneles.push(panelPantallaNivel);
         ventana.setContentPane(panelPantallaNivel);
         oyente = new OyenteTeclado();
         panelPantallaNivel.addKeyListener(oyente);
@@ -137,28 +132,28 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public void mostrarPantallaFinJuego() {
-    	historialPaneles.push(panelPantallaFinJuego);
+        historialPaneles.push(panelPantallaFinJuego);
         ventana.setContentPane(panelPantallaFinJuego);
         refrescar();
     }
 
     @Override
     public void mostrarPantallaRanking() {
-    	historialPaneles.push(panelPantallaRanking);
+        historialPaneles.push(panelPantallaRanking);
         ventana.setContentPane(panelPantallaRanking);
         refrescar();
     }
 
     public void mostrarPantallaModoJuego() {
-    	historialPaneles.push(panelPantallaModoJuego);
+        historialPaneles.push(panelPantallaModoJuego);
         ventana.setContentPane(panelPantallaModoJuego);
         refrescar();
     }
     
     public void volverAlPanelAnterior() {
-        if (!historialPaneles.isEmpty()) {
-            JPanel panelAnterior = historialPaneles.pop(); // Obtiene y elimina el último panel
-            ventana.setContentPane(panelAnterior); // Muestra el panel anterior
+        JPanel panelAnterior = historialPaneles.pop();
+        if (panelAnterior != null) {
+            ventana.setContentPane(panelAnterior);
             refrescar();
         }
     }
@@ -190,5 +185,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public String obtenerModoJuego() {
         return configuracion.getModoJuego(); // Obtenemos el modo directamente de ConfiguracionJuego
+    }
+    
+    private Image cargarIcono() {
+        return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
+    }
+    
+    private void configurarPaneles() {
+        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
     }
 }
