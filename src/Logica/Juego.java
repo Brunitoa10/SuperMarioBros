@@ -90,6 +90,10 @@ public class Juego {
         iniciar(nivelactual);
 
     }
+    public void detenerLoops(){
+        loopMario.detener();
+        hiloRestoEntidades.detener();
+    }
 
     public void mostrarPantallaRanking() {
         controladorVistas.mostrarPantallaRanking();
@@ -163,7 +167,9 @@ public class Juego {
             reiniciar(modoJuego);
         }
         else{
+            detenerLoops();
             mostrarPantallaFinJuego();
+            vidas = 3;
         }
     }
 
