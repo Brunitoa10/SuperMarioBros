@@ -6,13 +6,14 @@ import Entidades.Jugador;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
 public interface FabricaEntidad {
     public Goomba crearGoomba(int x, int y);
     public BuzzyBeetle crearBuzzyBeetle(int x, int y);
-    public KoopaTroopa crearKoopaTroopa(int x, int y);
+    public KoopaTroopa crearKoopaTroopa(int x, int y,ProyectilKoopa proyectilKoopa);
     public Lakitu crearLakitu(int x, int y);
     public Spiny crearSpiny(int x, int y);
     public PiranhaPlant crearPiranhaPlant(int x, int y);
@@ -31,4 +32,5 @@ public interface FabricaEntidad {
     public Bandera crearBandera(int x, int y);
     public Princesa crearPrincesa(int x, int y);
     public Vacio crearVacio(int x, int y);
+    public ProyectilKoopa crearProyectilKoopa(int x, int y);
 }

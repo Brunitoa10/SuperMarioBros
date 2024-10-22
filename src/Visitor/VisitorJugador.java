@@ -6,6 +6,7 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
@@ -81,11 +82,18 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Proyectil proyectil) {
-
+        if(proyectil.colisionIzquierda(mario)){
+            proyectil.setDireccion(1);
+            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+        }
+        if(proyectil.colisionDerecha(mario)){
+            proyectil.setDireccion(-1);
+            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+        }
     }
 
 
-public void visit(Vacio vacio) {
+    public void visit(Vacio vacio) {
         int tolerancia = 5;
         if (mario.colisionAbajo(vacio)) {
             System.out.println("colision abajo!");}

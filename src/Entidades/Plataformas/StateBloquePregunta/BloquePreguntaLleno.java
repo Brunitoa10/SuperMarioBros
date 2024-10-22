@@ -18,6 +18,7 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
         PowerUp powerUp=bloquePregunta.getPowerUp();
         powerUp.getHitbox().setBounds(powerUp.getPosicionEnX(),powerUp.getPosicionEnY(),32,32);
         powerUp.getSprite().setRutaImagen(bloquePregunta.getRutaImagen()+".gif");
+        System.out.println(powerUp.getSprite().getRutaImagen());
         powerUp.actualizarEntidad();
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));
     }

@@ -18,7 +18,7 @@ public abstract class Plataforma extends EntidadInmovil {
     }
 
     public boolean detectarColision(Entidad c) {
-        return false;
+        return this.getHitbox().intersects(c.getHitbox());
     }
 
     public void accept(Visitor v) {

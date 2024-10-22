@@ -3,11 +3,13 @@ package Entidades.Proyectiles;
 import Entidades.Entidad;
 import Fabricas.Sprite;
 import Visitor.Visitor;
+import Visitor.VisitorProyectil;
 
 public class ProyectilSpiny extends Proyectil {
-
+protected VisitorProyectil visitor;
     public ProyectilSpiny(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        visitor = new VisitorProyectil(this);
     }
 
     public boolean detectarColision(Entidad c) {
@@ -19,4 +21,7 @@ public class ProyectilSpiny extends Proyectil {
         v.visit(this);
     }
 
+    public VisitorProyectil getVisitor() {
+        return visitor;
+    }
 }

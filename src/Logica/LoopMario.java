@@ -153,7 +153,7 @@ public class LoopMario implements Runnable {
                 juego.getNivelActual().getVacios().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
                 juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
             }
-
+            controladorColisiones.ColisionConProyectiles(juego.getNivelActual().getProyectiles(), mario);
             if(mario.getPosicionEnY()>460) {
                 mario.setMorir(true);
             }

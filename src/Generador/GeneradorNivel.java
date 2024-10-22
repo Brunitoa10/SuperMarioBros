@@ -2,6 +2,7 @@ package Generador;
 
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
@@ -93,7 +94,9 @@ public class GeneradorNivel {
                 nivel.agregarEnemigo(fabricaEntidades.crearGoomba(x,y));
                 break;
             case 13:
-                nivel.agregarEnemigo(fabricaEntidades.crearKoopaTroopa(x,y));
+                ProyectilKoopa p=fabricaEntidades.crearProyectilKoopa(x,y+32);
+                nivel.agregarProyectil(p);
+                nivel.agregarEnemigo(fabricaEntidades.crearKoopaTroopa(x,y,p));
                 break;
             case 14:
                 nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y));

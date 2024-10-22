@@ -53,6 +53,15 @@ public class ControladorColisiones {
         }
     }
 
+    public void ColisionConProyectiles(List<Proyectil> listaProyectiles, Jugador mario) {
+        for (Proyectil proyectil : listaProyectiles) {
+            if (mario.detectarColision((proyectil))) {
+                proyectil.accept(mario.getVisitorJugador());
+                proyectil.actualizarEntidad();
+            }
+        }
+    }
+
     public void colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {

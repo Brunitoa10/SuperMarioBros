@@ -1,6 +1,7 @@
 package Logica;
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Plataformas.Plataforma;
 import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
 import java.util.List;
@@ -58,6 +59,7 @@ public class HiloRestoEntidades implements Runnable {
             enemigo.actualizar();
             controladorColisiones.colisionProyectilConEnemigo(nivelActual.getProyectiles(), enemigo);
         }
+
     }
 
     // Método renderizar para actualizar la vista de las entidades

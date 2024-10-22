@@ -16,6 +16,7 @@ import Entidades.Plataformas.LadrilloSolido;
 import Entidades.Plataformas.Tuberia;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
+import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
@@ -40,9 +41,9 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public KoopaTroopa crearKoopaTroopa(int x, int y) {
+    public KoopaTroopa crearKoopaTroopa(int x, int y,ProyectilKoopa proyectilKoopa) {
         Sprite koopaTroopaSprite = fabricaSprites.crearSpriteKoopaTroopa();
-        return new KoopaTroopa(x, y, koopaTroopaSprite);
+        return new KoopaTroopa(x, y, koopaTroopaSprite, proyectilKoopa);
     }
 
     @Override
@@ -146,6 +147,11 @@ public class CreadorEntidad implements FabricaEntidad {
     public Princesa crearPrincesa(int x, int y) {
         Sprite princesaSprite = fabricaSprites.crearSpritePrincesa();
         return new Princesa(x, y, princesaSprite);
+    }
+
+    public ProyectilKoopa crearProyectilKoopa(int x, int y) {
+        Sprite ProyectilKoopaSprite = fabricaSprites.crearProyectilKoopa();
+        return new ProyectilKoopa(x, y, ProyectilKoopaSprite);
     }
 
     @Override

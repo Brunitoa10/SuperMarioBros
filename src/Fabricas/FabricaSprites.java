@@ -65,6 +65,10 @@ public abstract class FabricaSprites {
 
         return new Sprite(ruta_carpeta + "/Jugador/PNGMario/StandingMarioLeft.png", 32, 32);
     }
+
+    public Sprite crearProyectilKoopa(){
+        return new Sprite(ruta_carpeta + "/Bloques/BloqueNada.png", 0, 0);
+    }
     public Sprite crearSpriteBandera() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
