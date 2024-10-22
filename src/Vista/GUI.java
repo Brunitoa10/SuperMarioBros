@@ -114,7 +114,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
     @Override
     public Observer registrarEntidad(EntidadJugador entidadJugador) {
-        Observer observerJugador = panelPantallaNivel.incorporarEntidadJugador(entidadJugador);
+        Observer observerJugador = panelPantallaNivel.incorporarEntidadJugador(entidadJugador, miJuego);
         refrescar();
         return observerJugador;
     }

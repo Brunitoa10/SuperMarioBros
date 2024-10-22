@@ -67,15 +67,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
-    @Override
-    public int getTiempo() {
-        return new Random(1000).nextInt(2000);
-    }
-
-    @Override
-    public int getVida() {
-        return new Random(0).nextInt(4);
-    }
 
     @Override
     public void accept(Visitor v) {
@@ -95,18 +86,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.saltar(this);
     }
 
-    public int getAlturaMaximaSalto() {
-
-        return ALTURA_MAXIMA_SALTO;
-    }
-
     public VisitorJugador getVisitorJugador() {
         return VisitorJugador;
     }
-
-    public void NoestaEnPlataforma(){
-        enPlataforma = false;
-    };
 
     public boolean estaEnPlataforma() {
         return enPlataforma;
@@ -116,13 +98,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = enPlataforma;
     }
 
-
     public boolean puedeRomperBloques() {
         return getEstadoJugador().puedeRomperBloques();
-    }
-
-    public void setEstaVivo(boolean estaVivo) {
-        this.estaVivo = estaVivo;
     }
   
     public boolean puedeLanzarBolaDeFuego() {
@@ -136,17 +113,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public boolean getMorir(){
         return muerte;
     }
+
     public void setMorir(boolean morir) {
         muerte = morir;
-    }
-
-
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
     }
 
 }

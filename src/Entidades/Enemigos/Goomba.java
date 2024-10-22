@@ -29,26 +29,29 @@ public class Goomba extends Enemigo {
         v.visit(this);
     }
 
-    public void interactuar(Jugador mario) {
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
+
         if(!Mori)
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
             this.setPosicionEnY(436);
             Mori=true;
-            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
+            toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
             if(mario.getEstadoJugador().esInmortal()) {
                 this.setAEliminar();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
+                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
             }
             else {
                 mario.getEstadoJugador().recibeDanio();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO);
+                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
 
             }
         }
+        return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

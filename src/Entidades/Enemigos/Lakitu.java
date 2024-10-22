@@ -29,18 +29,20 @@ public class Lakitu extends Enemigo {
         v.visit(this);
     }
 
-    public void interactuar(Jugador mario) {
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
             this.setPosicionEnY(-100);
-            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
+            toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
             if(mario.getEstadoJugador().esInmortal())  {
                 this.setAEliminar();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
+                toReturn = (ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
             }
         }
+        return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

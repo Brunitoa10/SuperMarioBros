@@ -35,22 +35,24 @@ public class BuzzyBeetle extends Enemigo {
         v.visit(this);
     }
 
-    public void interactuar(Jugador mario) {
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
             this.setPosicionEnY(-100);
-            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
+            toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
             if(mario.getEstadoJugador().esInmortal()) {
                 this.setAEliminar();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO);
+                toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
             }
             else {
                 mario.getEstadoJugador().recibeDanio();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO);
+                toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO;
             }
         }
+        return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

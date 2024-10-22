@@ -1,9 +1,9 @@
 package Vista.Paneles;
 
-import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.Juego;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
@@ -97,25 +97,25 @@ public class PanelPantallaNivel extends JPanel {
         return observerEntidad;
     }
 
-    public Observer incorporarEntidadJugador(EntidadJugador entidadJugador) {
+    public Observer incorporarEntidadJugador(EntidadJugador entidadJugador, Juego miJuego) {
         observerJugador = new ObserverJugador(this, entidadJugador);
         imagenFondoPanelNivel.add(observerJugador);
-        actualizarInfoJugador(entidadJugador);
+        actualizarInfoJugador(entidadJugador, miJuego);
         return observerJugador;
     }
     
     //agregar eliminar observer entidad
     
 
-    protected void actualizarInfoJugador(EntidadJugador jugador) {
-        actualizarLabelsInformacion(jugador);
+    protected void actualizarInfoJugador(EntidadJugador jugador, Juego miJuego) {
+        actualizarLabelsInformacion(miJuego);
         actualizarScrollHaciaJugador(jugador);
     }
 
-    protected void actualizarLabelsInformacion(EntidadJugador jugador) {
-        labelPuntaje.setText(formatTexto(jugador.getPuntaje()));
+    protected void actualizarLabelsInformacion(Juego miJuego) {
+        labelPuntaje.setText(formatTexto(miJuego.getPuntaje()));
         labelVida.setText(formatTexto(3));
-        labelTiempo.setText(formatTexto(jugador.getTiempo()));
+        labelTiempo.setText(formatTexto(miJuego.getTiempo()));
     }
 
     protected String formatTexto(int numero) {

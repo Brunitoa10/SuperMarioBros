@@ -25,14 +25,14 @@ public class VisitorEnemigo implements Visitor {
     }
 
     @Override
-    public void visit(Moneda m) {
-
+    public int visit(Moneda m) {
+        return 0;
         //m.eliminar();
     }
 
     @Override
-    public void visit(PowerUp m) {
-
+    public int visit(PowerUp m) {
+        return 0;
     }
 
     public void visit(Plataforma p) {

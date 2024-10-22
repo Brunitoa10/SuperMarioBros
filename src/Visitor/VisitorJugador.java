@@ -31,7 +31,9 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(PowerUp p) {
+    public int visit(PowerUp p) {
+        int toReturn = 0;
+
         if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
             p.setEstadoMario(mario);
             p.setPosicionEnY(-100);
@@ -43,17 +45,18 @@ public class VisitorJugador implements Visitor {
             p.getSprite().setPosicionY(-100);
         }
         else{
-            mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
+            toReturn = p.getPuntaje();
             p.setPosicionEnY(-100);
             p.getSprite().setPosicionY(-100);
         }
+        return toReturn;
     }
 
     @Override
-    public void visit(Moneda moneda) {
+    public int visit(Moneda moneda) {
         moneda.setAEliminar();
         moneda.setPosicionEnY(-100);
-        mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_MONEDA);
+        return ConstantesPuntaje.PUNTAJE_MONEDA;
     }
 
     public void visit(Plataforma plataforma){

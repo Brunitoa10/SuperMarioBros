@@ -25,13 +25,13 @@ public class VisitorProyectil implements Visitor {
     }
 
     @Override
-    public void visit(Moneda p) {
-
+    public int visit(Moneda p) {
+        return 0;
     }
 
     @Override
-    public void visit(PowerUp m) {
-
+    public int visit(PowerUp m) {
+        return 0;
     }
 
     @Override

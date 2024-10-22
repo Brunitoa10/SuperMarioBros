@@ -25,10 +25,8 @@ public class Nivel {
     protected Bandera bandera;
     protected Princesa princesa;
     protected int vida;
-    protected int puntajeTotal;
 
         public Nivel(int numero) {
-            this.puntajeTotal = 0;
             this.vida = 3;
             this.enemigos = new LinkedList<Enemigo>();
             this.plataformas = new LinkedList<Plataforma>();
@@ -117,18 +115,6 @@ public class Nivel {
 
         public void perdioVida() {
             vida--;
-        }
-
-        public void addPuntaje(int puntajeParaAniadir) {
-            puntajeTotal += puntajeParaAniadir;
-        }
-
-        public int getPuntaje(){
-            return puntajeTotal;
-        }
-
-        public void setPuntaje(int puntajeSetter){
-            puntajeTotal = puntajeSetter;
         }
 
         public List<Entidad> getEntidadesAEliminar() {

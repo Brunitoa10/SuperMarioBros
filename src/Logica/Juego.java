@@ -29,6 +29,7 @@ public class Juego {
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
+    protected int puntaje = 0;
 
     public Juego(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -51,6 +52,19 @@ public class Juego {
     public void sumarVida(){
         vidas++;
     }
+
+    public void sumarPuntaje(int puntajeParaSumar){
+        puntaje += puntajeParaSumar;
+    }
+
+    public void restarPuntaje(int puntajeParaRestar){
+        puntaje -= puntajeParaRestar;
+    }
+
+    public int getPuntaje(){
+        return puntaje;
+    }
+
 
     public void mostrarPantallaFinJuego(){
         controladorVistas.mostrarPantallaFinJuego();
@@ -175,5 +189,9 @@ public class Juego {
 
     public void mostrarMarioMuerte(Jugador mario) {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
+    }
+
+    public int getTiempo() {
+        return 0; //hacer
     }
 }

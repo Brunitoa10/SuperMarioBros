@@ -32,8 +32,8 @@ public class PiranhaPlant extends Enemigo {
         v.visit(this);
     }
 
-    public void interactuar(Jugador jugador) {
-
+    public int interactuar(Jugador jugador) {
+        return 0;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {
