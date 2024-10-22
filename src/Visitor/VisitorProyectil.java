@@ -15,8 +15,8 @@ public class VisitorProyectil implements Visitor {
     public VisitorProyectil(Proyectil p){
         proyectil=p;
     }
-    public void visit(Jugador j) {
-
+    public int visit(Jugador j) {
+        return 0;
     }
 
     @Override
@@ -25,13 +25,11 @@ public class VisitorProyectil implements Visitor {
     }
 
     @Override
-    public int visit(Moneda p) {
-        return 0;
+    public void visit(Moneda p) {
     }
 
     @Override
-    public int visit(PowerUp m) {
-        return 0;
+    public void visit(PowerUp m) {
     }
 
     @Override

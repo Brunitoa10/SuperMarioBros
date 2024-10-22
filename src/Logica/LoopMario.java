@@ -28,7 +28,7 @@ public class LoopMario implements Runnable {
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
-        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual());
+        this.controladorColisiones = new ControladorColisiones(juego);
         ejecutando = false;
         this.juego = juego;
     }

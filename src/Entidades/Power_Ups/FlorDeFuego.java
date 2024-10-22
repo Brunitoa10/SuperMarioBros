@@ -8,9 +8,10 @@ import Fabricas.Sprite;
 public class FlorDeFuego extends PowerUp {
 
     protected int puntaje;
+
     public FlorDeFuego(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        puntaje = 0;
+        puntaje = 5;
     }
 
     public boolean detectarColision(Entidad c) {

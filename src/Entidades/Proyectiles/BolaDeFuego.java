@@ -1,6 +1,5 @@
 package Entidades.Proyectiles;
 
-import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
@@ -26,8 +25,9 @@ public class BolaDeFuego extends Proyectil {
         posicionX += velocidad * direccion;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
 

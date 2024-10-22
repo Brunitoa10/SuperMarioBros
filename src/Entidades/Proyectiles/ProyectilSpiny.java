@@ -17,8 +17,9 @@ protected VisitorProyectil visitor;
         return false;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public VisitorProyectil getVisitor() {

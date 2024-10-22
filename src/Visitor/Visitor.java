@@ -8,10 +8,10 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 
 public interface Visitor {
-    public void visit(Jugador j);
+    public int visit(Jugador j);
     public void visit(Enemigo e);
-    public int visit(Moneda p);
-    public int visit(PowerUp m);
+    public void visit(Moneda p);
+    public void visit(PowerUp m);
     public void visit(Plataforma p);
     public void visit(Proyectil proyectil);
 }

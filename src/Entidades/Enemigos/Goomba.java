@@ -25,31 +25,32 @@ public class Goomba extends Enemigo {
         return false;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
+        if (!mario.getEstadoJugador().esInmortal()) {
+            if (!Mori)
+                if (mario.colisionAbajo(this)) {
+                    this.setAEliminar();
+                    this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
+                    this.setPosicionEnY(436);
+                    Mori = true;
+                    toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+                } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                    if (mario.getEstadoJugador().esInmortal()) {
+                        this.setAEliminar();
+                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+                    } else {
+                        mario.getEstadoJugador().recibeDanio();
+                        if (mario.getMorir())
+                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
 
-        if(!Mori)
-        if(mario.colisionAbajo(this)) {
-            this.setAEliminar();
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
-            this.setPosicionEnY(436);
-            Mori=true;
-            toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
-        }
-        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(mario.getEstadoJugador().esInmortal()) {
-                this.setAEliminar();
-                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
-            }
-            else {
-                mario.getEstadoJugador().recibeDanio();
-                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
-
-            }
+                    }
+                }
         }
         return toReturn;
     }

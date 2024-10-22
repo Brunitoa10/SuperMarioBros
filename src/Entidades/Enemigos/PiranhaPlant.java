@@ -28,8 +28,9 @@ public class PiranhaPlant extends Enemigo {
         return colisionan;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public int interactuar(Jugador jugador) {

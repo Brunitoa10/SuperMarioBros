@@ -55,16 +55,20 @@ public class Juego {
 
     public void sumarPuntaje(int puntajeParaSumar){
         puntaje += puntajeParaSumar;
+        if (puntaje < 0)
+            puntaje = 0;
+
+        controladorVistas.actualizarLabels();
     }
 
     public void restarPuntaje(int puntajeParaRestar){
         puntaje -= puntajeParaRestar;
+        controladorVistas.actualizarLabels();
     }
 
     public int getPuntaje(){
         return puntaje;
     }
-
 
     public void mostrarPantallaFinJuego(){
         controladorVistas.mostrarPantallaFinJuego();

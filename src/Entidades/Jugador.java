@@ -1,7 +1,5 @@
 package Entidades;
 
-import java.util.Random;
-
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -69,8 +67,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
 
     @Override
-    public void accept(Visitor v) {
-        v.visit(this);
+    public int accept(Visitor v) {
+       return v.visit(this);
     }
 
     public void desplazarEnX(int direccion) {

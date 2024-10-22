@@ -15,9 +15,11 @@ import java.util.List;
 
 public class ControladorColisiones {
     protected Nivel nivelActual;
+    protected Juego juego;
 
-    public ControladorColisiones(Nivel nivelActual) {
-        this.nivelActual = nivelActual;
+    public ControladorColisiones(Juego juego) {
+        this.nivelActual = juego.getNivelActual();
+        this.juego = juego;
     }
 
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
@@ -38,7 +40,7 @@ public class ControladorColisiones {
     public void colisionMarioConEnemigos(List<Enemigo> listaEnemigos, Jugador mario) {
         for (Enemigo enemigo : listaEnemigos) {
             if(mario.detectarColision(enemigo)) {
-                mario.accept(enemigo.getVisitorEnemigo());
+                juego.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
                 enemigo.actualizarEntidad();
             }
         }
@@ -48,6 +50,7 @@ public class ControladorColisiones {
         for(Moneda moneda : listaMonedas) {
             if(mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
+                juego.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
                 moneda.actualizarEntidad();
             }
         }
@@ -66,6 +69,7 @@ public class ControladorColisiones {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 powerUp.accept(mario.getVisitorJugador());
+                juego.sumarPuntaje(powerUp.getPuntaje());
                 powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);

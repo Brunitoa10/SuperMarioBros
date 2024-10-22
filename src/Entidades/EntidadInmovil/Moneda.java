@@ -2,7 +2,6 @@ package Entidades.EntidadInmovil;
 
 import Entidades.Entidad;
 import Fabricas.Sprite;
-import Logica.Nivel;
 import Visitor.Visitor;
 
 public class Moneda extends EntidadInmovil{
@@ -19,7 +18,8 @@ public class Moneda extends EntidadInmovil{
     }
 
     @Override
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 }

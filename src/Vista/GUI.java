@@ -96,6 +96,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         mostrarPantallaModoJuego();
     }
 
+    public void actualizarLabels(){
+        panelPantallaNivel.actualizarLabelsInformacion(miJuego);
+    }
+
     @Override
     public void cambiarModoJuego(String modo) {
         // Actualizamos el modo de juego en ConfiguracionJuego

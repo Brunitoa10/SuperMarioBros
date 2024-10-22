@@ -108,13 +108,15 @@ public class PanelPantallaNivel extends JPanel {
     
 
     protected void actualizarInfoJugador(EntidadJugador jugador, Juego miJuego) {
+        System.out.println("llegue a actualizarinfo");
         actualizarLabelsInformacion(miJuego);
         actualizarScrollHaciaJugador(jugador);
     }
 
-    protected void actualizarLabelsInformacion(Juego miJuego) {
+    public void actualizarLabelsInformacion(Juego miJuego) {
+        System.out.println("llegue a actualizar labels");
         labelPuntaje.setText(formatTexto(miJuego.getPuntaje()));
-        labelVida.setText(formatTexto(3));
+        labelVida.setText(formatTexto(miJuego.getVidas()));
         labelTiempo.setText(formatTexto(miJuego.getTiempo()));
     }
 

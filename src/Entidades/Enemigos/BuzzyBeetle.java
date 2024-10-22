@@ -3,8 +3,6 @@ package Entidades.Enemigos;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
-import EstadoJugador.MarioEstrella;
-import EstadoMovimiento.MarioEnAire;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
@@ -31,25 +29,27 @@ public class BuzzyBeetle extends Enemigo {
         return colisionan;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if(mario.colisionAbajo(this)) {
-            this.setAEliminar();
-            this.setPosicionEnY(-100);
-            toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
-        }
-        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(mario.getEstadoJugador().esInmortal()) {
+        if (!mario.getEstadoJugador().esInmortal()) {
+            if (mario.colisionAbajo(this)) {
                 this.setAEliminar();
+                this.setPosicionEnY(-100);
                 toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
-            }
-            else {
-                mario.getEstadoJugador().recibeDanio();
-                toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO;
+            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                if (mario.getEstadoJugador().esInmortal()) {
+                    this.setAEliminar();
+                    toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
+                } else {
+                    mario.getEstadoJugador().recibeDanio();
+                    if (mario.getMorir())
+                    toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO;
+                }
             }
         }
         return toReturn;

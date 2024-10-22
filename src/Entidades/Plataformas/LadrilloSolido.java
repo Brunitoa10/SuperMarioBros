@@ -11,7 +11,6 @@ public class LadrilloSolido extends Plataforma {
     }
 
     public boolean detectarColision(Entidad c) {
-        System.out.println("detectarColision");
         return false;
 
     }
