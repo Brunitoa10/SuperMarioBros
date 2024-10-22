@@ -28,6 +28,7 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
+    protected int vidas = 3;
 
     public Juego(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -37,6 +38,18 @@ public class Juego {
     // Comunicacion con parte grafica
     public void setControladorVistas(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
+    }
+
+    public int getVidas(){
+        return vidas;
+    }
+
+    public void perderVida(){
+        vidas--;
+    }
+
+    public void sumarVida(){
+        vidas++;
     }
 
     public void mostrarPantallaFinJuego(){
@@ -149,13 +162,14 @@ public class Juego {
     }
 
     public void manejarMuerte() {
-        nivelActual.perdioVida();
-        if (nivelActual.conVidas()) {
+        perderVida();
+        if (getVidas()!=0) {
             reiniciar(modoJuego);
         }
         else{
             detenerLoops();
             mostrarPantallaFinJuego();
+            vidas = 3;
         }
     }
 
