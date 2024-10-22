@@ -29,6 +29,7 @@ public class Juego {
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
+    ControladorMovimientoMario controladorMovimientoMario;
 
     public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -72,7 +73,10 @@ public class Juego {
 
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
-        controladorVistas.mostrarPantallaNivel();
+        oyenteTeclado = controladorVistas.mostrarPantallaNivel();
+
+        controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+
         iniciarLoops();
     }
 
@@ -135,8 +139,14 @@ public class Juego {
     }
 
     public void moverMario(Jugador mario, OyenteTeclado oyenteTeclado) {
-        ControladorMovimientoMario controladorMovimientoMario = new ControladorMovimientoMario(mario, oyenteTeclado);
+
         controladorMovimientoMario.moverMario();
+    }
+
+    public void saltarMario(Jugador mario) {
+        if (mario.estaEnPlataforma())
+            mario.setEnPlataforma(false);
+        mario.saltar();
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {

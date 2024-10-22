@@ -120,7 +120,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     @Override
-    public void mostrarPantallaNivel() {
+    public OyenteTeclado mostrarPantallaNivel() {
         historialPaneles.push(panelPantallaNivel);
         ventana.setContentPane(panelPantallaNivel);
         oyente = new OyenteTeclado();
@@ -128,6 +128,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panelPantallaNivel.setFocusable(true);
         panelPantallaNivel.requestFocusInWindow();
         refrescar();
+        return oyente;
     }
 
     @Override

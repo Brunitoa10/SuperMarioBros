@@ -20,15 +20,6 @@ public class ControladorMovimientoMario {
         if (!oyenteTeclado.teclaIzquierda && !oyenteTeclado.teclaDerecha && !oyenteTeclado.teclaArriba && mario.estaEnPlataforma()) {
             mario.setEstadoMovimiento(new MarioParado(mario));
         }
-        if(oyenteTeclado.teclaArriba) {
-            moverMarioVerticalmente();
-        }
-    }
-
-    public void moverMarioVerticalmente() {
-        if (mario.estaEnPlataforma())
-            mario.setEnPlataforma(false);
-        mario.saltar();
     }
 
     private void moverMarioHorizontalmente(OyenteTeclado oyenteTeclado) {
