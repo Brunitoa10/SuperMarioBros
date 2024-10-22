@@ -99,7 +99,6 @@ public class PanelPantallaPrincipal extends JPanel {
         botonPuntajes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                System.out.println("Mouse entró al botón, reproduciendo sonido");
                 sonidoBoton.reproducir();
             }
         });
@@ -110,7 +109,6 @@ public class PanelPantallaPrincipal extends JPanel {
         boton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                System.out.println("Mouse entró al botón, reproduciendo sonido");
                 sonidoBoton.reproducir();
             }
         });
