@@ -73,14 +73,15 @@ public class LoopMario implements Runnable {
 
             // Movimiento lateral
 
-            juego.moverMario(mario, oyente);
+           
 
             // Logica de salto
             if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
                 enIdle = false;
                 juego.saltarMario(mario);
             }
-            mario.setDireccion(direccionLocal);
+            juego.moverMario(mario, oyente);
+           // mario.setDireccion(direccionLocal);
 
             //Logica para lanzar bola de fuego
             if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
