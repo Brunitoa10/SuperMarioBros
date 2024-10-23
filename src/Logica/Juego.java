@@ -138,8 +138,7 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario(Jugador mario, OyenteTeclado oyenteTeclado) {
-
+    public void moverMario() {
         controladorMovimientoMario.moverMario();
     }
 
