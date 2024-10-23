@@ -107,12 +107,11 @@ public class LoopMario implements Runnable {
             if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
                 cooldownBola=0;
                 bolaDeFuego = juego.dispararBolaFuego(mario);
-                juego.getControladorVistaJuego().registrarEntidad(bolaDeFuego);
                 empezarCooldown = true;
             }
 
             if (cooldownBola==20){
-                bolaDeFuego.setPosicionEnY(-100);
+                //bolaDeFuego.setPosicionEnY(-100);
             }
 
             if (empezarCooldown){

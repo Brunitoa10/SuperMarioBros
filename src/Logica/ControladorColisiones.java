@@ -3,12 +3,14 @@ package Logica;
 import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadInmovil.Moneda;
+import Entidades.EntidadMovil;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Jugador;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
+
 import Fabricas.Sprite;
 
 import java.util.List;
@@ -84,11 +86,11 @@ public class ControladorColisiones {
         }
     }
 
-    private boolean VacioColisionoAbajo(Vacio vacio, Jugador mario) {
+    private boolean VacioColisionoAbajo(Vacio vacio, EntidadMovil entidad) {
         boolean Colisiono = false;
         int toleranciaX = 5;
-        if ((mario.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && mario.getPosicionEnX() + mario.getHitbox().getWidth() <= vacio.getPosicionEnX() + vacio.getHitbox().getWidth() + toleranciaX) {
-            if ((mario.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
+        if ((entidad.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && entidad.getPosicionEnX() + entidad.getHitbox().getWidth() <= vacio.getPosicionEnX() + vacio.getHitbox().getWidth() + toleranciaX) {
+            if ((entidad.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
                 Colisiono = true;
             }
         }

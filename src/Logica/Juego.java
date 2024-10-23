@@ -62,7 +62,6 @@ public class Juego {
 
         System.out.println("Modojuego juego " + modoJuego);
         fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
-
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
 
@@ -155,9 +154,10 @@ public class Juego {
     }
 
     public Proyectil dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = new BolaDeFuego(mario);
+        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario);
         getNivelActual().agregarProyectil(bolaDeFuego);
-
+        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+        bolaDeFuego.registrarObserver(observer);
         return bolaDeFuego;
     }
 

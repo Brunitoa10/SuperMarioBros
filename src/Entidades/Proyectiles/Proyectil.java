@@ -15,11 +15,11 @@ public abstract class Proyectil extends EntidadMovil {
         return new VisitorProyectil(this);
     }
 
-    public void hagoDaño(Jugador j){
+    public void Interactuar(Jugador j){
 
     }
 
-    public void Interactuar(Jugador j){
+    public void setGravedad(){
 
     }
 

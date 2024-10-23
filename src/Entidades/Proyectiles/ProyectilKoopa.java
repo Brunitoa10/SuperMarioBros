@@ -7,11 +7,14 @@ import Visitor.VisitorProyectil;
 public class ProyectilKoopa extends Proyectil {
 protected int direccionLocal;
 protected int velocidadX;
+protected int cantidadDeRebotes;
+
 protected VisitorProyectil visitor;
     public ProyectilKoopa(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         visitor = new VisitorProyectil(this);
         direccionLocal=0;
+        cantidadDeRebotes=0;
     }
 
     @Override
@@ -37,8 +40,20 @@ protected VisitorProyectil visitor;
         }
 
         public void setDireccion(int direccion) {
-        this.direccion = direccion;
+        if(cantidadDeRebotes==3){
+            this.setAEliminar();
+            velocidadX=0;
+            this.setPosicionEnY(this.getPosicionEnY()-12);
+            if(direccion==1)
+                this.setPosicionEnX(this.getPosicionEnX()+12);
+            if(direccion==-1)
+                this.setPosicionEnX(this.getPosicionEnX()-12);
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
+        }
+        if(direccion!=0)
+            this.direccion = direccion;
         direccionLocal=direccion;
+        cantidadDeRebotes++;
         }
 
         public VisitorProyectil getVisitor() {
@@ -57,10 +72,12 @@ protected VisitorProyectil visitor;
             if (this.colisionIzquierda(j)) {
                 this.setDireccion(1);
                 this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+
             }
             if (this.colisionDerecha(j)) {
                 this.setDireccion(-1);
                 this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+
             }
         }else{
             if (this.colisionIzquierda(j)) {
@@ -71,6 +88,10 @@ protected VisitorProyectil visitor;
             }
         }
     }
+
+        public void setGravedad(){
+
+        }
 
     }
 

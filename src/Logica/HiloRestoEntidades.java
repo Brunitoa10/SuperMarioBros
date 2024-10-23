@@ -70,7 +70,7 @@ public class HiloRestoEntidades implements Runnable {
                 }
             }
             for(Plataforma plataforma: nivelActual.getPlataformas()){
-                if(proyectil.colisionIzquierda(plataforma) || proyectil.colisionDerecha(plataforma) ) {
+                if(proyectil.detectarColision(plataforma) ) {
                     proyectil.getVisitor().visit(plataforma);
                 }
             }
