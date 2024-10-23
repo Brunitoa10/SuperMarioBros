@@ -20,7 +20,7 @@
         }
 
         @Override
-        public void saltar(Jugador mario) {
+        public void saltar() {
         }
 
         @Override

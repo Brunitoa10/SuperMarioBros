@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.List;
 
+import Animador.AnimadorMario;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.BolaDeFuego;
@@ -170,6 +171,6 @@ public class Juego {
     }
 
     public void mostrarMarioMuerte(Jugador mario) {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
+        mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
     }
 }
