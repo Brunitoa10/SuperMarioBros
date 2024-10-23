@@ -4,6 +4,7 @@ import Entidades.Jugador;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
 import Vista.GUI;
+import Vista.ObserverGrafica.Observer;
 
 public class ControladorBolasDeFuego {
 
@@ -12,29 +13,23 @@ public class ControladorBolasDeFuego {
     protected int cooldownBola = 60;
     protected boolean empezarCooldown;
     protected Proyectil bolaDeFuego;
+    protected Temporizador temporizador;
 
     public ControladorBolasDeFuego(Jugador mario, OyenteTeclado oyenteTeclado) {
         this.mario = mario;
         this.oyenteTeclado = oyenteTeclado;
+        temporizador = new Temporizador();
+        temporizador.iniciar();
     }
 
-    public void lanzarBolaDeFuego(GUI controladorVistas) {
-        if(oyenteTeclado.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
-            System.out.println("Lanzo una bola de fuego");
-            cooldownBola=0;
-            bolaDeFuego = new BolaDeFuego(mario);
-
-            controladorVistas.registrarEntidad(bolaDeFuego);
-            empezarCooldown = true;
+    public boolean puedeLanzarBolaDeFuego() {
+        boolean toRet = false;
+        if(oyenteTeclado.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1500)) {
+            temporizador.resetear();
+            temporizador.iniciar();
+            toRet = true;
         }
-
-        if (cooldownBola==20){
-            bolaDeFuego.setPosicionEnY(-100);
-        }
-
-        if (empezarCooldown){
-            cooldownBola++;
-        }
+        return toRet;
     }
 
 }

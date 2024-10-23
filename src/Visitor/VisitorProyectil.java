@@ -36,7 +36,7 @@ public class VisitorProyectil implements Visitor {
     @Override
     public void visit(Plataforma p) {
             if(proyectil.colisionIzquierda(p) || proyectil.colisionDerecha(p))
-                proyectil.setDireccion(-1*proyectil.getDireccion());
+                proyectil.setDireccion(-1 * proyectil.getDireccion());
             if(proyectil.colisionAbajo(p))
                 proyectil.setGravedad();
             if(proyectil.colisionArriba(p))

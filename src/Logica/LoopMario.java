@@ -34,6 +34,7 @@ public class LoopMario implements Runnable {
     protected int timerAnimacionMorir =0;
     protected Juego juego;
     protected boolean debeSaltar;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -83,7 +84,7 @@ public class LoopMario implements Runnable {
         	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
             juego.moverMario(debeSaltar);
 
-        juego.lanzarBolasDeFuego();
+            juego.lanzarBolasDeFuego(mario);
 
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);

@@ -144,8 +144,13 @@ public class Juego {
         controladorMovimientoMario.moverMario(debeSaltar);
     }
 
-    public void lanzarBolasDeFuego() {
-        controladorBolasDeFuego.lanzarBolaDeFuego(controladorVistas);
+    public void lanzarBolasDeFuego(Jugador mario) {
+        if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
+            Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario);
+            getNivelActual().agregarProyectil(bolaDeFuego);
+            Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+            bolaDeFuego.registrarObserver(observer);
+        }
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
