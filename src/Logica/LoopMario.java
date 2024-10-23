@@ -1,11 +1,19 @@
 package Logica;
 
+import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import EstadoMovimiento.MarioParado;
+import Fabricas.Sprite;
+import Vista.Controladores.ControladorVistaJuego;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import EstadoMovimiento.MarioCaminando;
+import EstadoMovimiento.MarioParado;
 
 import Animador.AnimadorMario;
 
@@ -71,13 +79,11 @@ public class LoopMario implements Runnable {
 
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
-        
         if(!mario.getMorir()) {
         	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
             juego.moverMario(debeSaltar);
-          
-        juego.lanzarBolasDeFuego();
 
+        juego.lanzarBolasDeFuego();
 
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
@@ -134,7 +140,7 @@ public class LoopMario implements Runnable {
     private void empezarCooldownMorir() {
         timerAnimacionMorir++;
     }
-    
+
     private void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
     }
