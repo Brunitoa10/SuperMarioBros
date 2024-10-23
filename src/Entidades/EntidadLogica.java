@@ -15,4 +15,6 @@ public interface EntidadLogica{
 
     public Rectangle getHitbox();
 
+    public void eliminarEntidad();
+
 }

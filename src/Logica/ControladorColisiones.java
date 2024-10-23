@@ -28,7 +28,7 @@ public class ControladorColisiones {
                 plataforma.accept(mario.getVisitorJugador());
                 plataforma.actualizarEntidad();
                 if(plataforma.aEliminar()){
-                    nivelActual.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32)));
+                    nivelActual.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32),nivelActual.getVacios()));
                     nivelActual.getEntidadesAEliminar().add(plataforma);
                 }
             }

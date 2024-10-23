@@ -5,10 +5,12 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public class BolaDeFuego extends Proyectil {
 
-    public BolaDeFuego(Jugador mario) {
-        super((int) mario.getHitbox().getMaxX(), calcularMitadDeMario(mario) , crearSprite());
+    public BolaDeFuego(Jugador mario, List<Proyectil> listaProyectilNivel) {
+        super((int) mario.getHitbox().getMaxX(), calcularMitadDeMario(mario) , crearSprite(), listaProyectilNivel);
         this.velocidad = 7;
         this.setDireccion(mario.getDireccion());
     }
@@ -24,10 +26,6 @@ public class BolaDeFuego extends Proyectil {
     @Override
     public void actualizarEntidad() {
         posicionX += velocidad * direccion;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
 

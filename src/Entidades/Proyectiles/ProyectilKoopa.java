@@ -3,12 +3,15 @@ package Entidades.Proyectiles;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
+
+import java.util.List;
+
 public class ProyectilKoopa extends Proyectil {
 protected int direccion;
 protected int velocidadX;
 protected VisitorProyectil visitor;
-    public ProyectilKoopa(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public ProyectilKoopa(int x, int y, Sprite sprite, List<Proyectil> listaProyectilNivel) {
+        super(x, y, sprite, listaProyectilNivel);
         visitor = new VisitorProyectil(this);
     }
 
@@ -28,17 +31,17 @@ protected VisitorProyectil visitor;
 
     public int getDireccion() {
         return direccion;
-        }
+    }
 
-        public void setDireccion(int direccion) {
+    public void setDireccion(int direccion) {
         this.direccion = direccion;
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
-
-        public VisitorProyectil getVisitor() {
-            return visitor;
-        }
     }
+
+    public VisitorProyectil getVisitor() {
+            return visitor;
+    }
+}
 
 
 

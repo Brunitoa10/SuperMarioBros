@@ -155,7 +155,7 @@ public class Juego {
     }
 
     public Proyectil dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = new BolaDeFuego(mario);
+        Proyectil bolaDeFuego = new BolaDeFuego(mario, getNivelActual().getProyectiles());
         getNivelActual().agregarProyectil(bolaDeFuego);
 
         return bolaDeFuego;

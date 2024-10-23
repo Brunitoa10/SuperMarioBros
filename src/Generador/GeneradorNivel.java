@@ -71,7 +71,7 @@ public class GeneradorNivel {
                 nivel.agregarJugador(fabricaEntidades.crearJugador(x,y));
                 break;
             case 9:
-                nivel.agregarMoneda(fabricaEntidades.crearMoneda(x,y));
+                nivel.agregarMoneda(fabricaEntidades.crearMoneda(x,y, nivel.getMonedas()));
                 break;
             case 17:
                 nivel.agregarBandera(fabricaEntidades.crearBandera(x,y));
@@ -80,7 +80,7 @@ public class GeneradorNivel {
                 nivel.agregarPrincesa(fabricaEntidades.crearPrincesa(x,y));
                 break;
             case 19:
-                nivel.agregarVacio(fabricaEntidades.crearVacio(x,y));
+                nivel.agregarVacio(fabricaEntidades.crearVacio(x,y, nivel.getVacios()));
                 break;
         }
     }
@@ -88,46 +88,46 @@ public class GeneradorNivel {
     private void casoEnemigos(int idEntidad, int x, int y, Nivel nivel) {
         switch (idEntidad) {
             case 11:
-                nivel.agregarEnemigo(fabricaEntidades.crearBuzzyBeetle(x,y));
+                nivel.agregarEnemigo(fabricaEntidades.crearBuzzyBeetle(x,y, nivel.getEnemigos()));
                 break;
             case 12:
-                nivel.agregarEnemigo(fabricaEntidades.crearGoomba(x,y));
+                nivel.agregarEnemigo(fabricaEntidades.crearGoomba(x,y, nivel.getEnemigos()));
                 break;
             case 13:
-                ProyectilKoopa p=fabricaEntidades.crearProyectilKoopa(x,y+32);
+                ProyectilKoopa p=fabricaEntidades.crearProyectilKoopa(x,y+32, nivel.getProyectiles());
                 nivel.agregarProyectil(p);
-                nivel.agregarEnemigo(fabricaEntidades.crearKoopaTroopa(x,y,p));
+                nivel.agregarEnemigo(fabricaEntidades.crearKoopaTroopa(x,y,p,nivel.getEnemigos()));
                 break;
             case 14:
-                nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y));
+                nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y, nivel.getEnemigos()));
                 break;
             case 15:
-                nivel.agregarEnemigo(fabricaEntidades.crearPiranhaPlant(x,y));
+                nivel.agregarEnemigo(fabricaEntidades.crearPiranhaPlant(x,y, nivel.getEnemigos()));
                 break;
             case 16:
-                nivel.agregarEnemigo(fabricaEntidades.crearSpiny(x,y));
+                nivel.agregarEnemigo(fabricaEntidades.crearSpiny(x,y, nivel.getEnemigos()));
                 break;
         }
     }
 
     private PowerUp casoPowerUps(int idEntidad, int x, int y, Nivel nivel) {
-        PowerUp Creado=fabricaEntidades.crearSuperChampinion(x,y);
+        PowerUp Creado=fabricaEntidades.crearSuperChampinion(x,y, nivel.getPowerUps());
 
         switch (idEntidad) {
             case 5:
-                Creado=fabricaEntidades.crearFlorDeFuego(x,y);
+                Creado=fabricaEntidades.crearFlorDeFuego(x,y, nivel.getPowerUps());
                 nivel.agregarPowerUp(Creado);
                 break;
             case 6:
-                Creado=fabricaEntidades.crearEstrella(x,y);
+                Creado=fabricaEntidades.crearEstrella(x,y, nivel.getPowerUps());
                 nivel.agregarPowerUp(Creado);
                 break;
             case 7:
-                Creado=fabricaEntidades.crearChampinionVerde(x,y);
+                Creado=fabricaEntidades.crearChampinionVerde(x,y, nivel.getPowerUps());
                 nivel.agregarPowerUp(Creado);
                 break;
             case 8:
-                Creado=fabricaEntidades.crearSuperChampinion(x,y);
+                Creado=fabricaEntidades.crearSuperChampinion(x,y, nivel.getPowerUps());
                 nivel.agregarPowerUp(Creado);
                 break;
         }
@@ -136,28 +136,28 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivel(Nivel nivel) {
-        nivel.agregarVacio(new Vacio(1624, 452,new Sprite("/",70,32)));
-        nivel.agregarVacio(new Vacio(2222, 452, new Sprite("/",104,32)));
-        nivel.agregarVacio(new Vacio(4575, 452, new Sprite("/",70,32)));
-        nivel.agregarPlataforma(new SueloNivel(-800, 452,new Sprite("/",2423,69)));
-        nivel.agregarPlataforma(new SueloNivel(1695, 452,new Sprite("/",526,69)));
-        nivel.agregarPlataforma(new SueloNivel(2327, 452, new Sprite("/", 2247,69)));
-        nivel.agregarPlataforma(new SueloNivel(4646, 452, new Sprite("/", 2423,69)));
+        nivel.agregarVacio(new Vacio(1624, 452,new Sprite("/",70,32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(2222, 452, new Sprite("/",104,32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4575, 452, new Sprite("/",70,32), nivel.getVacios()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 452,new Sprite("/",2423,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(1695, 452,new Sprite("/",526,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2327, 452, new Sprite("/", 2247,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4646, 452, new Sprite("/", 2423,69), nivel.getPlataformas()));
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {
         switch (idEntidad) {
             case 1:
-                nivel.agregarPlataforma(fabricaEntidades.crearBloqueSolido(x,y));
+                nivel.agregarPlataforma(fabricaEntidades.crearBloqueSolido(x,y, nivel.getPlataformas()));
                 break;
             case 2:
-                nivel.agregarPlataforma(fabricaEntidades.crearLadrilloSolido(x,y));
+                nivel.agregarPlataforma(fabricaEntidades.crearLadrilloSolido(x,y, nivel.getPlataformas()));
                 break;
             case 3:
-                nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x,y,casoPowerUps(idPowerUp,x,y-32,nivel)));
+                nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x,y,casoPowerUps(idPowerUp,x,y-32,nivel), nivel.getPlataformas()));
                 break;
             case 4:
-                nivel.agregarPlataforma(fabricaEntidades.crearTuberia(x,y));
+                nivel.agregarPlataforma(fabricaEntidades.crearTuberia(x,y, nivel.getPlataformas()));
         }
     }
 }

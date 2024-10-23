@@ -4,10 +4,12 @@ import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
 
+import java.util.List;
+
 
 public class LadrilloSolido extends Plataforma {
-    public LadrilloSolido(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public LadrilloSolido(int x, int y, Sprite sprite, List<Plataforma> listaPlataformaNivel) {
+        super(x, y, sprite, listaPlataformaNivel);
     }
 
     public boolean detectarColision(Entidad c) {
