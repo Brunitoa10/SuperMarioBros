@@ -81,7 +81,7 @@ public class Ranking {
 
     private void guardarRanking() {
         try (BufferedWriter bw = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream("Recursos/ranking.txt"), StandardCharsets.UTF_8))) {
+                new OutputStreamWriter(new FileOutputStream("src/Recursos/ranking.txt"), StandardCharsets.UTF_8))) {
             for (JugadorRanking jugador : jugadores) {
                 bw.write(jugador.getNombre() + "," + jugador.getPuntaje());
                 bw.newLine();

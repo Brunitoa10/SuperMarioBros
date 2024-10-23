@@ -27,4 +27,6 @@ public interface ControladorVista {
 	public void volverAlPanelAnterior();
 	
 	public Ranking obtenerRanking();
+
+    public void agregarJugadorAlRanking(String nombre, int puntaje);
 }

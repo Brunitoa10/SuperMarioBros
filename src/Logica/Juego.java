@@ -53,6 +53,8 @@ public class Juego {
         vidas++;
     }
 
+
+
     public void sumarPuntaje(int puntajeParaSumar){
         puntaje += puntajeParaSumar;
         if (puntaje < 0)

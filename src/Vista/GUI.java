@@ -89,6 +89,14 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego,puntaje);
     }
 
+    public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar){
+        System.out.println(nombreAgregar);
+        System.out.println(puntajeAgregar);
+        ranking.agregarAlRanking(nombreAgregar,puntajeAgregar);
+        panelPantallaRanking.llenarTabla();
+        panelPantallaFinJuego.reiniciarPuntaje();
+    }
+
     @Override
     public void accionarPantallaRanking() {
         miJuego.mostrarPantallaRanking();

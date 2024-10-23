@@ -2,4 +2,4 @@ Dino,10000
 Lauti,9000
 Franco,777
 Bruno,250
-Piccio,206
+Piccio,15
