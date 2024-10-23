@@ -73,8 +73,8 @@ public class Juego {
 
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
-        oyenteTeclado = controladorVistas.mostrarPantallaNivel();
-
+        controladorVistas.mostrarPantallaNivel();
+        oyenteTeclado = controladorVistas.obtenerOyente();
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
 
         iniciarLoops();

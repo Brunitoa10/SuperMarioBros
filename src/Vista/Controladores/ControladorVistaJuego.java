@@ -10,7 +10,7 @@ public interface ControladorVistaJuego {
 
     public Observer registrarEntidad(EntidadJugador entidadJugador);
 
-    public OyenteTeclado mostrarPantallaNivel();
+    public void mostrarPantallaNivel();
 
     public void mostrarPantallaFinJuego();
 
