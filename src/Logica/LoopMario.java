@@ -25,12 +25,14 @@ public class LoopMario implements Runnable {
     protected ControladorColisiones controladorColisiones;
     protected int timerAnimacionMorir =0;
     protected Juego juego;
+    protected boolean debeSaltar;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.controladorColisiones = new ControladorColisiones(juego.getNivelActual());
         ejecutando = false;
         this.juego = juego;
+        debeSaltar = false;
     }
 
     public synchronized void comenzar() {
@@ -69,13 +71,10 @@ public class LoopMario implements Runnable {
 
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
+        
         if(!mario.getMorir()) {
-        	
-            // Logica de salto
-            if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
-                juego.saltarMario(mario);
-            }
-            juego.moverMario();
+        	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
+            juego.moverMario(debeSaltar);
           
 
             //Logica para lanzar bola de fuego

@@ -138,14 +138,8 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario() {
-        controladorMovimientoMario.moverMario();
-    }
-
-    public void saltarMario(Jugador mario) {
-        if (mario.estaEnPlataforma())
-            mario.setEnPlataforma(false);
-        mario.saltar();
+    public void moverMario(boolean debeSaltar) {
+        controladorMovimientoMario.moverMario(debeSaltar);
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {

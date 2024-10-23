@@ -18,7 +18,7 @@ public class MarioParado implements EstadoMovimiento {
     @Override
     public void saltar(Jugador mario) {
         System.out.println("Aprete W en MarioParado");
-            mario.setEstadoMovimiento(new MarioSaltando(mario));
+        mario.setEstadoMovimiento(new MarioSaltando(mario));
 
     }
 

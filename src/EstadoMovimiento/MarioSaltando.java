@@ -12,6 +12,8 @@ public class MarioSaltando implements EstadoMovimiento {
 
         this.velocidadY = VELOCIDAD_INICIAL_SALTO;
         this.mario = mario;// Empieza subiendo con velocidad inicial
+        if (mario.estaEnPlataforma())
+            mario.setEnPlataforma(false);
         if(mario.getDireccion()==1) {
             mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
         }else{
@@ -21,6 +23,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
+    	
         // Movimiento horizontal
         mario.getEstadoJugador().actualizarSprite();
 
