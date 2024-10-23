@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
@@ -27,10 +28,12 @@ public class PanelPantallaFinJuego extends JPanel {
     private JButton btnVolverMenu;
     protected String modoJuego;
     protected Sonido sonido;
+    private int puntaje;
 
-    public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego) {
+    public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego, int puntaje) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
+        this.puntaje = puntaje;
         sonido = SonidoFactory.crearSonido(modoJuego, "boton");
         setSize(803, 601);
         agregarImagenFondo();

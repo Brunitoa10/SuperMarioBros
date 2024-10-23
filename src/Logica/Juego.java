@@ -71,6 +71,7 @@ public class Juego {
     }
 
     public void mostrarPantallaFinJuego(){
+        controladorVistas.crearPantallaFinJuego(modoJuego,puntaje);
         controladorVistas.mostrarPantallaFinJuego();
     }
 

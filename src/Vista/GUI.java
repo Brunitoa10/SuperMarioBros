@@ -73,7 +73,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         historialPaneles.push(panelPantallaPrincipal);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-        panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego);
         ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
@@ -83,6 +82,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void accionarInicioJuego(String modoJuego) {
         configuracion.setModoJuego(modoJuego); // Actualizar el modo de juego
         miJuego.iniciar(modoJuego);
+    }
+
+    public void crearPantallaFinJuego(String modoJuego, int puntaje){
+
+        panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego,puntaje);
     }
 
     @Override
