@@ -30,7 +30,8 @@ public class Juego {
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
-    ControladorMovimientoMario controladorMovimientoMario;
+    protected ControladorMovimientoMario controladorMovimientoMario;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
     public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -77,6 +78,7 @@ public class Juego {
         controladorVistas.mostrarPantallaNivel();
         oyenteTeclado = controladorVistas.obtenerOyente();
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
 
         iniciarLoops();
     }
@@ -141,6 +143,10 @@ public class Juego {
 
     public void moverMario(boolean debeSaltar) {
         controladorMovimientoMario.moverMario(debeSaltar);
+    }
+
+    public void lanzarBolasDeFuego() {
+        controladorBolasDeFuego.lanzarBolaDeFuego(controladorVistas);
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {

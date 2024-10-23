@@ -76,22 +76,9 @@ public class LoopMario implements Runnable {
         	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
             juego.moverMario(debeSaltar);
           
+        juego.lanzarBolasDeFuego();
 
-            //Logica para lanzar bola de fuego
-            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
-                cooldownBola=0;
-                bolaDeFuego = juego.dispararBolaFuego(mario);
-                juego.getControladorVistaJuego().registrarEntidad(bolaDeFuego);
-                empezarCooldown = true;
-            }
 
-            if (cooldownBola==20){
-                bolaDeFuego.setPosicionEnY(-100);
-            }
-
-            if (empezarCooldown){
-                cooldownBola++;
-            }
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 
