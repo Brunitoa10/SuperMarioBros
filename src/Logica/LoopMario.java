@@ -3,6 +3,7 @@ package Logica;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
+import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Vista.Controladores.ControladorVistaJuego;
@@ -33,13 +34,15 @@ public class LoopMario implements Runnable {
     protected ControladorColisiones controladorColisiones;
     protected int timerAnimacionMorir =0;
     protected Juego juego;
+    protected Temporizador temporizador;
     protected boolean debeSaltar;
     protected ControladorBolasDeFuego controladorBolasDeFuego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
-        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual());
+        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
         ejecutando = false;
+        temporizador = new Temporizador();
         this.juego = juego;
         debeSaltar = false;
     }
@@ -48,6 +51,7 @@ public class LoopMario implements Runnable {
         ejecutando = true;
         Thread hilo = new Thread(this);
         hilo.start();
+        temporizador.iniciar();
     }
 
     public synchronized void detener() {
@@ -81,11 +85,18 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
-        	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
+        	  debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
             juego.moverMario(debeSaltar);
 
-            juego.lanzarBolasDeFuego(mario);
+            //Logica para lanzar bola de fuego
+            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1500)){
+                temporizador.resetear();
+                temporizador.iniciar();
+                bolaDeFuego = juego.dispararBolaFuego(mario);
+                mario.getEstadoMovimiento().LanzarBola();
+            }
 
+            //juego.lanzarBolasDeFuego(mario);
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 

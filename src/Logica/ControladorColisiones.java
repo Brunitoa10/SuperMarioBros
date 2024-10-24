@@ -10,16 +10,22 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
-
+import Vista.ObserverGrafica.Observer;
 import Fabricas.Sprite;
+import Vista.ObserverGrafica.ObserverEntidad;
+import Vista.ObserverGrafica.ObserverGrafica;
+import Vista.GUI;
 
 import java.util.List;
 
 public class ControladorColisiones {
     protected Nivel nivelActual;
+    protected Temporizador temporizadorActual;
+    protected Juego juegoActual;
 
-    public ControladorColisiones(Nivel nivelActual) {
+    public ControladorColisiones(Nivel nivelActual,Juego juego) {
         this.nivelActual = nivelActual;
+        this.juegoActual = juego;
     }
 
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
@@ -29,8 +35,12 @@ public class ControladorColisiones {
                 int PosicionReemplazarY = plataforma.getPosicionEnY();
                 plataforma.accept(mario.getVisitorJugador());
                 plataforma.actualizarEntidad();
-                if(plataforma.aEliminar()){
-                    nivelActual.getVacios().add(new Vacio(PosicionReemplazarX,PosicionReemplazarY,new Sprite("",32,32),nivelActual.getVacios()));
+                if (plataforma.aEliminar()) {
+                    Vacio vacio=new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
+                    nivelActual.agregarVacio(vacio);
+                    vacio.setAnimacionFinal(plataforma.getFrames());
+                    Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
+                    vacio.registrarObserver(observer);
                     nivelActual.getEntidadesAEliminar().add(plataforma);
                 }
             }
@@ -77,9 +87,10 @@ public class ControladorColisiones {
 
     public void colisionMarioConVacio(List<Vacio> listaVacios, Jugador mario) {
         for (Vacio vacio : listaVacios) {
+            vacio.actualizar();
             if (VacioColisionoAbajo(vacio, mario)) {
                 if (mario.estaEnPlataforma()) {
-                    mario.setEstadoMovimiento(new MarioEnAire(mario));
+                    mario.setEstadoMovimiento(new MarioEnAire(mario,0));
                     mario.setEnPlataforma(false);
                 }
             }

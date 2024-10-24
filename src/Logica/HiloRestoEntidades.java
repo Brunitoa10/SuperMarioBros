@@ -26,7 +26,7 @@ public class HiloRestoEntidades implements Runnable {
     public HiloRestoEntidades(Juego juego) {
         nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
-        controladorColisiones = new ControladorColisiones(juego.getNivelActual());
+        controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
     }
 
     public synchronized void comenzar() {

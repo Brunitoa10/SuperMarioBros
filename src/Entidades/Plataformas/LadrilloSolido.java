@@ -3,6 +3,12 @@ package Entidades.Plataformas;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
+import Logica.Temporizador;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -17,12 +23,15 @@ public class LadrilloSolido extends Plataforma {
 
     }
 
+
     public void interactuar(Jugador jugador) {
         if (jugador.puedeRomperBloques()) {
-            setAEliminar();
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
+            this.setAEliminar();
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
         }
     }
-
+    public String[] getFrame() {
+        return frames;
+    }
 
 }

@@ -114,6 +114,7 @@ public class Juego {
         registrarObserversParaEntidades(nivelActual.getMonedas());
     }
 
+
     protected void registrarObserverJugador(Jugador jugador) {
         Observer observerJugador = controladorVistas.registrarEntidad(jugador);
         jugador.registrarObserver(observerJugador);
@@ -125,6 +126,8 @@ public class Juego {
             entidad.registrarObserver(observer);
         }
     }
+
+
     public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
         for (Entidad entidad : entidades) {
             Observer observer = controladorVistas.registrarEntidad(entidad);

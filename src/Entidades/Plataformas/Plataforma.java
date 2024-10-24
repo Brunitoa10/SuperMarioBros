@@ -35,4 +35,5 @@ public abstract class Plataforma extends EntidadInmovil {
     public void interactuar(Jugador j){
 
     }
+
 }

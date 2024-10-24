@@ -10,15 +10,17 @@ import Visitor.VisitorProyectil;
 import java.util.List;
 
 public class BolaDeFuego extends Proyectil {
-    protected int Gravedad=1;
-    protected int velocidadY;
-    protected int velocidadX;
-    protected int direccionLocal;
-    protected int contador;
-    protected boolean condicionDesaparecer=false;
-    protected VisitorProyectil visitor;
-    protected Temporizador temporizador;
-    protected Jugador jugador;
+
+  protected int Gravedad=1;
+  protected int velocidadY;
+  protected int velocidadX;
+  protected int direccionLocal;
+  protected int contador;
+  protected boolean condicionDesaparecer=false;
+  protected VisitorProyectil visitor;
+  protected Temporizador temporizador;
+  protected Jugador jugador;
+
     public BolaDeFuego(Jugador mario) {
         // Si la direcciÃ³n de Mario es -1, usa getMinX(), si no, usa getMaxX()
         super((int) (mario.getDireccion() == -1 ? mario.getHitbox().getMinX()-18 : mario.getHitbox().getMaxX()),
@@ -44,6 +46,7 @@ public class BolaDeFuego extends Proyectil {
 
     @Override
     public void actualizarEntidad() {
+        System.out.println("ESTOY VIVO");
         contador++;
         setPosicionEnX(getPosicionEnX() + velocidadX*direccionLocal);
         this.getSprite().setPosicionX(this.getPosicionEnX());
@@ -58,6 +61,7 @@ public class BolaDeFuego extends Proyectil {
             this.getSprite().setPosicionY(this.getPosicionEnY());
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+            super.actualizarEntidad();
         }
         if(temporizador.hanPasadoNSegundos(1000) && condicionDesaparecer)
             Desaparcer();

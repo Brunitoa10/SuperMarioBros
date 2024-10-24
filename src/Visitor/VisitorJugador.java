@@ -69,7 +69,7 @@ public class VisitorJugador implements Visitor {
 
         }
         else if (mario.colisionArriba(plataforma)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
+            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
             plataforma.interactuar(mario);
             System.out.println("colision arriba!");
         }
@@ -89,7 +89,9 @@ public class VisitorJugador implements Visitor {
             System.out.println("picho");
         if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
             System.out.println("colision abajo!");
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
+
+            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+
 
         }
     }
