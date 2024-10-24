@@ -18,7 +18,6 @@ public class IACaminar implements ComportamientoIA {
     @Override
     public void actualizar(Enemigo enemigo) {
         contadorMovimientos++;
-
         // Cambia de dirección después de un número aleatorio de movimientos
         if (contadorMovimientos > random.nextInt(3000)) {
             direccionActual = random.nextBoolean() ? 1 : -1;

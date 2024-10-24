@@ -11,9 +11,10 @@
         private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
         private int velocidadY;
 
-        public MarioEnAire(Jugador mario) {
+        public MarioEnAire(Jugador mario, int velocidadY) {
             this.mario = mario;
-            alturaMax = mario.getPosicionEnY()+50;
+            this.velocidadY = velocidadY;
+            VELOCIDAD_SALTO = velocidadY;
             if(mario.getDireccion()==1) {
                 mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
             }else{
@@ -23,7 +24,7 @@
 
         @Override
         public void saltar(Jugador mario) {
-            System.out.println("Mario en el aire");
+
         }
 
         @Override
@@ -56,6 +57,14 @@
 
         public void LanzarBola() {
             mario.setEstadoMovimiento(new LanzandoBola(mario));
+        }
+        public void EnAire(Jugador jugador) {
+            if(velocidadY<0)
+                velocidadY=0;
+        }
+
+        @Override
+        public void AFK(Jugador jugador) {
         }
 
     }

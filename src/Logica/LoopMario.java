@@ -3,6 +3,7 @@ package Logica;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
+import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
 import Fabricas.Sprite;
 import Vista.Controladores.ControladorVistaJuego;
@@ -95,9 +96,13 @@ public class LoopMario implements Runnable {
                 direccionLocal = mario.getDireccion();
             }
 
-            if (!oyente.teclaEspacio && !oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()) && temporizador.hanPasadoNSegundos(500))
-                mario.setEstadoMovimiento(new MarioParado(mario));
-
+            if (!oyente.teclaEspacio && !oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && temporizador.hanPasadoNSegundos(500)) {
+                if (mario.estaEnPlataforma()) {
+                    mario.getEstadoMovimiento().AFK(mario);
+                } else {
+                    mario.getEstadoMovimiento().EnAire(mario);
+                }
+            }
 
             // Logica de salto
             if (oyente.teclaArriba && (mario.estaEnPlataforma())) {

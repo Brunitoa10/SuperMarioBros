@@ -46,5 +46,12 @@ public class MarioParado implements EstadoMovimiento {
         mario.setEstadoMovimiento(new LanzandoBola(mario));
     }
 
+    public void EnAire(Jugador jugador) {
+        mario.setEstadoMovimiento(new MarioEnAire(jugador,0));
+    }
+
+    public void AFK(Jugador jugador) {
+    }
+
 
 }

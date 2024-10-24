@@ -90,7 +90,7 @@ public class ControladorColisiones {
             vacio.actualizar();
             if (VacioColisionoAbajo(vacio, mario)) {
                 if (mario.estaEnPlataforma()) {
-                    mario.setEstadoMovimiento(new MarioEnAire(mario));
+                    mario.setEstadoMovimiento(new MarioEnAire(mario,0));
                     mario.setEnPlataforma(false);
                 }
             }
