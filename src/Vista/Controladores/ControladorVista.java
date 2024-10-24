@@ -1,7 +1,7 @@
 package Vista.Controladores;
 
+import GestorArchivos.Ranking;
 import Logica.Juego;
-import Logica.Ranking;
 
 public interface ControladorVista {
     public void accionarInicioJuego(String modoJuego);

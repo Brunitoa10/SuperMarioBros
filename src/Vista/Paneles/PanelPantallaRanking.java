@@ -20,9 +20,9 @@ import javax.swing.table.JTableHeader;
 
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
+import GestorArchivos.JugadorRanking;
+import GestorArchivos.Ranking;
 import Logica.ConfiguracionJuego;
-import Logica.JugadorRanking;
-import Logica.Ranking;
 import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaRanking extends JPanel {

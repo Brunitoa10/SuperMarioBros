@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import GestorArchivos.Ranking;
 import Logica.ConfiguracionJuego;
 import Logica.Juego;
 import Logica.OyenteTeclado;
-import Logica.Ranking;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
