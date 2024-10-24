@@ -4,7 +4,7 @@ import Entidades.Jugador;
 
 public class MarioCaminando implements EstadoMovimiento {
 
-    Jugador mario;
+    private Jugador mario;
 
     public MarioCaminando(Jugador mario) {
         this.mario = mario;
@@ -19,8 +19,10 @@ public class MarioCaminando implements EstadoMovimiento {
     }
 
     @Override
-    public void saltar(Jugador mario) {
+    public void saltar() {
+        System.out.println("Aprete W");
             mario.setEstadoMovimiento(new MarioSaltando(mario));
+
     }
 
 
@@ -40,9 +42,16 @@ public class MarioCaminando implements EstadoMovimiento {
         }
     }
 
-    @Override
-    public boolean estaEnElSuelo() {
-        return true;
+    public void LanzarBola() {
+        mario.setEstadoMovimiento(new LanzandoBola(mario));
     }
 
+    public void EnAire() {
+        mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+    }
+
+    @Override
+    public void AFK() {
+        mario.setEstadoMovimiento(new MarioParado(mario));
+    }
 }

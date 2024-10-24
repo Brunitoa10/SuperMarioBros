@@ -89,10 +89,10 @@ public class PanelPantallaNivel extends JPanel {
         panelScrollNivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     }
 
-    public Observer incorporarEntidad(EntidadLogica entidad_logica) {
-        observerEntidad = new ObserverEntidad(entidad_logica, this);
+    public Observer incorporarEntidad(EntidadLogica entidadLogica) {
+        observerEntidad = new ObserverEntidad(entidadLogica, this);
         imagenFondoPanelNivel.add(observerEntidad);
-        System.out.println("Entidad añadida al panel: " + entidad_logica.getClass().getName());
+        System.out.println("Entidad añadida al panel: " + entidadLogica.getClass().getName());
         actualizarObserver();
         return observerEntidad;
     }
@@ -103,9 +103,14 @@ public class PanelPantallaNivel extends JPanel {
         actualizarInfoJugador(entidadJugador);
         return observerJugador;
     }
-    
-    //agregar eliminar observer entidad
-    
+
+    public void eliminarEntidad(ObserverEntidad observerEntidad) {
+        imagenFondoPanelNivel.remove(observerEntidad);
+    }
+
+    public void eliminarEntidadJugador(ObserverJugador observerJugador) {
+        imagenFondoPanelNivel.remove(observerJugador);
+    }
 
     protected void actualizarInfoJugador(EntidadJugador jugador) {
         actualizarLabelsInformacion(jugador);
@@ -134,4 +139,5 @@ public class PanelPantallaNivel extends JPanel {
     		observerEntidad.actualizarObserver();
     	}
     }
+
 }

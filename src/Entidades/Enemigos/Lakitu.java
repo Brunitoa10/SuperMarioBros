@@ -9,10 +9,12 @@ import IA.IACaminar;
 import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public class Lakitu extends Enemigo {
 
-    public Lakitu(int x, int y, Sprite sprite) {
-        super(x, y, sprite,new IACaminar());
+    public Lakitu(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         velocidad = 4;
     }
 
@@ -23,10 +25,6 @@ public class Lakitu extends Enemigo {
             setComportamientoIA(new IAAtacar());
         }
         return colisionan;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
     public void interactuar(Jugador mario) {
@@ -47,6 +45,7 @@ public class Lakitu extends Enemigo {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
         this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
 
 }

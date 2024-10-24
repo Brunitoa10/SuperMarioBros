@@ -10,12 +10,14 @@ import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
+import java.util.List;
+
 public class Spiny extends Enemigo {
 
     protected VisitorEnemigo visitor;
 
-    public Spiny(int x, int y, Sprite sprite) {
-        super(x, y, sprite,new IACaminar());
+    public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
     }
 
@@ -26,10 +28,6 @@ public class Spiny extends Enemigo {
             setComportamientoIA(new IAAtacar());
         }
         return colisionan;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
     public void interactuar(Jugador mario) {
@@ -49,6 +47,7 @@ public class Spiny extends Enemigo {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
         this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
 
 }

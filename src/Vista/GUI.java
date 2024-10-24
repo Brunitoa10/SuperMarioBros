@@ -130,6 +130,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         refrescar();
     }
 
+    public OyenteTeclado obtenerOyente() {
+    	return oyente;
+    }
     @Override
     public void mostrarPantallaFinJuego() {
         historialPaneles.push(panelPantallaFinJuego);

@@ -13,14 +13,16 @@ import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
+import java.util.List;
+
 public class KoopaTroopa extends Enemigo {
 
     protected VisitorEnemigo visitor;
     protected int vidas;
     protected ProyectilKoopa proyectil;
 
-    public KoopaTroopa(int x, int y, Sprite sprite,ProyectilKoopa proyectil) {
-        super(x, y, sprite,new IACaminar());
+    public KoopaTroopa(int x, int y, Sprite sprite,ProyectilKoopa proyectil, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         this.proyectil = proyectil;
         visitor = new VisitorEnemigo(this);
         velocidad = 1;
@@ -46,19 +48,15 @@ public class KoopaTroopa extends Enemigo {
         return colisionan;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
-    }
-
     public void interactuar(Jugador mario) {
         if(mario.colisionAbajo(this)) {
             this.vidas--;
             if (vidas == 0) {
                 this.setAEliminar();
-                proyectil.getHitbox().setBounds(proyectil.getPosicionEnX(),this.getSprite().getPosicionY(),32,32);
+                proyectil.getHitbox().setBounds(this.getPosicionEnX(),423,32,32);
                 proyectil.setPosicionEnX(this.getPosicionEnX());
+                proyectil.getSprite().setPosicionX(this.getPosicionEnX());
                 proyectil.setPosicionEnY(423);
-                proyectil.getSprite().setPosicionX(proyectil.getPosicionEnX());
                 proyectil.getSprite().setPosicionY(423);
                 proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
                 proyectil.actualizarEntidad();
@@ -84,6 +82,7 @@ public class KoopaTroopa extends Enemigo {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
         this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
 
 }

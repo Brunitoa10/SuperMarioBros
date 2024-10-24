@@ -8,19 +8,23 @@ import IA.ComportamientoIA;
 import Visitor.VisitorEnemigo;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public abstract class Enemigo extends EntidadMovil {
 
     protected VisitorEnemigo visitorEnemigo;
     protected int posicionx;
     protected int posiciony;
     protected ComportamientoIA comportamientoIA;
+    protected List<Enemigo> listaEnemigoNivel;
 
-    public Enemigo(int x, int y, Sprite sprite,ComportamientoIA comportamientoIA) {
+    public Enemigo(int x, int y, Sprite sprite,ComportamientoIA comportamientoIA, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite);
         posicionx = x;
         posiciony = y;
         visitorEnemigo = new VisitorEnemigo(this);
         this.comportamientoIA = comportamientoIA;
+        this.listaEnemigoNivel = listaEnemigoNivel;
     }
 
     public VisitorEnemigo getVisitorEnemigo() {
@@ -33,7 +37,16 @@ public abstract class Enemigo extends EntidadMovil {
         super.actualizarEntidad();
         // Otros comportamientos que puedan ser agregados como colisiones o IA
     }
-    
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public void eliminarEntidad() {
+        this.listaEnemigoNivel.remove(this);
+    }
+
     // Método para cambiar dinámicamente la estrategia de IA
     public void setComportamientoIA(ComportamientoIA nuevaIA) {
         this.comportamientoIA = nuevaIA;

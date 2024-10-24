@@ -5,11 +5,13 @@ import Entidades.Jugador;
 import EstadoJugador.SuperMarioFuego;
 import Fabricas.Sprite;
 
+import java.util.List;
+
 public class FlorDeFuego extends PowerUp {
 
     protected int puntaje;
-    public FlorDeFuego(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public FlorDeFuego(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
+        super(x, y, sprite, listaPowerUpsNivel);
         puntaje = 0;
     }
 

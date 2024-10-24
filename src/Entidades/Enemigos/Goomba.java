@@ -9,13 +9,15 @@ import Logica.ConstantesPuntaje;
 import Visitor.VisitorEnemigo;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public class Goomba extends Enemigo {
 
     protected VisitorEnemigo visitor;
     protected boolean Mori;
 
-    public Goomba(int x, int y, Sprite sprite) {
-        super(x, y, sprite,new IACaminar());
+    public Goomba(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
         velocidad = 1;
     }
@@ -23,10 +25,6 @@ public class Goomba extends Enemigo {
     public boolean detectarColision(Entidad c) {
         boolean colisionan = c.detectarColision(this);
         return false;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
     public void interactuar(Jugador mario) {
@@ -55,6 +53,7 @@ public class Goomba extends Enemigo {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
         this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
 
 }

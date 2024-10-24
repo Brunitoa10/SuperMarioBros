@@ -3,7 +3,7 @@ package EstadoMovimiento;
 import Entidades.Jugador;
 
 public class MarioParado implements EstadoMovimiento {
-    Jugador mario;
+   private  Jugador mario;
 
     public MarioParado(Jugador mario) {
         this.mario = mario;
@@ -16,8 +16,10 @@ public class MarioParado implements EstadoMovimiento {
     }
 
     @Override
-    public void saltar(Jugador mario) {
-            mario.setEstadoMovimiento(new MarioSaltando(mario));
+    public void saltar() {
+        System.out.println("Aprete W en MarioParado");
+        mario.setEstadoMovimiento(new MarioSaltando(mario));
+
     }
 
     @Override
@@ -37,8 +39,16 @@ public class MarioParado implements EstadoMovimiento {
         }
     }
 
-    public boolean estaEnElSuelo() {
-        return true;
+    @Override
+    public void LanzarBola() {
+        mario.setEstadoMovimiento(new LanzandoBola(mario));
+    }
+
+    public void EnAire() {
+        mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+    }
+
+    public void AFK() {
     }
 
 

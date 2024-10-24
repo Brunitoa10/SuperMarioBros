@@ -34,18 +34,15 @@ public class VisitorJugador implements Visitor {
     public void visit(PowerUp p) {
         if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else{
             mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
     }
 
@@ -66,14 +63,13 @@ public class VisitorJugador implements Visitor {
             mario.setPosicionEnX(posicionATeletransportar);
         }
         else if (mario.colisionAbajo(plataforma)){
-            System.out.println("estoy colisionando mi rey");
             mario.setEnPlataforma(true);
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
 
         }
         else if (mario.colisionArriba(plataforma)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
+            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
             plataforma.interactuar(mario);
             System.out.println("colision arriba!");
         }
@@ -81,14 +77,7 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Proyectil proyectil) {
-        if(proyectil.colisionIzquierda(mario)){
-            proyectil.setDireccion(1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
-        if(proyectil.colisionDerecha(mario)){
-            proyectil.setDireccion(-1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
+        proyectil.Interactuar(mario);
     }
 
 
@@ -100,7 +89,9 @@ public class VisitorJugador implements Visitor {
             System.out.println("picho");
         if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
             System.out.println("colision abajo!");
-            mario.setEstadoMovimiento(new MarioEnAire(mario));
+
+            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+
 
         }
     }

@@ -16,7 +16,6 @@ public class VisitorProyectil implements Visitor {
         proyectil=p;
     }
     public void visit(Jugador j) {
-
     }
 
     @Override
@@ -36,10 +35,12 @@ public class VisitorProyectil implements Visitor {
 
     @Override
     public void visit(Plataforma p) {
-        System.out.println("Colisione anashe");
-        if(proyectil.colisionIzquierda(p) || proyectil.colisionDerecha(p)){
-           proyectil.setDireccion(-1*proyectil.getDireccion());
-        }
+            if(proyectil.colisionIzquierda(p) || proyectil.colisionDerecha(p))
+                proyectil.setDireccion(-1 * proyectil.getDireccion());
+            if(proyectil.colisionAbajo(p))
+                proyectil.setGravedad();
+            if(proyectil.colisionArriba(p))
+                proyectil.setGravedad();
     }
 
     @Override

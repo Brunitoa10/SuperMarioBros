@@ -15,7 +15,7 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Enemigos/BuzzyBeetle/BuzzyBeetleLeftLoop.gif", 32, 32);
     }
     public Sprite crearSpriteKoopaTroopa(){
-        return new Sprite(ruta_carpeta + "/Enemigos/KoopaTroopa/KoopaCaminandoLeft.gif", 32, 48);
+        return new Sprite(ruta_carpeta + "/Enemigos/KoopaTroopa/KoopaCaminandoLeft.gif", 32, 32);
     }
     public Sprite crearSpriteLakitu() {
         return new Sprite(ruta_carpeta + "/Enemigos/Lakitu_moviendose.png", 32, 32);

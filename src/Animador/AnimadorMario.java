@@ -13,4 +13,10 @@ public class AnimadorMario {
     // Movimiento de salto
     public static final String MARIO_JUMPING_LEFT = "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioLeft.png";
     public static final String MARIO_JUMPING_RIGHT = "src/Recursos/Sprites/Originales/Jugador/PNGMario/JumpingMarioRigth.png";
+    
+	public static final String RUTA_MARIO_JUMP_DERECHA = "/JumpingMarioRigth.png";
+	public static final String RUTA_MARIO_JUMP_IZQUIERDA = "/JumpingMarioLeft.png";
+	
+	
+	public static final String MUERTE_MARIO = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif";
 }

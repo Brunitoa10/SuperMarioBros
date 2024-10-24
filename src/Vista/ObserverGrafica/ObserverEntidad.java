@@ -17,10 +17,11 @@ public class ObserverEntidad extends ObserverGrafica {
     }
 
     public void actualizarObserver() {
+        super.actualizarPosicionTamanio();
         super.actualizarObserver();
     }
 
-    public EntidadLogica getEntidadObservada() {
-        return entidadObservada;
+    public void eliminarDePanel() {
+        panelPantallaNivel.eliminarEntidad(this);
     }
 }
