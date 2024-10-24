@@ -12,8 +12,8 @@ public class LanzandoBola implements EstadoMovimiento{
         if(mario.getDireccion()==-1)
             mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
     }
-    public void saltar(Jugador j) {
-        j.setEstadoMovimiento((new MarioSaltando(j)));
+    public void saltar() {
+        mario.setEstadoMovimiento((new MarioSaltando(mario)));
     }
 
     @Override
@@ -35,11 +35,6 @@ public class LanzandoBola implements EstadoMovimiento{
     }
 
     @Override
-    public boolean estaEnElSuelo() {
-        return false;
-    }
-
-    @Override
     public void LanzarBola() {
         if(mario.getDireccion()==1)
             mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
@@ -48,12 +43,12 @@ public class LanzandoBola implements EstadoMovimiento{
     }
 
     @Override
-    public void EnAire(Jugador jugador) {
+    public void EnAire() {
         mario.setEstadoMovimiento(new MarioEnAire(mario,0));
     }
 
     @Override
-    public void AFK(Jugador jugador) {
+    public void AFK() {
         mario.setEstadoMovimiento(new MarioParado(mario));
     }
 }

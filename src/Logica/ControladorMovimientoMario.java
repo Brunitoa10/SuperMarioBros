@@ -2,6 +2,7 @@ package Logica;
 
 import Entidades.Jugador;
 import EstadoMovimiento.MarioParado;
+import Logica.Temporizador;
 
 public class ControladorMovimientoMario {
 
@@ -13,15 +14,21 @@ public class ControladorMovimientoMario {
         this.oyenteTeclado = oyenteTeclado;
     }
 
-    public void moverMario(boolean debeSaltar) {
+    public void moverMario(Temporizador temporizador) {
         if(oyenteTeclado.teclaIzquierda || oyenteTeclado.teclaDerecha) {
             moverMarioHorizontalmente(oyenteTeclado);
         }
-        if(debeSaltar) {
+        if(oyenteTeclado.teclaArriba && mario.estaEnPlataforma()) {
             mario.saltar();
         }
-        if (!oyenteTeclado.teclaIzquierda && !oyenteTeclado.teclaDerecha && !oyenteTeclado.teclaArriba && mario.estaEnPlataforma()) {
-            mario.setEstadoMovimiento(new MarioParado(mario));
+        if (!oyenteTeclado.teclaIzquierda && !oyenteTeclado.teclaDerecha && !oyenteTeclado.teclaArriba
+                && !oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(500)) {
+            if (mario.estaEnPlataforma()) {
+                mario.setEstadoMovimiento(new MarioParado(mario));
+            }
+            else {
+                mario.getEstadoMovimiento().EnAire();
+            }
         }
     }
 

@@ -85,18 +85,8 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
-        	  debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
-            juego.moverMario(debeSaltar);
-
-            //Logica para lanzar bola de fuego
-            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1500)){
-                temporizador.resetear();
-                temporizador.iniciar();
-                bolaDeFuego = juego.dispararBolaFuego(mario);
-                mario.getEstadoMovimiento().LanzarBola();
-            }
-
-            //juego.lanzarBolasDeFuego(mario);
+            juego.moverMario(temporizador);
+            juego.lanzarBolasDeFuego(mario);
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 

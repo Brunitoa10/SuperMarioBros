@@ -21,11 +21,11 @@ public class BolaDeFuego extends Proyectil {
   protected Temporizador temporizador;
   protected Jugador jugador;
 
-    public BolaDeFuego(Jugador mario) {
+    public BolaDeFuego(Jugador mario, List<Proyectil> listaProyectilNivel) {
         // Si la direcciÃ³n de Mario es -1, usa getMinX(), si no, usa getMaxX()
         super((int) (mario.getDireccion() == -1 ? mario.getHitbox().getMinX()-18 : mario.getHitbox().getMaxX()),
                 calcularMitadDeMario(mario),
-                crearSprite());
+                crearSprite(), listaProyectilNivel);
         visitor=new VisitorProyectil(this);
         velocidadX = 4;
         velocidadY = 0;

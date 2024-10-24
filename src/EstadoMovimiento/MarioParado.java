@@ -39,20 +39,16 @@ public class MarioParado implements EstadoMovimiento {
         }
     }
 
-    public boolean estaEnElSuelo() {
-        return true;
-    }
-
     @Override
     public void LanzarBola() {
         mario.setEstadoMovimiento(new LanzandoBola(mario));
     }
 
-    public void EnAire(Jugador jugador) {
-        mario.setEstadoMovimiento(new MarioEnAire(jugador,0));
+    public void EnAire() {
+        mario.setEstadoMovimiento(new MarioEnAire(mario,0));
     }
 
-    public void AFK(Jugador jugador) {
+    public void AFK() {
     }
 
 

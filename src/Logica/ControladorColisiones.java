@@ -38,7 +38,7 @@ public class ControladorColisiones {
                 if (plataforma.aEliminar()) {
                     Vacio vacio=new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
                     nivelActual.agregarVacio(vacio);
-                    vacio.setAnimacionFinal(plataforma.getFrames());
+                    vacio.setAnimacionFinal();
                     Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
                     vacio.registrarObserver(observer);
                     nivelActual.getEntidadesAEliminar().add(plataforma);

@@ -5,14 +5,13 @@
     public class MarioEnAire implements EstadoMovimiento{
 
         protected Jugador mario;
-        protected static int alturaMax;
         private static final int GRAVEDAD = 1; // Gravedad constante que hará que baje
+        private static final int TOPE_GRAVEDAD = 15;
         private int velocidadY;
 
         public MarioEnAire(Jugador mario, int velocidadY) {
             this.mario = mario;
             this.velocidadY = velocidadY;
-            VELOCIDAD_SALTO = velocidadY;
             if(mario.getDireccion()==1) {
                 mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/JumpingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
             }else{
@@ -21,7 +20,7 @@
         }
 
         @Override
-        public void saltar(Jugador mario) {
+        public void saltar() {
 
         }
 
@@ -37,7 +36,9 @@
             mario.getEstadoJugador().actualizarSprite();
 
             // Aplicar gravedad (para que empiece a bajar eventualmente)
-            velocidadY += GRAVEDAD;
+            if (velocidadY <= TOPE_GRAVEDAD) {
+                velocidadY += GRAVEDAD;
+            }
 
             // Movimiento vertical
             mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
@@ -49,20 +50,14 @@
             }
         }
 
-        public boolean estaEnElSuelo() {
-            return false;
-        }
-
         public void LanzarBola() {
             mario.setEstadoMovimiento(new LanzandoBola(mario));
         }
-        public void EnAire(Jugador jugador) {
-            if(velocidadY<0)
-                velocidadY=0;
+        public void EnAire() {
         }
 
         @Override
-        public void AFK(Jugador jugador) {
+        public void AFK() {
         }
 
     }

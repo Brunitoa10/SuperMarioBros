@@ -18,7 +18,7 @@ public class Vacio extends EntidadInmovil {
     private boolean animacionFinalizada; // Controla si la animación ha terminado
     protected List<Vacio> listaVacioNivel;
 
-    public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel;) {
+    public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel) {
         super(x, y, sprite);
         temporizador=new Temporizador();
         currentFrame = 0;
@@ -46,11 +46,9 @@ public class Vacio extends EntidadInmovil {
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
         }
 
-
-
     }
 
-    public void setAnimacionFinal(String[] frames){
+    public void setAnimacionFinal(){
         temporizador.iniciar();
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
         animacionActiva = true;  // Activa la animación

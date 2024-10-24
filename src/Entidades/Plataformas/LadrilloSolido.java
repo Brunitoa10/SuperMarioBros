@@ -3,13 +3,6 @@ package Entidades.Plataformas;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
-import Logica.Temporizador;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
 import java.util.List;
 
 
@@ -29,9 +22,6 @@ public class LadrilloSolido extends Plataforma {
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
         }
-    }
-    public String[] getFrame() {
-        return frames;
     }
 
 }

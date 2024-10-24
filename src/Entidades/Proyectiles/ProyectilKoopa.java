@@ -96,7 +96,6 @@ protected VisitorProyectil visitor;
         public void setGravedad(){
 
         }
-    }
 }
 
 

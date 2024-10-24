@@ -143,16 +143,14 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario(boolean debeSaltar) {
-        controladorMovimientoMario.moverMario(debeSaltar);
+    public void moverMario(Temporizador temporizador) {
+        controladorMovimientoMario.moverMario(temporizador);
     }
 
     public void lanzarBolasDeFuego(Jugador mario) {
         if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
-            Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario);
-            getNivelActual().agregarProyectil(bolaDeFuego);
-            Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
-            bolaDeFuego.registrarObserver(observer);
+            Proyectil bolaDeFuego = dispararBolaFuego(mario);
+            mario.getEstadoMovimiento().LanzarBola();
         }
     }
 
@@ -165,7 +163,7 @@ public class Juego {
     }
 
     public Proyectil dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario);
+        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, nivelActual.getProyectiles());
         getNivelActual().agregarProyectil(bolaDeFuego);
         Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
         bolaDeFuego.registrarObserver(observer);
