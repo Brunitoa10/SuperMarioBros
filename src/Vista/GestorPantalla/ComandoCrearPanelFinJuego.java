@@ -9,7 +9,7 @@ public class ComandoCrearPanelFinJuego implements ComandoCrearPanel{
 
 	@Override
 	public JPanel ejecutar(ControladorVista controlador) {
-		return new PanelPantallaFinJuego(controlador, controlador.obtenerModoJuego(),0);
+		return new PanelPantallaFinJuego(controlador, controlador.obtenerModoJuego());
 	}
 
 }

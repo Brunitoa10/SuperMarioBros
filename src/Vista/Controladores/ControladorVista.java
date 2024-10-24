@@ -37,4 +37,6 @@ public interface ControladorVista {
 	public String obtenerNombreUsuario();
 	
 	public void mostrarPantallaNombreUsuario();
+
+	public int obtenerPuntajeJugador();
 }

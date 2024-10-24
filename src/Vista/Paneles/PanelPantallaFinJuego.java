@@ -29,18 +29,15 @@ public class PanelPantallaFinJuego extends JPanel {
     protected String modoJuego;
     protected Sonido sonido;
     protected int puntaje;
-    private JTextField textField;
-    private JButton btnNewButton;
 
-    public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego, int puntaje) {
+    public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
         sonido = SonidoFactory.crearSonido(modoJuego, "boton");
-        this.puntaje = puntaje;
         setSize(803, 601);
         agregarImagenFondo();
         agregarBotonReiniciar();
-        agregarBotonVolverMenu();
+        agregarBotonVerRanking();
     }
 
     protected void agregarImagenFondo() {
@@ -49,29 +46,12 @@ public class PanelPantallaFinJuego extends JPanel {
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
         setLayout(null);
-
-        JLabel lblNewLabel = new JLabel("Su puntaje es: "+ puntaje);
-        lblNewLabel.setForeground(new Color(255, 255, 255));
-        lblNewLabel.setBounds(328, 263, 149, 34);
-        add(lblNewLabel);
-
-        agregarBotonAgregarRanking();
-
-        textField = new JTextField();
-        textField.setBounds(292, 315, 217, 62);
-        add(textField);
-        textField.setColumns(10);
         imagenFondo.setIcon(new ImageIcon(PanelPantallaFinJuego.class.getResource("/Recursos/Imagenes/original/FinDeJuego.png")));
         imagenFondo.setBounds(0, 5, 800, 600);
         add(imagenFondo);
     }
 
-    protected void agregarBotonAgregarRanking(){
-        btnNewButton = new JButton("Enviar Puntaje");
-        btnNewButton.setBounds(444, 257, 122, 46);
-        add(btnNewButton);
-        registrarOyenteBotonEnviarRanking();
-    }
+ 
 
     protected void agregarBotonReiniciar() {
         btnReiniciar = new JButton("");
@@ -81,7 +61,7 @@ public class PanelPantallaFinJuego extends JPanel {
         registrarOyenteBotonReiniciar();
     }
 
-    protected void agregarBotonVolverMenu() {
+    protected void agregarBotonVerRanking() {
         btnVolverMenu = new JButton("");
         btnVolverMenu.setBounds(113, 481, 575, 82);
         decorarBotonVolverMenu();
@@ -99,22 +79,10 @@ public class PanelPantallaFinJuego extends JPanel {
         transparentarBoton(btnVolverMenu);
     }
 
-    public void registrarOyenteBotonEnviarRanking() {
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                controladorVistas.agregarJugadorAlRanking(textField.getText(), puntaje);
-            }
-        });
-    }
-    public void reiniciarPuntaje(){
-        puntaje = 0;
-    }
-
 
     protected void registrarOyenteBotonReiniciar() {
         btnReiniciar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //controladorVistas.accionarReiniciarJuego(modoJuego);  // Método para reiniciar el juego
                 controladorVistas.accionarPantallaModoJuego();
             }
         });
@@ -129,7 +97,8 @@ public class PanelPantallaFinJuego extends JPanel {
     protected void registrarOyenteVerPuntaje() {
         btnVolverMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controladorVistas.mostrarPantallaRanking();;  // Método para volver al menú principal
+            	controladorVistas.agregarJugadorAlRanking(controladorVistas.obtenerNombreUsuario(), controladorVistas.obtenerPuntajeJugador());
+                controladorVistas.mostrarPantallaRanking();
             }
         });
         btnVolverMenu.addMouseListener(new MouseAdapter() {

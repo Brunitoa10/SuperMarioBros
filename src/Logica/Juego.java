@@ -28,12 +28,14 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
-    protected int vidas = 3;
-    protected int puntaje = 0;
+    protected int vidas;
+    protected int puntaje;
 
     public Juego(GUI  controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
+        vidas = 3;
+        puntaje = 5;
     }
 
     // Comunicacion con parte grafica
@@ -73,7 +75,7 @@ public class Juego {
     }
 
     public void mostrarPantallaFinJuego(){
-        controladorVistas.crearPantallaFinJuego(modoJuego,puntaje);
+        controladorVistas.crearPantallaFinJuego(modoJuego);
         controladorVistas.mostrarPantallaFinJuego();
     }
 

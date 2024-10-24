@@ -88,9 +88,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		miJuego.iniciar(modoJuego);
 	}
 
-	public void crearPantallaFinJuego(String modoJuego, int puntaje){
-
-		panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego,puntaje);
+	public void crearPantallaFinJuego(String modoJuego){
+		panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego);
 	}
 
 	public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar){
@@ -98,7 +97,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		System.out.println(puntajeAgregar);
 		ranking.agregarAlRanking(nombreAgregar,puntajeAgregar);
 		panelPantallaRanking.llenarTabla();
-		panelPantallaFinJuego.reiniciarPuntaje();
 	}
 
 	@Override
@@ -108,7 +106,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void accionarPantallaModoJuego() {
-		System.out.println("Seleccione un modo de juego");
 		mostrarPantallaModoJuego();
 	}
 
@@ -233,5 +230,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		historialPaneles.push(panelPantallaNombreUsuario);
 		ventana.setContentPane(panelPantallaNombreUsuario);
 		refrescar();
+	}
+
+	@Override
+	public int obtenerPuntajeJugador() {
+		return miJuego.getPuntaje();
 	}
 }
