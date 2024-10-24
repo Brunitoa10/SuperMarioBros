@@ -85,12 +85,14 @@ public class PanelPantallaNombreUsuario extends JPanel {
 	}
 
 	private void confirmarNombre() {
-		String nombreUsuario = campoNombre.getText().trim();
-		if (!nombreUsuario.isEmpty()) {
-			controladorVista.setNombreUsuario(nombreUsuario);
-			controladorVista.mostrarPantallaModoJuego();
-		} else {
-			JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre válido.");
-		}
+	    String nombreUsuario = campoNombre.getText().trim();
+	    
+	    // Verificar que el nombre solo contenga letras y espacios
+	    if (!nombreUsuario.isEmpty() && nombreUsuario.matches(CadenasValidacion.VALIDACION_USUARIO)) {
+	        controladorVista.setNombreUsuario(nombreUsuario);
+	        controladorVista.mostrarPantallaModoJuego();
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre válido. Solo se permiten letras y espacios.");
+	    }
 	}
 }

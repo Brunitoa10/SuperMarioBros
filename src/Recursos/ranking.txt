@@ -1,5 +1,5 @@
 Dino,10000
 Lauti,9000
 Franco,777
+TDP,740
 Anashee,535
-Bruno,515
