@@ -33,6 +33,11 @@ public class BuzzyBeetle extends Enemigo {
         return colisionan;
     }
 
+    @Override
+    public void accept(Visitor v) {
+
+    }
+
     public void interactuar(Jugador mario) {
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
@@ -57,5 +62,4 @@ public class BuzzyBeetle extends Enemigo {
         this.setPosicionEnY(-100);
         proyectil.setDireccion(0);
     }
-
 }
