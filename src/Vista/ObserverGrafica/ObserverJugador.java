@@ -26,6 +26,6 @@ public class ObserverJugador extends ObserverGrafica {
     }
 
     public void eliminarDePanel() {
-        panelPantallaNivel.getImagenFondoPanelNivel().remove(this);
+        panelPantallaNivel.eliminarEntidadJugador(this);
     }
 }

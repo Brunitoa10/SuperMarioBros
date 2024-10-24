@@ -104,8 +104,13 @@ public class PanelPantallaNivel extends JPanel {
         return observerJugador;
     }
 
-    //agregar eliminar observer entidad
+    public void eliminarEntidad(ObserverEntidad observerEntidad) {
+        imagenFondoPanelNivel.remove(observerEntidad);
+    }
 
+    public void eliminarEntidadJugador(ObserverJugador observerJugador) {
+        imagenFondoPanelNivel.remove(observerJugador);
+    }
 
     protected void actualizarInfoJugador(EntidadJugador jugador) {
         actualizarLabelsInformacion(jugador);
@@ -135,7 +140,4 @@ public class PanelPantallaNivel extends JPanel {
     	}
     }
 
-    public JLabel getImagenFondoPanelNivel() {
-        return imagenFondoPanelNivel;
-    }
 }

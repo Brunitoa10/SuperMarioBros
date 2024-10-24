@@ -34,18 +34,15 @@ public class VisitorJugador implements Visitor {
     public void visit(PowerUp p) {
         if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else{
             mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
     }
 
