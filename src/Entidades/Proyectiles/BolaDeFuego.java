@@ -7,6 +7,8 @@ import Logica.Temporizador;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
 
+import java.util.List;
+
 public class BolaDeFuego extends Proyectil {
     protected int Gravedad=1;
     protected int velocidadY;
@@ -59,10 +61,6 @@ public class BolaDeFuego extends Proyectil {
         }
         if(temporizador.hanPasadoNSegundos(1000) && condicionDesaparecer)
             Desaparcer();
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
 

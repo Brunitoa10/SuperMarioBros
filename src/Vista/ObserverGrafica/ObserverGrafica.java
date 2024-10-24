@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import Entidades.EntidadLogica;
 import Vista.AdaptadorPosicionPixel;
 
-public class ObserverGrafica extends JLabel implements Observer {
+public abstract class ObserverGrafica extends JLabel implements Observer {
 
     /**
      * 
