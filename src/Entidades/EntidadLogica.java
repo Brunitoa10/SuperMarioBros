@@ -1,6 +1,7 @@
 package Entidades;
 
 import Fabricas.Sprite;
+import Vista.ObserverGrafica.Observer;
 
 import java.awt.*;
 
@@ -14,6 +15,8 @@ public interface EntidadLogica{
     public void actualizarEntidad();
 
     public Rectangle getHitbox();
+
+    public Observer getObserver();
 
     public void eliminarEntidad();
 

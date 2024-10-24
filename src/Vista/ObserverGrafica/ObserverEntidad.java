@@ -20,7 +20,7 @@ public class ObserverEntidad extends ObserverGrafica {
         super.actualizarObserver();
     }
 
-    public EntidadLogica getEntidadObservada() {
-        return entidadObservada;
+    public void eliminarDePanel() {
+        panelPantallaNivel.getImagenFondoPanelNivel().remove(this);
     }
 }
