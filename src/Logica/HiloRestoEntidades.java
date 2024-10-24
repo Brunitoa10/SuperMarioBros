@@ -57,7 +57,6 @@ public class HiloRestoEntidades implements Runnable {
     private void tick() {
         for (Enemigo enemigo : nivelActual.getEnemigos()) {
             enemigo.actualizar();
-            controladorColisiones.colisionProyectilConEnemigo(nivelActual.getProyectiles(), enemigo);
             controladorColisiones.colisionEnemigoConPlataforma(nivelActual.getPlataformas(),enemigo);
         }
         for(Proyectil proyectil : nivelActual.getProyectiles()) {
