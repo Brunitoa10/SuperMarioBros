@@ -20,7 +20,7 @@ public class IACaminar implements ComportamientoIA {
         contadorMovimientos++;
 
         // Cambia de dirección después de un número aleatorio de movimientos
-        if (contadorMovimientos > random.nextInt(100)) {
+        if (contadorMovimientos > random.nextInt(3000)) {
             direccionActual = random.nextBoolean() ? 1 : -1;
             contadorMovimientos = 0;
         }
