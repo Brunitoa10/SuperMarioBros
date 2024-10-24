@@ -2,11 +2,28 @@ package Entidades;
 
 import Entidades.EntidadInmovil.EntidadInmovil;
 import Fabricas.Sprite;
+import Logica.Temporizador;
 import Visitor.Visitor;
 
 public class Vacio extends EntidadInmovil {
+    private final String RUTA_IMAGEN="src/Recursos/Sprites/original/Bloques/BloqueNada.png";
+    protected Temporizador temporizador;
+    protected String[] frames;
+    private int currentFrame;        // Índice del frame actual
+    private int frameRate;           // Velocidad de cambio de frames
+    private long lastTime, timer;    // Para controlar el tiempo entre frames
+    private boolean animacionActiva; // Controla si la animación está activa
+    private boolean animacionFinalizada; // Controla si la animación ha terminado
+
     public Vacio(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        temporizador=new Temporizador();
+        currentFrame = 0;
+        frameRate = 100;  // Cambia de frame cada 100 milisegundos
+        timer = 0;
+        lastTime = System.currentTimeMillis();
+        animacionActiva = false;
+        animacionFinalizada = false;
     }
 
     @Override
@@ -17,5 +34,29 @@ public class Vacio extends EntidadInmovil {
     @Override
     public void accept(Visitor v) {
 
+    }
+
+
+    public void actualizarAnimacion() {
+        super.actualizarEntidad();
+        if (temporizador.hanPasadoNSegundos(1200)) {
+            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+        }
+
+
+
+    }
+
+    public void setAnimacionFinal(String[] frames){
+        temporizador.iniciar();
+        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
+        animacionActiva = true;  // Activa la animación
+    }
+
+    public void actualizar() {
+        if (animacionActiva) {
+            actualizarAnimacion();  // Si la animación está activa, actualiza los frames
+
+        }
     }
 }

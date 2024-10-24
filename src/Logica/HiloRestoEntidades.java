@@ -26,7 +26,7 @@ public class HiloRestoEntidades implements Runnable {
     public HiloRestoEntidades(Juego juego) {
         nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
-        controladorColisiones = new ControladorColisiones(juego.getNivelActual());
+        controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
     }
 
     public synchronized void comenzar() {
@@ -57,7 +57,6 @@ public class HiloRestoEntidades implements Runnable {
     private void tick() {
         for (Enemigo enemigo : nivelActual.getEnemigos()) {
             enemigo.actualizar();
-            controladorColisiones.colisionProyectilConEnemigo(nivelActual.getProyectiles(), enemigo);
             controladorColisiones.colisionEnemigoConPlataforma(nivelActual.getPlataformas(),enemigo);
         }
         for(Proyectil proyectil : nivelActual.getProyectiles()) {

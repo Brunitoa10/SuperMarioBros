@@ -54,5 +54,9 @@ public class MarioSaltando implements EstadoMovimiento {
         return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
 
+    public void LanzarBola() {
+        mario.setEstadoMovimiento(new LanzandoBola(mario));
+    }
+
 
 }

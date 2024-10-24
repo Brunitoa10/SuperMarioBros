@@ -6,6 +6,11 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public abstract class Plataforma extends EntidadInmovil {
 
     protected boolean solido;
@@ -27,5 +32,11 @@ public abstract class Plataforma extends EntidadInmovil {
 
     public void interactuar(Jugador j){
 
+    }
+
+    public String[] getFrames() {
+        String[] frames = new String[1];
+        frames[0]= "src/Recursos/Sprites/original/Bloques/BloqueNada.png";
+        return frames;
     }
 }

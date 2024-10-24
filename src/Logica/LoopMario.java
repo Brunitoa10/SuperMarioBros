@@ -33,11 +33,13 @@ public class LoopMario implements Runnable {
     protected ControladorColisiones controladorColisiones;
     protected int timerAnimacionMorir =0;
     protected Juego juego;
+    protected Temporizador temporizador;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
-        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual());
+        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
         ejecutando = false;
+        temporizador = new Temporizador();
         this.juego = juego;
     }
 
@@ -45,6 +47,7 @@ public class LoopMario implements Runnable {
         ejecutando = true;
         Thread hilo = new Thread(this);
         hilo.start();
+        temporizador.iniciar();
     }
 
     public synchronized void detener() {
@@ -92,7 +95,7 @@ public class LoopMario implements Runnable {
                 direccionLocal = mario.getDireccion();
             }
 
-            if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
+            if (!oyente.teclaEspacio && !oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()) && temporizador.hanPasadoNSegundos(500))
                 mario.setEstadoMovimiento(new MarioParado(mario));
 
 
@@ -104,18 +107,11 @@ public class LoopMario implements Runnable {
             mario.setDireccion(direccionLocal);
 
             //Logica para lanzar bola de fuego
-            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
-                cooldownBola=0;
+            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1500)){
+                temporizador.resetear();
+                temporizador.iniciar();
                 bolaDeFuego = juego.dispararBolaFuego(mario);
-                empezarCooldown = true;
-            }
-
-            if (cooldownBola==20){
-                //bolaDeFuego.setPosicionEnY(-100);
-            }
-
-            if (empezarCooldown){
-                cooldownBola++;
+                mario.getEstadoMovimiento().LanzarBola();
             }
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);

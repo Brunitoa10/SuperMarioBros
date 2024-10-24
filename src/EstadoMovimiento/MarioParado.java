@@ -41,5 +41,10 @@ public class MarioParado implements EstadoMovimiento {
         return mario.getPosicionEnY()+mario.getHitbox().getHeight()==mario.getPiso()+32;
     }
 
+    @Override
+    public void LanzarBola() {
+        mario.setEstadoMovimiento(new LanzandoBola(mario));
+    }
+
 
 }
