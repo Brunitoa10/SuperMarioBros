@@ -17,6 +17,7 @@ public class ObserverEntidad extends ObserverGrafica {
     }
 
     public void actualizarObserver() {
+        super.actualizarPosicionTamanio();
         super.actualizarObserver();
     }
 

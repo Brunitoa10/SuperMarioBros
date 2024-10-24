@@ -1,11 +1,19 @@
 package Logica;
 
+import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import EstadoMovimiento.MarioParado;
+import Fabricas.Sprite;
+import Vista.Controladores.ControladorVistaJuego;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import EstadoMovimiento.MarioCaminando;
+import EstadoMovimiento.MarioParado;
 
 import Animador.AnimadorMario;
 
@@ -25,12 +33,15 @@ public class LoopMario implements Runnable {
     protected ControladorColisiones controladorColisiones;
     protected int timerAnimacionMorir =0;
     protected Juego juego;
+    protected boolean debeSaltar;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.controladorColisiones = new ControladorColisiones(juego.getNivelActual());
         ejecutando = false;
         this.juego = juego;
+        debeSaltar = false;
     }
 
     public synchronized void comenzar() {
@@ -70,46 +81,11 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
+        	debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
+            juego.moverMario(debeSaltar);
 
-            // Movimiento lateral
-            if (oyente.teclaIzquierda || oyente.teclaDerecha) {
-                enIdle = false;
-                if(oyente.teclaIzquierda) {
-                    juego.moverMario(-1, mario);
-                }
-                else {
-                    enIdle = false;
-                    juego.moverMario(1, mario);
-                }
-                direccionLocal = mario.getDireccion();
-            }
+            juego.lanzarBolasDeFuego(mario);
 
-            if (!oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && (mario.estaEnPlataforma()))
-                mario.setEstadoMovimiento(new MarioParado(mario));
-
-
-            // Logica de salto
-            if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
-                enIdle = false;
-                juego.saltarMario(mario);
-            }
-            mario.setDireccion(direccionLocal);
-
-            //Logica para lanzar bola de fuego
-            if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && cooldownBola >= 30){
-                cooldownBola=0;
-                bolaDeFuego = juego.dispararBolaFuego(mario);
-                juego.getControladorVistaJuego().registrarEntidad(bolaDeFuego);
-                empezarCooldown = true;
-            }
-
-            if (cooldownBola==20){
-                bolaDeFuego.setPosicionEnY(-100);
-            }
-
-            if (empezarCooldown){
-                cooldownBola++;
-            }
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 
@@ -165,7 +141,7 @@ public class LoopMario implements Runnable {
     private void empezarCooldownMorir() {
         timerAnimacionMorir++;
     }
-    
+
     private void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
     }

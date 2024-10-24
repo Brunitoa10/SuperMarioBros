@@ -2,6 +2,7 @@ package Entidades.Proyectiles;
 
 import Entidades.EntidadMovil;
 import Entidades.Power_Ups.PowerUp;
+import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
@@ -27,6 +28,13 @@ public abstract class Proyectil extends EntidadMovil {
 
     public void eliminarEntidad() {
         listaProyectilNivel.remove(this);
+    }
+    public void Interactuar(Jugador j){
+
+    }
+
+    public void setGravedad(){
+
     }
 
 }

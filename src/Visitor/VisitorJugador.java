@@ -63,7 +63,6 @@ public class VisitorJugador implements Visitor {
             mario.setPosicionEnX(posicionATeletransportar);
         }
         else if (mario.colisionAbajo(plataforma)){
-            System.out.println("estoy colisionando mi rey");
             mario.setEnPlataforma(true);
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
@@ -78,14 +77,7 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(Proyectil proyectil) {
-        if(proyectil.colisionIzquierda(mario)){
-            proyectil.setDireccion(1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
-        if(proyectil.colisionDerecha(mario)){
-            proyectil.setDireccion(-1);
-            proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
-        }
+        proyectil.Interactuar(mario);
     }
 
 
