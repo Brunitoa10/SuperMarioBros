@@ -2,4 +2,4 @@ Dino,10000
 Lauti,9000
 Franco,777
 Anashee,535
-Violeta,330
+Bruno,515
