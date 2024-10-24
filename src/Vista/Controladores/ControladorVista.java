@@ -29,4 +29,12 @@ public interface ControladorVista {
 	public Ranking obtenerRanking();
 
     public void agregarJugadorAlRanking(String nombre, int puntaje);
+
+	public void setNombreUsuario(String nombreUsuario);
+
+	public void mostrarPantallaModoJuego();
+
+	public String obtenerNombreUsuario();
+	
+	public void mostrarPantallaNombreUsuario();
 }

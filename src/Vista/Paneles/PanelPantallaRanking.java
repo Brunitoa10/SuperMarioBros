@@ -41,6 +41,8 @@ public class PanelPantallaRanking extends JPanel {
 	private JLabel lblColumnaIzquierda3;
 	private JLabel lblColumnaDerecha4;
 	private JLabel lblSuper;
+	private final JLabel lblNombreUsuario;
+	private String nombreUsuario;
 
 	private final ControladorVista controladorVistas;
 	protected String modoJuego;
@@ -54,6 +56,8 @@ public class PanelPantallaRanking extends JPanel {
 
 		modoJuego = controladorVistas.obtenerModoJuego();
 		
+		nombreUsuario = controladorVistas.obtenerNombreUsuario();
+		
 		tablaJugadores = new JTable();
 		tablaJugadores.setBackground(new Color(192, 192, 192));
 		tablaJugadores.setBounds(189, 198, 453, 215);
@@ -63,6 +67,13 @@ public class PanelPantallaRanking extends JPanel {
 		btnVolver.setBackground(Color.LIGHT_GRAY);
 		btnVolver.setBounds(317, 493, 173, 50);
 		add(btnVolver);
+		
+		lblNombreUsuario = new JLabel("Usuario: " + nombreUsuario);
+		lblNombreUsuario.setFont(new Font("Arial", Font.BOLD, 20));
+		lblNombreUsuario.setForeground(Color.WHITE);
+		lblNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreUsuario.setBounds(200, 50, 400, 30);  // Ajusta los valores según el diseño que prefieras
+		add(lblNombreUsuario);
 
 		crearLblColumnaDerecha();
 		crearLblColumnaIzquierda();
@@ -138,7 +149,6 @@ public class PanelPantallaRanking extends JPanel {
 	protected void registrarOyenteBotonVolver() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//controladorVistas.mostrarPantallaInicial(controladorVistas.obtenerModoJuego());
 				controladorVistas.volverAlPanelAnterior();
 			}
 		});
