@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class GestorArchivos {
-	private String rutaArchivo;
+	protected String rutaArchivo;
 
 	public GestorArchivos(String rutaArchivo) {
 		this.rutaArchivo = rutaArchivo;

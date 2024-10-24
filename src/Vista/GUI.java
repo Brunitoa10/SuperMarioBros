@@ -84,7 +84,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	// De interfaz ControladorDeVistas
 	@Override
 	public void accionarInicioJuego(String modoJuego) {
-		configuracion.setModoJuego(modoJuego); // Actualizar el modo de juego
+		configuracion.setModoJuego(modoJuego);
 		miJuego.iniciar(modoJuego);
 	}
 

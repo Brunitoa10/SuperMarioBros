@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import Generador.GestorSonido.Sonido;
+import GestorArchivos.CadenasValidacion;
 
 public class PanelPantallaNombreUsuario extends JPanel {
 

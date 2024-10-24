@@ -1,18 +1,8 @@
 package GestorArchivos;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.Comparator;
-
-import Vista.Paneles.CadenasValidacion;
 
 public class Ranking {
 	protected ArrayList<JugadorRanking> jugadores;
@@ -27,7 +17,7 @@ public class Ranking {
 	public void agregarAlRanking(String nombre, int puntuacion) {
 	    int indiceJugador = encontrarJugadorPorNombre(nombre);
 
-	    if (indiceJugador != -1) {
+	    if (indiceJugador != CadenasValidacion.FUERA_DE_RANGO) {
 	        actualizarPuntajeSiEsMayor(indiceJugador, puntuacion);
 	    } else {
 	        agregarNuevoJugadorSiCorresponde(nombre, puntuacion);
@@ -49,7 +39,7 @@ public class Ranking {
 	}
 
 	private void agregarNuevoJugadorSiCorresponde(String nombre, int puntuacion) {
-	    if (jugadores.size() < 5) {
+	    if (jugadores.size() < CadenasValidacion.MAXIMO_JUGADORES_RANKING) {
 	        jugadores.add(new JugadorRanking(nombre, puntuacion));
 	    } else {
 	        reemplazarJugadorSiEsNecesario(nombre, puntuacion);
@@ -66,15 +56,15 @@ public class Ranking {
 
 	private void ordenarYLimitarJugadores() {
 	    jugadores.sort(Comparator.comparingInt(JugadorRanking::getPuntaje).reversed());
-	    if (jugadores.size() > 5) {
-	        jugadores = new ArrayList<>(jugadores.subList(0, 5));
+	    if (jugadores.size() > CadenasValidacion.MAXIMO_JUGADORES_RANKING) {
+	        jugadores = new ArrayList<>(jugadores.subList(CadenasValidacion.MINIMO_JUGADORES_RANKING, CadenasValidacion.MAXIMO_JUGADORES_RANKING));
 	    }
 	}
 
 
 
 	private int encontrarJugadorPorNombre(String nombre) {
-		int indiceJugador = -1;
+		int indiceJugador = CadenasValidacion.FUERA_DE_RANGO;
 
 		for (int i = 0; i < jugadores.size(); i++) {
 			if (jugadores.get(i).getNombre().equalsIgnoreCase(nombre)) {
