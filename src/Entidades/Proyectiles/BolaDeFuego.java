@@ -23,7 +23,7 @@ public class BolaDeFuego extends Proyectil {
                 calcularMitadDeMario(mario),
                 crearSprite());
         visitor=new VisitorProyectil(this);
-        velocidadX = 4;
+        velocidadX = 5;
         velocidadY = 0;
         jugador=mario;
         direccionLocal=mario.getDireccion();
