@@ -4,14 +4,17 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
+
+import java.util.List;
+
 public class ProyectilKoopa extends Proyectil {
 protected int direccionLocal;
 protected int velocidadX;
 protected int cantidadDeRebotes;
 
 protected VisitorProyectil visitor;
-    public ProyectilKoopa(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public ProyectilKoopa(int x, int y, Sprite sprite, List<Proyectil> listaProyectilNivel) {
+        super(x, y, sprite, listaProyectilNivel);
         visitor = new VisitorProyectil(this);
         direccionLocal=0;
         cantidadDeRebotes=0;
@@ -37,7 +40,8 @@ protected VisitorProyectil visitor;
 
     public int getDireccion() {
         return direccion;
-        }
+    }
+
 
         public void setDireccion(int direccion) {
         if(cantidadDeRebotes==3){
@@ -56,7 +60,7 @@ protected VisitorProyectil visitor;
         cantidadDeRebotes++;
         }
 
-        public VisitorProyectil getVisitor() {
+    public VisitorProyectil getVisitor() {
             return visitor;
         }
 
@@ -92,8 +96,8 @@ protected VisitorProyectil visitor;
         public void setGravedad(){
 
         }
-
     }
+}
 
 
 

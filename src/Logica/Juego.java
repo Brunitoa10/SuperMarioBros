@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.List;
 
+import Animador.AnimadorMario;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.BolaDeFuego;
@@ -29,8 +30,10 @@ public class Juego {
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas = 3;
+    protected ControladorMovimientoMario controladorMovimientoMario;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
-    public Juego(GUI  controladorVistas) {
+    public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
     }
@@ -72,6 +75,10 @@ public class Juego {
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
         controladorVistas.mostrarPantallaNivel();
+        oyenteTeclado = controladorVistas.obtenerOyente();
+        controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+
         iniciarLoops();
     }
 
@@ -136,16 +143,17 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario(int direccionMario, Jugador mario) {
-        mario.desplazarEnX(direccionMario);
-        mario.setDireccion(direccionMario);
-        mario.desplazarEnX(0);
+    public void moverMario(boolean debeSaltar) {
+        controladorMovimientoMario.moverMario(debeSaltar);
     }
 
-    public void saltarMario(Jugador mario) {
-        if (mario.estaEnPlataforma())
-            mario.setEnPlataforma(false);
-        mario.saltar();
+    public void lanzarBolasDeFuego(Jugador mario) {
+        if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
+            Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario);
+            getNivelActual().agregarProyectil(bolaDeFuego);
+            Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+            bolaDeFuego.registrarObserver(observer);
+        }
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
@@ -177,6 +185,6 @@ public class Juego {
     }
 
     public void mostrarMarioMuerte(Jugador mario) {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
+        mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
     }
 }

@@ -3,6 +3,7 @@ package Entidades;
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
 import Vista.ObserverGrafica.Observer;
+import Vista.ObserverGrafica.ObserverEntidad;
 
 import java.awt.*;
 
@@ -72,4 +73,8 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         return aEliminar;
     }
 
+    @Override
+    public Observer getObserver() {
+        return observer;
+    }
 }

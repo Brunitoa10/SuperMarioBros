@@ -5,6 +5,8 @@ import Fabricas.Sprite;
 import Logica.Temporizador;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public class Vacio extends EntidadInmovil {
     private final String RUTA_IMAGEN="src/Recursos/Sprites/original/Bloques/BloqueNada.png";
     protected Temporizador temporizador;
@@ -14,8 +16,9 @@ public class Vacio extends EntidadInmovil {
     private long lastTime, timer;    // Para controlar el tiempo entre frames
     private boolean animacionActiva; // Controla si la animación está activa
     private boolean animacionFinalizada; // Controla si la animación ha terminado
+    protected List<Vacio> listaVacioNivel;
 
-    public Vacio(int x, int y, Sprite sprite) {
+    public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel;) {
         super(x, y, sprite);
         temporizador=new Temporizador();
         currentFrame = 0;
@@ -24,6 +27,7 @@ public class Vacio extends EntidadInmovil {
         lastTime = System.currentTimeMillis();
         animacionActiva = false;
         animacionFinalizada = false;
+        this.listaVacioNivel = listaVacioNivel;
     }
 
     @Override
@@ -35,7 +39,6 @@ public class Vacio extends EntidadInmovil {
     public void accept(Visitor v) {
 
     }
-
 
     public void actualizarAnimacion() {
         super.actualizarEntidad();
@@ -58,5 +61,10 @@ public class Vacio extends EntidadInmovil {
             actualizarAnimacion();  // Si la animación está activa, actualiza los frames
 
         }
+    }
+  
+    @Override
+    public void eliminarEntidad() {
+        listaVacioNivel.remove(this);
     }
 }

@@ -6,20 +6,18 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 public abstract class Plataforma extends EntidadInmovil {
 
     protected boolean solido;
     protected boolean rompible;
     protected boolean meRompi=false;
+    protected List<Plataforma> listaPlataformaNivel;
 
-    public Plataforma(int x, int y, Sprite sprite) {
-
+    public Plataforma(int x, int y, Sprite sprite, List<Plataforma> listaPlataformaNivel) {
         super(x, y, sprite);
+        this.listaPlataformaNivel = listaPlataformaNivel;
     }
 
     public boolean detectarColision(Entidad c) {
@@ -30,13 +28,12 @@ public abstract class Plataforma extends EntidadInmovil {
         v.visit(this);
     }
 
+    public void eliminarEntidad() {
+        listaPlataformaNivel.remove(this);
+    }
+
     public void interactuar(Jugador j){
 
     }
 
-    public String[] getFrames() {
-        String[] frames = new String[1];
-        frames[0]= "src/Recursos/Sprites/original/Bloques/BloqueNada.png";
-        return frames;
-    }
 }

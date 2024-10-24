@@ -35,6 +35,8 @@ public class LoopMario implements Runnable {
     protected int timerAnimacionMorir =0;
     protected Juego juego;
     protected Temporizador temporizador;
+    protected boolean debeSaltar;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -42,6 +44,7 @@ public class LoopMario implements Runnable {
         ejecutando = false;
         temporizador = new Temporizador();
         this.juego = juego;
+        debeSaltar = false;
     }
 
     public synchronized void comenzar() {
@@ -82,34 +85,8 @@ public class LoopMario implements Runnable {
     private void tick() {
         OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
-
-            // Movimiento lateral
-            if (oyente.teclaIzquierda || oyente.teclaDerecha) {
-                enIdle = false;
-                if(oyente.teclaIzquierda) {
-                    juego.moverMario(-1, mario);
-                }
-                else {
-                    enIdle = false;
-                    juego.moverMario(1, mario);
-                }
-                direccionLocal = mario.getDireccion();
-            }
-
-            if (!oyente.teclaEspacio && !oyente.teclaIzquierda && !oyente.teclaDerecha && !oyente.teclaArriba && temporizador.hanPasadoNSegundos(500)) {
-                if (mario.estaEnPlataforma()) {
-                    mario.getEstadoMovimiento().AFK(mario);
-                } else {
-                    mario.getEstadoMovimiento().EnAire(mario);
-                }
-            }
-
-            // Logica de salto
-            if (oyente.teclaArriba && (mario.estaEnPlataforma())) {
-                enIdle = false;
-                juego.saltarMario(mario);
-            }
-            mario.setDireccion(direccionLocal);
+        	  debeSaltar = oyente.teclaArriba && mario.estaEnPlataforma();
+            juego.moverMario(debeSaltar);
 
             //Logica para lanzar bola de fuego
             if(oyente.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1500)){
@@ -118,6 +95,8 @@ public class LoopMario implements Runnable {
                 bolaDeFuego = juego.dispararBolaFuego(mario);
                 mario.getEstadoMovimiento().LanzarBola();
             }
+
+            //juego.lanzarBolasDeFuego(mario);
 
             controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 
@@ -174,13 +153,7 @@ public class LoopMario implements Runnable {
         timerAnimacionMorir++;
     }
 
-    private void empezarCooldown() {
-        cooldownBola++;
-    }
-
-
     private void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
-        juego.getControladorVistaJuego().refrescar();
     }
 }

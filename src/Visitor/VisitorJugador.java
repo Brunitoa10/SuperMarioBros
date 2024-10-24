@@ -34,18 +34,15 @@ public class VisitorJugador implements Visitor {
     public void visit(PowerUp p) {
         if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
             p.setEstadoMario(mario);
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
         else{
             mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
-            p.setPosicionEnY(-100);
-            p.getSprite().setPosicionY(-100);
+            p.getObserver().eliminarDePanel();
         }
     }
 
@@ -66,11 +63,9 @@ public class VisitorJugador implements Visitor {
             mario.setPosicionEnX(posicionATeletransportar);
         }
         else if (mario.colisionAbajo(plataforma)){
-            System.out.println("estoy colisionando mi rey");
             mario.setEnPlataforma(true);
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
-            mario.setPiso((int) plataforma.getHitbox().getMinY()-plataforma.getSprite().getAlto());
 
         }
         else if (mario.colisionArriba(plataforma)) {
@@ -95,8 +90,8 @@ public class VisitorJugador implements Visitor {
         if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
             System.out.println("colision abajo!");
 
-            mario.setPiso(420);
             mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+
 
         }
     }

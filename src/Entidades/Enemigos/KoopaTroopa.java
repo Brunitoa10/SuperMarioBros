@@ -13,14 +13,16 @@ import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
+import java.util.List;
+
 public class KoopaTroopa extends Enemigo {
 
     protected VisitorEnemigo visitor;
     protected int vidas;
     protected ProyectilKoopa proyectil;
 
-    public KoopaTroopa(int x, int y, Sprite sprite,ProyectilKoopa proyectil) {
-        super(x, y, sprite,new IACaminar());
+    public KoopaTroopa(int x, int y, Sprite sprite,ProyectilKoopa proyectil, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         this.proyectil = proyectil;
         visitor = new VisitorEnemigo(this);
         velocidad = 1;
@@ -44,10 +46,6 @@ public class KoopaTroopa extends Enemigo {
             setComportamientoIA(new IAAtacar());
         }
         return colisionan;
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
     public void interactuar(Jugador mario) {

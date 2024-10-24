@@ -7,18 +7,22 @@ import Logica.Temporizador;
 import Visitor.Visitor;
 import Visitor.VisitorProyectil;
 
+import java.util.List;
+
 public class BolaDeFuego extends Proyectil {
-protected int Gravedad=1;
-protected int velocidadY;
-protected int velocidadX;
-protected int direccionLocal;
-protected int contador;
-protected boolean condicionDesaparecer=false;
-protected VisitorProyectil visitor;
-protected Temporizador temporizador;
-protected Jugador jugador;
+
+  protected int Gravedad=1;
+  protected int velocidadY;
+  protected int velocidadX;
+  protected int direccionLocal;
+  protected int contador;
+  protected boolean condicionDesaparecer=false;
+  protected VisitorProyectil visitor;
+  protected Temporizador temporizador;
+  protected Jugador jugador;
+
     public BolaDeFuego(Jugador mario) {
-        // Si la dirección de Mario es -1, usa getMinX(), si no, usa getMaxX()
+        // Si la direcciÃ³n de Mario es -1, usa getMinX(), si no, usa getMaxX()
         super((int) (mario.getDireccion() == -1 ? mario.getHitbox().getMinX()-18 : mario.getHitbox().getMaxX()),
                 calcularMitadDeMario(mario),
                 crearSprite());
@@ -26,10 +30,10 @@ protected Jugador jugador;
         velocidadX = 4;
         velocidadY = 0;
         jugador=mario;
-       direccionLocal=mario.getDireccion();
+        direccionLocal=mario.getDireccion();
         temporizador = new Temporizador();
         temporizador.iniciar(); // Iniciar el temporizador al crear la bola de fuego
-        }
+    }
 
 
     private static Sprite crearSprite() {
@@ -53,7 +57,6 @@ protected Jugador jugador;
             Gravedad=1;
         }
         if(temporizador.hanPasadoNSegundos(1500)) {
-            System.out.println("ESTOYVIVO2");
             this.setPosicionEnY(-100);
             this.getSprite().setPosicionY(this.getPosicionEnY());
             this.setAEliminar();
@@ -62,10 +65,6 @@ protected Jugador jugador;
         }
         if(temporizador.hanPasadoNSegundos(1000) && condicionDesaparecer)
             Desaparcer();
-    }
-
-    public void accept(Visitor v) {
-        v.visit(this);
     }
 
 
