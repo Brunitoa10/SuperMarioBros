@@ -40,7 +40,9 @@ public class LoopMario implements Runnable {
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
+
         this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
+
         ejecutando = false;
         temporizador = new Temporizador();
         this.juego = juego;
@@ -83,7 +85,6 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
-        OyenteTeclado oyente = juego.getControladorVistaJuego().oyenteTeclado();
         if(!mario.getMorir()) {
             juego.moverMario(temporizador);
             juego.lanzarBolasDeFuego(mario);
@@ -92,6 +93,9 @@ public class LoopMario implements Runnable {
             if(mario.getPosicionEnY()>460) {
                 mario.setMorir(true);
             }
+
+            juego.checkearSumaVida();
+
             mario.getEstadoJugador().actualizarSprite();
             mario.actualizarEntidad();
         } else {

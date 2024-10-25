@@ -20,6 +20,11 @@ protected VisitorProyectil visitor;
         return false;
     }
 
+    public int accept(Visitor v) {
+        v.visit(this);
+        return 0;
+    }
+
     public VisitorProyectil getVisitor() {
         return visitor;
     }

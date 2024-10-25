@@ -1,7 +1,5 @@
 package Entidades;
 
-import java.util.Random;
-
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -23,7 +21,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected boolean estaVivo;
     protected int puntaje;
     protected boolean muerte;
-    protected int vidas;
+    protected boolean sumarVida;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -35,6 +33,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = false;
         this.estaVivo = true;
         muerte=false;
+        sumarVida = false;
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -67,24 +66,15 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
+
     @Override
     public void eliminarEntidad() {
         //mario nunca se elimina
     }
 
     @Override
-    public int getTiempo() {
-        return new Random(1000).nextInt(2000);
-    }
-
-    @Override
-    public int getVida() {
-        return new Random(0).nextInt(4);
-    }
-
-    @Override
-    public void accept(Visitor v) {
-        v.visit(this);
+    public int accept(Visitor v) {
+       return v.visit(this);
     }
 
     public void desplazarEnX(int direccion) {
@@ -100,18 +90,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.saltar();
     }
 
-    public int getAlturaMaximaSalto() {
-
-        return ALTURA_MAXIMA_SALTO;
-    }
-
     public VisitorJugador getVisitorJugador() {
         return VisitorJugador;
     }
-
-    public void NoestaEnPlataforma(){
-        enPlataforma = false;
-    };
 
     public boolean estaEnPlataforma() {
         return enPlataforma;
@@ -121,37 +102,28 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = enPlataforma;
     }
 
-
     public boolean puedeRomperBloques() {
         return getEstadoJugador().puedeRomperBloques();
-    }
-
-    public void setEstaVivo(boolean estaVivo) {
-        this.estaVivo = estaVivo;
     }
   
     public boolean puedeLanzarBolaDeFuego() {
         return estadoJugador.puedeLanzarBolaFuego();
     }
 
-    public boolean estaVivo() {
-        return vidas != 0;
-    }
-
     public boolean getMorir(){
         return muerte;
     }
+
     public void setMorir(boolean morir) {
         muerte = morir;
     }
 
-
-    public int getPuntaje() {
-        return puntaje;
+    public void sumarUnaVida(boolean deberiaSumarUnaVida) {
+        sumarVida = deberiaSumarUnaVida;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public boolean debeSumarUnaVida() {
+        return sumarVida;
     }
 
 }

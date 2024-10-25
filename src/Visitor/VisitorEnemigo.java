@@ -15,8 +15,8 @@ public class VisitorEnemigo implements Visitor {
         this.enemigo = enemigo;
     }
 
-    public void visit(Jugador j) {
-        enemigo.interactuar(j);
+    public int visit(Jugador j) {
+        return enemigo.interactuar(j);
     }
 
     @Override
@@ -26,13 +26,10 @@ public class VisitorEnemigo implements Visitor {
 
     @Override
     public void visit(Moneda m) {
-
-        //m.eliminar();
     }
 
     @Override
     public void visit(PowerUp m) {
-
     }
 
     public void visit(Plataforma p) {

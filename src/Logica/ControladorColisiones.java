@@ -41,6 +41,7 @@ public class ControladorColisiones {
         colisionMarioConProyectiles(nivelActual.getProyectiles(), nivelActual.getJugador());
         colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
         colisionMarioConVacio(nivelActual.getVacios(), nivelActual.getJugador());
+
     }
 
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
@@ -64,8 +65,10 @@ public class ControladorColisiones {
 
     public void colisionMarioConEnemigos(List<Enemigo> listaEnemigos, Jugador mario) {
         for (Enemigo enemigo : listaEnemigos) {
-            if (mario.detectarColision(enemigo)) {
-                mario.accept(enemigo.getVisitorEnemigo());
+            if(mario.detectarColision(enemigo)) {
+                juegoActual.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
+                enemigo.actualizarEntidad();
+
                 if (enemigo.aEliminar()) {
                     nivelActual.getEntidadesAEliminar().add(enemigo);
                 }
@@ -77,9 +80,11 @@ public class ControladorColisiones {
         for (Moneda moneda : listaMonedas) {
             if (mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
+                juegoActual.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
                 if (moneda.aEliminar()) {
                     nivelActual.getEntidadesAEliminar().add(moneda);
                 }
+
             }
         }
     }
@@ -99,6 +104,8 @@ public class ControladorColisiones {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 powerUp.accept(mario.getVisitorJugador());
+                juegoActual.sumarPuntaje(powerUp.getPuntaje());
+                powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }

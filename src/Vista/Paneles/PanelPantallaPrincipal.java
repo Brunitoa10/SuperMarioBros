@@ -105,7 +105,7 @@ public class PanelPantallaPrincipal extends JPanel {
         });
     }
 
-    // Registrar oyente de mouse para reproducir sonido al pasar por encima
+   
     protected void registrarOyenteMouseBoton(JButton boton) {
         boton.addMouseListener(new MouseAdapter() {
             @Override

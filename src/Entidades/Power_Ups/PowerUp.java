@@ -23,8 +23,9 @@ public abstract class PowerUp extends EntidadMovil {
         return colisionan;
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public int getPuntaje() {
@@ -35,9 +36,7 @@ public abstract class PowerUp extends EntidadMovil {
         this.setPosicionEnY(1000);
     }
 
-    public void setEstadoMario(Jugador j){
-
-    }
+    public abstract void setEstadoMario(Jugador j);
 
     public void eliminarEntidad() {
         listaPowerUpsNivel.remove(this);

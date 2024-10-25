@@ -36,8 +36,9 @@ public class Vacio extends EntidadInmovil {
     }
 
     @Override
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
 
+        return 0;
     }
 
     public void actualizarAnimacion() {

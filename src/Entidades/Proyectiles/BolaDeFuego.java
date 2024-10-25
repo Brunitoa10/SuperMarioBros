@@ -1,6 +1,5 @@
 package Entidades.Proyectiles;
 
-import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
 import Logica.Temporizador;
@@ -81,6 +80,11 @@ public class BolaDeFuego extends Proyectil {
         }
     }
 
+    public int accept(Visitor v) {
+        v.visit(this);
+        return 0;
+    }
+  
     public VisitorProyectil getVisitor(){
         return visitor;
     }

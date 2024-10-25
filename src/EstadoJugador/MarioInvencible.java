@@ -10,8 +10,10 @@ public class MarioInvencible implements EstadoJugador {
     protected Jugador mario;
     private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+
     public MarioInvencible(Jugador mario) {
         this.mario = mario;
+
         mario.setPosicionEnY(mario.getPosicionEnY() + 16);
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioGolpeado");
@@ -43,7 +45,6 @@ public class MarioInvencible implements EstadoJugador {
 
     public boolean elHongoLoHaceSuperMario() {
         return false;
-
     }
 
     public boolean puedeSerMarioFuego() {
@@ -54,6 +55,7 @@ public class MarioInvencible implements EstadoJugador {
         scheduler.schedule(new Runnable() {
             @Override
             public void run() {
+                if (mario.getEstadoJugador().esInmortal())
                 mario.setEstadoJugador(new Mario(mario));
             }
         }, 3, TimeUnit.SECONDS);

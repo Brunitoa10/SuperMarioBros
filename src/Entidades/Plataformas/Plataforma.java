@@ -24,8 +24,9 @@ public abstract class Plataforma extends EntidadInmovil {
         return this.getHitbox().intersects(c.getHitbox());
     }
 
-    public void accept(Visitor v) {
+    public int accept(Visitor v) {
         v.visit(this);
+        return 0;
     }
 
     public void eliminarEntidad() {

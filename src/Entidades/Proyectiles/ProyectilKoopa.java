@@ -26,10 +26,13 @@ protected VisitorProyectil visitor;
     }
 
     @Override
-        public void accept(Visitor v) {
+        public int accept(Visitor v) {
             v.visit(this);
+            direccion=0;
             velocidadX=5;
-        }
+        return 0;
+    }
+
 
     @Override
     public void actualizarEntidad() {

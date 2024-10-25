@@ -21,8 +21,8 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(Jugador J) {
-
+    public int visit(Jugador J) {
+        return 0;
     }
 
     @Override
@@ -32,24 +32,18 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public void visit(PowerUp p) {
-        if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
-            p.setEstadoMario(mario);
-            p.setAEliminar();
-        }
-        else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
-            p.setEstadoMario(mario);
-            p.setAEliminar();
-        }
-        else{
-            mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
-            p.setAEliminar();
-        }
+        p.setEstadoMario(mario);
+        p.setPosicionEnY(-100);
+        p.getSprite().setPosicionY(-100);
+        p.setAEliminar();
+
     }
 
     @Override
     public void visit(Moneda moneda) {
         moneda.setAEliminar();
-        mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_MONEDA);
+        moneda.setPosicionEnY(-100);
+
     }
 
     public void visit(Plataforma plataforma){

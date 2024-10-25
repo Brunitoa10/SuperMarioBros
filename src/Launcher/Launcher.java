@@ -12,7 +12,7 @@ public class Launcher {
             public void run() {
                 try {
                     GUI controladorVistas = new GUI();
-                    controladorVistas.mostrarPantallaModoJuego();
+                    controladorVistas.mostrarPantallaNombreUsuario();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
