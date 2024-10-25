@@ -24,7 +24,7 @@ public class ControladorBolasDeFuego {
 
     public boolean puedeLanzarBolaDeFuego() {
         boolean toRet = false;
-        if(oyenteTeclado.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(1800)) {
+        if(oyenteTeclado.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(2000)) {
             temporizador.resetear();
             temporizador.iniciar();
             toRet = true;

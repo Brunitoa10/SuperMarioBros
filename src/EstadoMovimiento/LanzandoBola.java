@@ -1,12 +1,17 @@
 package EstadoMovimiento;
 
+import Entidades.Enemigos.Enemigo;
 import Entidades.Jugador;
+import Logica.Temporizador;
 
 public class LanzandoBola implements EstadoMovimiento{
     protected Jugador mario;
+    protected Temporizador temporizador;
 
     public LanzandoBola(Jugador mario) {
         this.mario = mario;
+        temporizador = new Temporizador();
+        temporizador.iniciar();
         if (mario.getDireccion() == 1) {
             if (mario.estaEnPlataforma()) {
                 mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
@@ -40,6 +45,11 @@ public class LanzandoBola implements EstadoMovimiento{
 
     @Override
     public void actualizar() {
+        if(temporizador.hanPasadoNSegundos(500))
+            if(mario.estaEnPlataforma())
+                AFK();
+            else
+                EnAire();
         System.out.println(mario.getDireccion());
         if (mario.getDireccion() == 1) {
             if (mario.estaEnPlataforma()) {
