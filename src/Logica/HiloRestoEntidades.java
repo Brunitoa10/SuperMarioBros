@@ -60,19 +60,13 @@ public class HiloRestoEntidades implements Runnable {
             controladorColisiones.colisionEnemigoConPlataforma(nivelActual.getPlataformas(),enemigo);
         }
         for(Proyectil proyectil : nivelActual.getProyectiles()) {
-            proyectil.actualizarEntidad();
-            for (Enemigo enemigo : nivelActual.getEnemigos()) {
-                int tolerancia = 5;
-                if(proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
-                        proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
-                    enemigo.getVisitorEnemigo().visit(proyectil);
-                }
-            }
+            controladorColisiones.colisionProyectilConEnemigo(nivelActual.getEnemigos(), proyectil);
             for(Plataforma plataforma: nivelActual.getPlataformas()){
                 if(proyectil.detectarColision(plataforma) ) {
                     proyectil.getVisitor().visit(plataforma);
                 }
             }
+            proyectil.actualizarEntidad();
         }
     }
 

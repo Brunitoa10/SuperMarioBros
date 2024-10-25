@@ -38,7 +38,6 @@ public class PiranhaPlant extends Enemigo {
     public void interactuarConProyectil(Proyectil proyectil) {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
-        this.setPosicionEnY(-100);
         proyectil.setDireccion(0);
     }
 

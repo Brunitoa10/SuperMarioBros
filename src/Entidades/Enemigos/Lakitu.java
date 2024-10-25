@@ -30,7 +30,6 @@ public class Lakitu extends Enemigo {
     public void interactuar(Jugador mario) {
         if(mario.colisionAbajo(this)) {
             this.setAEliminar();
-            this.setPosicionEnY(-100);
             mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
         }
         else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {

@@ -46,7 +46,6 @@ public class BolaDeFuego extends Proyectil {
 
     @Override
     public void actualizarEntidad() {
-        System.out.println("ESTOY VIVO");
         contador++;
         setPosicionEnX(getPosicionEnX() + velocidadX*direccionLocal);
         this.getSprite().setPosicionX(this.getPosicionEnX());
@@ -57,11 +56,8 @@ public class BolaDeFuego extends Proyectil {
             Gravedad=1;
         }
         if(temporizador.hanPasadoNSegundos(1500)) {
-            this.setPosicionEnY(-100);
-            this.getSprite().setPosicionY(this.getPosicionEnY());
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
-            super.actualizarEntidad();
         }
         if(temporizador.hanPasadoNSegundos(1000) && condicionDesaparecer)
             Desaparcer();
@@ -95,7 +91,6 @@ public class BolaDeFuego extends Proyectil {
     }
 
     private void Desaparcer(){
-        this.setPosicionEnY(-100);
         this.setAEliminar();
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
     }

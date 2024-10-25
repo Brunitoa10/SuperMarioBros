@@ -4,6 +4,7 @@ import java.util.List;
 
 import Animador.AnimadorMario;
 import Entidades.Entidad;
+import Entidades.EntidadLogica;
 import Entidades.Jugador;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
@@ -151,6 +152,15 @@ public class Juego {
         if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
             Proyectil bolaDeFuego = dispararBolaFuego(mario);
             mario.getEstadoMovimiento().LanzarBola();
+        }
+    }
+
+    public void eliminarEntidades() {
+        while (!nivelActual.getEntidadesAEliminar().isEmpty()) {
+            EntidadLogica entidadAEliminar = nivelActual.getEntidadesAEliminar().getFirst();
+            entidadAEliminar.getObserver().eliminarDePanel();
+            entidadAEliminar.eliminarEntidad();
+            nivelActual.getEntidadesAEliminar().removeFirst();
         }
     }
 

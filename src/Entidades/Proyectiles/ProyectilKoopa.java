@@ -67,7 +67,6 @@ protected VisitorProyectil visitor;
 
     public void Interactuar(Jugador j){
         if(this.colisionArriba(j) && direccionLocal==0) {
-            this.setPosicionEnY(-100);
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
 

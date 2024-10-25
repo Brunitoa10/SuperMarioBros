@@ -87,42 +87,10 @@ public class LoopMario implements Runnable {
         if(!mario.getMorir()) {
             juego.moverMario(temporizador);
             juego.lanzarBolasDeFuego(mario);
+            controladorColisiones.colisionesMario();
+            juego.eliminarEntidades();
 
-            controladorColisiones.colisionMarioConPlataforma(juego.getNivelActual().getPlataformas(), mario);
 
-            while(!juego.getNivelActual().getEntidadesAEliminar().isEmpty()) {
-                juego.getNivelActual().getPlataformas().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-                juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-            }
-
-            controladorColisiones.colisionMarioConEnemigos(juego.getNivelActual().getEnemigos(), mario);
-
-            while(!juego.getNivelActual().getEntidadesAEliminar().isEmpty()) {
-                juego.getNivelActual().getEnemigos().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-                juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-            }
-
-            controladorColisiones.colisionMarioConMonedas(juego.getNivelActual().getMonedas(), mario);
-
-            while(!juego.getNivelActual().getEntidadesAEliminar().isEmpty()) {
-                juego.getNivelActual().getMonedas().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-                juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-            }
-
-            controladorColisiones.colisionMarioConPowerUps(juego.getNivelActual().getPowerUps(), mario);
-
-            while(!juego.getNivelActual().getEntidadesAEliminar().isEmpty()) {
-                juego.getNivelActual().getPowerUps().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-                juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-            }
-
-            controladorColisiones.colisionMarioConVacio(juego.getNivelActual().getVacios(), mario);
-
-            while(!juego.getNivelActual().getEntidadesAEliminar().isEmpty()) {
-                juego.getNivelActual().getVacios().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-                juego.getNivelActual().getEntidadesAEliminar().remove(juego.getNivelActual().getEntidadesAEliminar().getFirst());
-            }
-            controladorColisiones.ColisionConProyectiles(juego.getNivelActual().getProyectiles(), mario);
             if(mario.getPosicionEnY()>460) {
                 mario.setMorir(true);
             }

@@ -28,6 +28,15 @@ public class ControladorColisiones {
         this.juegoActual = juego;
     }
 
+    public void colisionesMario() {
+        colisionMarioConPlataforma(nivelActual.getPlataformas(), nivelActual.getJugador());
+        colisionMarioConEnemigos(nivelActual.getEnemigos(), nivelActual.getJugador());
+        colisionMarioConMonedas(nivelActual.getMonedas(), nivelActual.getJugador());
+        colisionMarioConProyectiles(nivelActual.getProyectiles(), nivelActual.getJugador());
+        colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
+        colisionMarioConVacio(nivelActual.getVacios(), nivelActual.getJugador());
+    }
+
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
         for (Plataforma plataforma : listaPlataformas) {
             if (mario.detectarColision((plataforma))) {
@@ -51,7 +60,9 @@ public class ControladorColisiones {
         for (Enemigo enemigo : listaEnemigos) {
             if (mario.detectarColision(enemigo)) {
                 mario.accept(enemigo.getVisitorEnemigo());
-                enemigo.actualizarEntidad();
+                if (enemigo.aEliminar()) {
+                    nivelActual.getEntidadesAEliminar().add(enemigo);
+                }
             }
         }
     }
@@ -60,16 +71,20 @@ public class ControladorColisiones {
         for (Moneda moneda : listaMonedas) {
             if (mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
-                moneda.actualizarEntidad();
+                if (moneda.aEliminar()) {
+                    nivelActual.getEntidadesAEliminar().add(moneda);
+                }
             }
         }
     }
 
-    public void ColisionConProyectiles(List<Proyectil> listaProyectiles, Jugador mario) {
+    public void colisionMarioConProyectiles(List<Proyectil> listaProyectiles, Jugador mario) {
         for (Proyectil proyectil : listaProyectiles) {
             if (mario.detectarColision((proyectil))) {
                 proyectil.accept(mario.getVisitorJugador());
-                proyectil.actualizarEntidad();
+                if (proyectil.aEliminar()) {
+                    nivelActual.getEntidadesAEliminar().add(proyectil);
+                }
             }
         }
     }
@@ -78,7 +93,6 @@ public class ControladorColisiones {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 powerUp.accept(mario.getVisitorJugador());
-                powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
@@ -108,17 +122,15 @@ public class ControladorColisiones {
         return Colisiono;
     }
 
-    public void colisionProyectilConEnemigo(List<Proyectil> listaProyectiles, Enemigo enemigo) {
-        for (Proyectil proyectil : listaProyectiles) {
-            proyectil.actualizarEntidad();
+    public void colisionProyectilConEnemigo(List<Enemigo> listaEnemigos, Proyectil proyectil) {
+        for (Enemigo enemigo : listaEnemigos) {
             int tolerancia = 5;
-            if (proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
+            if(proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
                     proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
                 proyectil.accept(enemigo.getVisitorEnemigo());
-                enemigo.actualizarEntidad();
-                proyectil.actualizarEntidad();
-                nivelActual.getEnemigos().remove(enemigo);
-                //nivelActual.getEntidadesAEliminar().addLast(enemigo);
+                if (enemigo.aEliminar()) {
+                    nivelActual.getEntidadesAEliminar().add(enemigo);
+                }
             }
         }
     }

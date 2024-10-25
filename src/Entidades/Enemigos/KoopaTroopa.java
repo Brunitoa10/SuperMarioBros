@@ -60,7 +60,6 @@ public class KoopaTroopa extends Enemigo {
                 proyectil.getSprite().setPosicionY(423);
                 proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
                 proyectil.actualizarEntidad();
-                this.setPosicionEnY(-100);
 
             }
             mario.setEstadoMovimiento(new MarioSaltando(mario));

@@ -34,22 +34,21 @@ public class VisitorJugador implements Visitor {
     public void visit(PowerUp p) {
         if (mario.getEstadoJugador().elHongoLoHaceSuperMario()) {
             p.setEstadoMario(mario);
-            p.getObserver().eliminarDePanel();
+            p.setAEliminar();
         }
         else if (mario.getEstadoJugador().puedeSerMarioFuego()) {
             p.setEstadoMario(mario);
-            p.getObserver().eliminarDePanel();
+            p.setAEliminar();
         }
         else{
             mario.setPuntaje(mario.getPuntaje() + p.getPuntaje());
-            p.getObserver().eliminarDePanel();
+            p.setAEliminar();
         }
     }
 
     @Override
     public void visit(Moneda moneda) {
         moneda.setAEliminar();
-        moneda.setPosicionEnY(-100);
         mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_MONEDA);
     }
 
