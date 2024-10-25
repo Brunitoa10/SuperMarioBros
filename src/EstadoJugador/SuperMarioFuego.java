@@ -19,6 +19,10 @@ public class SuperMarioFuego implements EstadoJugador {
         mario.setEstadoJugador(new MarioInvencible(mario));
     }
 
+    public boolean estadoEstrella() {
+        return false;
+    }
+
     @Override
     public boolean esInmortal() {
         return false;

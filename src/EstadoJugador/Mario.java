@@ -45,4 +45,9 @@ public class Mario implements EstadoJugador {
     public String finalAnimacion(){
         return "";
     }
+
+    @Override
+    public boolean estadoEstrella() {
+        return false;
+    }
 }

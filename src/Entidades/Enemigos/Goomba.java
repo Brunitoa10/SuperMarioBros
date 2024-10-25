@@ -45,7 +45,7 @@ public class Goomba extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!mario.getEstadoJugador().esInmortal()) {
+        if (!mario.getEstadoJugador().esInmortal() || mario.getEstadoJugador().estadoEstrella()) {
             if (!Mori)
                 if (mario.colisionAbajo(this)) {
                     temporizadorGoomba.iniciar();
@@ -55,8 +55,9 @@ public class Goomba extends Enemigo {
                     Mori = true;
                     toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
                 } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                    if (mario.getEstadoJugador().esInmortal()) {
+                    if (mario.getEstadoJugador().estadoEstrella()) {
                         this.setAEliminar();
+                        Mori = true;
                         toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
                     } else {
                         mario.getEstadoJugador().recibeDanio();

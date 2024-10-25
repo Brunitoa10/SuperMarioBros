@@ -11,4 +11,5 @@ public interface EstadoJugador {
     public boolean puedeSerMarioFuego();
     public boolean esInmortal();
     public String finalAnimacion();
+    public boolean estadoEstrella();
 }

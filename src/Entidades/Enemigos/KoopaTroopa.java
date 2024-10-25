@@ -54,7 +54,7 @@ public class KoopaTroopa extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!mario.getEstadoJugador().esInmortal()) {
+        if (!mario.getEstadoJugador().esInmortal() || mario.getEstadoJugador().estadoEstrella()) {
             if (mario.colisionAbajo(this)) {
                 this.vidas--;
                 if (vidas == 0) {

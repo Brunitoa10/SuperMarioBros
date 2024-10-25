@@ -46,6 +46,9 @@ public class SuperMario implements EstadoJugador{
         return false;
     }
 
+    public boolean estadoEstrella() {
+        return false;
+    }
     public String finalAnimacion(){
         return "";
     }

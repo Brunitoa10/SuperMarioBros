@@ -60,6 +60,9 @@ public class MarioInvencible implements EstadoJugador {
             }
         }, 3, TimeUnit.SECONDS);
     }
+    public boolean estadoEstrella() {
+        return false;
+    }
 
     public String finalAnimacion(){
         return ".gif";
