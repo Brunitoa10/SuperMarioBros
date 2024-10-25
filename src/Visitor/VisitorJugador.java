@@ -32,8 +32,6 @@ public class VisitorJugador implements Visitor {
     @Override
     public int visit(PowerUp p) {
         int toReturn = p.setEstadoMario(mario);
-        p.setPosicionEnY(-100);
-        p.getSprite().setPosicionY(-100);
         p.setAEliminar();
         return toReturn;
     }
@@ -41,8 +39,6 @@ public class VisitorJugador implements Visitor {
     @Override
     public void visit(Moneda moneda) {
         moneda.setAEliminar();
-        moneda.setPosicionEnY(-100);
-
     }
 
     public void visit(Plataforma plataforma){
