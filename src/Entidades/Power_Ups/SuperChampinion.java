@@ -19,10 +19,6 @@ public class SuperChampinion extends PowerUp{
 
 
 
-    public void Consumir(){
-        this.setPosicionEnY(1000);
-    }
-
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntajeSuperChampinion();
         if (j.getEstadoJugador().elHongoLoHaceSuperMario()) {

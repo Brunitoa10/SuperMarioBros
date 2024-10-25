@@ -20,10 +20,6 @@ public class FlorDeFuego extends PowerUp {
     }
 
 
-    public void Consumir(){
-        this.setPosicionEnY(1000);
-    }
-
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntajeFlorDeFuego();
         if (j.getEstadoJugador().puedeSerMarioFuego()) {

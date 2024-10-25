@@ -17,9 +17,6 @@ public class ChampinionVerde extends PowerUp {
         return colisionan;
     }
 
-    public void Consumir(){
-        this.setPosicionEnY(1000);
-    }
 
     @Override
     public int setEstadoMario(Jugador j) {

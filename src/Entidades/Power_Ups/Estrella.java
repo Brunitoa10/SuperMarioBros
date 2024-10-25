@@ -18,10 +18,6 @@ public class Estrella extends PowerUp {
     }
 
 
-    public void Consumir(){
-        sprite=null;
-    }
-
     @Override
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntajeEstrella();

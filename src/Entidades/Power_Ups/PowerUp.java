@@ -26,9 +26,6 @@ public abstract class PowerUp extends EntidadMovil {
        return v.visit(this);
     }
 
-    public void Consumir(){
-        this.setPosicionEnY(1000);
-    }
 
     public abstract int setEstadoMario(Jugador j);
 
