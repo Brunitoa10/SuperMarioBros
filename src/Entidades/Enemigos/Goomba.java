@@ -62,7 +62,6 @@ public class Goomba extends Enemigo {
     public void interactuarConProyectil(Proyectil proyectil) {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
-        proyectil.setDireccion(0);
     }
 
 }

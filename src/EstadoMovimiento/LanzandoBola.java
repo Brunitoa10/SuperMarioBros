@@ -7,10 +7,22 @@ public class LanzandoBola implements EstadoMovimiento{
 
     public LanzandoBola(Jugador mario) {
         this.mario = mario;
-        if(mario.getDireccion()==1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
-        if(mario.getDireccion()==-1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+        if (mario.getDireccion() == 1) {
+            if (mario.estaEnPlataforma()) {
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
+            } else {
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireRigth.gif");
+            }
+
+        } else {
+            if (mario.getDireccion() == -1) {
+                if (mario.estaEnPlataforma()) {
+                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+                } else {
+                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireLeft.gif");
+                }
+            }
+        }
     }
     public void saltar() {
         mario.setEstadoMovimiento((new MarioSaltando(mario)));
@@ -28,18 +40,28 @@ public class LanzandoBola implements EstadoMovimiento{
 
     @Override
     public void actualizar() {
-        if(mario.getDireccion()==1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
-        if(mario.getDireccion()==-1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+        System.out.println(mario.getDireccion());
+        if (mario.getDireccion() == 1) {
+            if (mario.estaEnPlataforma()) {
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
+            } else {
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireRigth.gif");
+            }
+
+        } else {
+            if (mario.getDireccion() == -1) {
+                if (mario.estaEnPlataforma()) {
+                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+                } else {
+                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireLeft.gif");
+                }
+            }
+        }
     }
 
     @Override
     public void LanzarBola() {
-        if(mario.getDireccion()==1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
-        if(mario.getDireccion()==-1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+
     }
 
     @Override

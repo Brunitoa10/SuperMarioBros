@@ -1,9 +1,12 @@
 package Logica;
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Entidad;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,10 +25,12 @@ public class HiloRestoEntidades implements Runnable {
     private final long renderInterval = 16_000_000; // Render cada 16ms (60 FPS)
     private Nivel nivelActual;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    protected List<Entidad> EntidadesAEliminar;
 
     public HiloRestoEntidades(Juego juego) {
         nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
+        EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
         controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
     }
 
@@ -55,19 +60,7 @@ public class HiloRestoEntidades implements Runnable {
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {
-        for (Enemigo enemigo : nivelActual.getEnemigos()) {
-            enemigo.actualizar();
-            controladorColisiones.colisionEnemigoConPlataforma(nivelActual.getPlataformas(),enemigo);
-        }
-        for(Proyectil proyectil : nivelActual.getProyectiles()) {
-            controladorColisiones.colisionProyectilConEnemigo(nivelActual.getEnemigos(), proyectil);
-            for(Plataforma plataforma: nivelActual.getPlataformas()){
-                if(proyectil.detectarColision(plataforma) ) {
-                    proyectil.getVisitor().visit(plataforma);
-                }
-            }
-            proyectil.actualizarEntidad();
-        }
+            controladorColisiones.colisionesRestoEntidades();
     }
 
     // Método renderizar para actualizar la vista de las entidades

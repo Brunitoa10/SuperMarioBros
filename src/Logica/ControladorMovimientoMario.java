@@ -22,7 +22,7 @@ public class ControladorMovimientoMario {
             mario.saltar();
         }
         if (!oyenteTeclado.teclaIzquierda && !oyenteTeclado.teclaDerecha && !oyenteTeclado.teclaArriba
-                && !oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(500)) {
+                && !oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(1700)) {
             if (mario.estaEnPlataforma()) {
                 mario.setEstadoMovimiento(new MarioParado(mario));
             }
