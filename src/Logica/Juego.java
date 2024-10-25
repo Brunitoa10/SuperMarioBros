@@ -13,6 +13,8 @@ import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
 import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
+import Generador.GestorSonido.Sonido;
+import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.GUI;
@@ -34,6 +36,7 @@ public class Juego {
     protected int puntaje;
     protected ControladorMovimientoMario controladorMovimientoMario;
     protected ControladorBolasDeFuego controladorBolasDeFuego;
+    protected Sonido sonido;
 
 
     public Juego(GUI controladorVistas) {
@@ -93,6 +96,7 @@ public class Juego {
         fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
+        sonido = SonidoFactory.crearSonido(modoJuego,"nivel");
 
         nivelActual = generadorNivel.generarNivel(1);
 
@@ -114,11 +118,11 @@ public class Juego {
         loopMario.comenzar();
         hiloRestoEntidades = new HiloRestoEntidades(this);
         hiloRestoEntidades.comenzar();
+        sonido.reproducir();
     }
 
     public void reiniciar(String nivelactual) {
-        loopMario.detener();
-        hiloRestoEntidades.detener();
+    	detenerLoops();
         controladorVistas.reiniciarPanelPantallaNivel();
         iniciar(nivelactual);
 
@@ -126,6 +130,7 @@ public class Juego {
     public void detenerLoops(){
         loopMario.detener();
         hiloRestoEntidades.detener();
+        sonido.detener();
     }
 
     public void mostrarPantallaRanking() {
