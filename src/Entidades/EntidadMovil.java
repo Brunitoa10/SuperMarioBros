@@ -18,7 +18,6 @@ public abstract class EntidadMovil extends Entidad {
         super(x, y, sprite);
         direccion = 0;
         estaVivo = true;
-
     }
 
     public int getDireccion() {
@@ -31,20 +30,6 @@ public abstract class EntidadMovil extends Entidad {
 
     public int getVelocidad() {
         return velocidad;
-    }
-
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    public boolean estaVivo() {
-        return estaVivo;
-    }
-
-
-    @Override
-    public boolean detectarColision(Entidad entidad) {
-            return this.getHitbox().intersects(entidad.getHitbox());
     }
 
     private int calcularSolapamientoX(Rectangle hitbox1, Rectangle hitbox2) {

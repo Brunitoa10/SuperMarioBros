@@ -1,34 +1,22 @@
 package Entidades.Enemigos;
 
-import Entidades.Entidad;
+import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
-import IA.IAAtacar;
 import IA.IACaminar;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
 import java.util.List;
 
-import Constantes.ConstantesPuntaje;
-
 public class Spiny extends Enemigo {
 
     protected VisitorEnemigo visitor;
 
     public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
-        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
+        super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
-    }
-
-    public boolean detectarColision(Entidad c) {
-        boolean colisionan = c.detectarColision(this);
-        if (colisionan) {
-            // Si hay colisión con el jugador, cambia el comportamiento a atacar
-            setComportamientoIA(new IAAtacar());
-        }
-        return colisionan;
     }
 
 
@@ -51,7 +39,7 @@ public class Spiny extends Enemigo {
 
             }
         }
-            return toReturn;
+        return toReturn;
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {

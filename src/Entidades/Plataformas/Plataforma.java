@@ -10,9 +10,6 @@ import java.util.List;
 
 public abstract class Plataforma extends EntidadInmovil {
 
-    protected boolean solido;
-    protected boolean rompible;
-    protected boolean meRompi=false;
     protected List<Plataforma> listaPlataformaNivel;
 
     public Plataforma(int x, int y, Sprite sprite, List<Plataforma> listaPlataformaNivel) {
@@ -33,7 +30,7 @@ public abstract class Plataforma extends EntidadInmovil {
         listaPlataformaNivel.remove(this);
     }
 
-    public void interactuar(Jugador j){
+    public void interactuar(Jugador j) {
 
     }
 

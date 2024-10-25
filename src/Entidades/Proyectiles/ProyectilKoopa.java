@@ -4,33 +4,30 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Logica.Temporizador;
 import Visitor.Visitor;
-import Visitor.VisitorProyectil;
 
 import java.util.List;
 
 public class ProyectilKoopa extends Proyectil {
-protected int direccionLocal;
-protected int velocidadX;
-protected int cantidadDeRebotes;
-protected int colisiones=0;
-protected Temporizador temporizador;
-protected boolean gravedad=false;
+    protected int direccionLocal;
+    protected int velocidadX;
+    protected int cantidadDeRebotes;
+    protected int colisiones = 0;
+    protected Temporizador temporizador;
+    protected boolean gravedad = false;
 
-protected VisitorProyectil visitor;
     public ProyectilKoopa(int x, int y, Sprite sprite, List<Proyectil> listaProyectilNivel) {
         super(x, y, sprite, listaProyectilNivel);
-        visitor = new VisitorProyectil(this);
-        direccionLocal=0;
-        cantidadDeRebotes=0;
+        direccionLocal = 0;
+        cantidadDeRebotes = 0;
         temporizador = new Temporizador();
 
     }
 
     @Override
-        public int accept(Visitor v) {
-            v.visit(this);
-            direccion=0;
-            velocidadX=5;
+    public int accept(Visitor v) {
+        v.visit(this);
+        direccion = 0;
+        velocidadX = 5;
         return 0;
     }
 
@@ -59,32 +56,27 @@ protected VisitorProyectil visitor;
     }
 
 
-        public void setDireccion(int direccion) {
-        if(cantidadDeRebotes==3){
-            temporizador.iniciar();;
-            velocidadX=0;
-            this.setPosicionEnY(this.getPosicionEnY()-12);
-            if(direccionLocal==1)
-                this.setPosicionEnX(this.getPosicionEnX()+12);
-            if(direccionLocal==-1)
-                this.setPosicionEnX(this.getPosicionEnX()-12);
+    public void setDireccion(int direccion) {
+        if (cantidadDeRebotes == 3) {
+            temporizador.iniciar();
+            velocidadX = 0;
+            this.setPosicionEnY(this.getPosicionEnY() - 12);
+            if (direccionLocal == 1)
+                this.setPosicionEnX(this.getPosicionEnX() + 12);
+            if (direccionLocal == -1)
+                this.setPosicionEnX(this.getPosicionEnX() - 12);
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
         }
-        if(direccion!=0) {
+        if (direccion != 0) {
             this.direccion = direccion;
             direccionLocal = direccion;
         }
-            cantidadDeRebotes++;
-        }
+        cantidadDeRebotes++;
+    }
 
-    public VisitorProyectil getVisitor() {
-            return visitor;
-        }
-
-
-    public void Interactuar(Jugador j){
+    public void Interactuar(Jugador j) {
         colisiones++;
-        if(cantidadDeRebotes<3) {
+        if (cantidadDeRebotes < 3) {
             if (this.colisionArriba(j) && direccionLocal == 0) {
                 this.setAEliminar();
                 this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
@@ -114,13 +106,9 @@ protected VisitorProyectil visitor;
         }
     }
 
-        public void setGravedad(){
-
-        }
-
-        public void activarGravedad(){
-            gravedad=true;
-        }
+    public void activarGravedad() {
+        gravedad = true;
+    }
 
 }
 

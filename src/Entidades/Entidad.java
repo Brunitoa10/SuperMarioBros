@@ -32,6 +32,10 @@ public abstract class Entidad implements EntidadLogica,Colisionable {
         return sprite;
     }
 
+    public boolean detectarColision(Entidad entidad) {
+        return this.getHitbox().intersects(entidad.getHitbox());
+    }
+
     @Override
     public int getPosicionEnX() {
         return posicionX;

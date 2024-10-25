@@ -1,24 +1,19 @@
 package Logica;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Enemigos.Enemigo;
-import Entidades.Entidad;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.EntidadMovil;
-import Entidades.Plataformas.Plataforma;
 import Entidades.Jugador;
+import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
-import Vista.ObserverGrafica.Observer;
 import Fabricas.Sprite;
-import Vista.ObserverGrafica.ObserverEntidad;
-import Vista.ObserverGrafica.ObserverGrafica;
-import Vista.GUI;
+import Vista.ObserverGrafica.Observer;
 
 import java.util.List;
-
-import Constantes.ConstantesPuntaje;
 
 public class ControladorColisiones {
     protected Nivel nivelActual;
@@ -38,12 +33,12 @@ public class ControladorColisiones {
     }
 
     public boolean colisionesMario() {
-        boolean toRet=false;
+        boolean toRet = false;
         colisionMarioConPlataforma(nivelActual.getPlataformas(), nivelActual.getJugador());
         colisionMarioConEnemigos(nivelActual.getEnemigos(), nivelActual.getJugador());
         colisionMarioConMonedas(nivelActual.getMonedas(), nivelActual.getJugador());
         colisionMarioConProyectiles(nivelActual.getProyectiles(), nivelActual.getJugador());
-        toRet=colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
+        toRet = colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
         colisionMarioConVacio(nivelActual.getVacios(), nivelActual.getJugador());
         return toRet;
     }
@@ -105,12 +100,12 @@ public class ControladorColisiones {
     }
 
     public boolean colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
-        boolean toRet=false;
+        boolean toRet = false;
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
                 powerUp.actualizarEntidad();
-                toRet=powerUp.getFrenarJuego();
+                toRet = powerUp.getFrenarJuego();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
@@ -159,7 +154,6 @@ public class ControladorColisiones {
             for (Enemigo enemigo : listaEnemigos) {
                 if (proyectil.detectarColision(enemigo)) {
                     juegoActual.sumarPuntaje(proyectil.accept(enemigo.getVisitorEnemigo()));
-
                     if (enemigo.aEliminar()) {
                         nivelActual.getEntidadesAEliminar().add(enemigo);
                     }

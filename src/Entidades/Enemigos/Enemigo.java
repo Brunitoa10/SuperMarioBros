@@ -69,7 +69,7 @@ public abstract class Enemigo extends EntidadMovil {
         this.listaEnemigosNivel.remove(this);
     }
 
-    public ComportamientoIA getComportamientoIA(){
+    public ComportamientoIA getComportamientoIA() {
         return comportamientoIA;
     }
 
