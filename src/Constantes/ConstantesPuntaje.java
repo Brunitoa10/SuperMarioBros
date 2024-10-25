@@ -14,6 +14,7 @@ public class ConstantesPuntaje {
     public static final int PUNTAJE_ESTRELLA_CON_ESTRELLA = 35;
 
     public static final int PUNTAJE_CHAMPINON_VERDE = 100;
+    public static final int PUNTAJE_CHAMPINION_VERDE_NORMAL = 10;
 
     public static final int PUNTAJE_MONEDA = 5;
 

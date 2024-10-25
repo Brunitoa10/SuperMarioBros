@@ -32,8 +32,7 @@ public class BuzzyBeetle extends Enemigo {
         return colisionan;
     }
       public int accept(Visitor v) {
-        v.visit(this);
-        return 0;
+        return v.visit(this);
     }
 
     public int interactuar(Jugador mario) {

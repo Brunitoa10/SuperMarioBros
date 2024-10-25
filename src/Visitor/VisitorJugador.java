@@ -7,7 +7,6 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
-import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
@@ -26,17 +25,18 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(Enemigo e) {
+    public int visit(Enemigo e) {
 
+        return 0;
     }
 
     @Override
-    public void visit(PowerUp p) {
-        p.setEstadoMario(mario);
+    public int visit(PowerUp p) {
+        int toReturn = p.setEstadoMario(mario);
         p.setPosicionEnY(-100);
         p.getSprite().setPosicionY(-100);
         p.setAEliminar();
-
+        return toReturn;
     }
 
     @Override

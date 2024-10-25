@@ -234,7 +234,15 @@ public class Juego {
     public void checkearSumaVida() {
         if(getJugador().debeSumarUnaVida()) {
             sumarVida();
+            sumarPuntaje(ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE);
             getJugador().sumarUnaVida(false);
+        }
+    }
+
+    public void checkearCaidaVacio() {
+        if(getJugador().getPosicionEnY()>460) {
+            getJugador().setMorir(true);
+            sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
         }
     }
 }

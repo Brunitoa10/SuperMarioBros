@@ -12,4 +12,8 @@ public interface EstadoJugador {
     public boolean esInmortal();
     public String finalAnimacion();
     public boolean estadoEstrella();
+    public int getPuntajeEstrella();
+    public int getPuntajeSuperChampinion();
+    public int getPuntajeChampinionVerde();
+    public int getPuntajeFlorDeFuego();
 }

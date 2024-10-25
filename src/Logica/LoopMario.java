@@ -90,9 +90,8 @@ public class LoopMario implements Runnable {
             juego.lanzarBolasDeFuego(mario);
             controladorColisiones.colisionesMario();
             juego.eliminarEntidades();
-            if(mario.getPosicionEnY()>460) {
-                mario.setMorir(true);
-            }
+
+            juego.checkearCaidaVacio();
 
             juego.checkearSumaVida();
 

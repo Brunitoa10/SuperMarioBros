@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Entidades.Jugador;
+import Logica.ConstantesPuntaje;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -62,6 +63,26 @@ public class MarioInvencible implements EstadoJugador {
     }
     public boolean estadoEstrella() {
         return false;
+    }
+
+    @Override
+    public int getPuntajeEstrella(){
+        return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeSuperChampinion() {
+        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeChampinionVerde() {
+        return ConstantesPuntaje.PUNTAJE_CHAMPINION_VERDE_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeFlorDeFuego() {
+        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_NORMAL;
     }
 
     public String finalAnimacion(){

@@ -9,11 +9,9 @@ import java.util.List;
 
 public class FlorDeFuego extends PowerUp {
 
-    protected int puntaje;
 
     public FlorDeFuego(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
         super(x, y, sprite, listaPowerUpsNivel);
-        puntaje = 5;
     }
 
     public boolean detectarColision(Entidad c) {
@@ -21,17 +19,16 @@ public class FlorDeFuego extends PowerUp {
         return colisionan;
     }
 
-    public int getPuntaje() {
-        return puntaje;
-    }
 
     public void Consumir(){
         this.setPosicionEnY(1000);
     }
 
-    public void setEstadoMario(Jugador j) {
+    public int setEstadoMario(Jugador j) {
+        int toReturn = j.getEstadoJugador().getPuntajeFlorDeFuego();
         if (j.getEstadoJugador().puedeSerMarioFuego()) {
             j.setEstadoJugador(new SuperMarioFuego(j));
         }
+        return toReturn;
     }
 }

@@ -8,8 +8,6 @@ import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Vacio;
 
-import java.sql.SQLOutput;
-
 public class VisitorProyectil implements Visitor {
     Proyectil proyectil;
 
@@ -21,8 +19,9 @@ public class VisitorProyectil implements Visitor {
     }
 
     @Override
-    public void visit(Enemigo e) {
+    public int visit(Enemigo e) {
 
+        return 0;
     }
 
     @Override
@@ -30,7 +29,8 @@ public class VisitorProyectil implements Visitor {
     }
 
     @Override
-    public void visit(PowerUp m) {
+    public int visit(PowerUp m) {
+        return 0;
     }
 
     @Override

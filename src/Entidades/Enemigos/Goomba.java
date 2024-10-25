@@ -39,8 +39,7 @@ public class Goomba extends Enemigo {
         }
     }
     public int accept(Visitor v) {
-        v.visit(this);
-        return 0;
+        return v.visit(this);
     }
   
 

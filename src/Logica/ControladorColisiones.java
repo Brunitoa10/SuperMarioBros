@@ -106,8 +106,7 @@ public class ControladorColisiones {
     public void colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
-                powerUp.accept(mario.getVisitorJugador());
-                juegoActual.sumarPuntaje(powerUp.getPuntaje());
+                juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
                 powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);

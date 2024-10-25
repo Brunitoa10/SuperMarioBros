@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Entidades.Jugador;
+import Logica.ConstantesPuntaje;
 import Logica.Nivel;
 
 public class Mario implements EstadoJugador {
@@ -49,5 +50,24 @@ public class Mario implements EstadoJugador {
     @Override
     public boolean estadoEstrella() {
         return false;
+    }
+
+    public int getPuntajeEstrella(){
+        return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeSuperChampinion() {
+        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeChampinionVerde() {
+        return ConstantesPuntaje.PUNTAJE_CHAMPINION_VERDE_NORMAL;
+    }
+
+    @Override
+    public int getPuntajeFlorDeFuego() {
+        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_NORMAL;
     }
 }

@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Entidades.Jugador;
+import Logica.ConstantesPuntaje;
 import Logica.Nivel;
 
 import java.util.concurrent.Executors;
@@ -47,6 +48,25 @@ public class MarioEstrella implements EstadoJugador{
 
             }
         }, 8, TimeUnit.SECONDS);
+    }
+
+    public int getPuntajeEstrella(){
+        return ConstantesPuntaje.PUNTAJE_ESTRELLA_CON_ESTRELLA;
+    }
+
+    @Override
+    public int getPuntajeSuperChampinion() {
+        return estadoAnterior.getPuntajeSuperChampinion();
+    }
+
+    @Override
+    public int getPuntajeChampinionVerde() {
+        return estadoAnterior.getPuntajeChampinionVerde();
+    }
+
+    @Override
+    public int getPuntajeFlorDeFuego() {
+        return estadoAnterior.getPuntajeFlorDeFuego();
     }
 
 

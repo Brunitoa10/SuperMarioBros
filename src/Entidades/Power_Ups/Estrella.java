@@ -10,7 +10,6 @@ public class Estrella extends PowerUp {
 
     public Estrella(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
         super(x, y, sprite, listaPowerUpsNivel);
-        puntaje = 0;
     }
 
     public boolean detectarColision(Entidad c) {
@@ -18,16 +17,15 @@ public class Estrella extends PowerUp {
         return colisionan;
     }
 
-    public int getPuntaje() {
-        return puntaje;
-    }
 
     public void Consumir(){
         sprite=null;
     }
 
     @Override
-    public void setEstadoMario(Jugador j) {
+    public int setEstadoMario(Jugador j) {
+        int toReturn = j.getEstadoJugador().getPuntajeEstrella();
         j.setEstadoJugador(new MarioEstrella(j));
+        return toReturn;
     }
 }

@@ -21,8 +21,9 @@ public class VisitorEnemigo implements Visitor {
     }
 
     @Override
-    public void visit(Enemigo e) {
+    public int visit(Enemigo e) {
 
+        return 0;
     }
 
     @Override
@@ -30,7 +31,8 @@ public class VisitorEnemigo implements Visitor {
     }
 
     @Override
-    public void visit(PowerUp m) {
+    public int visit(PowerUp m) {
+        return 0;
     }
 
     public void visit(Plataforma p) {
