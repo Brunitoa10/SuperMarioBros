@@ -29,7 +29,9 @@ public class FlorDeFuego extends PowerUp {
         this.setPosicionEnY(1000);
     }
 
-    public void setEstadoMario(Jugador j){
-        j.setEstadoJugador(new SuperMarioFuego(j));
+    public void setEstadoMario(Jugador j) {
+        if (j.getEstadoJugador().puedeSerMarioFuego()) {
+            j.setEstadoJugador(new SuperMarioFuego(j));
+        }
     }
 }

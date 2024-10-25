@@ -1,7 +1,9 @@
 package Entidades.Power_Ups;
 
 import Entidades.Entidad;
+import Entidades.Jugador;
 import Fabricas.Sprite;
+import Logica.Juego;
 import Logica.Nivel;
 
 import java.util.List;
@@ -13,10 +15,8 @@ public class ChampinionVerde extends PowerUp {
         puntaje = 0;
     }
 
-    public void aplicarEfecto(Nivel nivel){
-        // vidas que el champinion suma al agarrarlo
-        int vidasChampinion = 1;
-        nivel.sumarVida(vidasChampinion);
+    public void aplicarEfecto(Juego juego){
+        juego.sumarVida();
     }
 
     public boolean detectarColision(Entidad c) {
@@ -30,5 +30,10 @@ public class ChampinionVerde extends PowerUp {
 
     public void Consumir(){
         this.setPosicionEnY(1000);
+    }
+
+    @Override
+    public void setEstadoMario(Jugador j) {
+        j.sumarUnaVida(true);
     }
 }

@@ -1,5 +1,7 @@
 package Entidades.Power_Ups;
 import Entidades.Entidad;
+import Entidades.Jugador;
+import EstadoJugador.MarioEstrella;
 import Fabricas.Sprite;
 
 import java.util.List;
@@ -22,5 +24,10 @@ public class Estrella extends PowerUp {
 
     public void Consumir(){
         sprite=null;
+    }
+
+    @Override
+    public void setEstadoMario(Jugador j) {
+        j.setEstadoJugador(new MarioEstrella(j));
     }
 }

@@ -21,7 +21,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected boolean estaVivo;
     protected int puntaje;
     protected boolean muerte;
-    protected int vidas;
+    protected boolean sumarVida;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -33,6 +33,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = false;
         this.estaVivo = true;
         muerte=false;
+        sumarVida = false;
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -109,16 +110,20 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return estadoJugador.puedeLanzarBolaFuego();
     }
 
-    public boolean estaVivo() {
-        return vidas != 0;
-    }
-
     public boolean getMorir(){
         return muerte;
     }
 
     public void setMorir(boolean morir) {
         muerte = morir;
+    }
+
+    public void sumarUnaVida(boolean deberiaSumarUnaVida) {
+        sumarVida = deberiaSumarUnaVida;
+    }
+
+    public boolean debeSumarUnaVida() {
+        return sumarVida;
     }
 
 }

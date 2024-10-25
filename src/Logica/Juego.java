@@ -58,6 +58,7 @@ public class Juego {
 
     public void sumarVida(){
         vidas++;
+        controladorVistas.actualizarLabels();
     }
 
 
@@ -223,5 +224,12 @@ public class Juego {
 
     public int getTiempo() {
         return 0; //hacer
+    }
+
+    public void checkearSumaVida() {
+        if(getJugador().debeSumarUnaVida()) {
+            sumarVida();
+            getJugador().sumarUnaVida(false);
+        }
     }
 }

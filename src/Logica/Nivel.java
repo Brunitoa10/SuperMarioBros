@@ -24,10 +24,8 @@ public class Nivel {
     protected Jugador jugador;
     protected Bandera bandera;
     protected Princesa princesa;
-    protected int vida;
 
         public Nivel(int numero) {
-            this.vida = 3;
             this.enemigos = new LinkedList<Enemigo>();
             this.plataformas = new LinkedList<Plataforma>();
             this.powerUps = new LinkedList<PowerUp>();
@@ -35,10 +33,6 @@ public class Nivel {
             this.monedas = new LinkedList<Moneda>();
             this.vacios = new LinkedList<Vacio>();
             this.entidadesAEliminar = new LinkedList<Entidad>();
-        }
-
-        public void reiniciarVidas(){
-            this.vida = 3;
         }
 
         public Jugador getJugador() {
@@ -103,18 +97,6 @@ public class Nivel {
 
         public void agregarVacio(Vacio vacio) {
             this.vacios.addLast(vacio);
-        }
-
-        public void sumarVida(int cantVidas) {
-            this.vida += cantVidas;
-        }
-
-        public boolean conVidas() {
-            return vida > 0;
-        }
-
-        public void perdioVida() {
-            vida--;
         }
 
         public List<Entidad> getEntidadesAEliminar() {
