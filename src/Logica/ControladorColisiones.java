@@ -186,11 +186,7 @@ public class ControladorColisiones {
             for (Vacio vacio : listaVacios) {
                 int toleranciaX = 5;
                 if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() + proyectil.getHitbox().getWidth() <= vacio.getPosicionEnX() + vacio.getHitbox().getWidth() + toleranciaX) {
-                    System.out.println(proyectil.getHitbox().getMaxY()) ;
-                    System.out.println(vacio.getPosicionEnY());
                     if ((proyectil.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
-                        System.out.println(proyectil.getHitbox().getMaxY()) ;
-                        System.out.println(vacio.getPosicionEnY());
                         proyectil.getVisitor().visit(vacio);
                     }
                 }

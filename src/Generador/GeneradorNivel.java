@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class GeneradorNivel {
     protected FabricaEntidad fabricaEntidades;
-
+    private final String SPRITE_VACIA = "src/Recursos/Sprites/original/Bloques/BloqueNada.png";
 
     public GeneradorNivel(FabricaEntidad fabricaEntidades) {
         this.fabricaEntidades = fabricaEntidades;
@@ -136,13 +136,13 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivel(Nivel nivel) {
-        nivel.agregarVacio(new Vacio(1624, 452,new Sprite("/",70,32), nivel.getVacios()));
-        nivel.agregarVacio(new Vacio(2222, 452, new Sprite("/",104,32), nivel.getVacios()));
-        nivel.agregarVacio(new Vacio(4575, 452, new Sprite("/",70,32), nivel.getVacios()));
-        nivel.agregarPlataforma(new SueloNivel(-800, 452,new Sprite("/",2423,69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(1695, 452,new Sprite("/",526,69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(2327, 452, new Sprite("/", 2247,69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(4646, 452, new Sprite("/", 2423,69), nivel.getPlataformas()));
+        nivel.agregarVacio(new Vacio(1624, 456,new Sprite(SPRITE_VACIA,70,32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(2222, 456, new Sprite(SPRITE_VACIA,104,32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4575, 456, new Sprite(SPRITE_VACIA,70,32), nivel.getVacios()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 456,new Sprite(SPRITE_VACIA,2423,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(1695, 456,new Sprite(SPRITE_VACIA,526,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(SPRITE_VACIA, 2247,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(SPRITE_VACIA, 2423,69), nivel.getPlataformas()));
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {

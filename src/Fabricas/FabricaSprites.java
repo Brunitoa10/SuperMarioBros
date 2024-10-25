@@ -42,7 +42,7 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Pickupeables/Hongo.png", 32, 32);
     }
     public Sprite crearSpriteBolaDeFuego() {
-        return new Sprite(ruta_carpeta + "/", 16, 16);
+        return new Sprite(ruta_carpeta + "/Proyectiles/BolaDeFuego.gif", 16, 16);
     }
     public Sprite crearSpriteProyectilSpiny() {
         return new Sprite(ruta_carpeta + "/", 16, 16);
@@ -53,7 +53,7 @@ public abstract class FabricaSprites {
     }
 
     public Sprite crearSpriteBloqueSolido() {
-        return new Sprite(ruta_carpeta + "/", 32, 32);
+        return new Sprite(ruta_carpeta + "/Bloques/BloqueSolido.png", 32, 32);
     }
     public Sprite crearSpriteTuberia() {
         return new Sprite(ruta_carpeta + "/Bloques/Tuberia.png", 32, 32);
@@ -76,6 +76,6 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/", 16, 16);
     }
     public Sprite crearSpriteVacio() {
-        return new Sprite(ruta_carpeta + "/", 32, 32);
+        return new Sprite(ruta_carpeta + "/Bloques/BloqueNada.png", 32, 32);
     }
 }
