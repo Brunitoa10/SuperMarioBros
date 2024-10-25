@@ -37,14 +37,15 @@ public class ControladorColisiones {
         colisionProyectilVacio(nivelActual.getProyectiles(), nivelActual.getVacios());
     }
 
-    public void colisionesMario() {
+    public boolean colisionesMario() {
+        boolean toRet=false;
         colisionMarioConPlataforma(nivelActual.getPlataformas(), nivelActual.getJugador());
         colisionMarioConEnemigos(nivelActual.getEnemigos(), nivelActual.getJugador());
         colisionMarioConMonedas(nivelActual.getMonedas(), nivelActual.getJugador());
         colisionMarioConProyectiles(nivelActual.getProyectiles(), nivelActual.getJugador());
-        colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
+        toRet=colisionMarioConPowerUps(nivelActual.getPowerUps(), nivelActual.getJugador());
         colisionMarioConVacio(nivelActual.getVacios(), nivelActual.getJugador());
-
+        return toRet;
     }
 
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
@@ -103,15 +104,18 @@ public class ControladorColisiones {
         }
     }
 
-    public void colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
+    public boolean colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
+        boolean toRet=false;
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
                 powerUp.actualizarEntidad();
+                toRet=powerUp.getFrenarJuego();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
         }
+        return toRet;
     }
 
     public void colisionMarioConVacio(List<Vacio> listaVacios, Jugador mario) {

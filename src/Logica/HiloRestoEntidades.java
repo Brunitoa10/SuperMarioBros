@@ -16,6 +16,7 @@ public class HiloRestoEntidades implements Runnable {
     private boolean ejecutando;
     private ControladorVistaJuego controlador;
     private ControladorColisiones controladorColisiones;
+    protected boolean FrenarHilo = false;
 
 
     // Intervalos para actualización y renderizado
@@ -60,6 +61,7 @@ public class HiloRestoEntidades implements Runnable {
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {
+        if(!FrenarHilo)
             controladorColisiones.colisionesRestoEntidades();
     }
 
@@ -67,5 +69,13 @@ public class HiloRestoEntidades implements Runnable {
     private void renderizar() {
         controlador.actualizarObserver(); // Actualiza la vista de cada entidad
         controlador.refrescar(); // Refresca la pantalla
+    }
+
+    public void pause(){
+        FrenarHilo=true;
+    }
+
+    public void resume(){
+        FrenarHilo=false;
     }
 }

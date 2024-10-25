@@ -246,4 +246,11 @@ public class Juego {
             sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
         }
     }
+
+    public void frenarHilos(){
+        hiloRestoEntidades.pause();
+    }
+    public void reanudarHilo(){
+        hiloRestoEntidades.resume();
+    }
 }

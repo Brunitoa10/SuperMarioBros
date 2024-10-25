@@ -37,6 +37,8 @@ public class LoopMario implements Runnable {
     protected Temporizador temporizador;
     protected boolean debeSaltar;
     protected ControladorBolasDeFuego controladorBolasDeFuego;
+    protected boolean FrenoElTick=false;
+    protected Temporizador temporizador2;
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
@@ -45,6 +47,7 @@ public class LoopMario implements Runnable {
 
         ejecutando = false;
         temporizador = new Temporizador();
+        temporizador2= new Temporizador();
         this.juego = juego;
         debeSaltar = false;
     }
@@ -85,23 +88,37 @@ public class LoopMario implements Runnable {
     }
 
     private void tick() {
-        if(!mario.getMorir()) {
-            juego.moverMario(temporizador);
-            juego.lanzarBolasDeFuego(mario);
-            controladorColisiones.colisionesMario();
-            juego.eliminarEntidades();
+        if(!FrenoElTick) {
+            if (!mario.getMorir()) {
+                juego.moverMario(temporizador);
+                juego.lanzarBolasDeFuego(mario);
+                FrenoElTick=controladorColisiones.colisionesMario();
+                juego.eliminarEntidades();
+                if (mario.getPosicionEnY() > 460) {
+                    mario.setMorir(true);
+                }
 
-            juego.checkearCaidaVacio();
+                juego.checkearSumaVida();
 
-            juego.checkearSumaVida();
-
-            mario.getEstadoJugador().actualizarSprite();
-            mario.actualizarEntidad();
-        } else {
-            juego.mostrarMarioMuerte(mario);
-            empezarCooldownMorir();
-            if (timerAnimacionMorir == 100) {
-                juego.manejarMuerte();
+                mario.getEstadoJugador().actualizarSprite();
+                mario.actualizarEntidad();
+            } else {
+                juego.mostrarMarioMuerte(mario);
+                empezarCooldownMorir();
+                if (timerAnimacionMorir == 100) {
+                    juego.manejarMuerte();
+                }
+            }
+        }else{
+            temporizador2.iniciar();
+            juego.frenarHilos();
+            if(mario.getDireccion()==-1)
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
+            if(mario.getDireccion()==+1)
+                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
+            if(temporizador2.hanPasadoNSegundos(2000)){
+                FrenoElTick=false;
+                juego.reanudarHilo();
             }
         }
     }

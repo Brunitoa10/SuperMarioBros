@@ -1,5 +1,6 @@
 package Entidades.Power_Ups;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
@@ -21,6 +22,6 @@ public class ChampinionVerde extends PowerUp {
     @Override
     public int setEstadoMario(Jugador j) {
         j.sumarUnaVida(true);
-        return j.getEstadoJugador().getPuntajeChampinionVerde();
+        return ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE;
     }
 }
