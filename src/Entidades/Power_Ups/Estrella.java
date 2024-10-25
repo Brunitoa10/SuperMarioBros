@@ -15,7 +15,7 @@ public class Estrella extends PowerUp {
 
     public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectarColision(this);
-        return false;
+        return colisionan;
     }
 
     public int getPuntaje() {

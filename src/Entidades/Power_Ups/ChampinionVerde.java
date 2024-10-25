@@ -3,8 +3,6 @@ package Entidades.Power_Ups;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Fabricas.Sprite;
-import Logica.Juego;
-import Logica.Nivel;
 
 import java.util.List;
 
@@ -15,13 +13,9 @@ public class ChampinionVerde extends PowerUp {
         puntaje = 0;
     }
 
-    public void aplicarEfecto(Juego juego){
-        juego.sumarVida();
-    }
-
     public boolean detectarColision(Entidad c) {
         boolean colisionan =c.detectarColision(this);
-        return false;
+        return colisionan;
     }
 
     public int getPuntaje() {
