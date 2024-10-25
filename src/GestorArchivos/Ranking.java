@@ -4,9 +4,13 @@ package GestorArchivos;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import Constantes.CadenasValidacion;
+
 public class Ranking {
 	protected ArrayList<JugadorRanking> jugadores;
 	protected GestorArchivos gestorArchivos;
+	protected JugadorRanking jugador;
+	protected JugadorRanking jugadorMenor;
 
 	public Ranking() {
 		this.gestorArchivos = new GestorArchivos(CadenasValidacion.RUTA_ARCHIVO_RANKING);
@@ -32,7 +36,7 @@ public class Ranking {
 	}
 
 	private void actualizarPuntajeSiEsMayor(int indiceJugador, int puntuacion) {
-	    JugadorRanking jugador = jugadores.get(indiceJugador);
+	    jugador = jugadores.get(indiceJugador);
 	    if (puntuacion > jugador.getPuntaje()) {
 	        jugador.setPuntaje(puntuacion);
 	    }
@@ -47,7 +51,7 @@ public class Ranking {
 	}
 
 	private void reemplazarJugadorSiEsNecesario(String nombre, int puntuacion) {
-	    JugadorRanking jugadorMenor = jugadores.get(jugadores.size() - 1);
+	    jugadorMenor = jugadores.get(jugadores.size() - 1);
 	    if (puntuacion > jugadorMenor.getPuntaje()) {
 	        jugadores.set(jugadores.size() - 1, new JugadorRanking(nombre, puntuacion));
 	    }

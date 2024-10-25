@@ -4,12 +4,14 @@ import Entidades.Entidad;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Logica.Juego;
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
 import javax.swing.*;
+
+import Constantes.ConstantesVista;
+
 import java.awt.*;
 import java.util.Map;
 

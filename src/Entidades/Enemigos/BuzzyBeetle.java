@@ -6,11 +6,12 @@ import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IAAtacar;
 import IA.IACaminar;
-import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
 import java.util.List;
+
+import Constantes.ConstantesPuntaje;
 
 public class BuzzyBeetle extends Enemigo {
 

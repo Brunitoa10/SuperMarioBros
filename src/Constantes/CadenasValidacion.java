@@ -1,4 +1,4 @@
-package GestorArchivos;
+package Constantes;
 
 public class CadenasValidacion {
 	public static String VALIDACION_USUARIO = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";

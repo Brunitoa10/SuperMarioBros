@@ -18,6 +18,8 @@ import Vista.GUI;
 
 import java.util.List;
 
+import Constantes.ConstantesPuntaje;
+
 public class ControladorColisiones {
     protected Nivel nivelActual;
     protected Temporizador temporizadorActual;

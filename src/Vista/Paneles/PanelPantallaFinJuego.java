@@ -15,9 +15,10 @@ import javax.swing.JPanel;
 
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import javax.swing.JTextField;
+
+import Constantes.ConstantesVista;
 
 public class PanelPantallaFinJuego extends JPanel {
 

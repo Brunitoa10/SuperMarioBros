@@ -6,13 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Constantes.ConstantesVista;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import GestorArchivos.Ranking;
 import Logica.ConfiguracionJuego;
 import Logica.Juego;
 import Logica.OyenteTeclado;
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;

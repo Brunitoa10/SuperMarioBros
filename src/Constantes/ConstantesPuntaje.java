@@ -1,4 +1,4 @@
-package Logica;
+package Constantes;
 
 public class ConstantesPuntaje {
     //Power-ups

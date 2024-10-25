@@ -2,6 +2,7 @@ package Visitor;
 
 import Entidades.Enemigos.Enemigo;
 import Entidades.EntidadInmovil.Moneda;
+import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
@@ -10,7 +11,6 @@ import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Vacio;
 import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioParado;
-import Logica.ConstantesPuntaje;
 
 public class VisitorJugador implements Visitor {
 

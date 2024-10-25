@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import Constantes.AnimadorMario;
 import EstadoMovimiento.MarioCaminando;
 import EstadoMovimiento.MarioParado;
-
-import Animador.AnimadorMario;
 
 
 public class LoopMario implements Runnable {

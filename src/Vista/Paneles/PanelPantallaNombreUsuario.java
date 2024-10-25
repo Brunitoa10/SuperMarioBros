@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import Constantes.CadenasValidacion;
+import Constantes.ConstantesVista;
 import Generador.GestorSonido.Sonido;
-import GestorArchivos.CadenasValidacion;
 
 public class PanelPantallaNombreUsuario extends JPanel {
 

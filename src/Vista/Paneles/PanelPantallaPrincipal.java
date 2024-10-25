@@ -13,9 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Constantes.ConstantesVista;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
-import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 
 

@@ -1,4 +1,4 @@
-package Animador;
+package Constantes;
 
 public class AnimadorMario {
     // Estado Idle

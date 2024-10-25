@@ -1,6 +1,6 @@
 package EstadoMovimiento;
 
-import Animador.AnimadorMario;
+import Constantes.AnimadorMario;
 import Entidades.Jugador;
 
 public class MarioSaltando implements EstadoMovimiento {

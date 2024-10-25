@@ -1,4 +1,4 @@
-package Animador;
+package Constantes;
 
 public class DireccionMario {
 	public static int IZQUIERDA = -1;

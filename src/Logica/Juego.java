@@ -2,7 +2,7 @@ package Logica;
 
 import java.util.List;
 
-import Animador.AnimadorMario;
+import Constantes.AnimadorMario;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;

@@ -1,6 +1,6 @@
 package Vista;
 
-import Vista.Controladores.ConstantesVista;
+import Constantes.ConstantesVista;
 
 public class AdaptadorPosicionPixel {
     public static int transformarX(int x) {

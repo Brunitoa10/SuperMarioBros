@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Vista.Controladores.ConstantesVista;
+import Constantes.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaModoJuego extends JPanel {

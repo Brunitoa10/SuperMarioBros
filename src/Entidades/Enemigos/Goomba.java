@@ -5,12 +5,13 @@ import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IACaminar;
-import Logica.ConstantesPuntaje;
 import Logica.Temporizador;
 import Visitor.VisitorEnemigo;
 import Visitor.Visitor;
 
 import java.util.List;
+
+import Constantes.ConstantesPuntaje;
 
 public class Goomba extends Enemigo {
 
