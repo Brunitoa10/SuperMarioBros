@@ -164,10 +164,12 @@ public class ControladorColisiones {
     public void colisionEnemigoConProyectiles(List<Proyectil> listaProyectiles, List<Enemigo> listaEnemigos) {
         for(Proyectil proyectil : listaProyectiles) {
             for (Enemigo enemigo : listaEnemigos) {
-                int tolerancia = 5;
-                if (proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
-                        proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
+                int toleranciaX = 5;
+                int toleranciaY = 10;
+                if (proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - toleranciaX && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + toleranciaX &&
+                        proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - toleranciaY && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + toleranciaY) {
                     proyectil.accept(enemigo.getVisitorEnemigo());
+
                     if (enemigo.aEliminar()) {
                         nivelActual.getEntidadesAEliminar().add(enemigo);
                     }
