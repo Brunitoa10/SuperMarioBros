@@ -157,7 +157,7 @@ public class ControladorColisiones {
                 int toleranciaY = 10;
                 if (proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - toleranciaX && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + toleranciaX &&
                         proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - toleranciaY && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + toleranciaY) {
-                    proyectil.accept(enemigo.getVisitorEnemigo());
+                    juegoActual.sumarPuntaje(proyectil.accept(enemigo.getVisitorEnemigo()));
 
                     if (enemigo.aEliminar()) {
                         nivelActual.getEntidadesAEliminar().add(enemigo);

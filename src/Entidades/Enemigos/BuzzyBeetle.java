@@ -55,10 +55,10 @@ public class BuzzyBeetle extends Enemigo {
         return toReturn;
     }
 
-    public void interactuarConProyectil(Proyectil proyectil) {
-        System.out.println("Le pegue con la bola de fuego");
+    public int interactuarConProyectil(Proyectil proyectil) {
+        int puntajeBuzzyBeetleDestruido = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
         this.setAEliminar();
-        this.setPosicionEnY(-100);
         proyectil.setDireccion(0);
+        return puntajeBuzzyBeetleDestruido;
     }
 }

@@ -54,9 +54,7 @@ public abstract class Enemigo extends EntidadMovil {
 
     public abstract int interactuar(Jugador jugador);
 
-    public void interactuarConProyectil(Proyectil proyectil) {
-
-    }
+    public abstract int interactuarConProyectil(Proyectil proyectil);
 
     public void setDireccion(int direccion) {
         this.direccion = direccion;

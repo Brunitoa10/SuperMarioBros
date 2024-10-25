@@ -2,7 +2,6 @@ package Visitor;
 
 import Entidades.Enemigos.Enemigo;
 import Entidades.EntidadInmovil.Moneda;
-import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
@@ -69,8 +68,9 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(Proyectil proyectil) {
+    public int visit(Proyectil proyectil) {
         proyectil.Interactuar(mario);
+        return 0;
     }
 
 

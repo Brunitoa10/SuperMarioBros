@@ -49,8 +49,8 @@ public class KoopaTroopa extends Enemigo {
     }
 
     public int accept(Visitor v) {
-        return v.visit(this);
 
+        return v.visit(this);
     }
 
     public int interactuar(Jugador mario) {
@@ -79,18 +79,18 @@ public class KoopaTroopa extends Enemigo {
                 } else {
                     mario.getEstadoJugador().recibeDanio();
                     if (mario.getMorir())
-                    toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
+                        toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
                 }
             }
         }
         return toReturn;
     }
 
-    public void interactuarConProyectil(Proyectil proyectil) {
-        System.out.println("Le pegue con la bola de fuego");
+    public int interactuarConProyectil(Proyectil proyectil) {
+        int puntajeKoopaTroopaDestruido = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
         this.setAEliminar();
-        this.setPosicionEnY(-100);
         proyectil.setDireccion(0);
+        return puntajeKoopaTroopaDestruido;
     }
 
 }

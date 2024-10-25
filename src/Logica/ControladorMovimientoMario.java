@@ -25,7 +25,6 @@ public class ControladorMovimientoMario {
                 && !oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(3000)) {
             if (mario.estaEnPlataforma()) {
                 mario.setEstadoMovimiento(new MarioParado(mario));
-
             }
             else {
                 mario.getEstadoMovimiento().EnAire();

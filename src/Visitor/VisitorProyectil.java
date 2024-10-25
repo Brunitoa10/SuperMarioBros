@@ -44,8 +44,9 @@ public class VisitorProyectil implements Visitor {
     }
 
     @Override
-    public void visit(Proyectil proyectil) {
+    public int visit(Proyectil proyectil) {
 
+        return 0;
     }
 
     public void visit(Vacio vacio){

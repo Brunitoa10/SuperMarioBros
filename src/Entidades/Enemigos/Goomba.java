@@ -39,6 +39,7 @@ public class Goomba extends Enemigo {
         }
     }
     public int accept(Visitor v) {
+
         return v.visit(this);
     }
   
@@ -62,7 +63,7 @@ public class Goomba extends Enemigo {
                     } else {
                         mario.getEstadoJugador().recibeDanio();
                         if (mario.getMorir())
-                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
+                            toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
 
                     }
                 }
@@ -70,9 +71,11 @@ public class Goomba extends Enemigo {
         return toReturn;
     }
 
-    public void interactuarConProyectil(Proyectil proyectil) {
-        System.out.println("Le pegue con la bola de fuego");
+    public int interactuarConProyectil(Proyectil proyectil) {
+        int puntajeGoombaDestruido = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
         this.setAEliminar();
+        proyectil.setDireccion(0);
+        return puntajeGoombaDestruido;
     }
 
 }

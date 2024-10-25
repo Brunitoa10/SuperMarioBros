@@ -13,5 +13,5 @@ public interface Visitor {
     public void visit(Moneda p);
     public int visit(PowerUp m);
     public void visit(Plataforma p);
-    public void visit(Proyectil proyectil);
+    public int visit(Proyectil proyectil);
 }

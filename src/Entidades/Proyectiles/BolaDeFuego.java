@@ -81,8 +81,8 @@ public class BolaDeFuego extends Proyectil {
     }
 
     public int accept(Visitor v) {
-        v.visit(this);
-        return 0;
+        return v.visit(this);
+
     }
   
     public VisitorProyectil getVisitor(){
