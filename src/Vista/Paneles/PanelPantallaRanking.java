@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 import javax.swing.ImageIcon;
@@ -18,11 +16,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import Generador.GestorSonido.Sonido;
-import Generador.GestorSonido.SonidoFactory;
 import GestorArchivos.JugadorRanking;
 import GestorArchivos.Ranking;
-import Logica.ConfiguracionJuego;
 import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaRanking extends JPanel {
@@ -47,7 +42,6 @@ public class PanelPantallaRanking extends JPanel {
 	private final ControladorVista controladorVistas;
 	protected String modoJuego;
 
-
 	public PanelPantallaRanking(ControladorVista controladorVistas, Ranking rankingParametro) {
 		setBackground(new Color(0, 0, 0));
 		setForeground(new Color(0, 0, 0));
@@ -55,8 +49,6 @@ public class PanelPantallaRanking extends JPanel {
 		this.ranking = rankingParametro;
 		setLayout(null);
 
-		
-		
 		modoJuego = controladorVistas.obtenerModoJuego();
 
 		tablaJugadores = new JTable();
@@ -148,37 +140,41 @@ public class PanelPantallaRanking extends JPanel {
 		});
 	}
 
-	
-
 	public void llenarTabla() {
-		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Puntaje" });
-	    
-	    // Limpiar cualquier dato anterior
-	    tableModel.setRowCount(0); // Limpia el modelo antes de llenarlo
+		// Sobrescribimos el modelo de la tabla para que no sea editable
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Puntaje" }) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false; // Hace que las celdas no sean editables
+			}
+		};
 
-	    Iterable<JugadorRanking> listaJugadores = ranking.mostrarRanking();
-	    for (JugadorRanking jugador : listaJugadores) {
-	        Object[] fila = new Object[2];
-	        fila[0] = jugador.getNombre();
-	        fila[1] = jugador.getPuntaje();
-	        tableModel.addRow(fila);
-	    }
+		// Limpiar cualquier dato anterior
+		tableModel.setRowCount(0); // Limpia el modelo antes de llenarlo
 
-	    // Configurar la tabla
-	    tablaJugadores.setModel(tableModel);
-	    tablaJugadores.setRowHeight(30);
-	    tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
-	    tablaJugadores.setShowGrid(false);
-	    tablaJugadores.setOpaque(false);
-	    tablaJugadores.setFillsViewportHeight(true);
+		Iterable<JugadorRanking> listaJugadores = ranking.mostrarRanking();
+		for (JugadorRanking jugador : listaJugadores) {
+			Object[] fila = new Object[2];
+			fila[0] = jugador.getNombre();
+			fila[1] = jugador.getPuntaje();
+			tableModel.addRow(fila);
+		}
 
-	    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-	    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-	    tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
+		// Configurar la tabla
+		tablaJugadores.setModel(tableModel);
+		tablaJugadores.setRowHeight(30);
+		tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
+		tablaJugadores.setShowGrid(false);
+		tablaJugadores.setOpaque(false);
+		tablaJugadores.setFillsViewportHeight(true);
 
-	    JTableHeader header = tablaJugadores.getTableHeader();
-	    header.setFont(new Font("Arial", Font.BOLD, 20));
-	    header.setBackground(new Color(102, 102, 102));
-	    header.setForeground(Color.WHITE);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
+
+		JTableHeader header = tablaJugadores.getTableHeader();
+		header.setFont(new Font("Arial", Font.BOLD, 20));
+		header.setBackground(new Color(102, 102, 102));
+		header.setForeground(Color.WHITE);
 	}
 }
