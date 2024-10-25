@@ -6,11 +6,15 @@ import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
+import java.util.List;
+
 public abstract class PowerUp extends EntidadMovil {
 
     protected int puntaje;
-    public PowerUp(int x, int y, Sprite sprite) {
+    protected List<PowerUp> listaPowerUpsNivel;
+    public PowerUp(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
         super(x, y, sprite);
+        this.listaPowerUpsNivel = listaPowerUpsNivel;
         puntaje = 0;
     }
 
@@ -34,6 +38,10 @@ public abstract class PowerUp extends EntidadMovil {
 
     public void setEstadoMario(Jugador j){
 
+    }
+
+    public void eliminarEntidad() {
+        listaPowerUpsNivel.remove(this);
     }
 
 }

@@ -9,12 +9,14 @@ import IA.IACaminar;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
+import java.util.List;
+
 public class PiranhaPlant extends Enemigo {
 
     protected VisitorEnemigo visitor;
 
-    public PiranhaPlant(int x, int y, Sprite sprite) {
-        super(x, y, sprite,new IACaminar());
+    public PiranhaPlant(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(),listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
         velocidad = 0;
     }
@@ -40,7 +42,7 @@ public class PiranhaPlant extends Enemigo {
     public void interactuarConProyectil(Proyectil proyectil) {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
-        this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
 
 }

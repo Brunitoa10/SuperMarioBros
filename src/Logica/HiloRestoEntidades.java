@@ -1,9 +1,12 @@
 package Logica;
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Entidad;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,11 +25,13 @@ public class HiloRestoEntidades implements Runnable {
     private final long renderInterval = 16_000_000; // Render cada 16ms (60 FPS)
     private Nivel nivelActual;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    protected List<Entidad> EntidadesAEliminar;
 
     public HiloRestoEntidades(Juego juego) {
         nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
-        controladorColisiones = new ControladorColisiones(juego);
+        EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
+        controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
     }
 
     public synchronized void comenzar() {
@@ -55,25 +60,7 @@ public class HiloRestoEntidades implements Runnable {
 
     // Método tick para actualizar el estado de las entidades
     private void tick() {
-        for (Enemigo enemigo : nivelActual.getEnemigos()) {
-            enemigo.actualizar();
-            controladorColisiones.colisionProyectilConEnemigo(nivelActual.getProyectiles(), enemigo);
-        }
-        for(Proyectil proyectil : nivelActual.getProyectiles()) {
-            proyectil.actualizarEntidad();
-            for (Enemigo enemigo : nivelActual.getEnemigos()) {
-                int tolerancia = 5;
-                if(proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
-                        proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
-                    enemigo.getVisitorEnemigo().visit(proyectil);
-                }
-            }
-            for(Plataforma plataforma: nivelActual.getPlataformas()){
-                if(plataforma.detectarColision(proyectil)) {
-                    proyectil.getVisitor().visit(plataforma);
-                }
-            }
-        }
+            controladorColisiones.colisionesRestoEntidades();
     }
 
     // Método renderizar para actualizar la vista de las entidades

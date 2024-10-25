@@ -67,6 +67,21 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
 
     @Override
+    public void eliminarEntidad() {
+        //mario nunca se elimina
+    }
+
+    @Override
+    public int getTiempo() {
+        return new Random(1000).nextInt(2000);
+    }
+
+    @Override
+    public int getVida() {
+        return new Random(0).nextInt(4);
+    }
+
+    @Override
     public int accept(Visitor v) {
        return v.visit(this);
     }
@@ -81,7 +96,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public void saltar() {
     	super.saltar();
-        estadoMovimiento.saltar(this);
+        estadoMovimiento.saltar();
     }
 
     public VisitorJugador getVisitorJugador() {

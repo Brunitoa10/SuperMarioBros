@@ -19,4 +19,9 @@ public class Princesa extends EntidadInmovil {
 
         return 0;
     }
+
+    @Override
+    public void eliminarEntidad() {
+
+    }
 }

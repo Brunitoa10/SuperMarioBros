@@ -4,10 +4,12 @@ import Entidades.Entidad;
 import Fabricas.Sprite;
 import Logica.Nivel;
 
+import java.util.List;
+
 public class ChampinionVerde extends PowerUp {
 
-    public ChampinionVerde(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public ChampinionVerde(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
+        super(x, y, sprite, listaPowerUpsNivel);
         puntaje = 0;
     }
 

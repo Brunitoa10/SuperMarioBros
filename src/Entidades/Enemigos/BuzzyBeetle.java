@@ -10,12 +10,14 @@ import Logica.ConstantesPuntaje;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
+import java.util.List;
+
 public class BuzzyBeetle extends Enemigo {
 
     protected VisitorEnemigo visitor;
 
-    public BuzzyBeetle(int x, int y, Sprite sprite) {
-        super(x, y, sprite,new IACaminar());
+    public BuzzyBeetle(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
+        super(x, y, sprite,new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
         velocidad = 4;
     }
@@ -28,8 +30,7 @@ public class BuzzyBeetle extends Enemigo {
         }
         return colisionan;
     }
-
-    public int accept(Visitor v) {
+      public int accept(Visitor v) {
         v.visit(this);
         return 0;
     }
@@ -39,7 +40,6 @@ public class BuzzyBeetle extends Enemigo {
         if (!mario.getEstadoJugador().esInmortal()) {
             if (mario.colisionAbajo(this)) {
                 this.setAEliminar();
-                this.setPosicionEnY(-100);
                 toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
                 if (mario.getEstadoJugador().esInmortal()) {
@@ -59,6 +59,6 @@ public class BuzzyBeetle extends Enemigo {
         System.out.println("Le pegue con la bola de fuego");
         this.setAEliminar();
         this.setPosicionEnY(-100);
+        proyectil.setDireccion(0);
     }
-
 }

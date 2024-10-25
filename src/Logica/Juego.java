@@ -2,7 +2,9 @@ package Logica;
 
 import java.util.List;
 
+import Animador.AnimadorMario;
 import Entidades.Entidad;
+import Entidades.EntidadLogica;
 import Entidades.Jugador;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
@@ -30,8 +32,11 @@ public class Juego {
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
     protected int vidas;
     protected int puntaje;
+    protected ControladorMovimientoMario controladorMovimientoMario;
+    protected ControladorBolasDeFuego controladorBolasDeFuego;
 
-    public Juego(GUI  controladorVistas) {
+
+    public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
         vidas = 3;
@@ -85,7 +90,6 @@ public class Juego {
 
         System.out.println("Modojuego juego " + modoJuego);
         fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
-
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
 
@@ -96,6 +100,10 @@ public class Juego {
         System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
         controladorVistas.mostrarPantallaNivel();
+        oyenteTeclado = controladorVistas.obtenerOyente();
+        controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+
         iniciarLoops();
     }
 
@@ -131,6 +139,7 @@ public class Juego {
         registrarObserversParaEntidades(nivelActual.getMonedas());
     }
 
+
     protected void registrarObserverJugador(Jugador jugador) {
         Observer observerJugador = controladorVistas.registrarEntidad(jugador);
         jugador.registrarObserver(observerJugador);
@@ -142,6 +151,8 @@ public class Juego {
             entidad.registrarObserver(observer);
         }
     }
+
+
     public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
         for (Entidad entidad : entidades) {
             Observer observer = controladorVistas.registrarEntidad(entidad);
@@ -157,16 +168,24 @@ public class Juego {
         return oyenteTeclado;
     }
 
-    public void moverMario(int direccionMario, Jugador mario) {
-        mario.desplazarEnX(direccionMario);
-        mario.setDireccion(direccionMario);
-        mario.desplazarEnX(0);
+    public void moverMario(Temporizador temporizador) {
+        controladorMovimientoMario.moverMario(temporizador);
     }
 
-    public void saltarMario(Jugador mario) {
-        if (mario.estaEnPlataforma())
-            mario.setEnPlataforma(false);
-        mario.saltar();
+    public void lanzarBolasDeFuego(Jugador mario) {
+        if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
+            Proyectil bolaDeFuego = dispararBolaFuego(mario);
+            mario.getEstadoMovimiento().LanzarBola();
+        }
+    }
+
+    public void eliminarEntidades() {
+        while (!nivelActual.getEntidadesAEliminar().isEmpty()) {
+            EntidadLogica entidadAEliminar = nivelActual.getEntidadesAEliminar().getFirst();
+            entidadAEliminar.getObserver().eliminarDePanel();
+            entidadAEliminar.eliminarEntidad();
+            nivelActual.getEntidadesAEliminar().removeFirst();
+        }
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
@@ -178,9 +197,10 @@ public class Juego {
     }
 
     public Proyectil dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = new BolaDeFuego(mario);
+        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, nivelActual.getProyectiles());
         getNivelActual().agregarProyectil(bolaDeFuego);
-
+        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+        bolaDeFuego.registrarObserver(observer);
         return bolaDeFuego;
     }
 
@@ -197,7 +217,7 @@ public class Juego {
     }
 
     public void mostrarMarioMuerte(Jugador mario) {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif");
+        mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
     }
 
     public int getTiempo() {

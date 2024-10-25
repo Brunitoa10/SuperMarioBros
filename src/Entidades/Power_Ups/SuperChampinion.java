@@ -4,10 +4,12 @@ import Entidades.Jugador;
 import EstadoJugador.SuperMario;
 import Fabricas.Sprite;
 
+import java.util.List;
+
 public class SuperChampinion extends PowerUp{
 
-    public SuperChampinion(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public SuperChampinion(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
+        super(x, y, sprite, listaPowerUpsNivel);
         puntaje = 100;
     }
 
