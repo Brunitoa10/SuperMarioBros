@@ -17,7 +17,7 @@ public class VisitorProyectil implements Visitor {
     }
     public int visit(Jugador j) {
         return 0;
-
+    }
 
     @Override
     public void visit(Enemigo e) {

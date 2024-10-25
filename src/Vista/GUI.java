@@ -136,6 +136,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		return observerJugador;
 	}
 
+	public OyenteTeclado obtenerOyente(){
+		return oyente;
+	}
+
 	@Override
 	public void mostrarPantallaNivel() {
 		historialPaneles.push(panelPantallaNivel);

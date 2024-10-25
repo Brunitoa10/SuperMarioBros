@@ -101,6 +101,7 @@ public class Juego {
 
         controladorVistas.mostrarPantallaNivel();
         oyenteTeclado = controladorVistas.obtenerOyente();
+
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
         controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
 

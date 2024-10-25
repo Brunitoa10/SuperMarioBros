@@ -71,7 +71,5 @@ public abstract class Enemigo extends EntidadMovil {
         this.listaEnemigosNivel.remove(this);
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+
 }
