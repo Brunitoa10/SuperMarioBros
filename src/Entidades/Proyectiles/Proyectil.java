@@ -34,4 +34,6 @@ public abstract class Proyectil extends EntidadMovil {
 
     }
 
+    public void activarGravedad(){}
+
 }

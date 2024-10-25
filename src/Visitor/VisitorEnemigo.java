@@ -6,6 +6,7 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import Entidades.Vacio;
 
 public class VisitorEnemigo implements Visitor {
 
@@ -40,4 +41,5 @@ public class VisitorEnemigo implements Visitor {
     public void visit(Proyectil proyectil){
         enemigo.interactuarConProyectil(proyectil);
     }
+
 }

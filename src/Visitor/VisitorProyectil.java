@@ -6,6 +6,7 @@ import Entidades.Jugador;
 import Entidades.Plataformas.Plataforma;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.Proyectil;
+import Entidades.Vacio;
 
 import java.sql.SQLOutput;
 
@@ -45,5 +46,9 @@ public class VisitorProyectil implements Visitor {
     @Override
     public void visit(Proyectil proyectil) {
 
+    }
+
+    public void visit(Vacio vacio){
+        proyectil.activarGravedad();
     }
 }

@@ -36,4 +36,9 @@ protected VisitorProyectil visitor;
     public void Interactuar(Jugador j){
 
     }
+
+    public void activarGravedad(){
+
+    }
+
 }

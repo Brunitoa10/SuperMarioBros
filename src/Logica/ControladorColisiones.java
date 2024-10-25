@@ -32,8 +32,9 @@ public class ControladorColisiones {
 
     public void colisionesRestoEntidades() {
         colisionEnemigoConPlataforma(nivelActual.getPlataformas(), nivelActual.getEnemigos());
-        colisionProyectilPlataforma(nivelActual.getProyectiles(),nivelActual.getPlataformas());
-        colisionEnemigoConProyectiles(nivelActual.getProyectiles(),nivelActual.getEnemigos());
+        colisionProyectilPlataforma(nivelActual.getProyectiles(), nivelActual.getPlataformas());
+        colisionEnemigoConProyectiles(nivelActual.getProyectiles(), nivelActual.getEnemigos());
+        colisionProyectilVacio(nivelActual.getProyectiles(), nivelActual.getVacios());
     }
 
     public void colisionesMario() {
@@ -67,7 +68,7 @@ public class ControladorColisiones {
 
     public void colisionMarioConEnemigos(List<Enemigo> listaEnemigos, Jugador mario) {
         for (Enemigo enemigo : listaEnemigos) {
-            if(mario.detectarColision(enemigo)) {
+            if (mario.detectarColision(enemigo)) {
                 juegoActual.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
                 enemigo.actualizarEntidad();
 
@@ -137,19 +138,6 @@ public class ControladorColisiones {
         return Colisiono;
     }
 
-    public void colisionProyectilConEnemigo(List<Enemigo> listaEnemigos, Proyectil proyectil) {
-        for (Enemigo enemigo : listaEnemigos) {
-            int tolerancia = 5;
-            if (proyectil.getPosicionEnX() >= enemigo.getPosicionEnX() - tolerancia && proyectil.getPosicionEnX() <= enemigo.getPosicionEnX() + tolerancia &&
-                    proyectil.getPosicionEnY() >= enemigo.getPosicionEnY() - tolerancia && proyectil.getPosicionEnY() <= enemigo.getPosicionEnY() + tolerancia) {
-                proyectil.accept(enemigo.getVisitorEnemigo());
-                if (enemigo.aEliminar()) {
-                    nivelActual.getEntidadesAEliminar().add(enemigo);
-                }
-            }
-        }
-    }
-
 //METODOS PARA HILORESTOENTIDADES
 
     public void colisionEnemigoConPlataforma(List<Plataforma> listaPlataformas, List<Enemigo> listaEnemigos) {
@@ -164,7 +152,7 @@ public class ControladorColisiones {
     }
 
     public void colisionEnemigoConProyectiles(List<Proyectil> listaProyectiles, List<Enemigo> listaEnemigos) {
-        for(Proyectil proyectil : listaProyectiles) {
+        for (Proyectil proyectil : listaProyectiles) {
             for (Enemigo enemigo : listaEnemigos) {
                 int toleranciaX = 5;
                 int toleranciaY = 10;
@@ -177,7 +165,7 @@ public class ControladorColisiones {
                     }
                 }
             }
-            if(proyectil.aEliminar())
+            if (proyectil.aEliminar())
                 nivelActual.getEntidadesAEliminar().add(proyectil);
         }
     }
@@ -185,11 +173,28 @@ public class ControladorColisiones {
     public void colisionProyectilPlataforma(List<Proyectil> listaProyectils, List<Plataforma> listaPlataformas) {
         for (Proyectil proyectil : listaProyectils) {
             for (Plataforma plataforma : listaPlataformas) {
-                if(proyectil.detectarColision(plataforma) ) {
+                if (proyectil.detectarColision(plataforma)) {
                     proyectil.getVisitor().visit(plataforma);
                 }
             }
             proyectil.actualizarEntidad();
+        }
+    }
+
+    public void colisionProyectilVacio(List<Proyectil> listaProyectil, List<Vacio> listaVacios) {
+        for (Proyectil proyectil : listaProyectil) {
+            for (Vacio vacio : listaVacios) {
+                int toleranciaX = 5;
+                if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() + proyectil.getHitbox().getWidth() <= vacio.getPosicionEnX() + vacio.getHitbox().getWidth() + toleranciaX) {
+                    System.out.println(proyectil.getHitbox().getMaxY()) ;
+                    System.out.println(vacio.getPosicionEnY());
+                    if ((proyectil.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
+                        System.out.println(proyectil.getHitbox().getMaxY()) ;
+                        System.out.println(vacio.getPosicionEnY());
+                        proyectil.getVisitor().visit(vacio);
+                    }
+                }
+            }
         }
     }
 }

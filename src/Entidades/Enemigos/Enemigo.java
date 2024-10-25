@@ -25,7 +25,7 @@ public abstract class Enemigo extends EntidadMovil {
         posicionx = x;
         posiciony = y;
         temporizador = new Temporizador();
-        setDireccion(-1);
+        setDireccion(1);
         visitorEnemigo = new VisitorEnemigo(this);
         this.comportamientoIA = comportamientoIA;
         this.listaEnemigosNivel = listaEnemigoNivel;
@@ -71,5 +71,8 @@ public abstract class Enemigo extends EntidadMovil {
         this.listaEnemigosNivel.remove(this);
     }
 
+    public ComportamientoIA getComportamientoIA(){
+        return comportamientoIA;
+    }
 
 }

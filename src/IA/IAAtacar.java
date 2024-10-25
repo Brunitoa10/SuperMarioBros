@@ -10,4 +10,9 @@ public class IAAtacar implements ComportamientoIA{
 		
 	}
 
+	@Override
+	public void activarGravedad() {
+
+	}
+
 }
