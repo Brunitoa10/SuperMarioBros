@@ -30,13 +30,17 @@ public class Juego {
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
-    protected int vidas = 3;
+    protected int vidas;
+    protected int puntaje;
     protected ControladorMovimientoMario controladorMovimientoMario;
     protected ControladorBolasDeFuego controladorBolasDeFuego;
+
 
     public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
+        vidas = 3;
+        puntaje = 5;
     }
 
     // Comunicacion con parte grafica
@@ -56,7 +60,27 @@ public class Juego {
         vidas++;
     }
 
+
+
+    public void sumarPuntaje(int puntajeParaSumar){
+        puntaje += puntajeParaSumar;
+        if (puntaje < 0)
+            puntaje = 0;
+
+        controladorVistas.actualizarLabels();
+    }
+
+    public void restarPuntaje(int puntajeParaRestar){
+        puntaje -= puntajeParaRestar;
+        controladorVistas.actualizarLabels();
+    }
+
+    public int getPuntaje(){
+        return puntaje;
+    }
+
     public void mostrarPantallaFinJuego(){
+        controladorVistas.crearPantallaFinJuego(modoJuego);
         controladorVistas.mostrarPantallaFinJuego();
     }
 
@@ -194,5 +218,9 @@ public class Juego {
 
     public void mostrarMarioMuerte(Jugador mario) {
         mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
+    }
+
+    public int getTiempo() {
+        return 0; //hacer
     }
 }

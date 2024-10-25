@@ -1,9 +1,9 @@
 package Vista.Paneles;
 
-import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.Juego;
 import Vista.Controladores.ConstantesVista;
 import Vista.Controladores.ControladorVista;
 import Vista.ObserverGrafica.Observer;
@@ -97,10 +97,10 @@ public class PanelPantallaNivel extends JPanel {
         return observerEntidad;
     }
 
-    public Observer incorporarEntidadJugador(EntidadJugador entidadJugador) {
+    public Observer incorporarEntidadJugador(EntidadJugador entidadJugador, Juego miJuego) {
         observerJugador = new ObserverJugador(this, entidadJugador);
         imagenFondoPanelNivel.add(observerJugador);
-        actualizarInfoJugador(entidadJugador);
+        actualizarInfoJugador(entidadJugador, miJuego);
         return observerJugador;
     }
 
@@ -112,15 +112,17 @@ public class PanelPantallaNivel extends JPanel {
         imagenFondoPanelNivel.remove(observerJugador);
     }
 
-    protected void actualizarInfoJugador(EntidadJugador jugador) {
-        actualizarLabelsInformacion(jugador);
+    protected void actualizarInfoJugador(EntidadJugador jugador, Juego miJuego) {
+        System.out.println("llegue a actualizarinfo");
+        actualizarLabelsInformacion(miJuego);
         actualizarScrollHaciaJugador(jugador);
     }
 
-    protected void actualizarLabelsInformacion(EntidadJugador jugador) {
-        labelPuntaje.setText(formatTexto(jugador.getPuntaje()));
-        labelVida.setText(formatTexto(3));
-        labelTiempo.setText(formatTexto(jugador.getTiempo()));
+    public void actualizarLabelsInformacion(Juego miJuego) {
+        System.out.println("llegue a actualizar labels");
+        labelPuntaje.setText(formatTexto(miJuego.getPuntaje()));
+        labelVida.setText(formatTexto(miJuego.getVidas()));
+        labelTiempo.setText(formatTexto(miJuego.getTiempo()));
     }
 
     protected String formatTexto(int numero) {

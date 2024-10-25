@@ -30,17 +30,28 @@ public class Spiny extends Enemigo {
         return colisionan;
     }
 
-    public void interactuar(Jugador mario) {
-        if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(mario.getEstadoJugador().esInmortal())  {
-                this.setAEliminar();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO);
-            }
-            else {
-                mario.getEstadoJugador().recibeDanio();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO);
+
+    public int accept(Visitor v) {
+        v.visit(this);
+        return 0;
+    }
+
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
+        if (!mario.getEstadoJugador().esInmortal()) {
+            if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                if (mario.getEstadoJugador().esInmortal()) {
+                    this.setAEliminar();
+                    toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
+                } else {
+                    mario.getEstadoJugador().recibeDanio();
+                    if (mario.getMorir())
+                    toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
+                }
+
             }
         }
+            return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

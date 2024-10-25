@@ -45,11 +45,7 @@ public class PanelPantallaModoJuego extends JPanel {
     	registrarOyenteBotonAlternativo();
     }
 
-    // Método para manejar la selección del modo de juego
     private void seleccionarModo(String modo) {
-      
-        System.out.println("Modo seleccionado panelModoJuego: " + modo);
-       
         controladorVistas.cambiarModoJuego(modo);
     }
 

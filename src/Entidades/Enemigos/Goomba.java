@@ -37,26 +37,36 @@ public class Goomba extends Enemigo {
             this.setAEliminar();
         }
     }
+    public int accept(Visitor v) {
+        v.visit(this);
+        return 0;
+    }
+  
 
-    public void interactuar(Jugador mario) {
-        if (!Mori) {
-            if (mario.colisionAbajo(this)) {
-                temporizadorGoomba.iniciar();
-                this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
-                this.setPosicionEnY(436);
-                Mori = true;
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
-            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                if (mario.getEstadoJugador().esInmortal()) {
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
+        if (!mario.getEstadoJugador().esInmortal()) {
+            if (!Mori)
+                if (mario.colisionAbajo(this)) {
+                    temporizadorGoomba.iniciar();
                     this.setAEliminar();
-                    mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO);
-                } else {
-                    mario.getEstadoJugador().recibeDanio();
-                    mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO);
+                    this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.gif");
+                    this.setPosicionEnY(436);
+                    Mori = true;
+                    toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+                } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                    if (mario.getEstadoJugador().esInmortal()) {
+                        this.setAEliminar();
+                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+                    } else {
+                        mario.getEstadoJugador().recibeDanio();
+                        if (mario.getMorir())
+                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
 
+                    }
                 }
-            }
         }
+        return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

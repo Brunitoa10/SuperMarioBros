@@ -52,9 +52,7 @@ public abstract class Enemigo extends EntidadMovil {
         direccion = -direccion; // Invierte la dirección
     }
 
-    public void interactuar(Jugador jugador) {
-
-    }
+    public abstract int interactuar(Jugador jugador);
 
     public void interactuarConProyectil(Proyectil proyectil) {
 

@@ -4,7 +4,6 @@ import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Proyectiles.ProyectilKoopa;
-import EstadoMovimiento.MarioEnAire;
 import EstadoMovimiento.MarioSaltando;
 import Fabricas.Sprite;
 import IA.IAAtacar;
@@ -48,33 +47,42 @@ public class KoopaTroopa extends Enemigo {
         return colisionan;
     }
 
-    public void interactuar(Jugador mario) {
-        if(mario.colisionAbajo(this)) {
-            this.vidas--;
-            if (vidas == 0) {
-                this.setAEliminar();
-                proyectil.getHitbox().setBounds(this.getPosicionEnX(),423,32,32);
-                proyectil.setPosicionEnX(this.getPosicionEnX());
-                proyectil.getSprite().setPosicionX(this.getPosicionEnX());
-                proyectil.setPosicionEnY(423);
-                proyectil.getSprite().setPosicionY(423);
-                proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
-                proyectil.actualizarEntidad();
+    public int accept(Visitor v) {
+        v.visit(this);
+        return 0;
+    }
 
+    public int interactuar(Jugador mario) {
+        int toReturn = 0;
+        if (!mario.getEstadoJugador().esInmortal()) {
+            if (mario.colisionAbajo(this)) {
+                this.vidas--;
+                if (vidas == 0) {
+                    this.setAEliminar();
+                proyectil.getHitbox().setBounds(this.getPosicionEnX(),423,32,32);
+                    proyectil.setPosicionEnX(this.getPosicionEnX());
+                    proyectil.setPosicionEnY(423);
+                    proyectil.getSprite().setPosicionX(proyectil.getPosicionEnX());
+                    proyectil.getSprite().setPosicionY(423);
+                proyectil.getSprite().setPosicionY(423);
+                    proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
+                    proyectil.actualizarEntidad();
+                    this.setPosicionEnY(-100);
+                }
+                mario.setEstadoMovimiento(new MarioSaltando(mario));
+                toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
+            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                if (mario.getEstadoJugador().esInmortal()) {
+                    this.setAEliminar();
+                    toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
+                } else {
+                    mario.getEstadoJugador().recibeDanio();
+                    if (mario.getMorir())
+                    toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
+                }
             }
-            mario.setEstadoMovimiento(new MarioSaltando(mario));
-            mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO);
         }
-        else if(mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if(mario.getEstadoJugador().esInmortal())  {
-                this.setAEliminar();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO);
-            }
-            else {
-                mario.getEstadoJugador().recibeDanio();
-                mario.setPuntaje(mario.getPuntaje() + ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO);
-            }
-        }
+        return toReturn;
     }
 
     public void interactuarConProyectil(Proyectil proyectil) {

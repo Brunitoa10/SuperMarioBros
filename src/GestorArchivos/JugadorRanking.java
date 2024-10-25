@@ -1,4 +1,4 @@
-package Logica;
+package GestorArchivos;
 
 public class JugadorRanking {
     protected String nombre;

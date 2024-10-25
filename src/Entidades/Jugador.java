@@ -1,7 +1,5 @@
 package Entidades;
 
-import java.util.Random;
-
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -29,7 +27,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         super(x, y, sprite);
         VisitorJugador = new VisitorJugador(this);
         this.puntaje = 0;
-        this.velocidad = 4;
+        this.velocidad = 15;
         this.estadoJugador = new Mario(this);
         this.estadoMovimiento = new MarioParado(this);
         this.enPlataforma = false;
@@ -67,6 +65,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.actualizar();
     }
 
+
     @Override
     public void eliminarEntidad() {
         //mario nunca se elimina
@@ -83,8 +82,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public void accept(Visitor v) {
-        v.visit(this);
+    public int accept(Visitor v) {
+       return v.visit(this);
     }
 
     public void desplazarEnX(int direccion) {
@@ -100,18 +99,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         estadoMovimiento.saltar();
     }
 
-    public int getAlturaMaximaSalto() {
-
-        return ALTURA_MAXIMA_SALTO;
-    }
-
     public VisitorJugador getVisitorJugador() {
         return VisitorJugador;
     }
-
-    public void NoestaEnPlataforma(){
-        enPlataforma = false;
-    };
 
     public boolean estaEnPlataforma() {
         return enPlataforma;
@@ -121,13 +111,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.enPlataforma = enPlataforma;
     }
 
-
     public boolean puedeRomperBloques() {
         return getEstadoJugador().puedeRomperBloques();
-    }
-
-    public void setEstaVivo(boolean estaVivo) {
-        this.estaVivo = estaVivo;
     }
   
     public boolean puedeLanzarBolaDeFuego() {
@@ -141,17 +126,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public boolean getMorir(){
         return muerte;
     }
+
     public void setMorir(boolean morir) {
         muerte = morir;
-    }
-
-
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
     }
 
 }
