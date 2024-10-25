@@ -55,7 +55,7 @@ protected VisitorProyectil visitor;
     }
 
     public int getDireccion() {
-        return direccion;
+        return direccionLocal;
     }
 
 
@@ -70,9 +70,10 @@ protected VisitorProyectil visitor;
                 this.setPosicionEnX(this.getPosicionEnX()-12);
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
         }
-        if(direccion!=0)
+        if(direccion!=0) {
             this.direccion = direccion;
-            direccionLocal=direccion;
+            direccionLocal = direccion;
+        }
             cantidadDeRebotes++;
         }
 
@@ -91,12 +92,14 @@ protected VisitorProyectil visitor;
             }
             if (direccionLocal == 0) {
                 if (this.colisionIzquierda(j)) {
-                    this.setDireccion(1);
+                    super.setDireccion(1);
+                    direccionLocal = 1;
                     this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
 
                 }
                 if (this.colisionDerecha(j)) {
-                    this.setDireccion(-1);
+                    super.setDireccion(1);
+                    direccionLocal = 1;
                     this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
 
                 }
