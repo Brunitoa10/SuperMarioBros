@@ -72,16 +72,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     }
 
     @Override
-    public int getTiempo() {
-        return new Random(1000).nextInt(2000);
-    }
-
-    @Override
-    public int getVida() {
-        return new Random(0).nextInt(4);
-    }
-
-    @Override
     public int accept(Visitor v) {
        return v.visit(this);
     }

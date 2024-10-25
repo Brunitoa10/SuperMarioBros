@@ -66,7 +66,7 @@ public class ControladorColisiones {
     public void colisionMarioConEnemigos(List<Enemigo> listaEnemigos, Jugador mario) {
         for (Enemigo enemigo : listaEnemigos) {
             if(mario.detectarColision(enemigo)) {
-                juego.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
+                juegoActual.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
                 enemigo.actualizarEntidad();
 
                 if (enemigo.aEliminar()) {
@@ -80,7 +80,7 @@ public class ControladorColisiones {
         for (Moneda moneda : listaMonedas) {
             if (mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
-                juego.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
+                juegoActual.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
                 if (moneda.aEliminar()) {
                     nivelActual.getEntidadesAEliminar().add(moneda);
                 }
@@ -104,7 +104,7 @@ public class ControladorColisiones {
         for (PowerUp powerUp : listaPowerUps) {
             if (mario.detectarColision((powerUp))) {
                 powerUp.accept(mario.getVisitorJugador());
-                juego.sumarPuntaje(powerUp.getPuntaje());
+                juegoActual.sumarPuntaje(powerUp.getPuntaje());
                 powerUp.actualizarEntidad();
                 mario.getEstadoJugador().actualizarSprite();
                 nivelActual.getEntidadesAEliminar().add(powerUp);

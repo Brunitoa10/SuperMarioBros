@@ -22,9 +22,6 @@ public abstract class Proyectil extends EntidadMovil {
         return new VisitorProyectil(this);
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
-    }
 
     public void eliminarEntidad() {
         listaProyectilNivel.remove(this);

@@ -2,6 +2,7 @@ package Vista.Controladores;
 
 import GestorArchivos.Ranking;
 import Logica.Juego;
+import Logica.OyenteTeclado;
 
 public interface ControladorVista {
     public void accionarInicioJuego(String modoJuego);
@@ -39,4 +40,6 @@ public interface ControladorVista {
 	public void mostrarPantallaNombreUsuario();
 
 	public int obtenerPuntajeJugador();
+
+    public OyenteTeclado obtenerOyente();
 }
