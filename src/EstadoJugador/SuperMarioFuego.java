@@ -1,8 +1,9 @@
 package EstadoJugador;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
 import EstadoMovimiento.MarioEnAire;
-import Logica.ConstantesPuntaje;
+
 import Logica.Nivel;
 import Entidades.Proyectiles.BolaDeFuego;
 

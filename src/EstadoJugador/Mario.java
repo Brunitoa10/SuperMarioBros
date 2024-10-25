@@ -1,8 +1,7 @@
 package EstadoJugador;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
-import Logica.ConstantesPuntaje;
-import Logica.Nivel;
 
 public class Mario implements EstadoJugador {
 

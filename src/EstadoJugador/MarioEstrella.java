@@ -1,8 +1,7 @@
 package EstadoJugador;
 
 import Entidades.Jugador;
-import Logica.ConstantesPuntaje;
-import Logica.Nivel;
+import Constantes.ConstantesPuntaje;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

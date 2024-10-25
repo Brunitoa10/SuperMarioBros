@@ -3,6 +3,7 @@ package Logica;
 import java.util.List;
 
 import Constantes.AnimadorMario;
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
