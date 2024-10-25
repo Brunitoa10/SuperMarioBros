@@ -46,7 +46,7 @@ public class PanelPantallaPrincipal extends JPanel {
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         setLayout(null);
         imagenFondo.setIcon(icono_imagen_escalado);
-        imagenFondo.setBounds(0, 5, 800, 600);
+        imagenFondo.setBounds(0, 0, 800, 566);
         add(imagenFondo);
     }
 
