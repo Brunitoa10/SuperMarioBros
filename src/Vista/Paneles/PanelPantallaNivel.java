@@ -75,10 +75,14 @@ public class PanelPantallaNivel extends JPanel {
 
     private void agregarPanelNivelConFondoYScroll() {
         imagenFondoPanelNivel = new JLabel(new ImageIcon(getClass().getResource("/Recursos/Fondos/"+controladorVista.obtenerModoJuego()+"/FondoLevel1.png")));
-        imagenFondoPanelNivel.setLayout(null);
+       // imagenFondoPanelNivel.setLayout(null); // O puedes quitar esta línea
 
-        panelImagen = new JPanel(new BorderLayout());
-        panelImagen.add(imagenFondoPanelNivel, BorderLayout.CENTER);
+        
+        imagenFondoPanelNivel.setPreferredSize(new Dimension(imagenFondoPanelNivel.getIcon().getIconWidth(), imagenFondoPanelNivel.getIcon().getIconHeight()));
+
+        panelImagen = new JPanel();
+        panelImagen.setLayout(new GridBagLayout());
+        panelImagen.add(imagenFondoPanelNivel);
 
         panelScrollNivel = new JScrollPane(panelImagen);
         configurarScroll(panelScrollNivel);
@@ -87,14 +91,14 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     private void configurarScroll(JScrollPane panelScrollNivel) {
-        panelScrollNivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panelScrollNivel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         panelScrollNivel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     }
+    
 
     public Observer incorporarEntidad(EntidadLogica entidadLogica) {
         observerEntidad = new ObserverEntidad(entidadLogica, this);
         imagenFondoPanelNivel.add(observerEntidad);
-        System.out.println("Entidad añadida al panel: " + entidadLogica.getClass().getName());
         actualizarObserver();
         return observerEntidad;
     }
@@ -115,13 +119,11 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     protected void actualizarInfoJugador(EntidadJugador jugador, Juego miJuego) {
-        System.out.println("llegue a actualizarinfo");
         actualizarLabelsInformacion(miJuego);
         actualizarScrollHaciaJugador(jugador);
     }
 
     public void actualizarLabelsInformacion(Juego miJuego) {
-        System.out.println("llegue a actualizar labels");
         labelPuntaje.setText(formatTexto(miJuego.getPuntaje()));
         labelVida.setText(formatTexto(miJuego.getVidas()));
         labelTiempo.setText(formatTexto(miJuego.getTiempo()));
