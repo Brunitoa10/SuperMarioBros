@@ -142,7 +142,7 @@ public class ControladorColisiones {
         for (Enemigo enemigo : listaEnemigos) {
             enemigo.actualizar();
             for (Plataforma plataforma : listaPlataformas) {
-                if ((enemigo.colisionIzquierda(plataforma) || enemigo.colisionDerecha(plataforma))) {
+                if (enemigo.detectarColision(plataforma)) {
                     enemigo.getVisitorEnemigo().visit(plataforma);
                 }
             }

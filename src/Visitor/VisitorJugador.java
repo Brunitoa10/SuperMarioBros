@@ -72,16 +72,8 @@ public class VisitorJugador implements Visitor {
 
     public void visit(Vacio vacio) {
         int tolerancia = 5;
-        if (mario.colisionAbajo(vacio)) {
-            System.out.println("colision abajo!");}
-        if (mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia)
-            System.out.println("picho");
         if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
-            System.out.println("colision abajo!");
-
             mario.setEstadoMovimiento(new MarioEnAire(mario,0));
-
-
         }
     }
 }

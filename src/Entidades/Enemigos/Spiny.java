@@ -1,6 +1,8 @@
 package Entidades.Enemigos;
 
 import Constantes.ConstantesPuntaje;
+import Entidades.Enemigos.EstadoSpiny.EstadoSpiny;
+import Entidades.Enemigos.EstadoSpiny.SpinyCayendo;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
@@ -12,11 +14,13 @@ import java.util.List;
 
 public class Spiny extends Enemigo {
 
+    protected EstadoSpiny estadoSpiny;
     protected VisitorEnemigo visitor;
 
     public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
+        estadoSpiny = new SpinyCayendo(this);
     }
 
 
@@ -37,5 +41,6 @@ public class Spiny extends Enemigo {
         proyectil.setDireccion(0);
         return puntajeSpinyDestruido;
     }
+
 
 }
