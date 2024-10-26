@@ -40,6 +40,11 @@ public class BolaDeFuego extends Proyectil {
     }
 
     @Override
+    public int getDireccion() {
+        return direccionLocal;
+    }
+
+    @Override
     public void actualizarEntidad() {
         contador++;
         setPosicionEnX(getPosicionEnX() + velocidadX * direccionLocal);
