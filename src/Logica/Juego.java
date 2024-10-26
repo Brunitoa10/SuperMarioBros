@@ -16,7 +16,6 @@ import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
-import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
