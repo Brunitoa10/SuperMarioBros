@@ -27,7 +27,7 @@ public class ProyectilKoopa extends Proyectil {
     public int accept(Visitor v) {
         v.visit(this);
         direccion = 0;
-        velocidadX = 5;
+        velocidadX = 7;
         return 0;
     }
 
@@ -96,10 +96,10 @@ public class ProyectilKoopa extends Proyectil {
 
                 }
             } else {
-                if (this.colisionIzquierda(j) && colisiones >= 10) {
+                if (this.colisionIzquierda(j)) {
                     j.getEstadoJugador().recibeDanio();
                 }
-                if (this.colisionDerecha(j) && colisiones >= 10) {
+                if (this.colisionDerecha(j) ) {
                     j.getEstadoJugador().recibeDanio();
                 }
             }
