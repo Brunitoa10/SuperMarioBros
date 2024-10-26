@@ -24,6 +24,7 @@ public class Nivel {
     protected Jugador jugador;
     protected Bandera bandera;
     protected Princesa princesa;
+    protected int nivel;
 
         public Nivel(int numero) {
             this.enemigos = new LinkedList<Enemigo>();
@@ -33,6 +34,7 @@ public class Nivel {
             this.monedas = new LinkedList<Moneda>();
             this.vacios = new LinkedList<Vacio>();
             this.entidadesAEliminar = new LinkedList<Entidad>();
+            nivel = numero;
         }
 
         public Jugador getJugador() {
@@ -101,6 +103,10 @@ public class Nivel {
 
         public List<Entidad> getEntidadesAEliminar() {
             return entidadesAEliminar;
+        }
+        
+        public int nivel() {
+        	return nivel;
         }
 
     }

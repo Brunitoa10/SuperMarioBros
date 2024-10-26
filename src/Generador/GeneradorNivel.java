@@ -26,7 +26,17 @@ public class GeneradorNivel {
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);
         String ruta_a_nivel = "src/Recursos/Niveles/nivel" + numero + ".txt";
-        generarVaciosYSuelosNivel(nivel);
+       if(nivel.nivel() == 1) {
+    	   generarVaciosYSuelosNivelUno(nivel);
+       }else {
+    	   if(nivel.nivel() == 2) {
+    		   generarVaciosYSuelosNivelDos(nivel);
+    	   }else {
+    		   generarVaciosYSuelosNivelTres(nivel);
+    	   }
+    	  
+       }
+       
         try (BufferedReader br = new BufferedReader(new FileReader(ruta_a_nivel))) {
             System.out.println(ruta_a_nivel);
             String linea;
@@ -135,10 +145,24 @@ public class GeneradorNivel {
         return Creado;
     }
 
-    private void generarVaciosYSuelosNivel(Nivel nivel) {
+    private void generarVaciosYSuelosNivelUno(Nivel nivel) {
         nivel.agregarVacio(new Vacio(1624, 456,new Sprite(SPRITE_VACIA,70,32), nivel.getVacios()));
         nivel.agregarVacio(new Vacio(2222, 456, new Sprite(SPRITE_VACIA,104,32), nivel.getVacios()));
         nivel.agregarVacio(new Vacio(4575, 456, new Sprite(SPRITE_VACIA,70,32), nivel.getVacios()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 456,new Sprite(SPRITE_VACIA,2423,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(1695, 456,new Sprite(SPRITE_VACIA,526,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(SPRITE_VACIA, 2247,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(SPRITE_VACIA, 2423,69), nivel.getPlataformas()));
+    }
+    
+    private void generarVaciosYSuelosNivelDos(Nivel nivel) {
+        nivel.agregarPlataforma(new SueloNivel(-800, 456,new Sprite(SPRITE_VACIA,2423,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(1695, 456,new Sprite(SPRITE_VACIA,526,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(SPRITE_VACIA, 2247,69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(SPRITE_VACIA, 2423,69), nivel.getPlataformas()));
+    }
+    
+    private void generarVaciosYSuelosNivelTres(Nivel nivel) {
         nivel.agregarPlataforma(new SueloNivel(-800, 456,new Sprite(SPRITE_VACIA,2423,69), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(1695, 456,new Sprite(SPRITE_VACIA,526,69), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(SPRITE_VACIA, 2247,69), nivel.getPlataformas()));
