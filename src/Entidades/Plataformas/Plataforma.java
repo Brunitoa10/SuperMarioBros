@@ -3,6 +3,7 @@ package Entidades.Plataformas;
 import Entidades.Entidad;
 import Entidades.EntidadInmovil.EntidadInmovil;
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -31,6 +32,10 @@ public abstract class Plataforma extends EntidadInmovil {
     }
 
     public void interactuar(Jugador j) {
+
+    }
+
+    public void reaccionar(Proyectil p){
 
     }
 

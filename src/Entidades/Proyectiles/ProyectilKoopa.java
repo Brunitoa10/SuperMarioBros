@@ -27,7 +27,7 @@ public class ProyectilKoopa extends Proyectil {
     public int accept(Visitor v) {
         v.visit(this);
         direccion = 0;
-        velocidadX = 5;
+        velocidadX = 7;
         return 0;
     }
 
@@ -75,7 +75,6 @@ public class ProyectilKoopa extends Proyectil {
     }
 
     public void Interactuar(Jugador j) {
-        colisiones++;
         if (cantidadDeRebotes < 3) {
             if (this.colisionArriba(j) && direccionLocal == 0) {
                 this.setAEliminar();
@@ -96,10 +95,10 @@ public class ProyectilKoopa extends Proyectil {
 
                 }
             } else {
-                if (this.colisionIzquierda(j) && colisiones >= 3) {
+                if (this.colisionIzquierda(j)) {
                     j.getEstadoJugador().recibeDanio();
                 }
-                if (this.colisionDerecha(j) && colisiones >= 3) {
+                if (this.colisionDerecha(j) ) {
                     j.getEstadoJugador().recibeDanio();
                 }
             }
@@ -108,6 +107,10 @@ public class ProyectilKoopa extends Proyectil {
 
     public void activarGravedad() {
         gravedad = true;
+    }
+
+    public boolean puedeRomperBloques(){
+        return false;
     }
 
 }
