@@ -1,5 +1,6 @@
 package EstadoJugador;
 
+import Entidades.Entidad;
 import Entidades.Jugador;
 import Constantes.ConstantesPuntaje;
 
@@ -21,7 +22,7 @@ public class MarioInvencible implements EstadoJugador {
         iniciarTemporizador();
     }
 
-    public void recibeDanio() {
+    public void recibeDanio(Entidad e) {
     }
 
     @Override
@@ -56,8 +57,10 @@ public class MarioInvencible implements EstadoJugador {
         scheduler.schedule(new Runnable() {
             @Override
             public void run() {
-                if (mario.getEstadoJugador().esInmortal())
+                if (mario.getEstadoJugador().esInmortal()){
+                    mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
                 mario.setEstadoJugador(new Mario(mario));
+                }
             }
         }, 3, TimeUnit.SECONDS);
     }

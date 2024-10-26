@@ -29,7 +29,7 @@ public class PiranhaPlant extends Enemigo {
         int toRet = 0;
         if (mario.colisionAbajo(this) || mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
             if (!mario.getEstadoJugador().esInmortal()) {
-                mario.getEstadoJugador().recibeDanio();
+                mario.getEstadoJugador().recibeDanio(this);
                 if (mario.getMorir()) {
                     toRet = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_MUERTE_MARIO;
                     System.out.println("mario pierde vida");

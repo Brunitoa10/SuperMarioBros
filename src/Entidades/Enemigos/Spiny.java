@@ -32,7 +32,7 @@ public class Spiny extends Enemigo {
                     this.setAEliminar();
                     toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
                 } else {
-                    mario.getEstadoJugador().recibeDanio();
+                    mario.getEstadoJugador().recibeDanio(this);
                     if (mario.getMorir())
                         toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
                 }

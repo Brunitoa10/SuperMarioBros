@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Constantes.ConstantesPuntaje;
+import Entidades.Entidad;
 import Entidades.Jugador;
 import EstadoMovimiento.MarioEnAire;
 
@@ -17,7 +18,7 @@ public class SuperMarioFuego implements EstadoJugador {
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 48);
     }
 
-    public void recibeDanio() {
+    public void recibeDanio(Entidad e) {
         mario.setEstadoJugador(new MarioInvencible(mario));
     }
 

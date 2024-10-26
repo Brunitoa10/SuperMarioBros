@@ -96,10 +96,10 @@ public class ProyectilKoopa extends Proyectil {
                 }
             } else {
                 if (this.colisionIzquierda(j)) {
-                    j.getEstadoJugador().recibeDanio();
+                    j.getEstadoJugador().recibeDanio(this);
                 }
                 if (this.colisionDerecha(j) ) {
-                    j.getEstadoJugador().recibeDanio();
+                    j.getEstadoJugador().recibeDanio(this);
                 }
             }
         }

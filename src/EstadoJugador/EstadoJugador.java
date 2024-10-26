@@ -1,9 +1,10 @@
 package EstadoJugador;
 
+import Entidades.Entidad;
 import Logica.Nivel;
 
 public interface EstadoJugador {
-    public void recibeDanio();
+    public void recibeDanio(Entidad e);
     public boolean puedeLanzarBolaFuego();
     public void actualizarSprite();
     public boolean puedeRomperBloques();

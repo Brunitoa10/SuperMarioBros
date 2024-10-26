@@ -1,6 +1,7 @@
 package EstadoJugador;
 
 import Constantes.ConstantesPuntaje;
+import Entidades.Entidad;
 import Entidades.Jugador;
 
 public class Mario implements EstadoJugador {
@@ -13,7 +14,7 @@ public class Mario implements EstadoJugador {
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
     }
 
-    public void recibeDanio() {
+    public void recibeDanio(Entidad e) {
         mario.setMorir(true);
     }
 

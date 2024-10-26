@@ -18,7 +18,7 @@ public class ProyectilSpiny extends Proyectil {
     }
 
     public void hagoDaño(Jugador j) {
-        j.getEstadoJugador().recibeDanio();
+        j.getEstadoJugador().recibeDanio(this);
     }
 
     public boolean puedeRomperBloques(){
