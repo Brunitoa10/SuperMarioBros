@@ -21,19 +21,12 @@ public class BuzzyBeetle extends Enemigo {
         velocidad = 4;
     }
 
-    public int accept(Visitor v) {
-        return v.visit(this);
-    }
-
     public int interactuar(Jugador mario) {
         int toReturn = 0;
             if (mario.colisionAbajo(this)) {
                 this.setAEliminar();
                 toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                    this.setAEliminar();
-                    toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
-
                     mario.getEstadoJugador().recibeDanio(this);
                     if (mario.getMorir())
                         toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO;

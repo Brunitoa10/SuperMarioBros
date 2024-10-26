@@ -38,11 +38,6 @@ public class KoopaTroopa extends Enemigo {
     }
 
 
-    public int accept(Visitor v) {
-
-        return v.visit(this);
-    }
-
     public int interactuar(Jugador mario) {
         int toReturn = 0;
 
@@ -50,32 +45,33 @@ public class KoopaTroopa extends Enemigo {
                 this.vidas--;
                 if (vidas == 0) {
                     this.setAEliminar();
-                    proyectil.getHitbox().setBounds(this.getPosicionEnX(), 426, 32, 32);
-                    proyectil.setPosicionEnX(this.getPosicionEnX());
-                    proyectil.setPosicionEnY(426);
-                    proyectil.getSprite().setPosicionX(proyectil.getPosicionEnX());
-                    proyectil.getSprite().setPosicionY(426);
-                    proyectil.getSprite().setPosicionY(426);
-                    proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
-                    proyectil.actualizarEntidad();
-                    this.setPosicionEnY(-100);
+                    crearProyectilKoopa();
                 }
                 mario.setEstadoMovimiento(new MarioSaltando(mario));
                 toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-
-                    this.setAEliminar();
-                    toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
-                } else {
                     mario.getEstadoJugador().recibeDanio(this);
-                    if (mario.getMorir())
+                    if (mario.getMorir()) {
                         toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
-                }
-
+                    }
+                    else if (this.aEliminar()){
+                        toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
+                    }
+            }
 
         return toReturn;
     }
 
+    private void crearProyectilKoopa() {
+        proyectil.getHitbox().setBounds(this.getPosicionEnX(), 426, 32, 32);
+        proyectil.setPosicionEnX(this.getPosicionEnX());
+        proyectil.setPosicionEnY(426);
+        proyectil.getSprite().setPosicionX(proyectil.getPosicionEnX());
+        proyectil.getSprite().setPosicionY(426);
+        proyectil.getSprite().setPosicionY(426);
+        proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
+        proyectil.actualizarEntidad();
+    }
     public int interactuarConProyectil(Proyectil proyectil) {
         int puntajeKoopaTroopaDestruido = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
         this.setAEliminar();

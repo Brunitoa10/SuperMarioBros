@@ -35,6 +35,10 @@ public abstract class Enemigo extends EntidadMovil {
         return visitorEnemigo;
     }
 
+    public int accept(Visitor v) {
+        return v.visit(this);
+    }
+
     // Método de actualización que puede extenderse en subclases
     public void actualizar() {
         comportamientoIA.actualizar(this);

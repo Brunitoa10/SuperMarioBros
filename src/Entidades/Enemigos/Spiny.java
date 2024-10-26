@@ -20,23 +20,14 @@ public class Spiny extends Enemigo {
     }
 
 
-    public int accept(Visitor v) {
-        return v.visit(this);
-    }
-
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-            if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                    this.setAEliminar();
-                    toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
-                } else {
-                    mario.getEstadoJugador().recibeDanio(this);
-                    if (mario.getMorir())
-                        toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
-                }
-
-
-
+        mario.getEstadoJugador().recibeDanio(this);
+        if (mario.getMorir())
+            toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
+        else if (this.aEliminar()){
+            toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
+        }
         return toReturn;
     }
 

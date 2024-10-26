@@ -32,10 +32,6 @@ public class Goomba extends Enemigo {
         }
     }
 
-    public int accept(Visitor v) {
-        return v.visit(this);
-    }
-
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;

@@ -11,14 +11,15 @@ public class ProyectilKoopa extends Proyectil {
     protected int direccionLocal;
     protected int velocidadX;
     protected int cantidadDeRebotes;
-    protected int colisiones = 0;
     protected Temporizador temporizador;
     protected boolean gravedad = false;
+    protected int contadorColisiones;
 
     public ProyectilKoopa(int x, int y, Sprite sprite, List<Proyectil> listaProyectilNivel) {
         super(x, y, sprite, listaProyectilNivel);
         direccionLocal = 0;
         cantidadDeRebotes = 0;
+        contadorColisiones = 0;
         temporizador = new Temporizador();
 
     }
@@ -75,6 +76,7 @@ public class ProyectilKoopa extends Proyectil {
     }
 
     public void Interactuar(Jugador j) {
+        contadorColisiones++;
         if (cantidadDeRebotes < 3) {
             if (this.colisionArriba(j) && direccionLocal == 0) {
                 this.setAEliminar();
@@ -89,16 +91,16 @@ public class ProyectilKoopa extends Proyectil {
 
                 }
                 if (this.colisionDerecha(j)) {
-                    super.setDireccion(1);
-                    direccionLocal = 1;
+                    super.setDireccion(-1);
+                    direccionLocal = -1;
                     this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
 
                 }
             } else {
-                if (this.colisionIzquierda(j)) {
+                if (this.colisionIzquierda(j) && contadorColisiones>3) {
                     j.getEstadoJugador().recibeDanio(this);
                 }
-                if (this.colisionDerecha(j) ) {
+                if (this.colisionDerecha(j) && contadorColisiones>3 ) {
                     j.getEstadoJugador().recibeDanio(this);
                 }
             }

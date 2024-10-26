@@ -17,10 +17,6 @@ public class Lakitu extends Enemigo {
     }
 
 
-    public int accept(Visitor v) {
-        return v.visit(this);
-    }
-
     public int interactuar(Jugador mario) {
         int toReturn = 0;
             if (mario.colisionAbajo(this)) {

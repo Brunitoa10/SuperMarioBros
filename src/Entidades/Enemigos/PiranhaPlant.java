@@ -21,10 +21,6 @@ public class PiranhaPlant extends Enemigo {
     }
 
 
-    public int accept(Visitor v) {
-        return v.visit(this);
-    }
-
     public int interactuar(Jugador mario) {
         int toRet = 0;
         if (mario.colisionAbajo(this) || mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
