@@ -22,6 +22,7 @@ public class LadrilloSolido extends Plataforma {
 
     public void reaccionar(Proyectil proyectil) {
         if (proyectil.puedeRomperBloques()) {
+            proyectil.setAEliminar();
             this.setAEliminar();
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo2/InteraccionFuegoLadrillo.gif");
         }
