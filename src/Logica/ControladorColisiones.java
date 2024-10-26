@@ -53,7 +53,7 @@ public class ControladorColisiones {
                 if (plataforma.aEliminar()) {
                     Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
                     nivelActual.agregarVacio(vacio);
-                    vacio.setAnimacionFinal();
+                    vacio.setAnimacionFinal(1200);
                     Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
                     vacio.registrarObserver(observer);
                     nivelActual.getEntidadesAEliminar().add(plataforma);
@@ -168,7 +168,17 @@ public class ControladorColisiones {
         for (Proyectil proyectil : listaProyectils) {
             for (Plataforma plataforma : listaPlataformas) {
                 if (proyectil.detectarColision(plataforma)) {
+                    int PosicionReemplazarX = plataforma.getPosicionEnX();
+                    int PosicionReemplazarY = plataforma.getPosicionEnY();
                     proyectil.getVisitor().visit(plataforma);
+                    if (plataforma.aEliminar()) {
+                        Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
+                        nivelActual.agregarVacio(vacio);
+                        vacio.setAnimacionFinal(2200);
+                        Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
+                        vacio.registrarObserver(observer);
+                        nivelActual.getEntidadesAEliminar().add(plataforma);
+                    }
                 }
             }
             proyectil.actualizarEntidad();

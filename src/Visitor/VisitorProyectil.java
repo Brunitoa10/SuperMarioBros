@@ -41,6 +41,7 @@ public class VisitorProyectil implements Visitor {
                 proyectil.setGravedad();
             if(proyectil.colisionArriba(p))
                 proyectil.setGravedad();
+            p.reaccionar(proyectil);
     }
 
     @Override

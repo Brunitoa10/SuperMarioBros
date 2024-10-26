@@ -21,4 +21,7 @@ public class ProyectilSpiny extends Proyectil {
         j.getEstadoJugador().recibeDanio();
     }
 
+    public boolean puedeRomperBloques(){
+        return false;
+    }
 }

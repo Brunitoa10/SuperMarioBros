@@ -89,5 +89,9 @@ public class BolaDeFuego extends Proyectil {
         this.setAEliminar();
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
     }
+    @Override
+    public boolean puedeRomperBloques(){
+        return true;
+    }
 
 }

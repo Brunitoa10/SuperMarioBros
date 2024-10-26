@@ -110,6 +110,10 @@ public class ProyectilKoopa extends Proyectil {
         gravedad = true;
     }
 
+    public boolean puedeRomperBloques(){
+        return false;
+    }
+
 }
 
 

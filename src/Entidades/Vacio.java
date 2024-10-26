@@ -17,6 +17,7 @@ public class Vacio extends EntidadInmovil {
     private boolean animacionActiva; // Controla si la animación está activa
     private boolean animacionFinalizada; // Controla si la animación ha terminado
     protected List<Vacio> listaVacioNivel;
+    private int cantidadSegundos=0;
 
     public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel) {
         super(x, y, sprite);
@@ -43,15 +44,15 @@ public class Vacio extends EntidadInmovil {
 
     public void actualizarAnimacion() {
         super.actualizarEntidad();
-        if (temporizador.hanPasadoNSegundos(1200)) {
+        if (temporizador.hanPasadoNSegundos(cantidadSegundos)) {
             this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
         }
 
     }
 
-    public void setAnimacionFinal(){
+    public void setAnimacionFinal(int segundos){
         temporizador.iniciar();
-        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/AnimacionLadrillo/AnimacionBloqueRompiendose.gif");
+        cantidadSegundos=segundos;
         animacionActiva = true;  // Activa la animación
     }
 
