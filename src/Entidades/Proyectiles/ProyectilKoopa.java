@@ -75,7 +75,6 @@ public class ProyectilKoopa extends Proyectil {
     }
 
     public void Interactuar(Jugador j) {
-        colisiones++;
         if (cantidadDeRebotes < 3) {
             if (this.colisionArriba(j) && direccionLocal == 0) {
                 this.setAEliminar();
