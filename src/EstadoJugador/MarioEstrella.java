@@ -13,11 +13,17 @@ public class MarioEstrella implements EstadoJugador{
     private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     protected Jugador mario;
     protected EstadoJugador estadoAnterior;
+    protected int alto;
 
     public MarioEstrella(Jugador mario) {
         estadoAnterior = mario.getEstadoJugador();
         this.mario = mario;
         iniciarTemporizador();
+        alto=(int)mario.getHitbox().getHeight();
+        mario.setPosicionEnY(mario.getPosicionEnY()-32+alto);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,32);
+        mario.setVelocidad(6);
+
     }
 
     public void recibeDanio() {
@@ -34,7 +40,7 @@ public class MarioEstrella implements EstadoJugador{
     }
 
     public void actualizarSprite() {
-
+        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioEstrella");
     }
     public boolean estadoEstrella() {
         return true;
@@ -43,6 +49,9 @@ public class MarioEstrella implements EstadoJugador{
         scheduler.schedule(new Runnable() {
             @Override
             public void run() {
+                mario.setVelocidad(4);
+                mario.setPosicionEnY(mario.getPosicionEnY()+32-alto);
+                mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,alto);
                 mario.setEstadoJugador(estadoAnterior);
 
             }
@@ -80,6 +89,6 @@ public class MarioEstrella implements EstadoJugador{
         return true;
     }
     public String finalAnimacion(){
-        return "";
+        return ".gif";
     }
 }

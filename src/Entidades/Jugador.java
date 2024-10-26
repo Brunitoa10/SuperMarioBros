@@ -126,4 +126,8 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return sumarVida;
     }
 
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
 }
