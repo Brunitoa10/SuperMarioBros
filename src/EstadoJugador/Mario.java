@@ -18,10 +18,6 @@ public class Mario implements EstadoJugador {
         mario.setMorir(true);
     }
 
-    public boolean esInmortal(){
-        return false;
-    }
-
     @Override
     public boolean puedeLanzarBolaFuego() {
         return false;
@@ -47,10 +43,6 @@ public class Mario implements EstadoJugador {
         return "";
     }
 
-    @Override
-    public boolean estadoEstrella() {
-        return false;
-    }
 
     public int getPuntajeEstrella(){
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;

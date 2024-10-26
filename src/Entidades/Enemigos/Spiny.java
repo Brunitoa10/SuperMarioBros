@@ -26,9 +26,7 @@ public class Spiny extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!mario.getEstadoJugador().esInmortal() || mario.getEstadoJugador().estadoEstrella()) {
             if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                if (mario.getEstadoJugador().esInmortal()) {
                     this.setAEliminar();
                     toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
                 } else {
@@ -37,8 +35,8 @@ public class Spiny extends Enemigo {
                         toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
                 }
 
-            }
-        }
+
+
         return toReturn;
     }
 

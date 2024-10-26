@@ -26,11 +26,6 @@ public class MarioInvencible implements EstadoJugador {
     }
 
     @Override
-    public boolean esInmortal() {
-        return true;
-    }
-
-    @Override
     public boolean puedeLanzarBolaFuego() {
         return false;
     }
@@ -57,17 +52,11 @@ public class MarioInvencible implements EstadoJugador {
         scheduler.schedule(new Runnable() {
             @Override
             public void run() {
-                if (mario.getEstadoJugador().esInmortal()){
                     mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
                 mario.setEstadoJugador(new Mario(mario));
                 }
-            }
         }, 3, TimeUnit.SECONDS);
     }
-    public boolean estadoEstrella() {
-        return false;
-    }
-
     @Override
     public int getPuntajeEstrella(){
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;

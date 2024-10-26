@@ -22,10 +22,6 @@ public class SuperMarioFuego implements EstadoJugador {
         mario.setEstadoJugador(new MarioInvencible(mario));
     }
 
-    public boolean estadoEstrella() {
-        return false;
-    }
-
     @Override
     public int getPuntajeEstrella() {
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
@@ -44,11 +40,6 @@ public class SuperMarioFuego implements EstadoJugador {
     @Override
     public int getPuntajeFlorDeFuego() {
         return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_CON_FUEGO;
-    }
-
-    @Override
-    public boolean esInmortal() {
-        return false;
     }
 
     @Override

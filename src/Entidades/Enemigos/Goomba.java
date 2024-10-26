@@ -59,7 +59,6 @@ public class Goomba extends Enemigo {
 
     public int interactuarConProyectil(Proyectil proyectil) {
         int puntajeGoombaDestruido = 0;
-        System.out.println("Proyectil:" + proyectil.getDireccion());
         if (proyectil.getDireccion() != 0) {
             this.setAEliminar();
             puntajeGoombaDestruido = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;

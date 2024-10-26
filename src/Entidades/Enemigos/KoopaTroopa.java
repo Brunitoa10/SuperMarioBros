@@ -45,7 +45,7 @@ public class KoopaTroopa extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!mario.getEstadoJugador().esInmortal() || mario.getEstadoJugador().estadoEstrella()) {
+
             if (mario.colisionAbajo(this)) {
                 this.vidas--;
                 if (vidas == 0) {
@@ -63,7 +63,7 @@ public class KoopaTroopa extends Enemigo {
                 mario.setEstadoMovimiento(new MarioSaltando(mario));
                 toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                if (mario.getEstadoJugador().esInmortal()) {
+
                     this.setAEliminar();
                     toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
                 } else {
@@ -71,8 +71,8 @@ public class KoopaTroopa extends Enemigo {
                     if (mario.getMorir())
                         toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
                 }
-            }
-        }
+
+
         return toReturn;
     }
 

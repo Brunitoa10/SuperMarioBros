@@ -28,18 +28,17 @@ public class PiranhaPlant extends Enemigo {
     public int interactuar(Jugador mario) {
         int toRet = 0;
         if (mario.colisionAbajo(this) || mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-            if (!mario.getEstadoJugador().esInmortal()) {
+
                 mario.getEstadoJugador().recibeDanio(this);
                 if (mario.getMorir()) {
                     toRet = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_MUERTE_MARIO;
                     System.out.println("mario pierde vida");
                 }
-            } else if (mario.getEstadoJugador().estadoEstrella()) {
+            }
                 this.setAEliminar();
                 toRet = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_DESTRUIDA;
                 System.out.println("mario mata piranha");
-            }
-        }
+
         return toRet;
     }
 

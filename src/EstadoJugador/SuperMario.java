@@ -35,20 +35,13 @@ public class SuperMario implements EstadoJugador{
     public boolean puedeRomperBloques() {
         return true;
     }
+
     public boolean elHongoLoHaceSuperMario(){
         return false;
     }
+
     public boolean puedeSerMarioFuego(){
         return true;
-    }
-
-    @Override
-    public boolean esInmortal() {
-        return false;
-    }
-
-    public boolean estadoEstrella() {
-        return false;
     }
 
     @Override

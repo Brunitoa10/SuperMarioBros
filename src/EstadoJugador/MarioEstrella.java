@@ -32,11 +32,6 @@ public class MarioEstrella implements EstadoJugador{
     }
 
     @Override
-    public boolean esInmortal() {
-        return true;
-    }
-
-    @Override
     public boolean puedeLanzarBolaFuego() {
         return false;
     }

@@ -9,10 +9,8 @@ public interface EstadoJugador {
     public void actualizarSprite();
     public boolean puedeRomperBloques();
     public boolean elHongoLoHaceSuperMario();
-    public boolean puedeSerMarioFuego();
-    public boolean esInmortal();
+    public boolean puedeSerMarioFuego();;
     public String finalAnimacion();
-    public boolean estadoEstrella();
     public int getPuntajeEstrella();
     public int getPuntajeSuperChampinion();
     public int getPuntajeChampinionVerde();

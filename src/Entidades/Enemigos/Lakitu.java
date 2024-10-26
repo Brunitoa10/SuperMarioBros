@@ -23,19 +23,15 @@ public class Lakitu extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!mario.getEstadoJugador().esInmortal() || mario.getEstadoJugador().estadoEstrella()) {
             if (mario.colisionAbajo(this)) {
-
                 this.setAEliminar();
                 this.setPosicionEnY(-100);
                 toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                if (mario.getEstadoJugador().esInmortal()) {
+
                     this.setAEliminar();
                     toReturn = (ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
                 }
-            }
-        }
         return toReturn;
     }
 
