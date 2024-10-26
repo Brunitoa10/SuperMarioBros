@@ -16,13 +16,19 @@ public class Spiny extends Enemigo {
 
     protected EstadoSpiny estadoSpiny;
     protected VisitorEnemigo visitor;
+    boolean estoyEnPlataforma;
 
     public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
+        velocidad = 1;
         estadoSpiny = new SpinyCayendo(this);
     }
 
+    public void actualizar() {
+        estadoSpiny.actualizarEstadoSpiny();
+        super.actualizar();
+    }
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
@@ -42,5 +48,19 @@ public class Spiny extends Enemigo {
         return puntajeSpinyDestruido;
     }
 
+    public void setEstadoSpiny(EstadoSpiny estadoSpiny) {
+        this.estadoSpiny = estadoSpiny;
+    }
 
+    public EstadoSpiny getEstadoSpiny() {
+        return estadoSpiny;
+    }
+
+    public boolean estoyEnPlataforma(){
+        return estoyEnPlataforma;
+    }
+
+    public void setEnPlataforma(boolean enPlataforma) {
+        estoyEnPlataforma=enPlataforma;
+    }
 }

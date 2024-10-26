@@ -18,7 +18,7 @@ import java.util.List;
 public class CreadorEntidad implements FabricaEntidad {
 
     protected FabricaSprites fabricaSprites;
-
+    private Jugador mario;
     public CreadorEntidad(FabricaSprites fabricaSprites) {
         this.fabricaSprites = fabricaSprites;
     }
@@ -44,7 +44,7 @@ public class CreadorEntidad implements FabricaEntidad {
     @Override
     public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel) {
         Sprite lakituSprite = fabricaSprites.crearSpriteLakitu();
-        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel);
+        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel,mario);
     }
 
     @Override
@@ -135,7 +135,8 @@ public class CreadorEntidad implements FabricaEntidad {
     @Override
     public Jugador crearJugador(int x, int y) {
         Sprite jugadorSprite = fabricaSprites.crearSpriteJugador();
-        return new Jugador(x, y, jugadorSprite);
+        mario=new Jugador(x, y, jugadorSprite);
+        return mario;
     }
 
     @Override

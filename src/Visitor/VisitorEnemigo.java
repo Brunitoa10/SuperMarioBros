@@ -38,6 +38,9 @@ public class VisitorEnemigo implements Visitor {
         if (enemigo.colisionIzquierda(plataforma) || enemigo.colisionDerecha(plataforma)) {
             enemigo.setDireccion(enemigo.getDireccion() * (-1));
         }
+        if(enemigo.colisionAbajo(plataforma)){
+            enemigo.setEnPlataforma(true);
+        }
     }
 
     public int visit(Proyectil proyectil){

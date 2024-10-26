@@ -1,27 +1,33 @@
 package Entidades.Enemigos;
 
 import Constantes.ConstantesPuntaje;
+import Entidades.Enemigos.EstadoLakitu.EstadoLakitu;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IACaminar;
+import IA.IAatacar;
 import Visitor.Visitor;
 
 import java.util.List;
 
 public class Lakitu extends Enemigo {
-
-    public Lakitu(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
-        super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
+protected Jugador jugador;
+protected EstadoLakitu estadoLakitu;
+    public Lakitu(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel, Jugador mario) {
+        super(x, y, sprite, new IAatacar(mario), listaEnemigoNivel);
         velocidad = 4;
+        jugador = mario;
     }
 
+    public void actualizar() {
+        this.actualizarEntidad();
+    }
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
             if (mario.colisionAbajo(this)) {
                 this.setAEliminar();
-                this.setPosicionEnY(-100);
                 toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
 

@@ -77,4 +77,8 @@ public abstract class Enemigo extends EntidadMovil {
         return comportamientoIA;
     }
 
+    public void setEnPlataforma(boolean enPlataforma) {
+
+    }
+
 }
