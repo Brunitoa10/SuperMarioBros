@@ -1,5 +1,6 @@
 package Generador;
 
+import Entidades.Enemigos.Spiny;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.ProyectilKoopa;
@@ -7,11 +8,16 @@ import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Constantes.ConstantesBloques;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GeneradorNivel {
     protected FabricaEntidad fabricaEntidades;
@@ -111,7 +117,15 @@ public class GeneradorNivel {
                 nivel.agregarEnemigo(fabricaEntidades.crearKoopaTroopa(x,y,p,nivel.getEnemigos()));
                 break;
             case 14:
-                nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y, nivel.getEnemigos()));
+                List<Spiny> lista=new ArrayList<Spiny>();//En este caso se precarga los proyectiles enemigos spinnys para evitar problemas en el desarrollo del juego
+                for(int cont=0;cont<3;cont++){
+                    Spiny spiny=fabricaEntidades.crearSpiny(x,y+74, nivel.getEnemigos());
+                    nivel.agregarEnemigo(spiny);
+                    spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+                    spiny.getHitbox().setBounds(x,y+74,0,0);
+                    lista.add(spiny);
+                }
+                nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y, nivel.getEnemigos(),lista));
                 break;
             case 15:
                 nivel.agregarEnemigo(fabricaEntidades.crearPiranhaPlant(x,y, nivel.getEnemigos()));

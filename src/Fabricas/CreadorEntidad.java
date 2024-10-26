@@ -13,6 +13,7 @@ import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreadorEntidad implements FabricaEntidad {
@@ -42,9 +43,9 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel) {
+    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel,List<Spiny> Arsenal) {
         Sprite lakituSprite = fabricaSprites.crearSpriteLakitu();
-        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel,mario);
+        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel,mario,Arsenal);
     }
 
     @Override

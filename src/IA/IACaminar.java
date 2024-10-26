@@ -36,6 +36,10 @@ public class IACaminar implements ComportamientoIA {
     public void activarGravedad(){
         boolean gravedad = true;
     }
+
+    public boolean comienzoAtaque(){
+        return false;
+    }
 }
 
 

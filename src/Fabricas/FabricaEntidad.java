@@ -17,7 +17,7 @@ public interface FabricaEntidad {
     public Goomba crearGoomba(int x, int y, List<Enemigo> listaEnemigoNivel);
     public BuzzyBeetle crearBuzzyBeetle(int x, int y, List<Enemigo> listaEnemigoNivel);
     public KoopaTroopa crearKoopaTroopa(int x, int y,ProyectilKoopa proyectilKoopa, List<Enemigo> listaEnemigoNivel);
-    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel);
+    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel,List<Spiny> listaSpiny);
     public Spiny crearSpiny(int x, int y, List<Enemigo> listaEnemigoNivel);
     public PiranhaPlant crearPiranhaPlant(int x, int y, List<Enemigo> listaEnemigoNivel);
     public Moneda crearMoneda(int x, int y, List<Moneda> listaMonedasNivel);
