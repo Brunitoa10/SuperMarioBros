@@ -42,4 +42,5 @@ public interface ControladorVista {
 	public int obtenerPuntajeJugador();
 
     public OyenteTeclado obtenerOyente();
+
 }

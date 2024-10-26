@@ -23,234 +23,238 @@ import Vista.ObserverGrafica.Observer;
 
 public class Juego {
 
-    protected GUI controladorVistas;
-    protected GeneradorNivel generadorNivel;
-    protected FabricaSprites fabricaSprites;
-    protected FabricaEntidad fabricaEntidades;
-    protected Nivel nivelActual;
-    protected LoopMario loopMario;
-    protected HiloRestoEntidades hiloRestoEntidades;
-    protected OyenteTeclado oyenteTeclado;
-    protected String modoJuego;
-    protected FabricaSpriteRegistro fabricaSpritesRegistry;
-    protected int vidas;
-    protected int puntaje;
-    protected ControladorMovimientoMario controladorMovimientoMario;
-    protected ControladorBolasDeFuego controladorBolasDeFuego;
-    protected Sonido sonido;
+	protected GUI controladorVistas;
+	protected GeneradorNivel generadorNivel;
+	protected FabricaSprites fabricaSprites;
+	protected FabricaEntidad fabricaEntidades;
+	protected Nivel nivelActual;
+	protected LoopMario loopMario;
+	protected HiloRestoEntidades hiloRestoEntidades;
+	protected OyenteTeclado oyenteTeclado;
+	protected String modoJuego;
+	protected FabricaSpriteRegistro fabricaSpritesRegistry;
+	protected int vidas;
+	protected int puntaje;
+	protected ControladorMovimientoMario controladorMovimientoMario;
+	protected ControladorBolasDeFuego controladorBolasDeFuego;
+	protected Sonido sonido;
+	protected int nivel;
 
 
-    public Juego(GUI controladorVistas) {
-        this.controladorVistas = controladorVistas;
-        this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
-        vidas = 3;
-        puntaje = 5;
-    }
+	public Juego(GUI controladorVistas) {
+		this.controladorVistas = controladorVistas;
+		this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
+		vidas = 3;
+		puntaje = 5;
+		nivel = 1;
+	}
 
-    // Comunicacion con parte grafica
-    public void setControladorVistas(GUI  controladorVistas) {
-        this.controladorVistas = controladorVistas;
-    }
+	// Comunicacion con parte grafica
+	public void setControladorVistas(GUI  controladorVistas) {
+		this.controladorVistas = controladorVistas;
+	}
 
-    public int getVidas(){
-        return vidas;
-    }
+	public int getVidas(){
+		return vidas;
+	}
 
-    public void perderVida(){
-        vidas--;
-    }
+	public void perderVida(){
+		vidas--;
+	}
 
-    public void sumarVida(){
-        vidas++;
-        controladorVistas.actualizarLabels();
-    }
+	public void sumarVida(){
+		vidas++;
+		controladorVistas.actualizarLabels();
+	}
 
+	public void sumarPuntaje(int puntajeParaSumar){
+		puntaje += puntajeParaSumar;
+		if (puntaje < 0)
+			puntaje = 0;
 
+		controladorVistas.actualizarLabels();
+	}
 
-    public void sumarPuntaje(int puntajeParaSumar){
-        puntaje += puntajeParaSumar;
-        if (puntaje < 0)
-            puntaje = 0;
+	public void restarPuntaje(int puntajeParaRestar){
+		puntaje -= puntajeParaRestar;
+		controladorVistas.actualizarLabels();
+	}
 
-        controladorVistas.actualizarLabels();
-    }
+	public int getPuntaje(){
+		return puntaje;
+	}
 
-    public void restarPuntaje(int puntajeParaRestar){
-        puntaje -= puntajeParaRestar;
-        controladorVistas.actualizarLabels();
-    }
+	public void mostrarPantallaFinJuego(){
+		controladorVistas.crearPantallaFinJuego(modoJuego);
+		controladorVistas.mostrarPantallaFinJuego();
+	}
 
-    public int getPuntaje(){
-        return puntaje;
-    }
+	public void iniciar(String modoJuego) {
 
-    public void mostrarPantallaFinJuego(){
-        controladorVistas.crearPantallaFinJuego(modoJuego);
-        controladorVistas.mostrarPantallaFinJuego();
-    }
+		this.modoJuego = modoJuego;
 
-    public void iniciar(String modoJuego) {
+		System.out.println("Modojuego juego " + modoJuego);
+		fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
+		fabricaEntidades = new CreadorEntidad(fabricaSprites);
+		generadorNivel = new GeneradorNivel(fabricaEntidades);
+		sonido = SonidoFactory.crearSonido(modoJuego,"nivel");
 
-        this.modoJuego = modoJuego;
+		nivelActual = generadorNivel.generarNivel(nivel);
 
-        System.out.println("Modojuego juego " + modoJuego);
-        fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
-        fabricaEntidades = new CreadorEntidad(fabricaSprites);
-        generadorNivel = new GeneradorNivel(fabricaEntidades);
-        sonido = SonidoFactory.crearSonido(modoJuego,"nivel");
+		registrarObservers();
 
-        nivelActual = generadorNivel.generarNivel(1);
+		System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
-        registrarObservers();
+		controladorVistas.mostrarPantallaNivel();
+		oyenteTeclado = controladorVistas.obtenerOyente();
 
-        System.out.println("Logica mostrar modo de juego: " + modoJuego);
+		controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+		controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
 
-        controladorVistas.mostrarPantallaNivel();
-        oyenteTeclado = controladorVistas.obtenerOyente();
+		iniciarLoops();
+	}
 
-        controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
-        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+	private void iniciarLoops() {
+		loopMario = new LoopMario(this);
+		loopMario.comenzar();
+		hiloRestoEntidades = new HiloRestoEntidades(this);
+		hiloRestoEntidades.comenzar();
+		sonido.reproducir();
+	}
 
-        iniciarLoops();
-    }
+	public void reiniciar(String nivelactual) {
+		detenerLoops();
+		controladorVistas.reiniciarPanelPantallaNivel();
+		iniciar(nivelactual);
 
-    private void iniciarLoops() {
-        loopMario = new LoopMario(this);
-        loopMario.comenzar();
-        hiloRestoEntidades = new HiloRestoEntidades(this);
-        hiloRestoEntidades.comenzar();
-        sonido.reproducir();
-    }
+	}
+	public void detenerLoops(){
+		loopMario.detener();
+		hiloRestoEntidades.detener();
+		sonido.detener();
+	}
 
-    public void reiniciar(String nivelactual) {
-    	detenerLoops();
-        controladorVistas.reiniciarPanelPantallaNivel();
-        iniciar(nivelactual);
+	public void mostrarPantallaRanking() {
+		controladorVistas.mostrarPantallaRanking();
+	}
 
-    }
-    public void detenerLoops(){
-        loopMario.detener();
-        hiloRestoEntidades.detener();
-        sonido.detener();
-    }
-
-    public void mostrarPantallaRanking() {
-        controladorVistas.mostrarPantallaRanking();
-    }
-
-    protected void registrarObservers() {
-        registrarObserverJugador(nivelActual.getJugador());
-        registrarObserversParaEntidades(nivelActual.getEnemigos());
-        registrarObserversParaEntidades(nivelActual.getPlataformas());
-        registrarObserversParaEntidades(nivelActual.getPowerUps());
-        registrarObserversParaEntidades(nivelActual.getProyectiles());
-        registrarObserversParaEntidades(nivelActual.getMonedas());
-    }
-
-
-    protected void registrarObserverJugador(Jugador jugador) {
-        Observer observerJugador = controladorVistas.registrarEntidad(jugador);
-        jugador.registrarObserver(observerJugador);
-    }
-
-    protected void registrarObserversParaEntidades(List<? extends Entidad> entidades) {
-        for (Entidad entidad : entidades) {
-            Observer observer = controladorVistas.registrarEntidad(entidad);
-            entidad.registrarObserver(observer);
-        }
-    }
+	protected void registrarObservers() {
+		registrarObserverJugador(nivelActual.getJugador());
+		registrarObserversParaEntidades(nivelActual.getEnemigos());
+		registrarObserversParaEntidades(nivelActual.getPlataformas());
+		registrarObserversParaEntidades(nivelActual.getPowerUps());
+		registrarObserversParaEntidades(nivelActual.getProyectiles());
+		registrarObserversParaEntidades(nivelActual.getMonedas());
+	}
 
 
-    public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
-        for (Entidad entidad : entidades) {
-            Observer observer = controladorVistas.registrarEntidad(entidad);
-            entidad.registrarObserver(observer);
-        }
-    }
-    
-    public Nivel getNivelActual() {
-        return nivelActual;
-    }
+	protected void registrarObserverJugador(Jugador jugador) {
+		Observer observerJugador = controladorVistas.registrarEntidad(jugador);
+		jugador.registrarObserver(observerJugador);
+	}
 
-    public OyenteTeclado getOyenteTeclado() {
-        return oyenteTeclado;
-    }
+	protected void registrarObserversParaEntidades(List<? extends Entidad> entidades) {
+		for (Entidad entidad : entidades) {
+			Observer observer = controladorVistas.registrarEntidad(entidad);
+			entidad.registrarObserver(observer);
+		}
+	}
 
-    public void moverMario(Temporizador temporizador) {
-        controladorMovimientoMario.moverMario(temporizador);
-    }
 
-    public void lanzarBolasDeFuego(Jugador mario) {
-        if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
-            Proyectil bolaDeFuego = dispararBolaFuego(mario);
-            mario.getEstadoMovimiento().LanzarBola();
-        }
-    }
+	public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
+		for (Entidad entidad : entidades) {
+			Observer observer = controladorVistas.registrarEntidad(entidad);
+			entidad.registrarObserver(observer);
+		}
+	}
 
-    public void eliminarEntidades() {
-        while (!nivelActual.getEntidadesAEliminar().isEmpty()) {
-            EntidadLogica entidadAEliminar = nivelActual.getEntidadesAEliminar().getFirst();
-            entidadAEliminar.getObserver().eliminarDePanel();
-            entidadAEliminar.eliminarEntidad();
-            nivelActual.getEntidadesAEliminar().removeFirst();
-        }
-    }
+	public Nivel getNivelActual() {
+		return nivelActual;
+	}
 
-    public ControladorVistaJuego getControladorVistaJuego() {
-        return controladorVistas;
-    }
+	public OyenteTeclado getOyenteTeclado() {
+		return oyenteTeclado;
+	}
 
-    public Jugador getJugador() {
-        return nivelActual.getJugador();
-    }
+	public void moverMario(Temporizador temporizador) {
+		controladorMovimientoMario.moverMario(temporizador);
+	}
 
-    public Proyectil dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, nivelActual.getProyectiles());
-        getNivelActual().agregarProyectil(bolaDeFuego);
-        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
-        bolaDeFuego.registrarObserver(observer);
-        return bolaDeFuego;
-    }
+	public void lanzarBolasDeFuego(Jugador mario) {
+		if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
+			Proyectil bolaDeFuego = dispararBolaFuego(mario);
+			mario.getEstadoMovimiento().LanzarBola();
+		}
+	}
 
-    public void manejarMuerte() {
-        perderVida();
-        if (getVidas()!=0) {
-            reiniciar(modoJuego);
-        }
-        else{
-            detenerLoops();
-            mostrarPantallaFinJuego();
-            vidas = 3;
-        }
-    }
+	public void eliminarEntidades() {
+		while (!nivelActual.getEntidadesAEliminar().isEmpty()) {
+			EntidadLogica entidadAEliminar = nivelActual.getEntidadesAEliminar().getFirst();
+			entidadAEliminar.getObserver().eliminarDePanel();
+			entidadAEliminar.eliminarEntidad();
+			nivelActual.getEntidadesAEliminar().removeFirst();
+		}
+	}
 
-    public void mostrarMarioMuerte(Jugador mario) {
-        mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
-    }
+	public ControladorVistaJuego getControladorVistaJuego() {
+		return controladorVistas;
+	}
 
-    public int getTiempo() {
-        return 0; //hacer
-    }
+	public Jugador getJugador() {
+		return nivelActual.getJugador();
+	}
 
-    public void checkearSumaVida() {
-        if(getJugador().debeSumarUnaVida()) {
-            sumarVida();
-            sumarPuntaje(ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE);
-            getJugador().sumarUnaVida(false);
-        }
-    }
+	public Proyectil dispararBolaFuego(Jugador mario) {
+		Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, nivelActual.getProyectiles());
+		getNivelActual().agregarProyectil(bolaDeFuego);
+		Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+		bolaDeFuego.registrarObserver(observer);
+		return bolaDeFuego;
+	}
 
-    public void checkearCaidaVacio() {
-        if(getJugador().getPosicionEnY()>460) {
-            getJugador().setMorir(true);
-            sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
-        }
-    }
+	public void manejarMuerte() {
+		perderVida();
+		if (getVidas()!=0) {
+			reiniciar(modoJuego);
+		}
+		else{
+			detenerLoops();
+			mostrarPantallaFinJuego();
+			vidas = 3;
+		}
+	}
 
-    public void frenarHilos(){
-        hiloRestoEntidades.pause();
-    }
-    public void reanudarHilo(){
-        hiloRestoEntidades.resume();
-    }
+	public void mostrarMarioMuerte(Jugador mario) {
+		mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
+	}
+
+	public int getTiempo() {
+		return 0; //hacer
+	}
+
+	public void checkearSumaVida() {
+		if(getJugador().debeSumarUnaVida()) {
+			sumarVida();
+			sumarPuntaje(ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE);
+			getJugador().sumarUnaVida(false);
+		}
+	}
+
+	public void checkearCaidaVacio() {
+		if(getJugador().getPosicionEnY()>460) {
+			getJugador().setMorir(true);
+			sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
+		}
+	}
+
+	public void frenarHilos(){
+		hiloRestoEntidades.pause();
+	}
+	public void reanudarHilo(){
+		hiloRestoEntidades.resume();
+	}
+	
+	public int nivel() {
+		return nivel;
+	}
 }
