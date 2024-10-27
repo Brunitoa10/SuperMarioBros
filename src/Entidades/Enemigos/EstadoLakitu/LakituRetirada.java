@@ -1,6 +1,7 @@
 package Entidades.Enemigos.EstadoLakitu;
 
 import Entidades.Enemigos.Lakitu;
+import Logica.Temporizador;
 
 public class LakituRetirada implements EstadoLakitu {
     protected static final int VELOCIDAD_X=-5;
@@ -12,5 +13,7 @@ public class LakituRetirada implements EstadoLakitu {
     @Override
     public void actualizarLakitu() {
         lakitu.setPosicionEnX(lakitu.getPosicionEnX()+VELOCIDAD_X);
+        if(lakitu.getPosicionEnX()<-600)
+            lakitu.setAEliminar();
     }
 }

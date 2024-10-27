@@ -1,5 +1,7 @@
 package Generador;
 
+import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
+import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
@@ -118,14 +120,14 @@ public class GeneradorNivel {
                 break;
             case 14:
                 List<Spiny> lista=new ArrayList<Spiny>();//En este caso se precarga los proyectiles enemigos spinnys para evitar problemas en el desarrollo del juego
+                Lakitu lakitu= fabricaEntidades.crearLakitu(x,y, nivel.getEnemigos(),lista);
                 for(int cont=0;cont<3;cont++){
                     Spiny spiny=fabricaEntidades.crearSpiny(x,y+74, nivel.getEnemigos());
                     nivel.agregarEnemigo(spiny);
-                    spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
-                    spiny.getHitbox().setBounds(x,y+74,0,0);
+                    spiny.setEstadoSpiny(new SpinyEnNube(spiny,lakitu));
                     lista.add(spiny);
                 }
-                nivel.agregarEnemigo(fabricaEntidades.crearLakitu(x,y, nivel.getEnemigos(),lista));
+                nivel.agregarEnemigo(lakitu);
                 break;
             case 15:
                 nivel.agregarEnemigo(fabricaEntidades.crearPiranhaPlant(x,y, nivel.getEnemigos()));

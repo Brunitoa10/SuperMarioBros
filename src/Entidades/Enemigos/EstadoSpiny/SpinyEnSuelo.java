@@ -10,6 +10,7 @@ public class SpinyEnSuelo implements EstadoSpiny{
         this.spiny = spiny;
         spiny.setDireccion(-1);
         spiny.setEnPlataforma(true);
+        spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),32,32);
     }
     
     public void actualizarEstadoSpiny() {

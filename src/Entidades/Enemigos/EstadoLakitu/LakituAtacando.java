@@ -23,11 +23,13 @@ public class LakituAtacando implements EstadoLakitu{
     public void actualizarLakitu() {
         comportamiento.actualizar(lakitu);
         lakitu.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Lakitu/LakituAtaca.gif");
-        if(temporizador.hanPasadoNSegundos(5000)){
-            if(lakitu.lanzar()) {
-                lakitu.setEstadoLakitu(new LakituMoviendose(mario, lakitu, comportamiento));
-            }else{
-                lakitu.setEstadoLakitu(new LakituRetirada(lakitu));
+        if(temporizador.hanPasadoNSegundos(2800)){
+                lakitu.lanzar();
+                temporizador.resetear();
+                if(lakitu.tengoSpiny()){
+                    lakitu.setEstadoLakitu(new LakituMoviendose(mario, lakitu, comportamiento));
+                }else{
+                    lakitu.setEstadoLakitu(new LakituRetirada(lakitu));
             }
         }
     }

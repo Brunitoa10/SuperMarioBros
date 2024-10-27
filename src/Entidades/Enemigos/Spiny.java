@@ -63,4 +63,5 @@ public class Spiny extends Enemigo {
     public void setEnPlataforma(boolean enPlataforma) {
         estoyEnPlataforma=enPlataforma;
     }
+
 }

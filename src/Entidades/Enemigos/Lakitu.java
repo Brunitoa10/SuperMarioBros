@@ -3,6 +3,7 @@ package Entidades.Enemigos;
 import Constantes.ConstantesPuntaje;
 import Entidades.Enemigos.EstadoLakitu.EstadoLakitu;
 import Entidades.Enemigos.EstadoLakitu.LakituMoviendose;
+import Entidades.Enemigos.EstadoSpiny.SpinyCayendo;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
@@ -55,18 +56,19 @@ protected List<Spiny> arsenal;
         this.estadoLakitu = estadoLakitu;
     }
 
-    public boolean lanzar(){
-        boolean pudeLanzar=true;
+    public void lanzar(){
         if(arsenal.isEmpty()){
             this.setAEliminar();
-            pudeLanzar=false;
         }else{
             Spiny spiny = arsenal.getFirst();
             spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),32,32);
-            spiny.actualizar();
+            spiny.setEstadoSpiny(new SpinyCayendo(spiny));
             arsenal.removeFirst();
         }
-        return pudeLanzar;
+    }
+
+    public boolean tengoSpiny(){
+        return !arsenal.isEmpty();
     }
 
 }
