@@ -2,7 +2,7 @@ package Constantes;
 
 public class AnimadorMario {
     // Estado Idle
-    public static final String MARIO_AFK = "src/Recursos/Sprites/Originales/AnimacionMarioIdle.gif";
+    public static final String MARIO_AFK = "src/Recursos/Sprites/Originales/Pickupeables/AnimacionMarioIdle.gif";
     public static final String MARIO_STANDING_LEFT = "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioLeft.png";
     public static final String MARIO_STANDING_RIGHT = "src/Recursos/Sprites/Originales/Jugador/PNGMario/StandingMarioRigth.png";
 
@@ -19,4 +19,7 @@ public class AnimadorMario {
 	
 	
 	public static final String MUERTE_MARIO = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif";
+	
+	public static final String CONSUMO_HONGO_LEFT = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif";
+	public static final String CONSUMO_HONGO_RIGHT = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif";
 }
