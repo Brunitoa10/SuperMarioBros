@@ -69,11 +69,6 @@ public class Juego {
 		controladorVistas.actualizarLabels();
 	}
 
-	public void restarPuntaje(int puntajeParaRestar){
-		puntaje -= puntajeParaRestar;
-		controladorVistas.actualizarLabels();
-	}
-
 	public int getPuntaje(){
 		return puntaje;
 	}
@@ -116,21 +111,21 @@ public class Juego {
 		sonido.reproducir();
 	}
 
-	public void reiniciar(String nivelactual) {
+	public void reiniciar(String nivelActual) {
 		detenerLoops();
 		controladorVistas.reiniciarPanelPantallaNivel();
-		iniciar(nivelactual);
+		iniciar(nivelActual);
 	}
 
 	public void nivelSiguiente() {
-		eliminarEntidades();
+		// eliminarEntidades();
 		sonido.detener();
 		detenerLoops();
-		if(nivel < CadenasValidacion.MAXINO_NIVELES) {
+		if(nivel < CadenasValidacion.MAXIMO_NIVELES) {
 			nivel++;
 			nivelActual = generadorNivel.generarNivel(nivel);
-			registrarObservers();
 			controladorVistas.actualizarImagenFondoNivel(nivel);
+			registrarObservers();
 			controladorVistas.mostrarPantallaNivel();
 			controladorVistas.actualizarLabels();
 			sonido = SonidoFactory.crearSonido(modoJuego, "nivel");

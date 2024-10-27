@@ -166,6 +166,9 @@ public class PanelPantallaNivel extends JPanel {
 	    if (observerEntidad != null) {
 	        imagenFondoPanelNivel.add(observerEntidad);
 	    }
+
+		actualizarObserver();
+
 	    refrescar();
 	}
 	
