@@ -24,8 +24,11 @@ public class LakituAtacando implements EstadoLakitu{
         comportamiento.actualizar(lakitu);
         lakitu.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Lakitu/LakituAtaca.gif");
         if(temporizador.hanPasadoNSegundos(5000)){
-            lakitu.lanzar();
-            lakitu.setEstadoLakitu(new LakituMoviendose(mario,lakitu,comportamiento));
+            if(lakitu.lanzar()) {
+                lakitu.setEstadoLakitu(new LakituMoviendose(mario, lakitu, comportamiento));
+            }else{
+                lakitu.setEstadoLakitu(new LakituRetirada(lakitu));
+            }
         }
     }
 }

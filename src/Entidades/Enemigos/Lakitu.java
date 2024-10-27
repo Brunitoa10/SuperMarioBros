@@ -55,16 +55,18 @@ protected List<Spiny> arsenal;
         this.estadoLakitu = estadoLakitu;
     }
 
-    public void lanzar(){
+    public boolean lanzar(){
+        boolean pudeLanzar=true;
         if(arsenal.isEmpty()){
             this.setAEliminar();
+            pudeLanzar=false;
         }else{
             Spiny spiny = arsenal.getFirst();
             spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),32,32);
             spiny.actualizar();
             arsenal.removeFirst();
         }
-
+        return pudeLanzar;
     }
 
 }
