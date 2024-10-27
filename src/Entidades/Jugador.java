@@ -11,7 +11,6 @@ import Visitor.VisitorJugador;
 
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
-	protected static final int ALTURA_MAXIMA_SALTO = 200;
 	protected EstadoJugador estadoJugador;
 	protected EstadoJugador estadoJugadorAnterior;
 	protected EstadoMovimiento estadoMovimiento;
@@ -37,14 +36,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
 	public void setEstadoJugador(EstadoJugador estadoJugador) {
 		this.estadoJugador = estadoJugador;
-	}
-
-	public EstadoJugador getEstadoJugadorAnterior() {
-		return estadoJugadorAnterior;
-	}
-
-	public void setEstadoJugadorAnterior(EstadoJugador estadoJugadorAnterior) {
-		this.estadoJugadorAnterior = estadoJugadorAnterior;
 	}
 
 	public EstadoMovimiento getEstadoMovimiento() {
@@ -77,6 +68,9 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 			estadoMovimiento.desplazarEnX(direccion);
 		if(posicionX < -800) {
 			posicionX = -800;
+		}
+		if(posicionX > 6350 && posicionX < 6400) {
+			posicionX = 6250;
 		}
 	}
 

@@ -1,53 +1,35 @@
 package Logica;
 
-import Entidades.Entidad;
 import Entidades.Jugador;
-import Entidades.Proyectiles.Proyectil;
-import EstadoMovimiento.MarioEnAire;
-import EstadoMovimiento.MarioParado;
-import Fabricas.Sprite;
-import Vista.Controladores.ControladorVistaJuego;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import Constantes.AnimadorMario;
-import EstadoMovimiento.MarioCaminando;
-import EstadoMovimiento.MarioParado;
 
 
 public class LoopMario implements Runnable {
 
-    private boolean ejecutando;
-    private Jugador mario;
-    private int direccionLocal = 0;
-    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private boolean enIdle;
-    private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
-    protected int cooldownBola = 60;
-    protected boolean empezarCooldown;
-    protected Proyectil bolaDeFuego;
     protected ControladorColisiones controladorColisiones;
-    protected int timerAnimacionMorir =0;
+    protected int timerAnimacionMorir = 0;
     protected Juego juego;
     protected Temporizador temporizador;
     protected boolean debeSaltar;
-    protected ControladorBolasDeFuego controladorBolasDeFuego;
-    protected boolean FrenoElTick=false;
+    protected boolean FrenoElTick = false;
     protected Temporizador temporizador2;
+    private boolean ejecutando;
+    private Jugador mario;
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private boolean enIdle;
+    private long lastUpdateTime = System.nanoTime();
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
 
-        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
+        this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(), juego);
 
         ejecutando = false;
         temporizador = new Temporizador();
-        temporizador2= new Temporizador();
+        temporizador2 = new Temporizador();
         this.juego = juego;
         debeSaltar = false;
     }
@@ -76,23 +58,12 @@ public class LoopMario implements Runnable {
         }
     }
 
-    private void iniciarTemporizadorIdle() {
-        if (scheduler.isShutdown()) {
-            scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(() -> {
-                if (enIdle) {
-                    mario.getSprite().setRutaImagen(AnimadorMario.MARIO_AFK);
-                }
-            }, 3, 3, TimeUnit.SECONDS);
-        }
-    }
-
     private void tick() {
-        if(!FrenoElTick) {
+        if (!FrenoElTick) {
             if (!mario.getMorir()) {
                 juego.moverMario(temporizador);
                 juego.lanzarBolasDeFuego(mario);
-                FrenoElTick=controladorColisiones.colisionesMario();
+                FrenoElTick = controladorColisiones.colisionesMario();
                 juego.eliminarEntidades();
                 if (mario.getPosicionEnY() > 460) {
                     mario.setMorir(true);
@@ -109,15 +80,15 @@ public class LoopMario implements Runnable {
                     juego.manejarMuerte();
                 }
             }
-        }else{
+        } else {
             temporizador2.iniciar();
             juego.frenarHilos();
-            if(mario.getDireccion()==-1)
+            if (mario.getDireccion() == -1)
                 mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
-            if(mario.getDireccion()==+1)
+            if (mario.getDireccion() == +1)
                 mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
-            if(temporizador2.hanPasadoNSegundos(2000)){
-                FrenoElTick=false;
+            if (temporizador2.hanPasadoNSegundos(2000)) {
+                FrenoElTick = false;
                 juego.reanudarHilo();
             }
         }

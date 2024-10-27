@@ -48,11 +48,6 @@ public class Juego {
 		nivel = 1;
 	}
 
-	// Comunicacion con parte grafica
-	public void setControladorVistas(GUI  controladorVistas) {
-		this.controladorVistas = controladorVistas;
-	}
-
 	public int getVidas(){
 		return vidas;
 	}
@@ -125,8 +120,14 @@ public class Juego {
 		detenerLoops();
 		controladorVistas.reiniciarPanelPantallaNivel();
 		iniciar(nivelactual);
-
 	}
+
+	public void nivelSiguiente() {
+		sonido.detener();
+		// Detener loops ????
+		// Leer nivel2.txt
+	}
+
 	public void detenerLoops(){
 		loopMario.detener();
 		hiloRestoEntidades.detener();
@@ -159,20 +160,8 @@ public class Juego {
 		}
 	}
 
-
-	public void eliminarObserversParaEntidades(List<? extends Entidad> entidades){
-		for (Entidad entidad : entidades) {
-			Observer observer = controladorVistas.registrarEntidad(entidad);
-			entidad.registrarObserver(observer);
-		}
-	}
-
 	public Nivel getNivelActual() {
 		return nivelActual;
-	}
-
-	public OyenteTeclado getOyenteTeclado() {
-		return oyenteTeclado;
 	}
 
 	public void moverMario(Temporizador temporizador) {
@@ -236,13 +225,6 @@ public class Juego {
 			sumarVida();
 			sumarPuntaje(ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE);
 			getJugador().sumarUnaVida(false);
-		}
-	}
-
-	public void checkearCaidaVacio() {
-		if(getJugador().getPosicionEnY()>460) {
-			getJugador().setMorir(true);
-			sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
 		}
 	}
 
