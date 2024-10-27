@@ -12,7 +12,6 @@ import Visitor.VisitorJugador;
 public class Jugador extends EntidadMovil implements EntidadJugador {
 
 	protected EstadoJugador estadoJugador;
-	protected EstadoJugador estadoJugadorAnterior;
 	protected EstadoMovimiento estadoMovimiento;
 	protected VisitorJugador VisitorJugador;
 	protected boolean enPlataforma;
@@ -68,9 +67,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 			estadoMovimiento.desplazarEnX(direccion);
 		if(posicionX < -800) {
 			posicionX = -800;
-		}
-		if(posicionX > 6350 && posicionX < 6400) {
-			posicionX = 6250;
 		}
 	}
 

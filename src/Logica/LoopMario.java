@@ -62,6 +62,9 @@ public class LoopMario implements Runnable {
         if (!FrenoElTick) {
             if (!mario.getMorir()) {
                 juego.moverMario(temporizador);
+                if(mario.getPosicionEnX() > 6350){
+                    juego.nivelSiguiente();
+                }
                 juego.lanzarBolasDeFuego(mario);
                 FrenoElTick = controladorColisiones.colisionesMario();
                 juego.eliminarEntidades();

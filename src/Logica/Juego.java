@@ -7,7 +7,6 @@ import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
-import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
@@ -124,8 +123,14 @@ public class Juego {
 
 	public void nivelSiguiente() {
 		sonido.detener();
-		// Detener loops ????
-		// Leer nivel2.txt
+		detenerLoops();
+		nivel++;
+		nivelActual = generadorNivel.generarNivel(nivel);
+		registrarObservers();
+		iniciarLoops();
+		controladorVistas.mostrarPantallaNivel();
+		sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
+		sonido.reproducir();
 	}
 
 	public void detenerLoops(){
