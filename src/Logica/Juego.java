@@ -139,8 +139,8 @@ public class Juego {
 
 	protected void registrarObservers() {
 		registrarObserverJugador(nivelActual.getJugador());
-		registrarObserversParaEntidades(nivelActual.getEnemigos());
 		registrarObserversParaEntidades(nivelActual.getPlataformas());
+		registrarObserversParaEntidades(nivelActual.getEnemigos());
 		registrarObserversParaEntidades(nivelActual.getPowerUps());
 		registrarObserversParaEntidades(nivelActual.getProyectiles());
 		registrarObserversParaEntidades(nivelActual.getMonedas());

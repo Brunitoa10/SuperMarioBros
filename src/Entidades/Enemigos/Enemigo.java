@@ -14,16 +14,12 @@ import java.util.List;
 public abstract class Enemigo extends EntidadMovil {
 
     protected VisitorEnemigo visitorEnemigo;
-    protected int posicionx;
-    protected int posiciony;
     protected ComportamientoIA comportamientoIA;
     protected Temporizador temporizador;
     protected List<Enemigo> listaEnemigosNivel;
 
     public Enemigo(int x, int y, Sprite sprite, ComportamientoIA comportamientoIA, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite);
-        posicionx = x;
-        posiciony = y;
         temporizador = new Temporizador();
         setDireccion(1);
         visitorEnemigo = new VisitorEnemigo(this);

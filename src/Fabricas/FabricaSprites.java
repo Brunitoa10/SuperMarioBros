@@ -24,7 +24,7 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif", 32, 32);
     }
     public Sprite crearSpritePiranhaPlant() {
-        return new Sprite(ruta_carpeta + "/Enemigos/PiranhaPlant/PlantaLoop.gif", 32, 32);
+        return new Sprite(ruta_carpeta + "/Enemigos/PiranhaPlant/PlantaLoop.gif", 32, 48);
     }
     public Sprite crearSpriteMoneda() {
         return new Sprite(ruta_carpeta + "/Pickupeables/Coin.png", 32, 28);
@@ -56,7 +56,7 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Bloques/BloqueSolido.png", 32, 32);
     }
     public Sprite crearSpriteTuberia() {
-        return new Sprite(ruta_carpeta + "/Bloques/Tuberia.png", 32, 32);
+        return new Sprite(ruta_carpeta + "/Bloques/Tuberia.png", 64, 164);
     }
     public Sprite crearSpriteBloquePregunta() {
         return new Sprite(ruta_carpeta + "/Bloques/BloquePregunta.png", 32, 32);
