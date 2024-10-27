@@ -143,5 +143,45 @@ public class PanelPantallaNivel extends JPanel {
 			observerEntidad.actualizarObserver();
 		}
 	}
+	
+	public void actualizarImagenFondoNivel(int nivel) {
+	    // Eliminar la imagen anterior
+	    panelImagen.removeAll();
+
+	    // Crear el nuevo fondo de nivel
+	    String rutaImagen = "/Recursos/Fondos/" + controladorVista.obtenerModoJuego() + "/FondoLevel" + nivel + ".png";
+	    ImageIcon fondoIcon = new ImageIcon(getClass().getResource(rutaImagen));
+	    imagenFondoPanelNivel = new JLabel(fondoIcon);
+
+	    // Actualizar tamaño preferido de la nueva imagen
+	    imagenFondoPanelNivel.setPreferredSize(new Dimension(fondoIcon.getIconWidth(), fondoIcon.getIconHeight()));
+
+	    // Agregar la nueva imagen al panel contenedor
+	    panelImagen.add(imagenFondoPanelNivel);
+
+	    // Agregar nuevamente el jugador y otras entidades si es necesario
+	    if (observerJugador != null) {
+	        imagenFondoPanelNivel.add(observerJugador);
+	    }
+	    if (observerEntidad != null) {
+	        imagenFondoPanelNivel.add(observerEntidad);
+	    }
+	    refrescar();
+	}
+	
+	private void refrescar() {
+		// Refrescar el panel de imagen
+	    panelImagen.revalidate();
+	    panelImagen.repaint();
+
+	    // Refrescar el JScrollPane para que muestre los cambios
+	    panelScrollNivel.revalidate();
+	    panelScrollNivel.repaint();
+
+	    // Finalmente, refrescar el PanelPantallaNivel completo
+	    this.revalidate();
+	    this.repaint();
+	}
+
 
 }

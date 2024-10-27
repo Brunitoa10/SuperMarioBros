@@ -240,4 +240,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	public int obtenerPuntajeJugador() {
 		return miJuego.getPuntaje();
 	}
+
+	public void actualizarImagenFondoNivel(int nivel) {
+		panelPantallaNivel.actualizarImagenFondoNivel(nivel);
+		//refrescar();
+	}
 }

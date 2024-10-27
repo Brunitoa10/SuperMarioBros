@@ -3,6 +3,7 @@ package Logica;
 import java.util.List;
 
 import Constantes.AnimadorMario;
+import Constantes.CadenasValidacion;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
@@ -122,15 +123,23 @@ public class Juego {
 	}
 
 	public void nivelSiguiente() {
+		eliminarEntidades();
 		sonido.detener();
 		detenerLoops();
-		nivel++;
-		nivelActual = generadorNivel.generarNivel(nivel);
-		registrarObservers();
-		iniciarLoops();
-		controladorVistas.mostrarPantallaNivel();
-		sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
-		sonido.reproducir();
+		if(nivel < CadenasValidacion.MAXINO_NIVELES) {
+			nivel++;
+			nivelActual = generadorNivel.generarNivel(nivel);
+			registrarObservers();
+			controladorVistas.actualizarImagenFondoNivel(nivel);
+			controladorVistas.mostrarPantallaNivel();
+			controladorVistas.actualizarLabels();
+			sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
+			controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+			controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+			iniciarLoops();
+		}else{
+			controladorVistas.mostrarPantallaFinJuego();
+		}
 	}
 
 	public void detenerLoops(){

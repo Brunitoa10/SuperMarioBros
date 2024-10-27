@@ -1,5 +1,6 @@
 package Entidades;
 
+import Constantes.CadenasValidacion;
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -24,7 +25,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 	public Jugador(int x, int y, Sprite sprite) {
 		super(x, y, sprite);
 		this.puntaje = 0;
-		this.velocidad = 4;
+		this.velocidad = CadenasValidacion.MARIO_VELOCIDAD;
 		inicializacionEstadosYVisitantes();
 		inicializacionBooleanos();
 	}

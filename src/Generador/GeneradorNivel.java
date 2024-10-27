@@ -1,8 +1,9 @@
 package Generador;
 
-import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
+
 import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
+import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.ProyectilKoopa;
@@ -10,14 +11,13 @@ import Entidades.Vacio;
 import Fabricas.*;
 import Logica.Nivel;
 
-import java.awt.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import Constantes.ConstantesBloques;
-import java.util.ArrayList;
 import java.util.List;
 
 
