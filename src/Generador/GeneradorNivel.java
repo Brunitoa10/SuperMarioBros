@@ -4,6 +4,7 @@ package Generador;
 import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
 import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
+import Entidades.Plataformas.Plataforma;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.ProyectilKoopa;
@@ -174,6 +175,9 @@ public class GeneradorNivel {
     }
     
     private void generarVaciosYSuelosNivelDos(Nivel nivel) {
+        nivel.agregarPlataforma(new SueloNivel(1624, 456,new Sprite(ConstantesBloques.SPRITE_VACIA,70,32), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2222, 456, new Sprite(ConstantesBloques.SPRITE_VACIA,104,32), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4575, 456, new Sprite(ConstantesBloques.SPRITE_VACIA,70,32), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(-800, 456,new Sprite(ConstantesBloques.SPRITE_VACIA,2423,69), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(1695, 456,new Sprite(ConstantesBloques.SPRITE_VACIA,526,69), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2247,69), nivel.getPlataformas()));
