@@ -34,7 +34,7 @@ public class PiranhaPlant extends Enemigo {
     }
 
     public void actualizar() {
-        if (temporizadorSubirBajar.hanPasadoNSegundos(5000)) {
+        if (temporizadorSubirBajar.hanPasadoNSegundos(10000)) {
             if (estaEscondido()) {
                 subiendo = true;
             } else if(estaEnYMaximo()) {
