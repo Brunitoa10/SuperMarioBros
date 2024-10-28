@@ -9,7 +9,7 @@ import Entidades.Proyectiles.Proyectil;
 
 public interface Visitor {
     public int visit(Jugador j);
-    public void visit(Enemigo e);
+    public int visit(Enemigo e);
     public void visit(Moneda p);
     public int visit(PowerUp m);
     public void visit(Plataforma p);

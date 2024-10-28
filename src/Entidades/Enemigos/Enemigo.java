@@ -35,21 +35,19 @@ public abstract class Enemigo extends EntidadMovil {
         return v.visit(this);
     }
 
-    // Método de actualización que puede extenderse en subclases
     public void actualizar() {
         comportamientoIA.actualizar(this);
         super.actualizarEntidad();
-        // Otros comportamientos que puedan ser agregados como colisiones o IA
     }
 
-    // Método para cambiar dinámicamente la estrategia de IA
+
     public void setComportamientoIA(ComportamientoIA nuevaIA) {
         this.comportamientoIA = nuevaIA;
     }
 
-    // Método para cambiar la dirección del enemigo
+
     public void cambiarDireccion() {
-        direccion = -direccion; // Invierte la dirección
+        direccion = -direccion;
     }
 
     public abstract int interactuar(Jugador jugador);

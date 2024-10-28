@@ -4,7 +4,6 @@ import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IACaminar;
-import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
 import java.util.List;
@@ -18,10 +17,20 @@ public class BuzzyBeetle extends Enemigo {
     public BuzzyBeetle(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
-        velocidad = 4;
+        velocidad = 1;
     }
+    
+    public void actualizar() {
+  	  super.actualizar();
+      if (this.getDireccion() == 1) {
+          this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/BUzzyBeetle/BuzzyBeetleRigthLoop.gif");
+      }
+      if (this.getDireccion() == -1) {
+          this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/BUzzyBeetle/BuzzyBeetleLeftLoop.gif");
+      }
+  }
 
-    public int interactuar(Jugador mario) {
+    public int interactuar(Jugador mario) { 
         int toReturn = 0;
             if (mario.colisionAbajo(this)) {
                 this.setAEliminar();
@@ -42,4 +51,6 @@ public class BuzzyBeetle extends Enemigo {
         proyectil.setDireccion(0);
         return puntajeBuzzyBeetleDestruido;
     }
+    
+    
 }

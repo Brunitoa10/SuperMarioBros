@@ -24,8 +24,8 @@ public class VisitorJugador implements Visitor {
     }
 
     @Override
-    public void visit(Enemigo e) {
-
+    public int visit(Enemigo e) {
+    	return 0;
     }
 
     @Override

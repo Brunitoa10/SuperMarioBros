@@ -6,7 +6,6 @@ import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IACaminar;
 import Logica.Temporizador;
-import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
 import java.util.List;
