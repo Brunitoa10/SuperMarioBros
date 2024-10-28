@@ -4,10 +4,8 @@ import Constantes.ConstantesPuntaje;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
-import IA.IACaminar;
 import IA.IAPiranhaPlant;
 import Logica.Temporizador;
-import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
 
 import java.util.List;

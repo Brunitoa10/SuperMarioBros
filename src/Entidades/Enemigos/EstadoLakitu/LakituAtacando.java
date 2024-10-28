@@ -3,7 +3,6 @@ package Entidades.Enemigos.EstadoLakitu;
 import Entidades.Enemigos.Lakitu;
 import Entidades.Jugador;
 import IA.ComportamientoIA;
-import IA.IAatacar;
 import Logica.Temporizador;
 
 public class LakituAtacando implements EstadoLakitu{

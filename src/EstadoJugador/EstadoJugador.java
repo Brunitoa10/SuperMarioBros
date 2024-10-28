@@ -1,7 +1,6 @@
 package EstadoJugador;
 
 import Entidades.Entidad;
-import Logica.Nivel;
 
 public interface EstadoJugador {
     public void recibeDanio(Entidad e);

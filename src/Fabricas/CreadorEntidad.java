@@ -13,7 +13,6 @@ import Entidades.Proyectiles.ProyectilKoopa;
 import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreadorEntidad implements FabricaEntidad {
@@ -92,7 +91,6 @@ public class CreadorEntidad implements FabricaEntidad {
 
     @Override
     public BolaDeFuego crearBolaDeFuego(Jugador jugador, List<Proyectil> listaProyectilNivel) {
-        Sprite bolaDeFuegoSprite = fabricaSprites.crearSpriteBolaDeFuego();
         return new BolaDeFuego(jugador, listaProyectilNivel);
     }
 

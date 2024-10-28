@@ -1,6 +1,6 @@
 package Entidades.Plataformas;
 
-import Entidades.Entidad;
+
 import Entidades.Jugador;
 import Entidades.Plataformas.StateBloquePregunta.BloquePreguntaLleno;
 import Entidades.Plataformas.StateBloquePregunta.EstadoBloquePregunta;

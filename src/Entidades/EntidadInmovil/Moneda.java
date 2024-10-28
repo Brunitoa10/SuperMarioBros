@@ -1,6 +1,5 @@
 package Entidades.EntidadInmovil;
 
-import Entidades.Entidad;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 

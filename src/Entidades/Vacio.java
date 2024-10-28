@@ -7,27 +7,20 @@ import Visitor.Visitor;
 
 import java.util.List;
 
+import Constantes.ConstantesBloques;
+
 public class Vacio extends EntidadInmovil {
-    private final String RUTA_IMAGEN="src/Recursos/Sprites/original/Bloques/BloqueNada.png";
+ 
     protected Temporizador temporizador;
     protected String[] frames;
-    private int currentFrame;        // Índice del frame actual
-    private int frameRate;           // Velocidad de cambio de frames
-    private long lastTime, timer;    // Para controlar el tiempo entre frames
-    private boolean animacionActiva; // Controla si la animación está activa
-    private boolean animacionFinalizada; // Controla si la animación ha terminado
+    protected boolean animacionActiva; // Controla si la animación está activa
     protected List<Vacio> listaVacioNivel;
-    private int cantidadSegundos=0;
+    protected int cantidadSegundos=0;
 
     public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel) {
         super(x, y, sprite);
         temporizador=new Temporizador();
-        currentFrame = 0;
-        frameRate = 100;  // Cambia de frame cada 100 milisegundos
-        timer = 0;
-        lastTime = System.currentTimeMillis();
         animacionActiva = false;
-        animacionFinalizada = false;
         this.listaVacioNivel = listaVacioNivel;
     }
 
@@ -45,7 +38,7 @@ public class Vacio extends EntidadInmovil {
     public void actualizarAnimacion() {
         super.actualizarEntidad();
         if (temporizador.hanPasadoNSegundos(cantidadSegundos)) {
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+            this.getSprite().setRutaImagen(ConstantesBloques.SPRITE_VACIA);
         }
 
     }
@@ -53,12 +46,12 @@ public class Vacio extends EntidadInmovil {
     public void setAnimacionFinal(int segundos){
         temporizador.iniciar();
         cantidadSegundos=segundos;
-        animacionActiva = true;  // Activa la animación
+        animacionActiva = true;  
     }
 
     public void actualizar() {
         if (animacionActiva) {
-            actualizarAnimacion();  // Si la animación está activa, actualiza los frames
+            actualizarAnimacion();
 
         }
     }

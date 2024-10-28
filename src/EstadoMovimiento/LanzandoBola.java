@@ -1,6 +1,5 @@
 package EstadoMovimiento;
 
-import Entidades.Enemigos.Enemigo;
 import Entidades.Jugador;
 import Logica.Temporizador;
 

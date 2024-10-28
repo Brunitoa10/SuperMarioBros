@@ -1,12 +1,9 @@
 package Logica;
 
-import Entidades.Enemigos.Enemigo;
+
 import Entidades.Entidad;
-import Entidades.Plataformas.Plataforma;
-import Entidades.Proyectiles.Proyectil;
 import Vista.Controladores.ControladorVistaJuego;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

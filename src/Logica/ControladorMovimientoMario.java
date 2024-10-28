@@ -2,7 +2,6 @@ package Logica;
 
 import Entidades.Jugador;
 import EstadoMovimiento.MarioParado;
-import Logica.Temporizador;
 
 public class ControladorMovimientoMario {
 

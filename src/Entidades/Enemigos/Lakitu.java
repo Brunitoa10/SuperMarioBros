@@ -7,12 +7,9 @@ import Entidades.Enemigos.EstadoSpiny.SpinyCayendo;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
-import IA.IACaminar;
 import IA.IAatacar;
-import Visitor.Visitor;
 
 import java.util.List;
-import java.util.SortedMap;
 
 public class Lakitu extends Enemigo {
 protected Jugador jugador;

@@ -3,7 +3,6 @@ package Entidades;
 import Fabricas.Sprite;
 import Generador.GestorSonido.Sonido;
 import Vista.ObserverGrafica.Observer;
-import Vista.ObserverGrafica.ObserverEntidad;
 
 import java.awt.*;
 

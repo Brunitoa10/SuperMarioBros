@@ -4,7 +4,6 @@ package Generador;
 import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
 import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
-import Entidades.Plataformas.Plataforma;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.ProyectilKoopa;

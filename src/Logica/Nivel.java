@@ -6,8 +6,6 @@ import Entidades.EntidadInmovil.*;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.*;
-import Fabricas.FabricaEntidad;
-import Fabricas.Sprite;
 
 import java.util.LinkedList;
 import java.util.List;
