@@ -9,22 +9,17 @@ import java.util.List;
 
 public abstract class PowerUp extends EntidadMovil {
     protected boolean FrenarJuego = false;
-    protected int puntaje;
     protected List<PowerUp> listaPowerUpsNivel;
 
     public PowerUp(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
         super(x, y, sprite);
         this.listaPowerUpsNivel = listaPowerUpsNivel;
-        puntaje = 0;
     }
 
     public int accept(Visitor v) {
        return v.visit(this);
     }
 
-    public int getPuntaje() {
-        return puntaje;
-    }
 
     public abstract int setEstadoMario(Jugador j);
 

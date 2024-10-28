@@ -38,6 +38,8 @@ public class Juego {
 	protected ControladorBolasDeFuego controladorBolasDeFuego;
 	protected Sonido sonido;
 	protected int nivel;
+	protected Temporizador temporizador = new Temporizador();
+	protected boolean frenarTick = false;
 
 
 	public Juego(GUI controladorVistas) {
@@ -246,5 +248,31 @@ public class Juego {
 	
 	public int nivel() {
 		return nivel;
+	}
+
+	public void consumirHongo(Jugador mario) {
+		temporizador.iniciar();
+		frenarHilos();
+		aplicarSprite(mario);
+		if (temporizador.hanPasadoNSegundos(2000)) {
+			frenarTick = false;
+			reanudarHilo();
+		}
+	}
+
+	private void aplicarSprite(Jugador mario) {
+		if (mario.getDireccion() == -1)
+			mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
+		if (mario.getDireccion() == +1)
+			mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
+	}
+
+	public boolean frenoElTick() {
+		return frenarTick;
+	}
+
+
+	public void setFrenoElTick(boolean frenar) {
+		frenarTick = frenar;
 	}
 }

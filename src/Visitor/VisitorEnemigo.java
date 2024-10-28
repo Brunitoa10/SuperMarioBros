@@ -20,9 +20,9 @@ public class VisitorEnemigo implements Visitor {
     }
 
     @Override
-    public int visit(Enemigo e) {
+    public void visit(Enemigo e) {
 
-        return 0;
+
     }
 
     @Override

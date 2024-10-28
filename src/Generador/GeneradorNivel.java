@@ -30,9 +30,6 @@ public class GeneradorNivel {
         this.fabricaEntidades = fabricaEntidades;
     }
 
-    public void cambiarFabricaEntidades(CreadorEntidad fabricaEntidades) {
-        this.fabricaEntidades = fabricaEntidades;
-    }
 
     public Nivel generarNivel(int numero) {
         Nivel nivel = new Nivel(numero);

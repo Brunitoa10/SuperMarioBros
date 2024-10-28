@@ -19,17 +19,13 @@ public class HiloRestoEntidades implements Runnable {
     protected boolean FrenarHilo = false;
 
 
-    // Intervalos para actualización y renderizado
     private long lastUpdateTime = System.nanoTime();
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
-    private long lastRenderTime = System.nanoTime();
-    private final long renderInterval = 16_000_000; // Render cada 16ms (60 FPS)
-    private Nivel nivelActual;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     protected List<Entidad> EntidadesAEliminar;
 
+
     public HiloRestoEntidades(Juego juego) {
-        nivelActual = juego.getNivelActual();
         controlador = juego.getControladorVistaJuego();
         EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
         controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
@@ -59,13 +55,12 @@ public class HiloRestoEntidades implements Runnable {
     }
 
 
-    // Método tick para actualizar el estado de las entidades
     private void tick() {
         if(!FrenarHilo)
             controladorColisiones.colisionesRestoEntidades();
     }
 
-    // Método renderizar para actualizar la vista de las entidades
+
     private void renderizar() {
         controlador.actualizarObserver(); // Actualiza la vista de cada entidad
         controlador.refrescar(); // Refresca la pantalla

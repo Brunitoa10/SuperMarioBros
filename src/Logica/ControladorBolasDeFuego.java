@@ -10,9 +10,6 @@ public class ControladorBolasDeFuego {
 
     protected Jugador mario;
     protected OyenteTeclado oyenteTeclado;
-    protected int cooldownBola = 60;
-    protected boolean empezarCooldown;
-    protected Proyectil bolaDeFuego;
     protected Temporizador temporizador;
 
     public ControladorBolasDeFuego(Jugador mario, OyenteTeclado oyenteTeclado) {

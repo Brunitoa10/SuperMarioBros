@@ -17,7 +17,6 @@ import java.util.List;
 
 public class ControladorColisiones {
     protected Nivel nivelActual;
-    protected Temporizador temporizadorActual;
     protected Juego juegoActual;
 
     public ControladorColisiones(Nivel nivelActual, Juego juego) {

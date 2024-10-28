@@ -3,10 +3,6 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import EstadoMovimiento.MarioEnAire;
-
-import Logica.Nivel;
-import Entidades.Proyectiles.BolaDeFuego;
 
 public class SuperMarioFuego implements EstadoJugador {
 

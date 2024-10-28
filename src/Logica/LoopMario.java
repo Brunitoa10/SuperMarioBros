@@ -19,7 +19,6 @@ public class LoopMario implements Runnable {
 	private boolean ejecutando;
 	private Jugador mario;
 	private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-	private boolean enIdle;
 	private long lastUpdateTime = System.nanoTime();
 
 	public LoopMario(Juego juego) {
@@ -66,16 +65,17 @@ public class LoopMario implements Runnable {
 	}
 
 	private void tick() {
-		if (!FrenoElTick) {
+		if (!juego.frenoElTick()) {
 			if (!mario.getMorir()) {
 				juego.moverMario(temporizador);
 				if(mario.getPosicionEnX() > 6350){
 					juego.nivelSiguiente();
 				}
 				juego.lanzarBolasDeFuego(mario);
-				FrenoElTick = controladorColisiones.colisionesMario();
+				if (controladorColisiones.colisionesMario())
+					juego.setFrenoElTick(true);
 				juego.eliminarEntidades();
-				if (mario.getPosicionEnY() > 460) {
+				if (mario.getPosicionEnY() > 460) {  //si cae al vacio
 					mario.setMorir(true);
 				}
 
@@ -91,16 +91,7 @@ public class LoopMario implements Runnable {
 				}
 			}
 		} else {
-			temporizador2.iniciar();
-			juego.frenarHilos();
-			if (mario.getDireccion() == -1)
-				mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
-			if (mario.getDireccion() == +1)
-				mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
-			if (temporizador2.hanPasadoNSegundos(2000)) {
-				FrenoElTick = false;
-				juego.reanudarHilo();
-			}
+			juego.consumirHongo(mario);
 		}
 	}
 

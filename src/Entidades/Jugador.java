@@ -18,13 +18,11 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 	protected boolean enPlataforma;
 	protected Sonido sonido;
 	protected boolean estaVivo;
-	protected int puntaje;
 	protected boolean muerte;
 	protected boolean sumarVida;
 
 	public Jugador(int x, int y, Sprite sprite) {
 		super(x, y, sprite);
-		this.puntaje = 0;
 		this.velocidad = CadenasValidacion.MARIO_VELOCIDAD;
 		inicializacionEstadosYVisitantes();
 		inicializacionBooleanos();

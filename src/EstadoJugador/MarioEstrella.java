@@ -39,9 +39,7 @@ public class MarioEstrella implements EstadoJugador{
     public void actualizarSprite() {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioEstrella");
     }
-    public boolean estadoEstrella() {
-        return true;
-    }
+
     private void iniciarTemporizador() {
         scheduler.schedule(new Runnable() {
             @Override
