@@ -81,10 +81,8 @@ public class Juego {
 	}
 
 	public void iniciar(String modoJuego) {
-
 		this.modoJuego = modoJuego;
 
-		System.out.println("Modojuego juego " + modoJuego);
 		fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
 		fabricaEntidades = new CreadorEntidad(fabricaSprites);
 		generadorNivel = new GeneradorNivel(fabricaEntidades);
@@ -93,8 +91,6 @@ public class Juego {
 		nivelActual = generadorNivel.generarNivel(nivel);
 
 		registrarObservers();
-
-		System.out.println("Logica mostrar modo de juego: " + modoJuego);
 
 		controladorVistas.mostrarPantallaNivel();
 		oyenteTeclado = controladorVistas.obtenerOyente();
