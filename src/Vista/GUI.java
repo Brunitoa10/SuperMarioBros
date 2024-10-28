@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Constantes.ConstantesVista;
 import Entidades.EntidadJugador;
@@ -16,6 +17,7 @@ import Logica.OyenteTeclado;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
+import Vista.Paneles.PanelPantallaCarga;
 import Vista.Paneles.PanelPantallaFinJuego;
 import Vista.Paneles.PanelPantallaModoJuego;
 import Vista.Paneles.PanelPantallaNivel;
@@ -37,7 +39,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	protected Juego miJuego;
 	protected HistorialPaneles historialPaneles;
 	protected String nombreUsuario;
-    protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
+	protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
+	protected PanelPantallaCarga panelPantallaCarga;
 
 	public GUI() {
 		configuracion = ConfiguracionJuego.obtenerInstancia();
@@ -47,9 +50,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 		configurarVentana();
 		configurarPaneles();
-		mostrarPantallaNombreUsuario();
+		mostrarPantallaCarga();
 	}
-
+	
 	public void reiniciarPanelPantallaNivel(){
 		panelPantallaNivel = new PanelPantallaNivel(this);
 	}
@@ -229,13 +232,24 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	public void actualizarImagenFondoNivel(int nivel) {
 		panelPantallaNivel.actualizarImagenFondoNivel(nivel);
 	}
-	
-	
+
+
 	private Image cargarIcono() {
 		return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
 	}
 
 	private void configurarPaneles() {
 		panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+	}
+	
+	private void mostrarPantallaCarga() {
+		panelPantallaCarga = new PanelPantallaCarga();
+		ventana.setContentPane(panelPantallaCarga);
+		refrescar();
+
+	
+		Timer timer = new Timer(4000, e -> mostrarPantallaNombreUsuario());
+		timer.setRepeats(false);
+		timer.start();
 	}
 }
