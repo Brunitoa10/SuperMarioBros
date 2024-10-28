@@ -1,7 +1,9 @@
 package Fabricas;
 
 import Entidades.Enemigos.*;
+import Entidades.Entidad;
 import Entidades.EntidadInmovil.Bandera;
+import Entidades.EntidadInmovil.EntidadInmovil;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.EntidadInmovil.Princesa;
 import Entidades.Jugador;
@@ -50,7 +52,7 @@ public interface FabricaEntidad {
 
     public Tuberia crearTuberia(int x, int y, List<Plataforma> listaPlataformaNivel);
 
-    public BloquePregunta crearBloquePregunta(int x, int y, PowerUp p, List<Plataforma> listaPlataformaNivel);
+    public BloquePregunta crearBloquePregunta(int x, int y, Entidad p, List<Plataforma> listaPlataformaNivel);
 
     public Jugador crearJugador(int x, int y);
 

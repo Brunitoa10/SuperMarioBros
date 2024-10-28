@@ -46,7 +46,7 @@ public class Juego {
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
         vidas = 3;
-        puntaje = 5;
+        puntaje = 0;
         nivel = 1;
     }
 

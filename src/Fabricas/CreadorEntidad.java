@@ -1,6 +1,7 @@
 package Fabricas;
 
 import Entidades.Enemigos.*;
+import Entidades.Entidad;
 import Entidades.EntidadInmovil.Bandera;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.EntidadInmovil.Princesa;
@@ -127,7 +128,7 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public BloquePregunta crearBloquePregunta(int x, int y, PowerUp p, List<Plataforma> listaPlataformaNivel) {
+    public BloquePregunta crearBloquePregunta(int x, int y, Entidad p, List<Plataforma> listaPlataformaNivel) {
         Sprite bloquePreguntaSprite = fabricaSprites.crearSpriteBloquePregunta();
         return new BloquePregunta(x, y, bloquePreguntaSprite, p, listaPlataformaNivel);
     }

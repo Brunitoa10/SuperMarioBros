@@ -5,6 +5,7 @@ import Constantes.ConstantesBloques;
 import Entidades.Enemigos.EstadoSpiny.SpinyEnNube;
 import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
+import Entidades.EntidadInmovil.Moneda;
 import Entidades.Plataformas.SueloNivel;
 import Entidades.Power_Ups.PowerUp;
 import Entidades.Proyectiles.ProyectilKoopa;
@@ -192,7 +193,14 @@ public class GeneradorNivel {
                 nivel.agregarPlataforma(fabricaEntidades.crearLadrilloSolido(x, y, nivel.getPlataformas()));
                 break;
             case 3:
-                nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, casoPowerUps(idPowerUp, x, y - 32, nivel), nivel.getPlataformas()));
+                Moneda moneda;
+                if(idPowerUp == 9) {
+                    moneda = fabricaEntidades.crearMoneda(x, y -32, nivel.getMonedas());
+                    nivel.agregarMoneda(moneda);
+                    nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, moneda, nivel.getPlataformas()));
+                } else {
+                    nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, casoPowerUps(idPowerUp, x, y - 32, nivel), nivel.getPlataformas()));
+                }
                 break;
             case 4:
                 nivel.agregarPlataforma(fabricaEntidades.crearTuberia(x, y, nivel.getPlataformas()));
