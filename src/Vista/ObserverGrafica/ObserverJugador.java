@@ -18,7 +18,7 @@ public class ObserverJugador extends ObserverGrafica {
     @Override
     public void actualizarObserver() {
         super.actualizarObserver();
-        panelPantallaNivel.actualizarScrollHaciaJugador(jugadorObservado);
+        panelPantallaNivel.ajustarScrollHaciaJugador(jugadorObservado);
     }
 
     public EntidadJugador getJugadorObservado() {

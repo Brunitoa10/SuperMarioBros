@@ -16,21 +16,23 @@ import javax.swing.JPanel;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ControladorVista;
-import javax.swing.JTextField;
 
 import Constantes.ConstantesVista;
 
 public class PanelPantallaFinJuego extends JPanel {
 
-    private static final long serialVersionUID = 1L;
-    private ControladorVista controladorVistas;
-    private JLabel imagenFondo;
-    private JButton btnReiniciar;
-    private JButton btnVolverMenu;
+    protected static final long serialVersionUID = 1L;
+    protected ControladorVista controladorVistas;
+    protected JLabel imagenFondo;
+    protected JButton btnReiniciar;
+    protected JButton btnVolverMenu;
     protected String modoJuego;
     protected Sonido sonido;
     protected int puntaje;
-
+    protected ImageIcon iconoImagen;
+    protected Image imagenEscalada;
+    protected Icon iconoImagenEscalado;
+    
     public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
@@ -41,11 +43,15 @@ public class PanelPantallaFinJuego extends JPanel {
         agregarBotonVerRanking();
     }
 
-    protected void agregarImagenFondo() {
+    public String obtenerModoJuego() {
+        return modoJuego;
+    }
+    
+    private void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/FinDeJuego.png"));
-        Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
-        Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
+        iconoImagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/FinDeJuego.png"));
+        imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
+        iconoImagenEscalado = new ImageIcon(imagenEscalada);
         setLayout(null);
         imagenFondo.setIcon(new ImageIcon(PanelPantallaFinJuego.class.getResource("/Recursos/Imagenes/original/FinDeJuego.png")));
         imagenFondo.setBounds(0, 5, 800, 600);
@@ -54,7 +60,7 @@ public class PanelPantallaFinJuego extends JPanel {
 
  
 
-    protected void agregarBotonReiniciar() {
+    private void agregarBotonReiniciar() {
         btnReiniciar = new JButton("");
         btnReiniciar.setBounds(292, 388, 243, 68);
         decorarBotonReiniciar();
@@ -62,7 +68,7 @@ public class PanelPantallaFinJuego extends JPanel {
         registrarOyenteBotonReiniciar();
     }
 
-    protected void agregarBotonVerRanking() {
+    private void agregarBotonVerRanking() {
         btnVolverMenu = new JButton("");
         btnVolverMenu.setBounds(113, 481, 575, 82);
         decorarBotonVolverMenu();
@@ -70,18 +76,18 @@ public class PanelPantallaFinJuego extends JPanel {
         registrarOyenteVerPuntaje();
     }
 
-    protected void decorarBotonReiniciar() {
+    private void decorarBotonReiniciar() {
         btnReiniciar.setBackground(new Color(255, 255, 255));
         transparentarBoton(btnReiniciar);
     }
 
-    protected void decorarBotonVolverMenu() {
+    private void decorarBotonVolverMenu() {
         btnVolverMenu.setBackground(new Color(255, 255, 255));
         transparentarBoton(btnVolverMenu);
     }
 
 
-    protected void registrarOyenteBotonReiniciar() {
+    private void registrarOyenteBotonReiniciar() {
         btnReiniciar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.accionarPantallaModoJuego();
@@ -95,7 +101,7 @@ public class PanelPantallaFinJuego extends JPanel {
         });
     }
 
-    protected void registrarOyenteVerPuntaje() {
+    private void registrarOyenteVerPuntaje() {
         btnVolverMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	controladorVistas.agregarJugadorAlRanking(controladorVistas.obtenerNombreUsuario(), controladorVistas.obtenerPuntajeJugador());
@@ -110,13 +116,10 @@ public class PanelPantallaFinJuego extends JPanel {
         });
     }
 
-    protected void transparentarBoton(JButton boton) {
+    private void transparentarBoton(JButton boton) {
         boton.setOpaque(false);
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);
     }
 
-    public String obtenerModoJuego() {
-        return modoJuego;
-    }
 }

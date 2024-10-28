@@ -35,17 +35,16 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	protected OyenteTeclado oyente;
 	protected ConfiguracionJuego configuracion;
 	protected Juego miJuego;
-	protected HistorialPaneles historialPaneles; // Cambiado a HistorialPaneles
-	protected String nombreUsuario; // Campo para el nombre del usuario
+	protected HistorialPaneles historialPaneles;
+	protected String nombreUsuario;
     protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
 
 	public GUI() {
 		configuracion = ConfiguracionJuego.obtenerInstancia();
 		ranking = new Ranking();
 		this.miJuego = new Juego(this);
-		historialPaneles = new HistorialPaneles(); // Instancia de HistorialPaneles
+		historialPaneles = new HistorialPaneles();
 
-		registrarOyenteVentana();
 		configurarVentana();
 		configurarPaneles();
 		mostrarPantallaNombreUsuario();
@@ -65,14 +64,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		ventana.setVisible(true);
 	}
 
-	protected void registrarOyenteVentana() {
-		// To DO
-	}
-
 	// De interfaz para launcher
 	@Override
 	public void mostrarPantallaInicial(String modoJuego) {
-		configuracion.setModoJuego(modoJuego); // Actualizamos el modo de juego en ConfiguracionJuego
+		configuracion.setModoJuego(modoJuego);
 		panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
 		historialPaneles.push(panelPantallaPrincipal);
 		panelPantallaNivel = new PanelPantallaNivel(this);
@@ -115,10 +110,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void cambiarModoJuego(String modo) {
-		// Actualizamos el modo de juego en ConfiguracionJuego
-		System.out.println("Modo seleccionado: " + modo);
 		configuracion.setModoJuego(modo);
-		mostrarPantallaInicial(modo); // Vuelve a la pantalla principal o inicia el juego
+		mostrarPantallaInicial(modo); 
 	}
 
 	// De interfaz ComandosJuegoVista
@@ -191,7 +184,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void actualizarObserver() {
-		panelPantallaNivel.actualizarObserver();
+		panelPantallaNivel.actualizarObservadores();
 	}
 
 	@Override
@@ -205,15 +198,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public String obtenerModoJuego() {
-		return configuracion.getModoJuego(); // Obtenemos el modo directamente de ConfiguracionJuego
-	}
-
-	private Image cargarIcono() {
-		return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
-	}
-
-	private void configurarPaneles() {
-		panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+		return configuracion.getModoJuego();
 	}
 
 	@Override
@@ -243,6 +228,14 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	public void actualizarImagenFondoNivel(int nivel) {
 		panelPantallaNivel.actualizarImagenFondoNivel(nivel);
-		//refrescar();
+	}
+	
+	
+	private Image cargarIcono() {
+		return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
+	}
+
+	private void configurarPaneles() {
+		panelPantallaModoJuego = new PanelPantallaModoJuego(this);
 	}
 }

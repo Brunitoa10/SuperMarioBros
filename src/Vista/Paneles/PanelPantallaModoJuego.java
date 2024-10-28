@@ -13,58 +13,56 @@ import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaModoJuego extends JPanel {
 
-    private static final long serialVersionUID = 1L;
-    private JButton btnOriginal;
-    private JButton btnAlternativo;
-    private ControladorVista controladorVistas;
- 
+	protected static final long serialVersionUID = 1L;
+	protected JButton btnOriginal;
+	protected JButton btnAlternativo;
+	protected ControladorVista controladorVistas;
 
-    public PanelPantallaModoJuego(ControladorVista controladorVistas) {
-    	this.controladorVistas = controladorVistas;
-        setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
-        setLayout(null);
 
-        crearBotones();
-        registrarOyenteBotones();
-    }
+	public PanelPantallaModoJuego(ControladorVista controladorVistas) {
+		this.controladorVistas = controladorVistas;
+		setPreferredSize(new Dimension(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO));
+		setLayout(null);
 
-    private void crearBotones() {
-        btnOriginal = new JButton("btn_original");
-        btnOriginal.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original/original.png")));
-        btnOriginal.setBounds(0, 0, 393, 600);
-        add(btnOriginal);
+		crearBotones();
+		registrarOyenteBotones();
+	}
 
-        btnAlternativo = new JButton("btn_alternatvo");
-        btnAlternativo.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo/alternativo.png")));
-        btnAlternativo.setBounds(394, 0, 406, 600);
-        add(btnAlternativo);
-    }
-    
-    private void registrarOyenteBotones() {
-    	registrarOyenteBotonOriginal();
-    	registrarOyenteBotonAlternativo();
-    }
+	private void crearBotones() {
+		btnOriginal = new JButton("btn_original");
+		btnOriginal.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/original/original.png")));
+		btnOriginal.setBounds(0, 0, 393, 600);
+		add(btnOriginal);
 
-    private void seleccionarModo(String modo) {
-        controladorVistas.cambiarModoJuego(modo);
-    }
+		btnAlternativo = new JButton("btn_alternatvo");
+		btnAlternativo.setIcon(new ImageIcon(PanelPantallaModoJuego.class.getResource("/Recursos/Imagenes/alternativo/alternativo.png")));
+		btnAlternativo.setBounds(394, 0, 406, 600);
+		add(btnAlternativo);
+	}
 
-    private void registrarOyenteBotonOriginal() {
-    	btnOriginal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seleccionarModo("original");
-            }
-        });
-    }
-    private void registrarOyenteBotonAlternativo() {
-        btnAlternativo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seleccionarModo("alternativo");
-            }
-        });
-    }
+	private void registrarOyenteBotones() {
+		registrarOyenteBotonOriginal();
+		registrarOyenteBotonAlternativo();
+	}
 
-	
+	private void seleccionarModo(String modo) {
+		controladorVistas.cambiarModoJuego(modo);
+	}
+
+	private void registrarOyenteBotonOriginal() {
+		btnOriginal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seleccionarModo("original");
+			}
+		});
+	}
+	private void registrarOyenteBotonAlternativo() {
+		btnAlternativo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seleccionarModo("alternativo");
+			}
+		});
+	}
 }

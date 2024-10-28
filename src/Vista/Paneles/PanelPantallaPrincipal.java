@@ -21,14 +21,16 @@ import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaPrincipal extends JPanel {
 
-    private static final long serialVersionUID = 1L;
-    private ControladorVista controladorVistas;
-    private JLabel imagenFondo;
-    private JButton btnIniciarJuego;
-    private JButton botonPuntajes;
+    protected static final long serialVersionUID = 1L;
+    protected ControladorVista controladorVistas;
+    protected JLabel imagenFondo;
+    protected JButton btnIniciarJuego;
+    protected JButton botonPuntajes;
     protected String modoJuego;
     protected Sonido sonidoBoton;
-
+    protected ImageIcon icono_imagen;
+    protected Image imagen_escalada;
+    
     public PanelPantallaPrincipal(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
@@ -39,10 +41,10 @@ public class PanelPantallaPrincipal extends JPanel {
         agregarBotonPuntaje();
     }
 
-    protected void agregarImagenFondo() {
+    private void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        ImageIcon icono_imagen = new ImageIcon( this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/Inicio.png"));
-        Image imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
+        icono_imagen = new ImageIcon( this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/Inicio.png"));
+        imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         setLayout(null);
         imagenFondo.setIcon(icono_imagen_escalado);
@@ -50,7 +52,7 @@ public class PanelPantallaPrincipal extends JPanel {
         add(imagenFondo);
     }
 
-    protected void agregarBotonIniciar() {
+    private void agregarBotonIniciar() {
         btnIniciarJuego = new JButton("");
         btnIniciarJuego.setBounds(300, 391, 230, 57);
         decorarBotonIniciar();
@@ -59,7 +61,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     }
 
-    protected void agregarBotonPuntaje() {
+    private void agregarBotonPuntaje() {
         botonPuntajes = new JButton();
         decorarBotonPuntajes();
         registrarOyenteBotonPuntajes();
@@ -77,7 +79,7 @@ public class PanelPantallaPrincipal extends JPanel {
         botonPuntajes.setBounds(176, 487, 471, 65);
     }
 
-    protected void registrarOyenteBotonIniciar() {
+    private void registrarOyenteBotonIniciar() {
         btnIniciarJuego.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.accionarInicioJuego(modoJuego);
@@ -91,7 +93,7 @@ public class PanelPantallaPrincipal extends JPanel {
         });
     }
 
-    protected void registrarOyenteBotonPuntajes() {
+    private void registrarOyenteBotonPuntajes() {
         botonPuntajes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.accionarPantallaRanking();
@@ -104,18 +106,8 @@ public class PanelPantallaPrincipal extends JPanel {
             }
         });
     }
-
-   
-    protected void registrarOyenteMouseBoton(JButton boton) {
-        boton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                sonidoBoton.reproducir();
-            }
-        });
-    }
-
-    protected void transparentar_boton(JButton boton) {
+    
+    private void transparentar_boton(JButton boton) {
         boton.setOpaque(false);
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);

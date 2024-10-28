@@ -22,24 +22,24 @@ import Vista.Controladores.ControladorVista;
 
 public class PanelPantallaRanking extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private final JTable tablaJugadores;
-	private final Ranking ranking;
-	private final JButton btnVolver;
+	protected static final long serialVersionUID = 1L;
+	protected JTable tablaJugadores;
+	protected Ranking ranking;
+	protected JButton btnVolver;
 
-	private JLabel lblColumnaIzquierda1;
-	private JLabel lblColumnaIzquierda2;
-	private JLabel lblColumnaDerecha3;
-	private JLabel lblColumnaIzquierda4;
-	private JLabel lblImagenMario;
-	private JLabel lblImagenHongo;
-	private JLabel lblColumnaDerecha1;
-	private JLabel lblColumnaDerecha2;
-	private JLabel lblColumnaIzquierda3;
-	private JLabel lblColumnaDerecha4;
-	private JLabel lblSuper;
+	protected JLabel lblColumnaIzquierda1;
+	protected JLabel lblColumnaIzquierda2;
+	protected JLabel lblColumnaDerecha3;
+	protected JLabel lblColumnaIzquierda4;
+	protected JLabel lblImagenMario;
+	protected JLabel lblImagenHongo;
+	protected JLabel lblColumnaDerecha1;
+	protected JLabel lblColumnaDerecha2;
+	protected JLabel lblColumnaIzquierda3;
+	protected JLabel lblColumnaDerecha4;
+	protected JLabel lblSuper;
 
-	private final ControladorVista controladorVistas;
+	protected ControladorVista controladorVistas;
 	protected String modoJuego;
 
 	public PanelPantallaRanking(ControladorVista controladorVistas, Ranking rankingParametro) {
@@ -69,6 +69,51 @@ public class PanelPantallaRanking extends JPanel {
 		registrarOyenteBotonVolver();
 	}
 
+	private void registrarOyenteBotonVolver() {
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controladorVistas.volverAlPanelAnterior();
+			}
+		});
+	}
+
+	public void llenarTabla() {
+		@SuppressWarnings("serial")
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Puntaje" }) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		tableModel.setRowCount(0);
+
+		Iterable<JugadorRanking> listaJugadores = ranking.mostrarRanking();
+		for (JugadorRanking jugador : listaJugadores) {
+			Object[] fila = new Object[2];
+			fila[0] = jugador.getNombre();
+			fila[1] = jugador.getPuntaje();
+			tableModel.addRow(fila);
+		}
+
+		// Configurar la tabla
+		tablaJugadores.setModel(tableModel);
+		tablaJugadores.setRowHeight(30);
+		tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
+		tablaJugadores.setShowGrid(false);
+		tablaJugadores.setOpaque(false);
+		tablaJugadores.setFillsViewportHeight(true);
+
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
+
+		JTableHeader header = tablaJugadores.getTableHeader();
+		header.setFont(new Font("Arial", Font.BOLD, 20));
+		header.setBackground(new Color(102, 102, 102));
+		header.setForeground(Color.WHITE);
+	}
+	
 	private void crearLblAdicionales() {
 		lblImagenMario = new JLabel("");
 		lblImagenMario.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/" + modoJuego + "/mario.png"))));
@@ -130,51 +175,5 @@ public class PanelPantallaRanking extends JPanel {
 		lblColumnaIzquierda4.setIcon(new ImageIcon(Objects.requireNonNull(PanelPantallaRanking.class.getResource("/Recursos/Imagenes/" + modoJuego + "/bloque_pregunta.png"))));
 		lblColumnaIzquierda4.setBounds(675, 446, 107, 107);
 		add(lblColumnaIzquierda4);
-	}
-
-	protected void registrarOyenteBotonVolver() {
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controladorVistas.volverAlPanelAnterior();
-			}
-		});
-	}
-
-	public void llenarTabla() {
-		// Sobrescribimos el modelo de la tabla para que no sea editable
-		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Puntaje" }) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false; // Hace que las celdas no sean editables
-			}
-		};
-
-		// Limpiar cualquier dato anterior
-		tableModel.setRowCount(0); // Limpia el modelo antes de llenarlo
-
-		Iterable<JugadorRanking> listaJugadores = ranking.mostrarRanking();
-		for (JugadorRanking jugador : listaJugadores) {
-			Object[] fila = new Object[2];
-			fila[0] = jugador.getNombre();
-			fila[1] = jugador.getPuntaje();
-			tableModel.addRow(fila);
-		}
-
-		// Configurar la tabla
-		tablaJugadores.setModel(tableModel);
-		tablaJugadores.setRowHeight(30);
-		tablaJugadores.setFont(new Font("Tahoma", Font.BOLD, 13));
-		tablaJugadores.setShowGrid(false);
-		tablaJugadores.setOpaque(false);
-		tablaJugadores.setFillsViewportHeight(true);
-
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		tablaJugadores.setDefaultRenderer(Object.class, centerRenderer);
-
-		JTableHeader header = tablaJugadores.getTableHeader();
-		header.setFont(new Font("Arial", Font.BOLD, 20));
-		header.setBackground(new Color(102, 102, 102));
-		header.setForeground(Color.WHITE);
 	}
 }
