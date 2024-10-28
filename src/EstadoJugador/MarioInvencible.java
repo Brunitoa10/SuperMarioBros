@@ -1,8 +1,8 @@
 package EstadoJugador;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Constantes.ConstantesPuntaje;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -52,13 +52,14 @@ public class MarioInvencible implements EstadoJugador {
         scheduler.schedule(new Runnable() {
             @Override
             public void run() {
-                    mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
+                mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
                 mario.setEstadoJugador(new Mario(mario));
-                }
+            }
         }, 3, TimeUnit.SECONDS);
     }
+
     @Override
-    public int getPuntajeEstrella(){
+    public int getPuntajeEstrella() {
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
     }
 
@@ -77,7 +78,7 @@ public class MarioInvencible implements EstadoJugador {
         return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_NORMAL;
     }
 
-    public String finalAnimacion(){
+    public String finalAnimacion() {
         return ".gif";
     }
 }

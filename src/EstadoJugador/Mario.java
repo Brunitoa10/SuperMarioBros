@@ -6,7 +6,7 @@ import Entidades.Jugador;
 
 public class Mario implements EstadoJugador {
 
-    protected Jugador mario; 
+    protected Jugador mario;
 
     public Mario(Jugador mario) {
         this.mario = mario;
@@ -23,7 +23,7 @@ public class Mario implements EstadoJugador {
         return false;
     }
 
-    public void actualizarSprite(){
+    public void actualizarSprite() {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario");
 
     }
@@ -33,18 +33,20 @@ public class Mario implements EstadoJugador {
         return false;
     }
 
-    public boolean elHongoLoHaceSuperMario(){
+    public boolean elHongoLoHaceSuperMario() {
         return true;
     }
-    public boolean puedeSerMarioFuego(){
+
+    public boolean puedeSerMarioFuego() {
         return true;
     }
-    public String finalAnimacion(){
+
+    public String finalAnimacion() {
         return "";
     }
 
 
-    public int getPuntajeEstrella(){
+    public int getPuntajeEstrella() {
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
     }
 

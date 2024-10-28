@@ -44,6 +44,18 @@ public class BolaDeFuego extends Proyectil {
         return direccionLocal;
     }
 
+    public void setDireccion(int direccion) {
+        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Proyectiles/ExplosionFinalBola.gif");
+        velocidadX = 0;
+        Gravedad = 0;
+        contador = -10000;
+        condicionDesaparecer = true;
+        if (!condicionDesaparecer) {
+            temporizador.resetear();
+            temporizador.iniciar(); // Iniciar el temporizador para reproducir la animacion
+        }
+    }
+
     @Override
     public void actualizarEntidad() {
         contador++;
@@ -63,18 +75,6 @@ public class BolaDeFuego extends Proyectil {
             Desaparcer();
     }
 
-    public void setDireccion(int direccion) {
-        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Proyectiles/ExplosionFinalBola.gif");
-        velocidadX = 0;
-        Gravedad = 0;
-        contador = -10000;
-        condicionDesaparecer = true;
-        if (!condicionDesaparecer) {
-            temporizador.resetear();
-            temporizador.iniciar(); // Iniciar el temporizador para reproducir la animacion
-        }
-    }
-
     public int accept(Visitor v) {
         return v.visit(this);
 
@@ -89,8 +89,9 @@ public class BolaDeFuego extends Proyectil {
         this.setAEliminar();
         this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
     }
+
     @Override
-    public boolean puedeRomperBloques(){
+    public boolean puedeRomperBloques() {
         return true;
     }
 

@@ -35,7 +35,7 @@ public class PiranhaPlant extends Enemigo {
         if (temporizadorSubirBajar.hanPasadoNSegundos(10000)) {
             if (estaEscondido()) {
                 subiendo = true;
-            } else if(estaEnYMaximo()) {
+            } else if (estaEnYMaximo()) {
                 bajando = true;
             }
         }
@@ -77,7 +77,8 @@ public class PiranhaPlant extends Enemigo {
         if (!estaEscondido()) {
             this.setAEliminar();
             proyectil.setDireccion(0);
-            puntaje = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_DESTRUIDA;;
+            puntaje = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_DESTRUIDA;
+            ;
         }
         return puntaje;
     }

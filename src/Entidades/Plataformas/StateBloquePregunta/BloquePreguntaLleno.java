@@ -1,8 +1,8 @@
 package Entidades.Plataformas.StateBloquePregunta;
 
-import Entidades.Power_Ups.PowerUp;
 import Entidades.Jugador;
 import Entidades.Plataformas.BloquePregunta;
+import Entidades.Power_Ups.PowerUp;
 
 
 public class BloquePreguntaLleno implements EstadoBloquePregunta {

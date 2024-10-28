@@ -8,12 +8,15 @@ public class JugadorRanking {
         this.nombre = nombre;
         this.puntaje = puntaje;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public int getPuntaje() {
         return puntaje;
     }
+
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }

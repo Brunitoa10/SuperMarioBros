@@ -17,7 +17,7 @@ public abstract class PowerUp extends EntidadMovil {
     }
 
     public int accept(Visitor v) {
-       return v.visit(this);
+        return v.visit(this);
     }
 
 

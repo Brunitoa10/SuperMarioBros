@@ -5,7 +5,7 @@ import Vista.ObserverGrafica.Observer;
 
 import java.awt.*;
 
-public interface EntidadLogica{
+public interface EntidadLogica {
     public Sprite getSprite();
 
     public int getPosicionEnX();

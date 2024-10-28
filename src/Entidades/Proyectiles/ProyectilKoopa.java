@@ -97,10 +97,10 @@ public class ProyectilKoopa extends Proyectil {
 
                 }
             } else {
-                if (this.colisionIzquierda(j) && contadorColisiones>3) {
+                if (this.colisionIzquierda(j) && contadorColisiones > 3) {
                     j.getEstadoJugador().recibeDanio(this);
                 }
-                if (this.colisionDerecha(j) && contadorColisiones>3 ) {
+                if (this.colisionDerecha(j) && contadorColisiones > 3) {
                     j.getEstadoJugador().recibeDanio(this);
                 }
             }
@@ -111,7 +111,7 @@ public class ProyectilKoopa extends Proyectil {
         gravedad = true;
     }
 
-    public boolean puedeRomperBloques(){
+    public boolean puedeRomperBloques() {
         return false;
     }
 

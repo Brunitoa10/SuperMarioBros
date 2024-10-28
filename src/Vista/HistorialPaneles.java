@@ -1,11 +1,10 @@
 package Vista;
 
+import javax.swing.*;
 import java.util.Stack;
 
-import javax.swing.JPanel;
-
 public class HistorialPaneles {
-	protected Stack<JPanel> historialPaneles;
+    protected Stack<JPanel> historialPaneles;
 
     public HistorialPaneles() {
         historialPaneles = new Stack<>();

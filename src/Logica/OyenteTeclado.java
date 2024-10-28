@@ -1,14 +1,13 @@
 package Logica;
 
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class OyenteTeclado implements KeyListener {
 
 
-    protected boolean teclaArriba,teclaDerecha,teclaIzquierda,teclaEspacio;
+    protected boolean teclaArriba, teclaDerecha, teclaIzquierda, teclaEspacio;
 
     public OyenteTeclado() {
 
@@ -34,7 +33,7 @@ public class OyenteTeclado implements KeyListener {
             teclaDerecha = true;
         }
 
-        if(code == KeyEvent.VK_SPACE) {
+        if (code == KeyEvent.VK_SPACE) {
             teclaEspacio = true;
         }
 
@@ -56,7 +55,7 @@ public class OyenteTeclado implements KeyListener {
             teclaDerecha = false;
         }
 
-        if(code == KeyEvent.VK_SPACE) {
+        if (code == KeyEvent.VK_SPACE) {
             teclaEspacio = false;
         }
 

@@ -40,23 +40,22 @@ public class KoopaTroopa extends Enemigo {
     public int interactuar(Jugador mario) {
         int toReturn = 0;
 
-            if (mario.colisionAbajo(this)) {
-                this.vidas--;
-                if (vidas == 0) {
-                    this.setAEliminar();
-                    crearProyectilKoopa();
-                }
-                mario.setEstadoMovimiento(new MarioSaltando(mario));
-                toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
-            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                    mario.getEstadoJugador().recibeDanio(this);
-                    if (mario.getMorir()) {
-                        toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
-                    }
-                    else if (this.aEliminar()){
-                        toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
-                    }
+        if (mario.colisionAbajo(this)) {
+            this.vidas--;
+            if (vidas == 0) {
+                this.setAEliminar();
+                crearProyectilKoopa();
             }
+            mario.setEstadoMovimiento(new MarioSaltando(mario));
+            toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
+        } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+            mario.getEstadoJugador().recibeDanio(this);
+            if (mario.getMorir()) {
+                toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_MUERTE_MARIO;
+            } else if (this.aEliminar()) {
+                toReturn = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
+            }
+        }
 
         return toReturn;
     }
@@ -71,6 +70,7 @@ public class KoopaTroopa extends Enemigo {
         proyectil.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
         proyectil.actualizarEntidad();
     }
+
     public int interactuarConProyectil(Proyectil proyectil) {
         int puntajeKoopaTroopaDestruido = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
         this.setAEliminar();

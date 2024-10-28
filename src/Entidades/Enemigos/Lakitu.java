@@ -12,15 +12,16 @@ import IA.IAatacar;
 import java.util.List;
 
 public class Lakitu extends Enemigo {
-protected Jugador jugador;
-protected EstadoLakitu estadoLakitu;
-protected List<Spiny> arsenal;
+    protected Jugador jugador;
+    protected EstadoLakitu estadoLakitu;
+    protected List<Spiny> arsenal;
+
     public Lakitu(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel, Jugador mario, List<Spiny> arsenal) {
         super(x, y, sprite, new IAatacar(mario), listaEnemigoNivel);
         velocidad = 4;
         jugador = mario;
         this.arsenal = arsenal;
-        estadoLakitu=new LakituMoviendose(mario,this,this.getComportamientoIA());
+        estadoLakitu = new LakituMoviendose(mario, this, this.getComportamientoIA());
 
     }
 
@@ -31,14 +32,14 @@ protected List<Spiny> arsenal;
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-            if (mario.colisionAbajo(this)) {
-                this.setAEliminar();
-                toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
-            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+        if (mario.colisionAbajo(this)) {
+            this.setAEliminar();
+            toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
+        } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
 
-                    this.setAEliminar();
-                    toReturn = (ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
-                }
+            this.setAEliminar();
+            toReturn = (ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
+        }
         return toReturn;
     }
 
@@ -53,18 +54,18 @@ protected List<Spiny> arsenal;
         this.estadoLakitu = estadoLakitu;
     }
 
-    public void lanzar(){
-        if(arsenal.isEmpty()){
+    public void lanzar() {
+        if (arsenal.isEmpty()) {
             this.setAEliminar();
-        }else{
+        } else {
             Spiny spiny = arsenal.getFirst();
-            spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),32,32);
+            spiny.getHitbox().setBounds(spiny.getPosicionEnX(), spiny.getPosicionEnY(), 32, 32);
             spiny.setEstadoSpiny(new SpinyCayendo(spiny));
             arsenal.removeFirst();
         }
     }
 
-    public boolean tengoSpiny(){
+    public boolean tengoSpiny() {
         return !arsenal.isEmpty();
     }
 

@@ -9,22 +9,21 @@ public class MarioCaminando implements EstadoMovimiento {
     public MarioCaminando(Jugador mario) {
         this.mario = mario;
         mario.getEstadoJugador().actualizarSprite();
-        mario.setPosicionEnX(mario.getPosicionEnX()+mario.getVelocidad()*mario.getDireccion());
+        mario.setPosicionEnX(mario.getPosicionEnX() + mario.getVelocidad() * mario.getDireccion());
         System.out.println("Me cree por alguna razon");
-        if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif"+mario.getEstadoJugador().finalAnimacion());
-        }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif"+mario.getEstadoJugador().finalAnimacion());
+        if (mario.getDireccion() == 1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/RunningLoop/MarioCaminandoRight.gif" + mario.getEstadoJugador().finalAnimacion());
+        } else {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/RunningLoop/MarioCaminandoLeft.gif" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 
     @Override
     public void saltar() {
         System.out.println("Aprete W");
-            mario.setEstadoMovimiento(new MarioSaltando(mario));
+        mario.setEstadoMovimiento(new MarioSaltando(mario));
 
     }
-
 
     @Override
     public void desplazarEnX(int direccion) {
@@ -35,10 +34,10 @@ public class MarioCaminando implements EstadoMovimiento {
     @Override
     public void actualizar() {
         mario.getEstadoJugador().actualizarSprite();
-        if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoRight.gif"+mario.getEstadoJugador().finalAnimacion());
-        }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/RunningLoop/MarioCaminandoLeft.gif"+mario.getEstadoJugador().finalAnimacion());
+        if (mario.getDireccion() == 1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/RunningLoop/MarioCaminandoRight.gif" + mario.getEstadoJugador().finalAnimacion());
+        } else {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/RunningLoop/MarioCaminandoLeft.gif" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -47,7 +46,7 @@ public class MarioCaminando implements EstadoMovimiento {
     }
 
     public void EnAire() {
-        mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+        mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
     }
 
     @Override

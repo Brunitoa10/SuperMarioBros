@@ -1,17 +1,17 @@
 package EstadoJugador;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Constantes.ConstantesPuntaje;
 
-public class SuperMario implements EstadoJugador{
+public class SuperMario implements EstadoJugador {
 
     protected Jugador mario;
 
     public SuperMario(Jugador mario) {
         this.mario = mario;
-        mario.setPosicionEnY(mario.getPosicionEnY()-16);
-        mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,48);
+        mario.setPosicionEnY(mario.getPosicionEnY() - 16);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 48);
     }
 
     public void recibeDanio(Entidad e) {
@@ -23,7 +23,7 @@ public class SuperMario implements EstadoJugador{
         return false;
     }
 
-    public void actualizar(){
+    public void actualizar() {
 
     }
 
@@ -36,11 +36,11 @@ public class SuperMario implements EstadoJugador{
         return true;
     }
 
-    public boolean elHongoLoHaceSuperMario(){
+    public boolean elHongoLoHaceSuperMario() {
         return false;
     }
 
-    public boolean puedeSerMarioFuego(){
+    public boolean puedeSerMarioFuego() {
         return true;
     }
 
@@ -64,7 +64,7 @@ public class SuperMario implements EstadoJugador{
         return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_SUPER_MARIO;
     }
 
-    public String finalAnimacion(){
+    public String finalAnimacion() {
         return "";
     }
 }

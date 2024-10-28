@@ -34,21 +34,21 @@ public class Goomba extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-            if (!Mori)
-                if (mario.colisionAbajo(this)) {
-                    temporizadorGoomba.iniciar();
-                    this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.png");
-                    this.setPosicionEnY(436);
+        if (!Mori)
+            if (mario.colisionAbajo(this)) {
+                temporizadorGoomba.iniciar();
+                this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.png");
+                this.setPosicionEnY(436);
+                Mori = true;
+                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+            } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
+                mario.getEstadoJugador().recibeDanio(this);
+                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
+                if (this.aEliminar()) {
                     Mori = true;
                     toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
-                } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-                        mario.getEstadoJugador().recibeDanio(this);
-                        toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
-                        if(this.aEliminar()) {
-                            Mori = true;
-                            toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
-                        }
-                    }
+                }
+            }
         return toReturn;
     }
 

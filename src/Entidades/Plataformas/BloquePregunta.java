@@ -13,7 +13,6 @@ public class BloquePregunta extends Plataforma {
 
     protected PowerUp powerUp;
     protected EstadoBloquePregunta estado;
-    protected boolean meRompi = false;
     protected String nombre;
 
     public BloquePregunta(int x, int y, Sprite sprite, PowerUp p, List<Plataforma> listaPlataformaNivel) {
@@ -32,10 +31,6 @@ public class BloquePregunta extends Plataforma {
 
     public void setEstado(EstadoBloquePregunta estado) {
         this.estado = estado;
-    }
-
-    public boolean Roto() {
-        return meRompi;
     }
 
     public PowerUp getPowerUp() {

@@ -1,5 +1,6 @@
 package Entidades;
 
+import Constantes.ConstantesBloques;
 import Entidades.EntidadInmovil.EntidadInmovil;
 import Fabricas.Sprite;
 import Logica.Temporizador;
@@ -7,19 +8,17 @@ import Visitor.Visitor;
 
 import java.util.List;
 
-import Constantes.ConstantesBloques;
-
 public class Vacio extends EntidadInmovil {
- 
+
     protected Temporizador temporizador;
     protected String[] frames;
     protected boolean animacionActiva; // Controla si la animación está activa
     protected List<Vacio> listaVacioNivel;
-    protected int cantidadSegundos=0;
+    protected int cantidadSegundos = 0;
 
     public Vacio(int x, int y, Sprite sprite, List<Vacio> listaVacioNivel) {
         super(x, y, sprite);
-        temporizador=new Temporizador();
+        temporizador = new Temporizador();
         animacionActiva = false;
         this.listaVacioNivel = listaVacioNivel;
     }
@@ -43,10 +42,10 @@ public class Vacio extends EntidadInmovil {
 
     }
 
-    public void setAnimacionFinal(int segundos){
+    public void setAnimacionFinal(int segundos) {
         temporizador.iniciar();
-        cantidadSegundos=segundos;
-        animacionActiva = true;  
+        cantidadSegundos = segundos;
+        animacionActiva = true;
     }
 
     public void actualizar() {
@@ -55,7 +54,7 @@ public class Vacio extends EntidadInmovil {
 
         }
     }
-  
+
     @Override
     public void eliminarEntidad() {
         listaVacioNivel.remove(this);
