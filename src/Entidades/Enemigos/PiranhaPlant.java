@@ -15,7 +15,6 @@ public class PiranhaPlant extends Enemigo {
     protected VisitorEnemigo visitor;
     protected int yEscondido;
     protected int yMaximo;
-    protected IAPiranhaPlant iapiranhaPlant;
     protected boolean subiendo;
     protected boolean bajando;
     protected Temporizador temporizadorSubirBajar;
