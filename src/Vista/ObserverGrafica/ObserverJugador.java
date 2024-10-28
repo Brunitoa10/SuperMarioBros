@@ -5,8 +5,12 @@ import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverJugador extends ObserverGrafica {
 
-    private PanelPantallaNivel panelPantallaNivel;
-    private EntidadJugador jugadorObservado;
+    /**
+	 * 
+	 */
+	protected static final long serialVersionUID = 1L;
+	protected PanelPantallaNivel panelPantallaNivel;
+    protected EntidadJugador jugadorObservado;
 
     public ObserverJugador(PanelPantallaNivel panelPantallaNivel, EntidadJugador jugadorObservado) {
         super(jugadorObservado);

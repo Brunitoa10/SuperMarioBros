@@ -1,13 +1,16 @@
 package Vista.ObserverGrafica;
 
-import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import Vista.Paneles.PanelPantallaNivel;
 
 public class ObserverEntidad extends ObserverGrafica {
 
-    private PanelPantallaNivel panelPantallaNivel;
-    private EntidadLogica entidadObservada;
+    /**
+	 * 
+	 */
+	protected static final long serialVersionUID = 1L;
+	protected PanelPantallaNivel panelPantallaNivel;
+    protected EntidadLogica entidadObservada;
 
     public ObserverEntidad(EntidadLogica entidadObservada,PanelPantallaNivel panelPantallaNivel) {
         super(entidadObservada);
