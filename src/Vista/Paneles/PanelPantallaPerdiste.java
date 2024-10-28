@@ -19,7 +19,7 @@ import Vista.Controladores.ControladorVista;
 
 import Constantes.ConstantesVista;
 
-public class PanelPantallaFinJuego extends JPanel {
+public class PanelPantallaPerdiste extends JPanel {
 
     protected static final long serialVersionUID = 1L;
     protected ControladorVista controladorVistas;
@@ -33,11 +33,11 @@ public class PanelPantallaFinJuego extends JPanel {
     protected Image imagenEscalada;
     protected Icon iconoImagenEscalado;
     
-    public PanelPantallaFinJuego(ControladorVista controladorVistas, String modoJuego) {
+    public PanelPantallaPerdiste(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
         sonido = SonidoFactory.crearSonido(modoJuego, "boton");
-        setSize(803, 601);
+        setSize(ConstantesVista.PANEL_ANCHO,ConstantesVista.PANEL_ALTO);
         agregarImagenFondo();
         agregarBotonReiniciar();
         agregarBotonVerRanking();
@@ -53,7 +53,7 @@ public class PanelPantallaFinJuego extends JPanel {
         imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         iconoImagenEscalado = new ImageIcon(imagenEscalada);
         setLayout(null);
-        imagenFondo.setIcon(new ImageIcon(PanelPantallaFinJuego.class.getResource("/Recursos/Imagenes/original/FinDeJuego.png")));
+        imagenFondo.setIcon(new ImageIcon(PanelPantallaPerdiste.class.getResource("/Recursos/Imagenes/original/FinDeJuego.png")));
         imagenFondo.setBounds(0, 5, 800, 600);
         add(imagenFondo);
     }
@@ -71,7 +71,7 @@ public class PanelPantallaFinJuego extends JPanel {
     private void agregarBotonVerRanking() {
         btnVolverMenu = new JButton("");
         btnVolverMenu.setBounds(113, 481, 575, 82);
-        decorarBotonVolverMenu();
+        decorarBotonVerPuntaje();
         add(btnVolverMenu);
         registrarOyenteVerPuntaje();
     }
@@ -81,7 +81,7 @@ public class PanelPantallaFinJuego extends JPanel {
         transparentarBoton(btnReiniciar);
     }
 
-    private void decorarBotonVolverMenu() {
+    private void decorarBotonVerPuntaje() {
         btnVolverMenu.setBackground(new Color(255, 255, 255));
         transparentarBoton(btnVolverMenu);
     }

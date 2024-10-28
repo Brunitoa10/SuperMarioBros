@@ -18,10 +18,10 @@ import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
 import Vista.Paneles.PanelPantallaCarga;
-import Vista.Paneles.PanelPantallaFinJuego;
 import Vista.Paneles.PanelPantallaModoJuego;
 import Vista.Paneles.PanelPantallaNivel;
 import Vista.Paneles.PanelPantallaNombreUsuario;
+import Vista.Paneles.PanelPantallaPerdiste;
 import Vista.Paneles.PanelPantallaPrincipal;
 import Vista.Paneles.PanelPantallaRanking;
 
@@ -30,7 +30,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	protected JFrame ventana;
 	protected PanelPantallaNivel panelPantallaNivel;
 	protected PanelPantallaPrincipal panelPantallaPrincipal;
-	protected PanelPantallaFinJuego panelPantallaFinJuego;
+	protected PanelPantallaPerdiste panelPantallaFinJuego;
 	protected PanelPantallaRanking panelPantallaRanking;
 	protected PanelPantallaModoJuego panelPantallaModoJuego;
 	protected Ranking ranking;
@@ -86,8 +86,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		miJuego.iniciar(modoJuego);
 	}
 
-	public void crearPantallaFinJuego(String modoJuego){
-		panelPantallaFinJuego = new PanelPantallaFinJuego(this, modoJuego);
+	public void crearPantallaPerdiste(String modoJuego){
+		panelPantallaFinJuego = new PanelPantallaPerdiste(this, modoJuego);
 	}
 
 	public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar){

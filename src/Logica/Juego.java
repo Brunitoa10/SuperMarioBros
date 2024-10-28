@@ -76,7 +76,7 @@ public class Juego {
 	}
 
 	public void mostrarPantallaFinJuego(){
-		controladorVistas.crearPantallaFinJuego(modoJuego);
+		controladorVistas.crearPantallaPerdiste(modoJuego);
 		controladorVistas.mostrarPantallaFinJuego();
 	}
 
