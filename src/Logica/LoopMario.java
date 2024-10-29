@@ -2,6 +2,7 @@ package Logica;
 
 import Entidades.Jugador;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -18,6 +19,7 @@ public class LoopMario implements Runnable {
     protected Temporizador temporizador2;
     private boolean ejecutando;
     private Jugador mario;
+    protected boolean puedoEliminar=false;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private long lastUpdateTime = System.nanoTime();
 
@@ -67,6 +69,7 @@ public class LoopMario implements Runnable {
 
     private void tick() {
         if (!juego.frenoElTick()) {
+            puedoEliminar = false;
             if (!mario.getMorir()) {
                 juego.moverMario(temporizador);
                 if (mario.getPosicionEnX() > 6350) {
@@ -75,7 +78,6 @@ public class LoopMario implements Runnable {
                 juego.lanzarBolasDeFuego(mario);
                 if (controladorColisiones.colisionesMario())
                     juego.setFrenoElTick(true);
-                juego.eliminarEntidades();
                 if (juego.marioCaeAlVacio(mario)) {
                     mario.setMorir(true);
                 }
@@ -91,11 +93,11 @@ public class LoopMario implements Runnable {
                     juego.manejarMuerte();
                 }
             }
-            
-            juego.getControladorVistaJuego().actualizarTiempoJuego(temporizador.obtenerTiempoTranscurrido());
+
         } else {
             juego.consumirHongo(mario);
         }
+        puedoEliminar=true;
     }
 
     private void empezarCooldownMorir() {

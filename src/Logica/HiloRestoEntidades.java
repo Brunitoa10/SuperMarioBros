@@ -17,11 +17,13 @@ public class HiloRestoEntidades implements Runnable {
     private ControladorVistaJuego controlador;
     private ControladorColisiones controladorColisiones;
     private long lastUpdateTime = System.nanoTime();
+    protected boolean puedoEliminar=false;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-
+    protected Juego juego;
 
     public HiloRestoEntidades(Juego juego) {
         controlador = juego.getControladorVistaJuego();
+        this.juego = juego;
         EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
         controladorColisiones = new ControladorColisiones(juego.getNivelActual(), juego);
     }
@@ -45,14 +47,25 @@ public class HiloRestoEntidades implements Runnable {
                 lastUpdateTime = now;
                 tick();
                 renderizar();
+                if(juego.loopMario.puedoEliminar) {
+                    juego.frenarTick=true;
+                    juego.frenarHilos();
+                    juego.eliminarEntidades();
+                    juego.frenarTick=false;
+                    juego.reanudarHilo();
+                }
             }
         }
     }
 
 
     private void tick() {
-        if (!FrenarHilo)
+        puedoEliminar=false;
+        if (!FrenarHilo) {
             controladorColisiones.colisionesRestoEntidades();
+        }
+        puedoEliminar = true;
+
     }
 
 
