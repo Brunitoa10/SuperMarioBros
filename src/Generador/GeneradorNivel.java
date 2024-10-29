@@ -168,12 +168,15 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivelDos(Nivel nivel) {
-        //nivel.agregarVacio(new Vacio(3197, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 149, 32), nivel.getVacios()));
-        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 3996, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(1695, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 526, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2247, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
+        nivel.agregarVacio(new Vacio(2332, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 149, 32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4332, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 99, 32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4552, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 99, 32), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(5232, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 349, 32), nivel.getVacios()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 3131, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2482, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 1849, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4432, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 99, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4632, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 599, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(5582, 453, new Sprite(ConstantesBloques.SPRITE_VACIA, 1483, 69), nivel.getPlataformas()));
     }
 
     private void generarVaciosYSuelosNivelTres(Nivel nivel) {

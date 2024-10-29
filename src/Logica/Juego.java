@@ -272,7 +272,7 @@ public class Juego {
 
     private void aplicarSprite(Jugador mario) {
         if (mario.getDireccion() == -1)
-            mario.getSprite().setRutaImagen("src/Recursos6/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
+            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
         if (mario.getDireccion() == +1)
             mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
     }
