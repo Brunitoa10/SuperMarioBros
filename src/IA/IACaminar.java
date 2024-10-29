@@ -9,8 +9,6 @@ public class IACaminar implements ComportamientoIA {
    
     protected Temporizador temporizador;
     protected boolean gravedad;
-    protected int yMaximo;
-    protected int yEscondido;
 
     public IACaminar() {
         temporizador = new Temporizador();
@@ -31,10 +29,6 @@ public class IACaminar implements ComportamientoIA {
             temporizador.resetear();
         }
         enemigo.setPosicionEnX(enemigo.getPosicionEnX() + (enemigo.getVelocidad() * enemigo.getDireccion()));
-    }
-
-    public void actualizarPiranha(Enemigo enemigo) {
-
     }
 
     public boolean comienzoAtaque(){
