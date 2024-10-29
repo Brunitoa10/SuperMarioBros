@@ -2,12 +2,15 @@ package IA;
 
 
 import Entidades.Enemigos.Enemigo;
+import Entidades.Enemigos.PiranhaPlant;
 import Logica.Temporizador;
 
 public class IACaminar implements ComportamientoIA {
    
     protected Temporizador temporizador;
     protected boolean gravedad;
+    protected int yMaximo;
+    protected int yEscondido;
 
     public IACaminar() {
         temporizador = new Temporizador();
@@ -30,8 +33,8 @@ public class IACaminar implements ComportamientoIA {
         enemigo.setPosicionEnX(enemigo.getPosicionEnX() + (enemigo.getVelocidad() * enemigo.getDireccion()));
     }
 
-    public void activarGravedad(){
-       gravedad = true;
+    public void actualizarPiranha(Enemigo enemigo) {
+
     }
 
     public boolean comienzoAtaque(){

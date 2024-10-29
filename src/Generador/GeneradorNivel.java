@@ -54,12 +54,12 @@ public class GeneradorNivel {
                 System.out.println("El identidad es" + idEntidad);
                 int posicionX = Integer.parseInt(datos[1]);
                 int posicionY = Integer.parseInt(datos[2]);
-                int idPowerUp = 5;
-                if (idEntidad == 3) {
-                    idPowerUp = Integer.parseInt(datos[3]);
+                int idExtra = 5;
+                if (idEntidad == 3 || idEntidad == 4) {
+                    idExtra = Integer.parseInt(datos[3]);
                 }
                 if (idEntidad >= 1 && idEntidad <= 4) {
-                    this.casoPlataformas(idEntidad, posicionX, posicionY, idPowerUp, nivel);
+                    this.casoPlataformas(idEntidad, posicionX, posicionY, idExtra, nivel);
                 } else if (idEntidad >= 5 && idEntidad <= 8) {
                     this.casoPowerUps(idEntidad, posicionX, posicionY, nivel);
                 } else if (idEntidad >= 10 && idEntidad <= 16) {
@@ -168,13 +168,8 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivelDos(Nivel nivel) {
-        nivel.agregarPlataforma(new SueloNivel(1624, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 70, 32), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(2222, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 104, 32), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(4575, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 70, 32), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(1695, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 526, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2247, 69), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
+        nivel.agregarVacio(new Vacio(3197, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 149, 32), nivel.getVacios()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 3996, 69), nivel.getPlataformas()));
     }
 
     private void generarVaciosYSuelosNivelTres(Nivel nivel) {
@@ -184,7 +179,7 @@ public class GeneradorNivel {
         nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
     }
 
-    private void casoPlataformas(int idEntidad, int x, int y, int idPowerUp, Nivel nivel) {
+    private void casoPlataformas(int idEntidad, int x, int y, int idExtra, Nivel nivel) {
         switch (idEntidad) {
             case 1:
                 nivel.agregarPlataforma(fabricaEntidades.crearBloqueSolido(x, y, nivel.getPlataformas()));
@@ -194,16 +189,20 @@ public class GeneradorNivel {
                 break;
             case 3:
                 Moneda moneda;
-                if(idPowerUp == 9) {
+                if(idExtra == 9) {
                     moneda = fabricaEntidades.crearMoneda(x, y -32, nivel.getMonedas());
                     nivel.agregarMoneda(moneda);
                     nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, moneda, nivel.getPlataformas()));
                 } else {
-                    nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, casoPowerUps(idPowerUp, x, y - 32, nivel), nivel.getPlataformas()));
+                    nivel.agregarPlataforma(fabricaEntidades.crearBloquePregunta(x, y, casoPowerUps(idExtra, x, y - 32, nivel), nivel.getPlataformas()));
                 }
                 break;
             case 4:
                 nivel.agregarPlataforma(fabricaEntidades.crearTuberia(x, y, nivel.getPlataformas()));
+                if (idExtra == 1) {
+                    nivel.agregarEnemigo(fabricaEntidades.crearPiranhaPlant(x+16, y, nivel.getEnemigos()));
+                }
+                break;
         }
     }
 }

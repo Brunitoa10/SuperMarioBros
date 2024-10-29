@@ -34,11 +34,6 @@ public class IAatacar implements ComportamientoIA{
 			comienzoAtaque = true;
 	}
 
-	@Override
-	public void activarGravedad() {
-
-	}
-
 	public boolean comienzoAtaque(){
 		return comienzoAtaque;
 	}

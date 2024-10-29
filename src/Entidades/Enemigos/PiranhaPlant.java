@@ -14,47 +14,13 @@ public class PiranhaPlant extends Enemigo {
 
     protected VisitorEnemigo visitor;
     protected int yEscondido;
-    protected int yMaximo;
-    protected boolean subiendo;
-    protected boolean bajando;
-    protected Temporizador temporizadorSubirBajar;
 
 
     public PiranhaPlant(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
-        super(x, y, sprite, new IAPiranhaPlant(), listaEnemigoNivel);
+        super(x, y, sprite, new IAPiranhaPlant(y, y - sprite.getAlto()), listaEnemigoNivel);
         visitor = new VisitorEnemigo(this);
         velocidad = 1;
         yEscondido = y;
-        yMaximo = yEscondido - (int) this.getHitbox().getHeight();
-        temporizadorSubirBajar = new Temporizador();
-        temporizadorSubirBajar.iniciar();
-    }
-
-    public void actualizar() {
-        if (temporizadorSubirBajar.hanPasadoNSegundos(10000)) {
-            if (estaEscondido()) {
-                subiendo = true;
-            } else if (estaEnYMaximo()) {
-                bajando = true;
-            }
-        }
-        if (subiendo) {
-            subirPlanta();
-            if (estaEnYMaximo()) {
-                subiendo = false;
-                temporizadorSubirBajar.resetear();
-                temporizadorSubirBajar.iniciar();
-            }
-        }
-        if (bajando) {
-            bajarPlanta();
-            if (estaEscondido()) {
-                bajando = false;
-                temporizadorSubirBajar.resetear();
-                temporizadorSubirBajar.iniciar();
-            }
-        }
-        super.actualizarEntidad();
     }
 
     public int interactuar(Jugador mario) {
@@ -85,17 +51,5 @@ public class PiranhaPlant extends Enemigo {
 
     public boolean estaEscondido() {
         return yEscondido == posicionY;
-    }
-
-    public boolean estaEnYMaximo() {
-        return yMaximo == posicionY;
-    }
-
-    private void subirPlanta() {
-        this.setPosicionEnY(this.getPosicionEnY() - velocidad);
-    }
-
-    private void bajarPlanta() {
-        this.setPosicionEnY(this.getPosicionEnY() + velocidad);
     }
 }
