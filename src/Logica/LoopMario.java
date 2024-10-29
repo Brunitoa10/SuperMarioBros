@@ -107,5 +107,6 @@ public class LoopMario implements Runnable {
    
     private void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
+        juego.getControladorVistaJuego().refrescar();
     }
 }

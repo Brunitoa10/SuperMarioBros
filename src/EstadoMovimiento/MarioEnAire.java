@@ -12,11 +12,7 @@ public class MarioEnAire implements EstadoMovimiento {
     public MarioEnAire(Jugador mario, int velocidadY) {
         this.mario = mario;
         this.velocidadY = velocidadY;
-        if (mario.getDireccion() == 1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/JumpingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
-        } else {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/JumpingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
-        }
+
     }
 
     @Override

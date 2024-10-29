@@ -13,6 +13,7 @@ public class MarioParado implements EstadoMovimiento {
         } else {
             mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
         }
+
     }
 
     @Override
