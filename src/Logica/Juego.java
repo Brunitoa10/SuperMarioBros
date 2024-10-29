@@ -41,6 +41,7 @@ public class Juego {
     protected int vidas;
     protected int puntaje;
     protected int tiempoJuego;
+    protected boolean animacionGanando = false;
     
 	public Juego(GUI controladorVistas) {
 		this.controladorVistas = controladorVistas;
@@ -290,5 +291,30 @@ public class Juego {
         getNivelActual().agregarProyectil(bolaDeFuego);
         Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
         bolaDeFuego.registrarObserver(observer);
+    }
+
+    public void setAnimacionGanando(boolean tocoBandera){
+        animacionGanando = tocoBandera;
+    }
+
+    public boolean animacionGanando() {
+        return animacionGanando;
+    }
+
+    public void checkearGanarNivel(Jugador mario) {
+        if (mario.getPosicionEnX() >= 6150) {
+            mario.setVelocidad(1);
+            animacionGanando = true;
+        }
+    }
+
+    public void hacerAnimacionGanar(Jugador mario) {
+        mario.desplazarEnX(1);
+
+        if (mario.getPosicionEnX() > 6350) {
+            mario.setVelocidad(CadenasValidacion.MARIO_VELOCIDAD);
+            nivelSiguiente();
+            animacionGanando = false;
+        }
     }
 }

@@ -23,6 +23,7 @@ public class LoopMario implements Runnable {
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private long lastUpdateTime = System.nanoTime();
 
+
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();
         this.controladorColisiones = new ControladorColisiones(juego.getNivelActual(), juego);
@@ -71,10 +72,14 @@ public class LoopMario implements Runnable {
         if (!juego.frenoElTick()) {
             puedoEliminar = false;
             if (!mario.getMorir()) {
-                juego.moverMario(temporizador);
-                if (mario.getPosicionEnX() > 6350) {
-                    juego.nivelSiguiente();
-                }
+
+                juego.checkearGanarNivel(mario);
+
+                if (!juego.animacionGanando())
+                    juego.moverMario(temporizador);
+                else
+                    juego.hacerAnimacionGanar(mario);
+
                 juego.lanzarBolasDeFuego(mario);
                 if (controladorColisiones.colisionesMario())
                     juego.setFrenoElTick(true);
