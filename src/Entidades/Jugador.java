@@ -1,6 +1,7 @@
 package Entidades;
 
 import Constantes.CadenasValidacion;
+import EstadoJugador.Puntajes;
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
@@ -20,12 +21,14 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected boolean estaVivo;
     protected boolean muerte;
     protected boolean sumarVida;
+    protected static final Puntajes MATRIZPUNTAJE=new Puntajes();
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.velocidad = CadenasValidacion.MARIO_VELOCIDAD;
+        this.velocidad = 12;
         inicializacionEstadosYVisitantes();
         inicializacionBooleanos();
+
     }
 
     public EstadoJugador getEstadoJugador() {
@@ -125,6 +128,10 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         this.estaVivo = true;
         muerte = false;
         sumarVida = false;
+    }
+
+    public Puntajes getPuntajes(){
+        return MATRIZPUNTAJE;
     }
 
 }

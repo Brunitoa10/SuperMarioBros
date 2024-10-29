@@ -7,6 +7,7 @@ import Entidades.Jugador;
 public class SuperMarioFuego implements EstadoJugador {
 
     protected Jugador mario;
+    protected static final int FILA=2;
 
     public SuperMarioFuego(Jugador mario) {
         this.mario = mario;
@@ -19,33 +20,16 @@ public class SuperMarioFuego implements EstadoJugador {
     }
 
     @Override
-    public int getPuntajeEstrella() {
-        return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeSuperChampinion() {
-        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_SUPER_MARIO;
-    }
-
-    @Override
-    public int getPuntajeChampinionVerde() {
-        return ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE;
-    }
-
-    @Override
-    public int getPuntajeFlorDeFuego() {
-        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_CON_FUEGO;
-    }
-
-    @Override
     public boolean puedeLanzarBolaFuego() {
         return true;
     }
 
-    @Override
-    public void actualizarSprite() {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego");
+    public String inicioAnimacion(){
+        return "src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego";
+    }
+
+    public void actualizarEstadoJugador() {
+
     }
 
     @Override
@@ -64,6 +48,10 @@ public class SuperMarioFuego implements EstadoJugador {
 
     public String finalAnimacion() {
         return "";
+    }
+
+    public int getPuntaje(int columna){
+        return mario.getPuntajes().getPuntaje(FILA,columna);
     }
 }
 

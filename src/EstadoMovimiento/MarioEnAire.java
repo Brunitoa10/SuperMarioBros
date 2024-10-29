@@ -29,7 +29,7 @@ public class MarioEnAire implements EstadoMovimiento {
     @Override
     public void actualizar() {
         // Movimiento horizontal
-        mario.getEstadoJugador().actualizarSprite();
+        mario.getEstadoJugador().actualizarEstadoJugador();
 
         // Aplicar gravedad (para que empiece a bajar eventualmente)
         if (velocidadY <= TOPE_GRAVEDAD) {
@@ -40,9 +40,9 @@ public class MarioEnAire implements EstadoMovimiento {
         mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
         if (mario.getDireccion() == 1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/JumpingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
+            mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion() + "/JumpingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
         } else {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/JumpingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
+            mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion() + "/JumpingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 

@@ -7,7 +7,7 @@ import Fabricas.Sprite;
 import java.util.List;
 
 public class ChampinionVerde extends PowerUp {
-
+protected static final int COLUMNA=3;
     public ChampinionVerde(int x, int y, Sprite sprite, List<PowerUp> listaPowerUpsNivel) {
         super(x, y, sprite, listaPowerUpsNivel);
     }
@@ -15,6 +15,6 @@ public class ChampinionVerde extends PowerUp {
     @Override
     public int setEstadoMario(Jugador j) {
         j.sumarUnaVida(true);
-        return ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE;
+        return j.getEstadoJugador().getPuntaje(COLUMNA);
     }
 }

@@ -3,9 +3,11 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Logica.Temporizador;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class MarioEstrella implements EstadoJugador {
@@ -14,17 +16,18 @@ public class MarioEstrella implements EstadoJugador {
     protected Jugador mario;
     protected EstadoJugador estadoAnterior;
     protected int alto;
-    private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    protected static final int FILA=3;
+    protected Temporizador temporizador;
 
     public MarioEstrella(Jugador mario) {
         estadoAnterior = mario.getEstadoJugador();
         this.mario = mario;
-        iniciarTemporizador();
         alto = (int) mario.getHitbox().getHeight();
         mario.setPosicionEnY(mario.getPosicionEnY() - 32 + alto);
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
         mario.setVelocidad(6);
-
+        temporizador = new Temporizador();
+        temporizador.iniciar();
     }
 
     public void recibeDanio(Entidad e) {
@@ -36,42 +39,20 @@ public class MarioEstrella implements EstadoJugador {
         return false;
     }
 
-    public void actualizarSprite() {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioEstrella");
+
+    public void actualizarEstadoJugador() {
+        if (temporizador.hanPasadoNSegundos(7000)) {
+            temporizador.resetear();
+            mario.setVelocidad(4);
+            mario.setPosicionEnY(mario.getPosicionEnY() + 32 - alto);
+            mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, alto);
+            mario.setEstadoJugador(estadoAnterior);
+        }
     }
 
-    private void iniciarTemporizador() {
-        scheduler.schedule(new Runnable() {
-            @Override
-            public void run() {
-                mario.setVelocidad(4);
-                mario.setPosicionEnY(mario.getPosicionEnY() + 32 - alto);
-                mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, alto);
-                mario.setEstadoJugador(estadoAnterior);
-
-            }
-        }, 8, TimeUnit.SECONDS);
+    public String inicioAnimacion(){
+        return "src/Recursos/Sprites/original/Jugador/PNGMario/MarioEstrella";
     }
-
-    public int getPuntajeEstrella() {
-        return ConstantesPuntaje.PUNTAJE_ESTRELLA_CON_ESTRELLA;
-    }
-
-    @Override
-    public int getPuntajeSuperChampinion() {
-        return estadoAnterior.getPuntajeSuperChampinion();
-    }
-
-    @Override
-    public int getPuntajeChampinionVerde() {
-        return estadoAnterior.getPuntajeChampinionVerde();
-    }
-
-    @Override
-    public int getPuntajeFlorDeFuego() {
-        return estadoAnterior.getPuntajeFlorDeFuego();
-    }
-
 
     @Override
     public boolean puedeRomperBloques() {
@@ -88,5 +69,9 @@ public class MarioEstrella implements EstadoJugador {
 
     public String finalAnimacion() {
         return ".gif";
+    }
+
+    public int getPuntaje(int columna){
+        return mario.getPuntajes().getPuntaje(FILA,columna);
     }
 }

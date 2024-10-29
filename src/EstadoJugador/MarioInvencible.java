@@ -3,23 +3,26 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Logica.Temporizador;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class MarioInvencible implements EstadoJugador {
     protected Jugador mario;
     private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-
+    protected static final int FILA=0;
+    protected Temporizador temporizador;
 
     public MarioInvencible(Jugador mario) {
         this.mario = mario;
-
+        temporizador = new Temporizador();
+        temporizador.iniciar();
         mario.setPosicionEnY(mario.getPosicionEnY() + 16);
         mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioGolpeado");
-        iniciarTemporizador();
     }
 
     public void recibeDanio(Entidad e) {
@@ -30,10 +33,17 @@ public class MarioInvencible implements EstadoJugador {
         return false;
     }
 
-    public void actualizarSprite() {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioGolpeado");
+    public void actualizarEstadoJugador() {
+        if(temporizador.hanPasadoNSegundos(3000)){
+            temporizador.resetear();
+            mario.setEstadoJugador(new Mario(mario));
+        }
     }
 
+    @Override
+    public String inicioAnimacion(){
+        return "src/Recursos/Sprites/original/Jugador/PNGMario/MarioGolpeado";
+    }
 
     @Override
     public boolean puedeRomperBloques() {
@@ -48,37 +58,13 @@ public class MarioInvencible implements EstadoJugador {
         return true;
     }
 
-    private void iniciarTemporizador() {
-        scheduler.schedule(new Runnable() {
-            @Override
-            public void run() {
-                mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
-                mario.setEstadoJugador(new Mario(mario));
-            }
-        }, 3, TimeUnit.SECONDS);
-    }
 
-    @Override
-    public int getPuntajeEstrella() {
-        return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeSuperChampinion() {
-        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeChampinionVerde() {
-        return ConstantesPuntaje.PUNTAJE_CHAMPINION_VERDE_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeFlorDeFuego() {
-        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_NORMAL;
-    }
 
     public String finalAnimacion() {
         return ".gif";
+    }
+
+    public int getPuntaje(int columna){
+        return mario.getPuntajes().getPuntaje(FILA,columna);
     }
 }

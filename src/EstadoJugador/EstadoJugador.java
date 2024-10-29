@@ -7,8 +7,6 @@ public interface EstadoJugador {
 
     public boolean puedeLanzarBolaFuego();
 
-    public void actualizarSprite();
-
     public boolean puedeRomperBloques();
 
     public boolean elHongoLoHaceSuperMario();
@@ -17,11 +15,9 @@ public interface EstadoJugador {
 
     public String finalAnimacion();
 
-    public int getPuntajeEstrella();
+    public int getPuntaje(int columna);
 
-    public int getPuntajeSuperChampinion();
+    public String inicioAnimacion();
 
-    public int getPuntajeChampinionVerde();
-
-    public int getPuntajeFlorDeFuego();
+    public void actualizarEstadoJugador();
 }

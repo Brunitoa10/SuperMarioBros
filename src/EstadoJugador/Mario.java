@@ -7,6 +7,7 @@ import Entidades.Jugador;
 public class Mario implements EstadoJugador {
 
     protected Jugador mario;
+    protected static final int FILA=0;
 
     public Mario(Jugador mario) {
         this.mario = mario;
@@ -23,10 +24,15 @@ public class Mario implements EstadoJugador {
         return false;
     }
 
-    public void actualizarSprite() {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario");
+    public String inicioAnimacion(){
+        return "src/Recursos/Sprites/original/Jugador/PNGMario";
+    }
+
+    @Override
+    public void actualizarEstadoJugador() {
 
     }
+
 
     @Override
     public boolean puedeRomperBloques() {
@@ -45,23 +51,7 @@ public class Mario implements EstadoJugador {
         return "";
     }
 
-
-    public int getPuntajeEstrella() {
-        return ConstantesPuntaje.PUNTAJE_ESTRELLA_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeSuperChampinion() {
-        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeChampinionVerde() {
-        return ConstantesPuntaje.PUNTAJE_CHAMPINION_VERDE_NORMAL;
-    }
-
-    @Override
-    public int getPuntajeFlorDeFuego() {
-        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_NORMAL;
+    public int getPuntaje(int columna){
+        return mario.getPuntajes().getPuntaje(FILA,columna);
     }
 }

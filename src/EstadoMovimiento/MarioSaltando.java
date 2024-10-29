@@ -23,7 +23,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     @Override
     public void actualizar() {
-        mario.getEstadoJugador().actualizarSprite(); // Actualiza el sprite
+        mario.getEstadoJugador().actualizarEstadoJugador(); // Actualiza el sprite
 
         // Aplicar gravedad
         if (velocidadY <= 15)
@@ -42,7 +42,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     private void actualizarRutaImagen() {
         String rutaImagen = (mario.getDireccion() == 1) ? AnimadorMario.RUTA_MARIO_JUMP_DERECHA : AnimadorMario.RUTA_MARIO_JUMP_IZQUIERDA;
-        mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + rutaImagen + mario.getEstadoJugador().finalAnimacion());
+        mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion()+ rutaImagen + mario.getEstadoJugador().finalAnimacion());
     }
 
     public void LanzarBola() {

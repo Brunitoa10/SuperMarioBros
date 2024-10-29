@@ -105,7 +105,7 @@ public class ControladorColisiones {
                 juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
                 powerUp.actualizarEntidad();
                 toRet = powerUp.getFrenarJuego();
-                mario.getEstadoJugador().actualizarSprite();
+                mario.getEstadoJugador().actualizarEstadoJugador();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
         }

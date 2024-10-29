@@ -7,13 +7,7 @@ public class MarioParado implements EstadoMovimiento {
 
     public MarioParado(Jugador mario) {
         this.mario = mario;
-        mario.getEstadoJugador().actualizarSprite();
-        if (mario.getDireccion() == 1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
-        } else {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
-        }
-
+        mario.getEstadoJugador().actualizarEstadoJugador();
     }
 
     @Override
@@ -32,11 +26,11 @@ public class MarioParado implements EstadoMovimiento {
 
     public void actualizar() {
 
-        mario.getEstadoJugador().actualizarSprite();
+        mario.getEstadoJugador().actualizarEstadoJugador();
         if (mario.getDireccion() == 1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
+            mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion() + "/StandingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
         } else {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
+            mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 

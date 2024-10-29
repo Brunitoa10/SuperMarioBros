@@ -89,7 +89,7 @@ public class LoopMario implements Runnable {
 
                 juego.checkearSumaVida();
 
-                mario.getEstadoJugador().actualizarSprite();
+                mario.getEstadoJugador().actualizarEstadoJugador();
                 mario.actualizarEntidad();
             } else {
                 juego.mostrarMarioMuerte(mario);

@@ -7,7 +7,7 @@ import Entidades.Jugador;
 public class SuperMario implements EstadoJugador {
 
     protected Jugador mario;
-
+    protected static final int FILA=1;
     public SuperMario(Jugador mario) {
         this.mario = mario;
         mario.setPosicionEnY(mario.getPosicionEnY() - 16);
@@ -26,9 +26,14 @@ public class SuperMario implements EstadoJugador {
     public void actualizar() {
 
     }
+    @Override
+    public String inicioAnimacion(){
+        return "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp";
+    }
 
-    public void actualizarSprite() {
-        mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp");
+    @Override
+    public void actualizarEstadoJugador() {
+
     }
 
     @Override
@@ -44,27 +49,11 @@ public class SuperMario implements EstadoJugador {
         return true;
     }
 
-    @Override
-    public int getPuntajeEstrella() {
-        return ConstantesPuntaje.PUNTAJE_ESTRELLA_SUPER_MARIO;
-    }
-
-    @Override
-    public int getPuntajeSuperChampinion() {
-        return ConstantesPuntaje.PUNTAJE_SUPER_CHAMPINION_SUPER_MARIO;
-    }
-
-    @Override
-    public int getPuntajeChampinionVerde() {
-        return ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE;
-    }
-
-    @Override
-    public int getPuntajeFlorDeFuego() {
-        return ConstantesPuntaje.PUNTAJE_FLOR_DE_FUEGO_SUPER_MARIO;
-    }
-
     public String finalAnimacion() {
         return "";
+    }
+
+    public int getPuntaje(int columna){
+        return mario.getPuntajes().getPuntaje(FILA,columna);
     }
 }
