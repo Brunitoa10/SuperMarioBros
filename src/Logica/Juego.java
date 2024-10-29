@@ -38,8 +38,8 @@ public class Juego {
     protected ControladorBolasDeFuego controladorBolasDeFuego;
     protected Sonido sonido;
     protected int nivel;
-    protected Temporizador temporizador = new Temporizador();
-    protected boolean frenarTick = false;
+    protected Temporizador temporizador;
+    protected boolean frenarTick;
 
 	public Juego(GUI controladorVistas) {
 		this.controladorVistas = controladorVistas;
@@ -47,6 +47,8 @@ public class Juego {
 		vidas = 3;
 		puntaje = 0;
 		nivel = 1;
+		frenarTick = false;
+		temporizador = new Temporizador();
 	}
 
     public int getVidas() {
@@ -122,7 +124,6 @@ public class Juego {
     public void nivelSiguiente() {
         sonido.detener();
         detenerLoops();
-        System.out.println("numero nivel en siguiente :: "+nivel);
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);
@@ -135,7 +136,7 @@ public class Juego {
             controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
             iniciarLoops();
         } else {
-           mostrarPantallaVictoria();// mostrarPantallaFinJuego();
+           mostrarPantallaVictoria();
         }
     }
 
@@ -254,7 +255,7 @@ public class Juego {
 
     private void aplicarSprite(Jugador mario) {
         if (mario.getDireccion() == -1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
+            mario.getSprite().setRutaImagen("src/Recursos6/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
         if (mario.getDireccion() == +1)
             mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
     }
