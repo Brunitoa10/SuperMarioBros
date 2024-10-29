@@ -31,6 +31,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     protected String nombreUsuario;
     protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
     protected PanelPantallaCarga panelPantallaCarga;
+    protected PanelPantallaVictoria panelPantallaVictoria;
 
     public GUI() {
         configuracion = ConfiguracionJuego.obtenerInstancia();
@@ -79,10 +80,12 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void crearPantallaPerdiste(String modoJuego) {
         panelPantallaFinJuego = new PanelPantallaPerdiste(this, modoJuego);
     }
+    
+    public void crearPantallaVictoria(String modoJuego) {
+        panelPantallaVictoria = new PanelPantallaVictoria(this, modoJuego);
+    }
 
     public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar) {
-        System.out.println(nombreAgregar);
-        System.out.println(puntajeAgregar);
         ranking.agregarAlRanking(nombreAgregar, puntajeAgregar);
         panelPantallaRanking.llenarTabla();
     }
@@ -143,6 +146,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         ventana.setContentPane(panelPantallaFinJuego);
         refrescar();
     }
+    
+    public void mostrarPantallaVictoria() {
+    	 historialPaneles.push(panelPantallaVictoria);
+         ventana.setContentPane(panelPantallaVictoria);
+         refrescar();
+		
+	}
 
     @Override
     public void mostrarPantallaRanking() {
@@ -242,4 +252,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         timer.setRepeats(false);
         timer.start();
     }
+
+	
 }

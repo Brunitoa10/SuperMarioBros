@@ -78,6 +78,11 @@ public class Juego {
         controladorVistas.crearPantallaPerdiste(modoJuego);
         controladorVistas.mostrarPantallaFinJuego();
     }
+    
+    public void mostrarPantallaVictoria() {
+        controladorVistas.crearPantallaVictoria(modoJuego);
+        controladorVistas.mostrarPantallaVictoria();
+    }
 
     public void iniciar(String modoJuego) {
         this.modoJuego = modoJuego;
@@ -115,9 +120,9 @@ public class Juego {
     }
 
     public void nivelSiguiente() {
-        // eliminarEntidades();
         sonido.detener();
         detenerLoops();
+        System.out.println("numero nivel en siguiente :: "+nivel);
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);
@@ -130,7 +135,7 @@ public class Juego {
             controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
             iniciarLoops();
         } else {
-            controladorVistas.mostrarPantallaFinJuego();
+           mostrarPantallaVictoria();// mostrarPantallaFinJuego();
         }
     }
 

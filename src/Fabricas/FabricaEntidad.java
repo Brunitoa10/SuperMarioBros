@@ -3,7 +3,6 @@ package Fabricas;
 import Entidades.Enemigos.*;
 import Entidades.Entidad;
 import Entidades.EntidadInmovil.Bandera;
-import Entidades.EntidadInmovil.EntidadInmovil;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.EntidadInmovil.Princesa;
 import Entidades.Jugador;

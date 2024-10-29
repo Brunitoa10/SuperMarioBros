@@ -168,8 +168,12 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivelDos(Nivel nivel) {
-        nivel.agregarVacio(new Vacio(3197, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 149, 32), nivel.getVacios()));
+        //nivel.agregarVacio(new Vacio(3197, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 149, 32), nivel.getVacios()));
         nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 3996, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(1695, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 526, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2247, 69), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69), nivel.getPlataformas()));
     }
 
     private void generarVaciosYSuelosNivelTres(Nivel nivel) {
