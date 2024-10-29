@@ -50,6 +50,7 @@ public class LoopMario implements Runnable {
     public synchronized void detener() {
         ejecutando = false;
         scheduler.shutdown();
+        temporizador.pausar();
     }
 
     @Override
@@ -90,6 +91,8 @@ public class LoopMario implements Runnable {
                     juego.manejarMuerte();
                 }
             }
+            
+            juego.getControladorVistaJuego().actualizarTiempoJuego(temporizador.obtenerTiempoTranscurrido());
         } else {
             juego.consumirHongo(mario);
         }
@@ -99,6 +102,7 @@ public class LoopMario implements Runnable {
         timerAnimacionMorir++;
     }
 
+   
     private void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
     }

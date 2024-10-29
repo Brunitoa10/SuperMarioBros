@@ -253,5 +253,10 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         timer.start();
     }
 
+	@Override
+	public void actualizarTiempoJuego(int tiempo) {
+		panelPantallaNivel.actualizarLabelTiempo(tiempo);
+	}
+
 	
 }

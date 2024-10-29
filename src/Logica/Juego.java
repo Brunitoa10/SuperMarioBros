@@ -22,36 +22,42 @@ import java.util.List;
 
 public class Juego {
 
+	protected FabricaEntidad fabricaEntidades;
+    protected Sonido sonido;
     protected GUI controladorVistas;
     protected GeneradorNivel generadorNivel;
-    protected FabricaSprites fabricaSprites;
-    protected FabricaEntidad fabricaEntidades;
     protected Nivel nivelActual;
     protected LoopMario loopMario;
     protected HiloRestoEntidades hiloRestoEntidades;
     protected OyenteTeclado oyenteTeclado;
     protected String modoJuego;
     protected FabricaSpriteRegistro fabricaSpritesRegistry;
-    protected int vidas;
-    protected int puntaje;
     protected ControladorMovimientoMario controladorMovimientoMario;
     protected ControladorBolasDeFuego controladorBolasDeFuego;
-    protected Sonido sonido;
-    protected int nivel;
+    protected FabricaSprites fabricaSprites;
     protected Temporizador temporizador;
     protected boolean frenarTick;
-
+    protected int nivel;
+    protected int vidas;
+    protected int puntaje;
+    protected int tiempoJuego;
+    
 	public Juego(GUI controladorVistas) {
 		this.controladorVistas = controladorVistas;
 		this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
-		vidas = 3;
+		inicializarAtributos();
+	}
+
+    private void inicializarAtributos() {
+    	vidas = 3;
 		puntaje = 0;
 		nivel = 1;
+		tiempoJuego = 0;
 		frenarTick = false;
 		temporizador = new Temporizador();
 	}
 
-    public int getVidas() {
+	public int getVidas() {
         return vidas;
     }
 
@@ -106,6 +112,15 @@ public class Juego {
 
         iniciarLoops();
     }
+    
+    public void agregarTiempoAlTotal(int tiempoNivelActual) {
+        tiempoJuego += tiempoNivelActual;
+    }
+    
+
+    public int getTiempo() {
+        return tiempoJuego; //hacer
+    }
 
     private void iniciarLoops() {
         loopMario = new LoopMario(this);
@@ -122,7 +137,8 @@ public class Juego {
     }
 
     public void nivelSiguiente() {
-        sonido.detener();
+        int tiempoAux = tiempoJuego;
+    	sonido.detener();
         detenerLoops();
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
             nivel++;
@@ -217,10 +233,6 @@ public class Juego {
 
     public void mostrarMarioMuerte(Jugador mario) {
         mario.getSprite().setRutaImagen(AnimadorMario.MUERTE_MARIO);
-    }
-
-    public int getTiempo() {
-        return 0; //hacer
     }
 
     public void checkearSumaVida() {

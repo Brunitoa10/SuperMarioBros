@@ -66,7 +66,6 @@ public class PanelPantallaNivel extends JPanel {
     public void actualizarLabelsInformacion(Juego miJuego) {
         labelPuntaje.setText(String.format("Puntaje: %05d", miJuego.getPuntaje()));
         labelVida.setText(String.format("Vidas: %d", miJuego.getVidas()));
-        labelTiempo.setText(String.format("Tiempo: %05d", miJuego.getTiempo()));
     }
 
     public void ajustarScrollHaciaJugador(EntidadJugador jugador) {
@@ -164,5 +163,10 @@ public class PanelPantallaNivel extends JPanel {
     private String obtenerRutaImagen() {
         return "/Recursos/Fondos/" + controladorVista.obtenerModoJuego() + "/FondoLevel" + controladorVista.getJuego().nivel() + ".png";
     }
+
+
+	public void actualizarLabelTiempo(int tiempo) {
+		labelTiempo.setText(String.format("Tiempo: %05d", tiempo));
+	}
 
 }

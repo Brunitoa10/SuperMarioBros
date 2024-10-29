@@ -1,11 +1,14 @@
 package Logica;
 
 public class Temporizador {
-    private long tiempoInicio;
-    private boolean iniciado;
+	
+	protected long tiempoInicio;
+    protected boolean iniciado;
+    protected long tiempoAcumulado;
 
     public Temporizador() {
         iniciado = false;
+        tiempoAcumulado = 0;
     }
 
     // Inicia el temporizador
@@ -29,5 +32,21 @@ public class Temporizador {
         long tiempoActual = System.currentTimeMillis();
         long tiempoTranscurrido = (tiempoActual - tiempoInicio); // Convertir a segundos
         return tiempoTranscurrido >= tiempo;
+    }
+    
+    public void pausar() {
+        if (iniciado) {
+            tiempoAcumulado += System.currentTimeMillis() - tiempoInicio;
+            iniciado = false;
+        }
+    }
+
+    // Devuelve el tiempo total transcurrido en segundos sin reiniciar
+    public int obtenerTiempoTranscurrido() {
+        if (iniciado) {
+            return (int) ((tiempoAcumulado + (System.currentTimeMillis() - tiempoInicio)) / 1000);
+        } else {
+            return (int) (tiempoAcumulado / 1000);
+        }
     }
 }
