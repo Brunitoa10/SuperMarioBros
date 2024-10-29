@@ -2,7 +2,6 @@ package IA;
 
 
 import Entidades.Enemigos.Enemigo;
-import Entidades.Enemigos.PiranhaPlant;
 import Logica.Temporizador;
 
 public class IACaminar implements ComportamientoIA {

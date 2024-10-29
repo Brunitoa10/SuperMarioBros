@@ -3,8 +3,6 @@ package Entidades.Plataformas.StateBloquePregunta;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Plataformas.BloquePregunta;
-import Entidades.Power_Ups.PowerUp;
-
 
 public class BloquePreguntaLleno implements EstadoBloquePregunta {
     protected BloquePregunta bloquePregunta;
