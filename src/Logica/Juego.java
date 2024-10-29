@@ -196,6 +196,10 @@ public class Juego {
         controladorMovimientoMario.moverMario(temporizador);
     }
 
+    public boolean marioCaeAlVacio(Jugador mario) {
+        return mario.getPosicionEnY() > 460;
+    }
+
     public void lanzarBolasDeFuego(Jugador mario) {
         if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
             dispararBolaFuego(mario);

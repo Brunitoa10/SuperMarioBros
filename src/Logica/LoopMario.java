@@ -76,7 +76,7 @@ public class LoopMario implements Runnable {
                 if (controladorColisiones.colisionesMario())
                     juego.setFrenoElTick(true);
                 juego.eliminarEntidades();
-                if (mario.getPosicionEnY() > 460) {  //si cae al vacio
+                if (juego.marioCaeAlVacio(mario)) {
                     mario.setMorir(true);
                 }
 
