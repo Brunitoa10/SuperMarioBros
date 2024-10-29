@@ -1,23 +1,16 @@
 package Vista.Paneles;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+import Constantes.ConstantesVista;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ControladorVista;
 
-import Constantes.ConstantesVista;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelPantallaPerdiste extends JPanel {
 
@@ -32,12 +25,12 @@ public class PanelPantallaPerdiste extends JPanel {
     protected ImageIcon iconoImagen;
     protected Image imagenEscalada;
     protected Icon iconoImagenEscalado;
-    
+
     public PanelPantallaPerdiste(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
         sonido = SonidoFactory.crearSonido(modoJuego, "boton");
-        setSize(ConstantesVista.PANEL_ANCHO,ConstantesVista.PANEL_ALTO);
+        setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);
         agregarImagenFondo();
         agregarBotonReiniciar();
         agregarBotonVerRanking();
@@ -46,7 +39,7 @@ public class PanelPantallaPerdiste extends JPanel {
     public String obtenerModoJuego() {
         return modoJuego;
     }
-    
+
     private void agregarImagenFondo() {
         imagenFondo = new JLabel();
         iconoImagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/FinDeJuego.png"));
@@ -58,7 +51,6 @@ public class PanelPantallaPerdiste extends JPanel {
         add(imagenFondo);
     }
 
- 
 
     private void agregarBotonReiniciar() {
         btnReiniciar = new JButton("");
@@ -104,7 +96,7 @@ public class PanelPantallaPerdiste extends JPanel {
     private void registrarOyenteVerPuntaje() {
         btnVolverMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	controladorVistas.agregarJugadorAlRanking(controladorVistas.obtenerNombreUsuario(), controladorVistas.obtenerPuntajeJugador());
+                controladorVistas.agregarJugadorAlRanking(controladorVistas.obtenerNombreUsuario(), controladorVistas.obtenerPuntajeJugador());
                 controladorVistas.mostrarPantallaRanking();
             }
         });

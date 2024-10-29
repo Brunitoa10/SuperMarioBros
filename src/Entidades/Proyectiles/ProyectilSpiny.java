@@ -1,6 +1,5 @@
 package Entidades.Proyectiles;
 
-import Entidades.Jugador;
 import Fabricas.Sprite;
 import Visitor.Visitor;
 
@@ -17,11 +16,7 @@ public class ProyectilSpiny extends Proyectil {
         return 0;
     }
 
-    public void hagoDaño(Jugador j) {
-        j.getEstadoJugador().recibeDanio(this);
-    }
-
-    public boolean puedeRomperBloques(){
+    public boolean puedeRomperBloques() {
         return false;
     }
 }

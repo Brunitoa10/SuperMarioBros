@@ -25,7 +25,7 @@ public class VisitorJugador implements Visitor {
 
     @Override
     public int visit(Enemigo e) {
-    	return 0;
+        return 0;
     }
 
     @Override
@@ -40,23 +40,20 @@ public class VisitorJugador implements Visitor {
         moneda.setAEliminar();
     }
 
-    public void visit(Plataforma plataforma){
-        if (mario.colisionDerecha(plataforma)){
+    public void visit(Plataforma plataforma) {
+        if (mario.colisionDerecha(plataforma)) {
             int posicionATeletransportar = (int) (plataforma.getHitbox().getMinX() - mario.getHitbox().getWidth());
             mario.setPosicionEnX(posicionATeletransportar);
-        }
-        else if (mario.colisionIzquierda(plataforma)){
+        } else if (mario.colisionIzquierda(plataforma)) {
             int posicionATeletransportar = (int) (plataforma.getHitbox().getMaxX());
             mario.setPosicionEnX(posicionATeletransportar);
-        }
-        else if (mario.colisionAbajo(plataforma)){
+        } else if (mario.colisionAbajo(plataforma)) {
             mario.setEnPlataforma(true);
             mario.setEstadoMovimiento(new MarioParado(mario));
             mario.setPosicionEnY((int) (plataforma.getHitbox().getMinY() - mario.getHitbox().getHeight()));
 
-        }
-        else if (mario.colisionArriba(plataforma)) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+        } else if (mario.colisionArriba(plataforma)) {
+            mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
             plataforma.interactuar(mario);
             System.out.println("colision arriba!");
         }
@@ -72,7 +69,7 @@ public class VisitorJugador implements Visitor {
     public void visit(Vacio vacio) {
         int tolerancia = 5;
         if (mario.colisionAbajo(vacio) && mario.getPosicionEnY() > vacio.getHitbox().getMinY() + tolerancia) {
-            mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+            mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
         }
     }
 }

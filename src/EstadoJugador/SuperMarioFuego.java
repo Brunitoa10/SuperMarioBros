@@ -47,7 +47,7 @@ public class SuperMarioFuego implements EstadoJugador {
     public void actualizarSprite() {
         mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego");
     }
-  
+
     @Override
     public boolean puedeRomperBloques() {
         return true;
@@ -57,11 +57,12 @@ public class SuperMarioFuego implements EstadoJugador {
     public boolean elHongoLoHaceSuperMario() {
         return false;
     }
-    public boolean puedeSerMarioFuego(){
+
+    public boolean puedeSerMarioFuego() {
         return false;
     }
 
-    public String finalAnimacion(){
+    public String finalAnimacion() {
         return "";
     }
 }

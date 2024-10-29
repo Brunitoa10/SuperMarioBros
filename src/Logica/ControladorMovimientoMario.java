@@ -14,28 +14,26 @@ public class ControladorMovimientoMario {
     }
 
     public void moverMario(Temporizador temporizador) {
-        if(oyenteTeclado.teclaIzquierda || oyenteTeclado.teclaDerecha) {
+        if (oyenteTeclado.teclaIzquierda || oyenteTeclado.teclaDerecha) {
             moverMarioHorizontalmente(oyenteTeclado);
         }
-        if(oyenteTeclado.teclaArriba && mario.estaEnPlataforma()) {
+        if (oyenteTeclado.teclaArriba && mario.estaEnPlataforma()) {
             mario.saltar();
         }
         if (!oyenteTeclado.teclaIzquierda && !oyenteTeclado.teclaDerecha && !oyenteTeclado.teclaArriba
                 && !oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(3000)) {
             if (mario.estaEnPlataforma()) {
                 mario.setEstadoMovimiento(new MarioParado(mario));
-            }
-            else {
+            } else {
                 mario.getEstadoMovimiento().EnAire();
             }
         }
     }
 
     private void moverMarioHorizontalmente(OyenteTeclado oyenteTeclado) {
-        if(oyenteTeclado.teclaIzquierda) {
+        if (oyenteTeclado.teclaIzquierda) {
             moverM(-1);
-        }
-        else {
+        } else {
             moverM(1);
         }
     }

@@ -1,10 +1,11 @@
 package Fabricas;
 
 import Entidades.Enemigos.*;
-import Entidades.Jugador;
+import Entidades.Entidad;
 import Entidades.EntidadInmovil.Bandera;
 import Entidades.EntidadInmovil.Moneda;
 import Entidades.EntidadInmovil.Princesa;
+import Entidades.Jugador;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
@@ -19,6 +20,7 @@ public class CreadorEntidad implements FabricaEntidad {
 
     protected FabricaSprites fabricaSprites;
     private Jugador mario;
+
     public CreadorEntidad(FabricaSprites fabricaSprites) {
         this.fabricaSprites = fabricaSprites;
     }
@@ -42,9 +44,9 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel,List<Spiny> Arsenal) {
+    public Lakitu crearLakitu(int x, int y, List<Enemigo> listaEnemigoNivel, List<Spiny> Arsenal) {
         Sprite lakituSprite = fabricaSprites.crearSpriteLakitu();
-        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel,mario,Arsenal);
+        return new Lakitu(x, y, lakituSprite, listaEnemigoNivel, mario, Arsenal);
     }
 
     @Override
@@ -108,7 +110,7 @@ public class CreadorEntidad implements FabricaEntidad {
 
     @Override
     public LadrilloSolido crearLadrilloSolido(int x, int y, List<Plataforma> listaPlataformaNivel) {
-        System.out.println(x+""+y);
+        System.out.println(x + "" + y);
         Sprite ladrilloSolidoSprite = fabricaSprites.crearSpriteLadrilloSolido();
         return new LadrilloSolido(x, y, ladrilloSolidoSprite, listaPlataformaNivel);
     }
@@ -126,7 +128,7 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public BloquePregunta crearBloquePregunta(int x, int y, PowerUp p, List<Plataforma> listaPlataformaNivel) {
+    public BloquePregunta crearBloquePregunta(int x, int y, Entidad p, List<Plataforma> listaPlataformaNivel) {
         Sprite bloquePreguntaSprite = fabricaSprites.crearSpriteBloquePregunta();
         return new BloquePregunta(x, y, bloquePreguntaSprite, p, listaPlataformaNivel);
     }
@@ -134,7 +136,7 @@ public class CreadorEntidad implements FabricaEntidad {
     @Override
     public Jugador crearJugador(int x, int y) {
         Sprite jugadorSprite = fabricaSprites.crearSpriteJugador();
-        mario=new Jugador(x, y, jugadorSprite);
+        mario = new Jugador(x, y, jugadorSprite);
         return mario;
     }
 

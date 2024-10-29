@@ -10,22 +10,20 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class HiloRestoEntidades implements Runnable {
 
+    private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
+    protected boolean FrenarHilo = false;
+    protected List<Entidad> EntidadesAEliminar;
     private boolean ejecutando;
     private ControladorVistaJuego controlador;
     private ControladorColisiones controladorColisiones;
-    protected boolean FrenarHilo = false;
-
-
     private long lastUpdateTime = System.nanoTime();
-    private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    protected List<Entidad> EntidadesAEliminar;
 
 
     public HiloRestoEntidades(Juego juego) {
         controlador = juego.getControladorVistaJuego();
         EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
-        controladorColisiones = new ControladorColisiones(juego.getNivelActual(),juego);
+        controladorColisiones = new ControladorColisiones(juego.getNivelActual(), juego);
     }
 
     public synchronized void comenzar() {
@@ -53,7 +51,7 @@ public class HiloRestoEntidades implements Runnable {
 
 
     private void tick() {
-        if(!FrenarHilo)
+        if (!FrenarHilo)
             controladorColisiones.colisionesRestoEntidades();
     }
 
@@ -63,11 +61,11 @@ public class HiloRestoEntidades implements Runnable {
         controlador.refrescar(); // Refresca la pantalla
     }
 
-    public void pause(){
-        FrenarHilo=true;
+    public void pause() {
+        FrenarHilo = true;
     }
 
-    public void resume(){
-        FrenarHilo=false;
+    public void resume() {
+        FrenarHilo = false;
     }
 }

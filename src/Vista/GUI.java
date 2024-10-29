@@ -1,12 +1,5 @@
 package Vista;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-
 import Constantes.ConstantesVista;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
@@ -17,239 +10,236 @@ import Logica.OyenteTeclado;
 import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
-import Vista.Paneles.PanelPantallaCarga;
-import Vista.Paneles.PanelPantallaModoJuego;
-import Vista.Paneles.PanelPantallaNivel;
-import Vista.Paneles.PanelPantallaNombreUsuario;
-import Vista.Paneles.PanelPantallaPerdiste;
-import Vista.Paneles.PanelPantallaPrincipal;
-import Vista.Paneles.PanelPantallaRanking;
+import Vista.Paneles.*;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
-	protected JFrame ventana;
-	protected PanelPantallaNivel panelPantallaNivel;
-	protected PanelPantallaPrincipal panelPantallaPrincipal;
-	protected PanelPantallaPerdiste panelPantallaFinJuego;
-	protected PanelPantallaRanking panelPantallaRanking;
-	protected PanelPantallaModoJuego panelPantallaModoJuego;
-	protected Ranking ranking;
-	protected OyenteTeclado oyente;
-	protected ConfiguracionJuego configuracion;
-	protected Juego miJuego;
-	protected HistorialPaneles historialPaneles;
-	protected String nombreUsuario;
-	protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
-	protected PanelPantallaCarga panelPantallaCarga;
+    protected JFrame ventana;
+    protected PanelPantallaNivel panelPantallaNivel;
+    protected PanelPantallaPrincipal panelPantallaPrincipal;
+    protected PanelPantallaPerdiste panelPantallaFinJuego;
+    protected PanelPantallaRanking panelPantallaRanking;
+    protected PanelPantallaModoJuego panelPantallaModoJuego;
+    protected Ranking ranking;
+    protected OyenteTeclado oyente;
+    protected ConfiguracionJuego configuracion;
+    protected Juego miJuego;
+    protected HistorialPaneles historialPaneles;
+    protected String nombreUsuario;
+    protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
+    protected PanelPantallaCarga panelPantallaCarga;
 
-	public GUI() {
-		configuracion = ConfiguracionJuego.obtenerInstancia();
-		ranking = new Ranking();
-		this.miJuego = new Juego(this);
-		historialPaneles = new HistorialPaneles();
+    public GUI() {
+        configuracion = ConfiguracionJuego.obtenerInstancia();
+        ranking = new Ranking();
+        this.miJuego = new Juego(this);
+        historialPaneles = new HistorialPaneles();
 
-		configurarVentana();
-		configurarPaneles();
-		mostrarPantallaCarga();
-	}
-	
-	public void reiniciarPanelPantallaNivel(){
-		panelPantallaNivel = new PanelPantallaNivel(this);
-	}
+        configurarVentana();
+        configurarPaneles();
+        mostrarPantallaCarga();
+    }
 
-	protected void configurarVentana() {
-		ventana = new JFrame("Super Mario Bros - Equipo Basados");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setResizable(false);
-		ventana.setIconImage(cargarIcono());
-		ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
-		ventana.setLocationRelativeTo(null);
-		ventana.setVisible(true);
-	}
+    public void reiniciarPanelPantallaNivel() {
+        panelPantallaNivel = new PanelPantallaNivel(this);
+    }
 
-	// De interfaz para launcher
-	@Override
-	public void mostrarPantallaInicial(String modoJuego) {
-		configuracion.setModoJuego(modoJuego);
-		panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
-		historialPaneles.push(panelPantallaPrincipal);
-		panelPantallaNivel = new PanelPantallaNivel(this);
-		panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-		ventana.setContentPane(panelPantallaPrincipal);
-		refrescar();
-	}
+    protected void configurarVentana() {
+        ventana = new JFrame("Super Mario Bros - Equipo Basados");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setResizable(false);
+        ventana.setIconImage(cargarIcono());
+        ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+    }
 
-	// De interfaz ControladorDeVistas
-	@Override
-	public void accionarInicioJuego(String modoJuego) {
-		configuracion.setModoJuego(modoJuego);
-		miJuego.iniciar(modoJuego);
-	}
+    // De interfaz para launcher
+    @Override
+    public void mostrarPantallaInicial(String modoJuego) {
+        configuracion.setModoJuego(modoJuego);
+        panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
+        historialPaneles.push(panelPantallaPrincipal);
+        panelPantallaNivel = new PanelPantallaNivel(this);
+        panelPantallaRanking = new PanelPantallaRanking(this, ranking);
+        ventana.setContentPane(panelPantallaPrincipal);
+        refrescar();
+    }
 
-	public void crearPantallaPerdiste(String modoJuego){
-		panelPantallaFinJuego = new PanelPantallaPerdiste(this, modoJuego);
-	}
+    // De interfaz ControladorDeVistas
+    @Override
+    public void accionarInicioJuego(String modoJuego) {
+        configuracion.setModoJuego(modoJuego);
+        miJuego.iniciar(modoJuego);
+    }
 
-	public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar){
-		System.out.println(nombreAgregar);
-		System.out.println(puntajeAgregar);
-		ranking.agregarAlRanking(nombreAgregar,puntajeAgregar);
-		panelPantallaRanking.llenarTabla();
-	}
+    public void crearPantallaPerdiste(String modoJuego) {
+        panelPantallaFinJuego = new PanelPantallaPerdiste(this, modoJuego);
+    }
 
-	@Override
-	public void accionarPantallaRanking() {
-		miJuego.mostrarPantallaRanking();
-	}
+    public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar) {
+        System.out.println(nombreAgregar);
+        System.out.println(puntajeAgregar);
+        ranking.agregarAlRanking(nombreAgregar, puntajeAgregar);
+        panelPantallaRanking.llenarTabla();
+    }
 
-	@Override
-	public void accionarPantallaModoJuego() {
-		mostrarPantallaModoJuego();
-	}
+    @Override
+    public void accionarPantallaRanking() {
+        miJuego.mostrarPantallaRanking();
+    }
 
-	public void actualizarLabels(){
-		panelPantallaNivel.actualizarLabelsInformacion(miJuego);
-	}
+    @Override
+    public void accionarPantallaModoJuego() {
+        mostrarPantallaModoJuego();
+    }
 
-	@Override
-	public void cambiarModoJuego(String modo) {
-		configuracion.setModoJuego(modo);
-		mostrarPantallaInicial(modo); 
-	}
+    public void actualizarLabels() {
+        panelPantallaNivel.actualizarLabelsInformacion(miJuego);
+    }
 
-	// De interfaz ComandosJuegoVista
-	@Override
-	public Observer registrarEntidad(EntidadLogica entidadLogica) {
-		Observer observerEntidad = panelPantallaNivel.incorporarEntidad(entidadLogica);
-		refrescar();
-		return observerEntidad;
-	}
+    @Override
+    public void cambiarModoJuego(String modo) {
+        configuracion.setModoJuego(modo);
+        mostrarPantallaInicial(modo);
+    }
 
-	@Override
-	public Observer registrarEntidad(EntidadJugador entidadJugador) {
-		Observer observerJugador = panelPantallaNivel.incorporarEntidadJugador(entidadJugador, miJuego);
-		refrescar();
-		return observerJugador;
-	}
+    // De interfaz ComandosJuegoVista
+    @Override
+    public Observer registrarEntidad(EntidadLogica entidadLogica) {
+        Observer observerEntidad = panelPantallaNivel.incorporarEntidad(entidadLogica);
+        refrescar();
+        return observerEntidad;
+    }
 
-	public OyenteTeclado obtenerOyente(){
-		return oyente;
-	}
+    @Override
+    public Observer registrarEntidad(EntidadJugador entidadJugador) {
+        Observer observerJugador = panelPantallaNivel.incorporarEntidadJugador(entidadJugador, miJuego);
+        refrescar();
+        return observerJugador;
+    }
 
-	@Override
-	public void mostrarPantallaNivel() {
-		historialPaneles.push(panelPantallaNivel);
-		ventana.setContentPane(panelPantallaNivel);
-		oyente = new OyenteTeclado();
-		panelPantallaNivel.addKeyListener(oyente);
-		panelPantallaNivel.setFocusable(true);
-		panelPantallaNivel.requestFocusInWindow();
-		refrescar();
-	}
+    public OyenteTeclado obtenerOyente() {
+        return oyente;
+    }
 
-	@Override
-	public void mostrarPantallaFinJuego() {
-		historialPaneles.push(panelPantallaFinJuego);
-		ventana.setContentPane(panelPantallaFinJuego);
-		refrescar();
-	}
+    @Override
+    public void mostrarPantallaNivel() {
+        historialPaneles.push(panelPantallaNivel);
+        ventana.setContentPane(panelPantallaNivel);
+        oyente = new OyenteTeclado();
+        panelPantallaNivel.addKeyListener(oyente);
+        panelPantallaNivel.setFocusable(true);
+        panelPantallaNivel.requestFocusInWindow();
+        refrescar();
+    }
 
-	@Override
-	public void mostrarPantallaRanking() {
-		historialPaneles.push(panelPantallaRanking);
-		ventana.setContentPane(panelPantallaRanking);
-		refrescar();
-	}
+    @Override
+    public void mostrarPantallaFinJuego() {
+        historialPaneles.push(panelPantallaFinJuego);
+        ventana.setContentPane(panelPantallaFinJuego);
+        refrescar();
+    }
 
-	public void mostrarPantallaModoJuego() {
-		historialPaneles.push(panelPantallaModoJuego);
-		ventana.setContentPane(panelPantallaModoJuego);
-		refrescar();
-	}
+    @Override
+    public void mostrarPantallaRanking() {
+        historialPaneles.push(panelPantallaRanking);
+        ventana.setContentPane(panelPantallaRanking);
+        refrescar();
+    }
 
-	public void volverAlPanelAnterior() {
-		JPanel panelAnterior = historialPaneles.pop();
-		if (panelAnterior != null) {
-			ventana.setContentPane(panelAnterior);
-			refrescar();
-		}
-	}
+    public void mostrarPantallaModoJuego() {
+        historialPaneles.push(panelPantallaModoJuego);
+        ventana.setContentPane(panelPantallaModoJuego);
+        refrescar();
+    }
 
-	public void agregarOyenteBotonVolver(JButton botonVolver) {
-		botonVolver.addActionListener(e -> volverAlPanelAnterior());
-	}
+    public void volverAlPanelAnterior() {
+        JPanel panelAnterior = historialPaneles.pop();
+        if (panelAnterior != null) {
+            ventana.setContentPane(panelAnterior);
+            refrescar();
+        }
+    }
 
-	@Override
-	public void refrescar() {
-		ventana.revalidate();
-		ventana.repaint();
-	}
+    public void agregarOyenteBotonVolver(JButton botonVolver) {
+        botonVolver.addActionListener(e -> volverAlPanelAnterior());
+    }
 
-	@Override
-	public void actualizarObserver() {
-		panelPantallaNivel.actualizarObservadores();
-	}
+    @Override
+    public void refrescar() {
+        ventana.revalidate();
+        ventana.repaint();
+    }
 
-	@Override
-	public OyenteTeclado oyenteTeclado() {
-		return oyente;
-	}
+    @Override
+    public void actualizarObserver() {
+        panelPantallaNivel.actualizarObservadores();
+    }
 
-	public Juego getJuego() {
-		return miJuego;
-	}
+    @Override
+    public OyenteTeclado oyenteTeclado() {
+        return oyente;
+    }
 
-	@Override
-	public String obtenerModoJuego() {
-		return configuracion.getModoJuego();
-	}
+    public Juego getJuego() {
+        return miJuego;
+    }
 
-	@Override
-	public Ranking obtenerRanking() {
-		return ranking;
-	}
+    @Override
+    public String obtenerModoJuego() {
+        return configuracion.getModoJuego();
+    }
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
+    @Override
+    public Ranking obtenerRanking() {
+        return ranking;
+    }
 
-	public String obtenerNombreUsuario() {
-		return nombreUsuario;
-	}
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
-	public void mostrarPantallaNombreUsuario() {
-		panelPantallaNombreUsuario = new PanelPantallaNombreUsuario(this);
-		historialPaneles.push(panelPantallaNombreUsuario);
-		ventana.setContentPane(panelPantallaNombreUsuario);
-		refrescar();
-	}
+    public String obtenerNombreUsuario() {
+        return nombreUsuario;
+    }
 
-	@Override
-	public int obtenerPuntajeJugador() {
-		return miJuego.getPuntaje();
-	}
+    public void mostrarPantallaNombreUsuario() {
+        panelPantallaNombreUsuario = new PanelPantallaNombreUsuario(this);
+        historialPaneles.push(panelPantallaNombreUsuario);
+        ventana.setContentPane(panelPantallaNombreUsuario);
+        refrescar();
+    }
 
-	public void actualizarImagenFondoNivel(int nivel) {
-		panelPantallaNivel.actualizarImagenFondoNivel(nivel);
-	}
+    @Override
+    public int obtenerPuntajeJugador() {
+        return miJuego.getPuntaje();
+    }
+
+    public void actualizarImagenFondoNivel(int nivel) {
+        panelPantallaNivel.actualizarImagenFondoNivel(nivel);
+    }
 
 
-	private Image cargarIcono() {
-		return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
-	}
+    private Image cargarIcono() {
+        return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
+    }
 
-	private void configurarPaneles() {
-		panelPantallaModoJuego = new PanelPantallaModoJuego(this);
-	}
-	
-	private void mostrarPantallaCarga() {
-		panelPantallaCarga = new PanelPantallaCarga();
-		ventana.setContentPane(panelPantallaCarga);
-		refrescar();
+    private void configurarPaneles() {
+        panelPantallaModoJuego = new PanelPantallaModoJuego(this);
+    }
 
-	
-		Timer timer = new Timer(4000, e -> mostrarPantallaNombreUsuario());
-		timer.setRepeats(false);
-		timer.start();
-	}
+    private void mostrarPantallaCarga() {
+        panelPantallaCarga = new PanelPantallaCarga();
+        ventana.setContentPane(panelPantallaCarga);
+        refrescar();
+
+
+        Timer timer = new Timer(4000, e -> mostrarPantallaNombreUsuario());
+        timer.setRepeats(false);
+        timer.start();
+    }
 }

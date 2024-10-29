@@ -6,7 +6,7 @@ import Vista.ObserverGrafica.Observer;
 
 import java.awt.*;
 
-public abstract class Entidad implements EntidadLogica,Colisionable {
+public abstract class Entidad implements EntidadLogica, Colisionable {
     protected int posicionX;
     protected int posicionY;
     protected Sprite sprite;

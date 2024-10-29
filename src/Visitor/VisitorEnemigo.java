@@ -21,7 +21,7 @@ public class VisitorEnemigo implements Visitor {
 
     @Override
     public int visit(Enemigo e) {
-		return 0;
+        return 0;
     }
 
     @Override
@@ -37,12 +37,12 @@ public class VisitorEnemigo implements Visitor {
         if (enemigo.colisionIzquierda(plataforma) || enemigo.colisionDerecha(plataforma)) {
             enemigo.setDireccion(enemigo.getDireccion() * (-1));
         }
-        if(enemigo.colisionAbajo(plataforma)){
+        if (enemigo.colisionAbajo(plataforma)) {
             enemigo.setEnPlataforma(true);
         }
     }
 
-    public int visit(Proyectil proyectil){
+    public int visit(Proyectil proyectil) {
         return enemigo.interactuarConProyectil(proyectil);
 
     }

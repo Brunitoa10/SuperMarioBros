@@ -1,28 +1,28 @@
 package EstadoJugador;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Constantes.ConstantesPuntaje;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class MarioEstrella implements EstadoJugador{
+public class MarioEstrella implements EstadoJugador {
 
 
-    private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     protected Jugador mario;
     protected EstadoJugador estadoAnterior;
     protected int alto;
+    private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public MarioEstrella(Jugador mario) {
         estadoAnterior = mario.getEstadoJugador();
         this.mario = mario;
         iniciarTemporizador();
-        alto=(int)mario.getHitbox().getHeight();
-        mario.setPosicionEnY(mario.getPosicionEnY()-32+alto);
-        mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,32);
+        alto = (int) mario.getHitbox().getHeight();
+        mario.setPosicionEnY(mario.getPosicionEnY() - 32 + alto);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
         mario.setVelocidad(6);
 
     }
@@ -45,15 +45,15 @@ public class MarioEstrella implements EstadoJugador{
             @Override
             public void run() {
                 mario.setVelocidad(4);
-                mario.setPosicionEnY(mario.getPosicionEnY()+32-alto);
-                mario.getHitbox().setBounds(mario.getPosicionEnX(),mario.getPosicionEnY(),32,alto);
+                mario.setPosicionEnY(mario.getPosicionEnY() + 32 - alto);
+                mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, alto);
                 mario.setEstadoJugador(estadoAnterior);
 
             }
         }, 8, TimeUnit.SECONDS);
     }
 
-    public int getPuntajeEstrella(){
+    public int getPuntajeEstrella() {
         return ConstantesPuntaje.PUNTAJE_ESTRELLA_CON_ESTRELLA;
     }
 
@@ -77,13 +77,16 @@ public class MarioEstrella implements EstadoJugador{
     public boolean puedeRomperBloques() {
         return false;
     }
-    public boolean elHongoLoHaceSuperMario(){
+
+    public boolean elHongoLoHaceSuperMario() {
         return false;
     }
-    public boolean puedeSerMarioFuego(){
+
+    public boolean puedeSerMarioFuego() {
         return true;
     }
-    public String finalAnimacion(){
+
+    public String finalAnimacion() {
         return ".gif";
     }
 }

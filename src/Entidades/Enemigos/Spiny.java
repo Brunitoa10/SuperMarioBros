@@ -34,7 +34,7 @@ public class Spiny extends Enemigo {
         mario.getEstadoJugador().recibeDanio(this);
         if (mario.getMorir())
             toReturn = ConstantesPuntaje.PUNTAJE_SPINY_MUERTE_MARIO;
-        else if (this.aEliminar()){
+        else if (this.aEliminar()) {
             toReturn = ConstantesPuntaje.PUNTAJE_SPINY_DESTRUIDO;
         }
         return toReturn;
@@ -47,20 +47,20 @@ public class Spiny extends Enemigo {
         return puntajeSpinyDestruido;
     }
 
-    public void setEstadoSpiny(EstadoSpiny estadoSpiny) {
-        this.estadoSpiny = estadoSpiny;
-    }
-
     public EstadoSpiny getEstadoSpiny() {
         return estadoSpiny;
     }
 
-    public boolean estoyEnPlataforma(){
+    public void setEstadoSpiny(EstadoSpiny estadoSpiny) {
+        this.estadoSpiny = estadoSpiny;
+    }
+
+    public boolean estoyEnPlataforma() {
         return estoyEnPlataforma;
     }
 
     public void setEnPlataforma(boolean enPlataforma) {
-        estoyEnPlataforma=enPlataforma;
+        estoyEnPlataforma = enPlataforma;
     }
 
 }

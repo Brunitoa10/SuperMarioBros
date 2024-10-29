@@ -1,8 +1,9 @@
 package Entidades.Plataformas.StateBloquePregunta;
 
-import Entidades.Power_Ups.PowerUp;
+import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Plataformas.BloquePregunta;
+import Entidades.Power_Ups.PowerUp;
 
 
 public class BloquePreguntaLleno implements EstadoBloquePregunta {
@@ -13,9 +14,9 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
     }
 
     public void interactuar(Jugador j) {
-        PowerUp powerUp = bloquePregunta.getPowerUp();
-        powerUp.getHitbox().setBounds(powerUp.getPosicionEnX(), powerUp.getPosicionEnY(), 32, 32);
-        powerUp.getSprite().setRutaImagen(bloquePregunta.getRutaImagen() + ".gif");
+        Entidad powerUp = bloquePregunta.getContenidoBloque();
+        powerUp.getHitbox().setBounds(powerUp.getPosicionEnX(), bloquePregunta.getPosicionEnY() - 32, 32, 32);
+        powerUp.setPosicionEnY(bloquePregunta.getPosicionEnY() - 32);
         System.out.println(powerUp.getSprite().getRutaImagen());
         powerUp.actualizarEntidad();
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));

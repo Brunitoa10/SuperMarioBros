@@ -1,22 +1,16 @@
 package Vista.Paneles;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import Constantes.ConstantesVista;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ControladorVista;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class PanelPantallaPrincipal extends JPanel {
@@ -30,7 +24,7 @@ public class PanelPantallaPrincipal extends JPanel {
     protected Sonido sonidoBoton;
     protected ImageIcon icono_imagen;
     protected Image imagen_escalada;
-    
+
     public PanelPantallaPrincipal(ControladorVista controladorVistas, String modoJuego) {
         this.controladorVistas = controladorVistas;
         this.modoJuego = modoJuego;
@@ -43,7 +37,7 @@ public class PanelPantallaPrincipal extends JPanel {
 
     private void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        icono_imagen = new ImageIcon( this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/Inicio.png"));
+        icono_imagen = new ImageIcon(this.getClass().getResource("/Recursos/imagenes/" + modoJuego + "/Inicio.png"));
         imagen_escalada = icono_imagen.getImage().getScaledInstance(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO, Image.SCALE_SMOOTH);
         Icon icono_imagen_escalado = new ImageIcon(imagen_escalada);
         setLayout(null);
@@ -106,7 +100,7 @@ public class PanelPantallaPrincipal extends JPanel {
             }
         });
     }
-    
+
     private void transparentar_boton(JButton boton) {
         boton.setOpaque(false);
         boton.setContentAreaFilled(false);

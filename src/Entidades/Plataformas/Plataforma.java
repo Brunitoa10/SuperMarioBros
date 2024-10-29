@@ -35,7 +35,7 @@ public abstract class Plataforma extends EntidadInmovil {
 
     }
 
-    public void reaccionar(Proyectil p){
+    public void reaccionar(Proyectil p) {
 
     }
 

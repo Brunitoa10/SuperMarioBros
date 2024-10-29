@@ -3,15 +3,15 @@ package EstadoMovimiento;
 import Entidades.Jugador;
 
 public class MarioParado implements EstadoMovimiento {
-   private  Jugador mario;
+    private final Jugador mario;
 
     public MarioParado(Jugador mario) {
         this.mario = mario;
         mario.getEstadoJugador().actualizarSprite();
-        if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
-        }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
+        if (mario.getDireccion() == 1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
+        } else {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -32,10 +32,10 @@ public class MarioParado implements EstadoMovimiento {
     public void actualizar() {
 
         mario.getEstadoJugador().actualizarSprite();
-        if(mario.getDireccion()==1) {
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioRigth.png"+mario.getEstadoJugador().finalAnimacion());
-        }else{
-            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen()+"/StandingMarioLeft.png"+mario.getEstadoJugador().finalAnimacion());
+        if (mario.getDireccion() == 1) {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioRigth.png" + mario.getEstadoJugador().finalAnimacion());
+        } else {
+            mario.getSprite().setRutaImagen(mario.getSprite().getRutaImagen() + "/StandingMarioLeft.png" + mario.getEstadoJugador().finalAnimacion());
         }
     }
 
@@ -45,7 +45,7 @@ public class MarioParado implements EstadoMovimiento {
     }
 
     public void EnAire() {
-        mario.setEstadoMovimiento(new MarioEnAire(mario,0));
+        mario.setEstadoMovimiento(new MarioEnAire(mario, 0));
     }
 
     public void AFK() {

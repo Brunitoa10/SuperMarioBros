@@ -6,8 +6,8 @@ import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.ComportamientoIA;
 import Logica.Temporizador;
-import Visitor.VisitorEnemigo;
 import Visitor.Visitor;
+import Visitor.VisitorEnemigo;
 
 import java.util.List;
 
@@ -40,12 +40,6 @@ public abstract class Enemigo extends EntidadMovil {
         super.actualizarEntidad();
     }
 
-
-    public void setComportamientoIA(ComportamientoIA nuevaIA) {
-        this.comportamientoIA = nuevaIA;
-    }
-
-
     public void cambiarDireccion() {
         direccion = -direccion;
     }
@@ -69,6 +63,10 @@ public abstract class Enemigo extends EntidadMovil {
 
     public ComportamientoIA getComportamientoIA() {
         return comportamientoIA;
+    }
+
+    public void setComportamientoIA(ComportamientoIA nuevaIA) {
+        this.comportamientoIA = nuevaIA;
     }
 
     public void setEnPlataforma(boolean enPlataforma) {
