@@ -271,10 +271,10 @@ public class Juego {
     }
 
     private void aplicarSprite(Jugador mario) {
-        //if (mario.getDireccion() == -1)
-            //mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
-        //if (mario.getDireccion() == +1)
-            //mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
+        if (mario.getDireccion() == -1)
+            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
+        if (mario.getDireccion() == +1)
+            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
     }
 
     public boolean frenoElTick() {
