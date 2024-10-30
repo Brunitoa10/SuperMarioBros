@@ -63,6 +63,7 @@ public class LoopMario implements Runnable {
             if (now - lastUpdateTime >= updateInterval) {
                 lastUpdateTime = now;
                 tick();
+                renderizar();
             }
         }
     }
@@ -108,7 +109,7 @@ public class LoopMario implements Runnable {
         timerAnimacionMorir++;
     }
 
-   
+
     public void renderizar() {
         juego.getControladorVistaJuego().actualizarObserver();
         juego.getControladorVistaJuego().refrescar();

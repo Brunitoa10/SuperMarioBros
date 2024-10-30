@@ -14,7 +14,6 @@ public class HiloRestoEntidades implements Runnable {
     protected boolean FrenarHilo = false;
     protected List<Entidad> EntidadesAEliminar;
     private boolean ejecutando;
-    private ControladorVistaJuego controlador;
     private ControladorColisiones controladorColisiones;
     private long lastUpdateTime = System.nanoTime();
     protected boolean puedoEliminar=false;
@@ -22,7 +21,6 @@ public class HiloRestoEntidades implements Runnable {
     protected Juego juego;
 
     public HiloRestoEntidades(Juego juego) {
-        controlador = juego.getControladorVistaJuego();
         this.juego = juego;
         EntidadesAEliminar = juego.getNivelActual().entidadesAEliminar;
         controladorColisiones = new ControladorColisiones(juego.getNivelActual(), juego);
@@ -53,7 +51,7 @@ public class HiloRestoEntidades implements Runnable {
                     juego.frenarTick=false;
                     juego.reanudarHilo();
                 }
-            juego.loopMario.renderizar();
+                juego.loopMario.renderizar();
             }
         }
     }
@@ -69,10 +67,6 @@ public class HiloRestoEntidades implements Runnable {
     }
 
 
-    private void renderizar() {
-        controlador.actualizarObserver(); // Actualiza la vista de cada entidad
-        controlador.refrescar(); // Refresca la pantalla
-    }
 
     public void pause() {
         FrenarHilo = true;

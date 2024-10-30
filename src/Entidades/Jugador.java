@@ -142,8 +142,5 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         System.out.println(rutaOrigen);
     }
 
-    public String getRutaOrigen() {
-        return rutaOrigen;
-    }
 
 }

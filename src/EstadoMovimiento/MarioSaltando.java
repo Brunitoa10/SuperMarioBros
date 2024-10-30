@@ -5,34 +5,31 @@ import Entidades.Jugador;
 
 public class MarioSaltando implements EstadoMovimiento {
 
-    private static final int VELOCIDAD_INICIAL_SALTO = -18; // Velocidad negativa para subir
+    private static final int VELOCIDAD_INICIAL_SALTO = -18;
     private static final int GRAVEDAD = 1;
     private final Jugador mario;
     private int velocidadY;
 
     public MarioSaltando(Jugador mario) {
         this.mario = mario;
-        this.velocidadY = VELOCIDAD_INICIAL_SALTO; // Comienza subiendo
+        this.velocidadY = VELOCIDAD_INICIAL_SALTO;
 
-        // Asegurarse de que Mario no esté en la plataforma
         if (mario.estaEnPlataforma()) {
             mario.setEnPlataforma(false);
         }
-        actualizarRutaImagen(); // Inicializa la imagen
+        actualizarRutaImagen();
     }
 
     @Override
     public void actualizar() {
-        mario.getEstadoJugador().actualizarEstadoJugador(); // Actualiza el sprite
+        mario.getEstadoJugador().actualizarEstadoJugador();
 
-        // Aplicar gravedad
         if (velocidadY <= 15)
             velocidadY += GRAVEDAD;
 
-        // Movimiento vertical
         mario.setPosicionEnY(mario.getPosicionEnY() + velocidadY);
 
-        actualizarRutaImagen(); // Actualiza la imagen durante el salto
+        actualizarRutaImagen();
     }
 
     @Override
@@ -61,6 +58,6 @@ public class MarioSaltando implements EstadoMovimiento {
     @Override
     public void saltar() {
         mario.setPosicionEnY(VELOCIDAD_INICIAL_SALTO + mario.getPosicionEnY());
-        mario.setEstadoMovimiento(new MarioEnAire(mario, VELOCIDAD_INICIAL_SALTO)); // Cambia a estado de aire
+        mario.setEstadoMovimiento(new MarioEnAire(mario, VELOCIDAD_INICIAL_SALTO));
     }
 }

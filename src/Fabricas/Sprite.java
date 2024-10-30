@@ -16,16 +16,8 @@ public class Sprite {
         System.out.println("Ruta de imagen clase Sprite: " + ruta_a_imagen);
     }
 
-    public int getPosicionX() {
-        return posicionX;
-    }
-
     public void setPosicionX(int posicionX) {
         this.posicionX = posicionX;
-    }
-
-    public int getPosicionY() {
-        return posicionY;
     }
 
     public void setPosicionY(int posicionY) {

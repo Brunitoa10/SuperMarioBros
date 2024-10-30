@@ -114,15 +114,7 @@ public class Juego {
         iniciarLoops();
         nivelActual.getJugador().setRutaOrigen(fabricaSprites.getRuta_carpeta());
     }
-    
-    public void agregarTiempoAlTotal(int tiempoNivelActual) {
-        tiempoJuego += tiempoNivelActual;
-    }
-    
 
-    public int getTiempo() {
-        return tiempoJuego; //hacer
-    }
 
     private void iniciarLoops() {
         loopMario = new LoopMario(this);
@@ -294,10 +286,6 @@ public class Juego {
         bolaDeFuego.registrarObserver(observer);
     }
 
-    public void setAnimacionGanando(boolean tocoBandera){
-        animacionGanando = tocoBandera;
-    }
-
     public boolean animacionGanando() {
         return animacionGanando;
     }
@@ -319,7 +307,4 @@ public class Juego {
         }
     }
 
-    public void renderizarHilos(){
-        loopMario.renderizar();
-    }
 }
