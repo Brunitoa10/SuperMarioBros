@@ -42,7 +42,7 @@ public class MarioSaltando implements EstadoMovimiento {
 
     private void actualizarRutaImagen() {
         String rutaImagen = (mario.getDireccion() == 1) ? AnimadorMario.RUTA_MARIO_JUMP_DERECHA : AnimadorMario.RUTA_MARIO_JUMP_IZQUIERDA;
-        mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion()+ rutaImagen + mario.getEstadoJugador().finalAnimacion());
+        mario.getSprite().setRutaImagen(mario.getEstadoJugador().inicioAnimacion() + rutaImagen + mario.getEstadoJugador().finalAnimacion());
     }
 
     public void LanzarBola() {

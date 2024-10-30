@@ -28,7 +28,7 @@ public class SuperMarioFuego implements EstadoJugador {
     }
 
     public String inicioAnimacion(){
-        return mario.getRutaOrigen()+"/Jugador/PNGMario/MarioFlorDeFuego";
+        return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego";
     }
 
     public void actualizarEstadoJugador() {

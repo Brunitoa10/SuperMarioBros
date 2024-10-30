@@ -58,7 +58,7 @@ public class MarioEstrella implements EstadoJugador {
     }
 
     public String inicioAnimacion(){
-        return mario.getRutaOrigen()+"/Jugador/PNGMario/MarioEstrella";
+        return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioEstrella";
     }
 
     @Override

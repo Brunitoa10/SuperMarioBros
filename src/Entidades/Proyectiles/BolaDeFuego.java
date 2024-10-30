@@ -30,9 +30,9 @@ public class BolaDeFuego extends Proyectil {
         temporizador.iniciar(); // Iniciar el temporizador al crear la bola de fuego
     }
 
-
+    //TODO: Buscar alguna manera de usar la fabrica de sprites para esto
     private static Sprite crearSprite() {
-        return new Sprite("src/Recursos/Sprites/original/Proyectiles/BolaDeFuego.gif", 16, 16);
+        return new Sprite("src/Recursos/Sprites/original/Proyectiles/BolaDeFuego.gif", 16, 16, "src/Recursos/Sprites/original");
     }
 
     private static int calcularMitadDeMario(Jugador mario) {

@@ -22,10 +22,10 @@ public class BuzzyBeetle extends Enemigo {
     public void actualizar() {
         super.actualizar();
         if (this.getDireccion() == 1) {
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/BUzzyBeetle/BuzzyBeetleRigthLoop.gif");
+            this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/BuzzyBeetle/BuzzyBeetleRigthLoop.gif");
         }
         if (this.getDireccion() == -1) {
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/BUzzyBeetle/BuzzyBeetleLeftLoop.gif");
+            this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/BuzzyBeetle/BuzzyBeetleLeftLoop.gif");
         }
     }
 

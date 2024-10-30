@@ -37,7 +37,7 @@ public class Goomba extends Enemigo {
         if (!Mori)
             if (mario.colisionAbajo(this)) {
                 temporizadorGoomba.iniciar();
-                this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Goomba/GoombaMuerto.png");
+                this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/Goomba/GoombaMuerto.png");
                 this.setPosicionEnY(436);
                 Mori = true;
                 toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;

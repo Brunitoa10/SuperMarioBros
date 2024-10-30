@@ -37,17 +37,17 @@ public class LanzandoBola implements EstadoMovimiento {
         System.out.println(mario.getDireccion());
         if (mario.getDireccion() == 1) {
             if (mario.estaEnPlataforma()) {
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
             } else {
-                mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireRigth.gif");
+                mario.getSprite().setRutaImagen(mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireRigth.gif");
             }
 
         } else {
             if (mario.getDireccion() == -1) {
                 if (mario.estaEnPlataforma()) {
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
+                    mario.getSprite().setRutaImagen(mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallLeft.gif");
                 } else {
-                    mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireLeft.gif");
+                    mario.getSprite().setRutaImagen(mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego/SaltoYFireBall/TiraBolaAireLeft.gif");
                 }
             }
         }

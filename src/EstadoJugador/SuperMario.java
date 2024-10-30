@@ -31,7 +31,7 @@ public class SuperMario implements EstadoJugador {
     }
     @Override
     public String inicioAnimacion(){
-        return mario.getRutaOrigen()+"/Jugador/PNGMario/MarioPowerUp";
+        return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioPowerUp";
     }
 
     @Override

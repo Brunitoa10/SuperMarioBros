@@ -50,7 +50,7 @@ public class ControladorColisiones {
                 plataforma.accept(mario.getVisitorJugador());
                 plataforma.actualizarEntidad();
                 if (plataforma.aEliminar()) {
-                    Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
+                    Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
                     nivelActual.agregarVacio(vacio);
                     vacio.setAnimacionFinal(1200);
                     Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
@@ -171,7 +171,7 @@ public class ControladorColisiones {
                     int PosicionReemplazarY = plataforma.getPosicionEnY();
                     proyectil.getVisitor().visit(plataforma);
                     if (plataforma.aEliminar()) {
-                        Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32), nivelActual.getVacios());
+                        Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
                         nivelActual.agregarVacio(vacio);
                         vacio.setAnimacionFinal(2200);
                         Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);

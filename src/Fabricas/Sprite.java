@@ -4,13 +4,15 @@ public class Sprite {
     protected String rutaImagen;
     protected int ancho;
     protected int alto;
+    protected String rutaModo;
     protected int posicionX;
     protected int posicionY;
 
-    public Sprite(String ruta_a_imagen, int ancho, int alto) {
+    public Sprite(String ruta_a_imagen, int ancho, int alto, String rutaModo) {
         this.ancho = ancho;
         this.alto = alto;
         this.rutaImagen = ruta_a_imagen;
+        this.rutaModo = rutaModo;
         System.out.println("Ruta de imagen clase Sprite: " + ruta_a_imagen);
     }
 
@@ -44,6 +46,10 @@ public class Sprite {
 
     public void setRutaImagen(String ruta_a_imagen) {
         this.rutaImagen = ruta_a_imagen;
+    }
+
+    public String getRutaModo() {
+        return rutaModo;
     }
 
 

@@ -66,7 +66,7 @@ public class ProyectilKoopa extends Proyectil {
                 this.setPosicionEnX(this.getPosicionEnX() + 12);
             if (direccionLocal == -1)
                 this.setPosicionEnX(this.getPosicionEnX() - 12);
-            this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
+            this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
         }
         if (direccion != 0) {
             this.direccion = direccion;
@@ -80,20 +80,20 @@ public class ProyectilKoopa extends Proyectil {
         if (cantidadDeRebotes < 3) {
             if (this.colisionArriba(j) && direccionLocal == 0) {
                 this.setAEliminar();
-                this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+                this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Bloques/BloqueNada.png");
 
             }
             if (direccionLocal == 0) {
                 if (this.colisionIzquierda(j)) {
                     super.setDireccion(1);
                     direccionLocal = 1;
-                    this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+                    this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
 
                 }
                 if (this.colisionDerecha(j)) {
                     super.setDireccion(-1);
                     direccionLocal = -1;
-                    this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
+                    this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/ProyectilKoopa.gif");
 
                 }
             } else {
