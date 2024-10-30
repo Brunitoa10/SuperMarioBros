@@ -112,6 +112,7 @@ public class Juego {
         controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
 
         iniciarLoops();
+        nivelActual.getJugador().setRutaOrigen(fabricaSprites.getRuta_carpeta());
     }
     
     public void agregarTiempoAlTotal(int tiempoNivelActual) {
@@ -316,5 +317,9 @@ public class Juego {
             nivelSiguiente();
             animacionGanando = false;
         }
+    }
+
+    public void renderizarHilos(){
+        loopMario.renderizar();
     }
 }

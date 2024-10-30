@@ -96,4 +96,8 @@ public abstract class FabricaSprites {
     public Sprite crearSpriteVacio() {
         return new Sprite(ruta_carpeta + "/Bloques/BloqueNada.png", 32, 32);
     }
+
+    public String getRuta_carpeta() {
+        return ruta_carpeta;
+     }
 }

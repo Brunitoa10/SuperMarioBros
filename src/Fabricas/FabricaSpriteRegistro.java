@@ -27,4 +27,5 @@ public class FabricaSpriteRegistro {
         // Si no existe una fábrica específica, puedes retornar una fábrica por defecto o lanzar una excepción
         throw new IllegalArgumentException("Modo de juego no soportado: " + modoJuego);
     }
+
 }

@@ -28,7 +28,7 @@ public class Mario implements EstadoJugador {
     }
 
     public String inicioAnimacion(){
-        return "src/Recursos/Sprites/original/Jugador/PNGMario";
+        return mario.getRutaOrigen()+"/Jugador/PNGMario";
     }
 
     @Override

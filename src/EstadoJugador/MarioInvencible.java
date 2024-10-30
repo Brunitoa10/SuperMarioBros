@@ -45,7 +45,7 @@ public class MarioInvencible implements EstadoJugador {
 
     @Override
     public String inicioAnimacion(){
-        return "src/Recursos/Sprites/original/Jugador/PNGMario/MarioGolpeado";
+        return mario.getRutaOrigen()+"/Jugador/PNGMario/MarioGolpeado";
     }
 
     @Override

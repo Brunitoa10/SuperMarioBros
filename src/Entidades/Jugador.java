@@ -24,6 +24,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected boolean muerte;
     protected boolean sumarVida;
     protected static final Puntajes MATRIZPUNTAJE=new Puntajes();
+    protected String rutaOrigen;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -136,5 +137,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return MATRIZPUNTAJE;
     }
 
+    public void setRutaOrigen(String rutaOrigen) {
+        this.rutaOrigen = rutaOrigen;
+        System.out.println(rutaOrigen);
+    }
+
+    public String getRutaOrigen() {
+        return rutaOrigen;
+    }
 
 }
