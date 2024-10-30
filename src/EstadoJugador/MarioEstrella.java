@@ -3,6 +3,9 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Power_Ups.Estrella;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 import Logica.Temporizador;
 
 import java.util.concurrent.Executors;
@@ -18,6 +21,7 @@ public class MarioEstrella implements EstadoJugador {
     protected int alto;
     protected static final int FILA=3;
     protected Temporizador temporizador;
+    protected boolean cambioAFlorDeFuego = false;
 
     public MarioEstrella(Jugador mario) {
         estadoAnterior = mario.getEstadoJugador();
@@ -46,7 +50,10 @@ public class MarioEstrella implements EstadoJugador {
             mario.setVelocidad(4);
             mario.setPosicionEnY(mario.getPosicionEnY() + 32 - alto);
             mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, alto);
-            mario.setEstadoJugador(estadoAnterior);
+            if(!cambioAFlorDeFuego)
+                mario.setEstadoJugador(estadoAnterior);
+            else
+                mario.setEstadoJugador(new SuperMarioFuego(mario));
         }
     }
 
@@ -59,19 +66,27 @@ public class MarioEstrella implements EstadoJugador {
         return false;
     }
 
-    public boolean elHongoLoHaceSuperMario() {
-        return false;
-    }
-
-    public boolean puedeSerMarioFuego() {
-        return true;
-    }
-
     public String finalAnimacion() {
         return ".gif";
     }
 
     public int getPuntaje(int columna){
         return mario.getPuntajes().getPuntaje(FILA,columna);
+    }
+
+    @Override
+    public void interactuar(SuperChampinion powerUp) {
+        estadoAnterior.interactuar(powerUp);
+    }
+
+    @Override
+    public void interactuar(FlorDeFuego powerUp) {
+        cambioAFlorDeFuego=true;
+
+    }
+
+    @Override
+    public void interactuar(Estrella powerUp) {
+        mario.setEstadoJugador(new MarioEstrella(mario));
     }
 }

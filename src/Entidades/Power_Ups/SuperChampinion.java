@@ -14,10 +14,7 @@ public class SuperChampinion extends PowerUp {
 
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntaje(COLUMNA);
-        if (j.getEstadoJugador().elHongoLoHaceSuperMario()) {
-            j.setEstadoJugador(new SuperMario(j));
-        }
-        this.setFrenarJuego(true);
+        j.getEstadoJugador().interactuar(this);
         return toReturn;
     }
 

@@ -3,6 +3,9 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Power_Ups.Estrella;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 import Logica.Temporizador;
 
 import java.util.concurrent.Executors;
@@ -50,21 +53,27 @@ public class MarioInvencible implements EstadoJugador {
         return false;
     }
 
-    public boolean elHongoLoHaceSuperMario() {
-        return false;
-    }
-
-    public boolean puedeSerMarioFuego() {
-        return true;
-    }
-
-
-
     public String finalAnimacion() {
         return ".gif";
     }
 
     public int getPuntaje(int columna){
         return mario.getPuntajes().getPuntaje(FILA,columna);
+    }
+
+    @Override
+    public void interactuar(SuperChampinion powerUp) {
+        mario.setEstadoJugador(new SuperMario(mario));
+    }
+
+    @Override
+    public void interactuar(FlorDeFuego powerUp) {
+        mario.setEstadoJugador(new SuperMarioFuego(mario));
+    }
+
+    @Override
+    public void interactuar(Estrella powerUp) {
+        mario.setEstadoJugador(new Mario(mario));
+        mario.setEstadoJugador(new MarioEstrella(mario));
     }
 }

@@ -1,6 +1,8 @@
 package Entidades;
 
 import Constantes.CadenasValidacion;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 import EstadoJugador.Puntajes;
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
@@ -25,7 +27,7 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.velocidad = 12;
+        this.velocidad = 4;
         inicializacionEstadosYVisitantes();
         inicializacionBooleanos();
 
@@ -133,5 +135,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     public Puntajes getPuntajes(){
         return MATRIZPUNTAJE;
     }
+
 
 }

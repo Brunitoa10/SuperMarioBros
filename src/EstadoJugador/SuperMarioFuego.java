@@ -3,6 +3,9 @@ package EstadoJugador;
 import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Entidades.Power_Ups.Estrella;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 
 public class SuperMarioFuego implements EstadoJugador {
 
@@ -37,21 +40,27 @@ public class SuperMarioFuego implements EstadoJugador {
         return true;
     }
 
-    @Override
-    public boolean elHongoLoHaceSuperMario() {
-        return false;
-    }
-
-    public boolean puedeSerMarioFuego() {
-        return false;
-    }
-
     public String finalAnimacion() {
         return "";
     }
 
     public int getPuntaje(int columna){
         return mario.getPuntajes().getPuntaje(FILA,columna);
+    }
+
+    @Override
+    public void interactuar(SuperChampinion powerUp) {
+
+    }
+
+    @Override
+    public void interactuar(FlorDeFuego powerUp) {
+
+    }
+
+    @Override
+    public void interactuar(Estrella powerUp) {
+        mario.setEstadoJugador(new MarioEstrella(mario));
     }
 }
 

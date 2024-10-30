@@ -15,9 +15,7 @@ protected static final int COLUMNA=1;
 
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntaje(COLUMNA);
-        if (j.getEstadoJugador().puedeSerMarioFuego()) {
-            j.setEstadoJugador(new SuperMarioFuego(j));
-        }
+        j.getEstadoJugador().interactuar(this);
         return toReturn;
     }
 }

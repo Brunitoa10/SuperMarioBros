@@ -15,7 +15,7 @@ protected static final int COLUMNA=2;
     @Override
     public int setEstadoMario(Jugador j) {
         int toReturn = j.getEstadoJugador().getPuntaje(COLUMNA);
-        j.setEstadoJugador(new MarioEstrella(j));
+        j.getEstadoJugador().interactuar(this);
         return toReturn;
     }
 }

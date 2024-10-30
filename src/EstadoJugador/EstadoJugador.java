@@ -1,6 +1,10 @@
 package EstadoJugador;
 
 import Entidades.Entidad;
+import Entidades.Power_Ups.ChampinionVerde;
+import Entidades.Power_Ups.Estrella;
+import Entidades.Power_Ups.FlorDeFuego;
+import Entidades.Power_Ups.SuperChampinion;
 
 public interface EstadoJugador {
     public void recibeDanio(Entidad e);
@@ -9,10 +13,6 @@ public interface EstadoJugador {
 
     public boolean puedeRomperBloques();
 
-    public boolean elHongoLoHaceSuperMario();
-
-    public boolean puedeSerMarioFuego();
-
     public String finalAnimacion();
 
     public int getPuntaje(int columna);
@@ -20,4 +20,11 @@ public interface EstadoJugador {
     public String inicioAnimacion();
 
     public void actualizarEstadoJugador();
+
+    public void interactuar(SuperChampinion powerUp);
+
+    public void interactuar(FlorDeFuego powerUp);
+
+    public void interactuar(Estrella powerUp);
+
 }
