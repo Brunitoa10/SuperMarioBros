@@ -37,10 +37,10 @@ public class Juego {
     protected Temporizador temporizador;
     protected boolean frenarTick;
     protected int nivel;
-    protected int puntaje;
     protected int tiempoJuego;
     protected boolean animacionGanando = false;
     protected ControladorVidasMario controladorVidasMario;
+    protected ControladorPuntaje controladorPuntaje;
 
     public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -49,11 +49,11 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        puntaje = 0;
         nivel = 1;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
+        controladorPuntaje = new ControladorPuntaje();
         controladorVidasMario = new ControladorVidasMario();
     }
 
@@ -72,15 +72,15 @@ public class Juego {
     }
 
     public void sumarPuntaje(int puntajeParaSumar) {
-        puntaje += puntajeParaSumar;
-        if (puntaje < 0)
-            puntaje = 0;
+        controladorPuntaje.sumarPuntaje(puntajeParaSumar);
+        if (controladorPuntaje.getPuntaje() < 0)
+            controladorPuntaje.setpuntaje(0);
 
         controladorVistas.actualizarLabels();
     }
 
     public int getPuntaje() {
-        return puntaje;
+        return controladorPuntaje.getPuntaje();
     }
 
     public void mostrarPantallaFinJuego() {
