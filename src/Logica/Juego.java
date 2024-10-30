@@ -6,7 +6,6 @@ import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
-import Entidades.Proyectiles.Proyectil;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
@@ -14,7 +13,6 @@ import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
-import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
@@ -39,10 +37,10 @@ public class Juego {
     protected Temporizador temporizador;
     protected boolean frenarTick;
     protected int nivel;
-    protected int vidas;
     protected int puntaje;
     protected int tiempoJuego;
     protected boolean animacionGanando = false;
+    protected ControladorVidasMario controladorVidasMario;
 
     public Juego(GUI controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -51,24 +49,25 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        vidas = 3;
         puntaje = 0;
         nivel = 1;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
+        controladorVidasMario = new ControladorVidasMario();
     }
 
     public int getVidas() {
-        return vidas;
+        return controladorVidasMario.getVidas();
     }
 
     public void perderVida() {
-        vidas--;
+        controladorVidasMario.perderVida();
+        controladorVistas.actualizarLabels();
     }
 
     public void sumarVida() {
-        vidas++;
+        controladorVidasMario.sumarVida();
         controladorVistas.actualizarLabels();
     }
 
@@ -132,7 +131,6 @@ public class Juego {
     }
 
     public void nivelSiguiente() {
-        int tiempoAux = tiempoJuego;
         sonido.detener();
         detenerLoops();
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
@@ -226,7 +224,7 @@ public class Juego {
         } else {
             detenerLoops();
             mostrarPantallaFinJuego();
-            vidas = 3;
+            controladorVidasMario.setVidas(3);
         }
     }
 
