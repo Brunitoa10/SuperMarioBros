@@ -1,6 +1,10 @@
 package Logica;
 
 import Entidades.Jugador;
+import Entidades.Proyectiles.Proyectil;
+import Fabricas.FabricaEntidad;
+import Vista.GUI;
+import Vista.ObserverGrafica.Observer;
 
 public class ControladorBolasDeFuego {
 
@@ -23,6 +27,13 @@ public class ControladorBolasDeFuego {
             toRet = true;
         }
         return toRet;
+    }
+
+    public void dispararBolaFuego(GUI controladorVistas, FabricaEntidad fabricaEntidades) {
+        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, controladorVistas.getJuego().getNivelActual().getProyectiles());
+        controladorVistas.getJuego().getNivelActual().agregarProyectil(bolaDeFuego);
+        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+        bolaDeFuego.registrarObserver(observer);
     }
 
 }

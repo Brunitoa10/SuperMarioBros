@@ -14,6 +14,7 @@ import Fabricas.FabricaSprites;
 import Generador.GeneradorNivel;
 import Generador.GestorSonido.Sonido;
 import Generador.GestorSonido.SonidoFactory;
+import Vista.Controladores.ControladorVista;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class Juego {
 
-	protected FabricaEntidad fabricaEntidades;
+    protected FabricaEntidad fabricaEntidades;
     protected Sonido sonido;
     protected GUI controladorVistas;
     protected GeneradorNivel generadorNivel;
@@ -42,23 +43,23 @@ public class Juego {
     protected int puntaje;
     protected int tiempoJuego;
     protected boolean animacionGanando = false;
-    
-	public Juego(GUI controladorVistas) {
-		this.controladorVistas = controladorVistas;
-		this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
-		inicializarAtributos();
-	}
+
+    public Juego(GUI controladorVistas) {
+        this.controladorVistas = controladorVistas;
+        this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
+        inicializarAtributos();
+    }
 
     private void inicializarAtributos() {
-    	vidas = 3;
-		puntaje = 0;
-		nivel = 1;
-		tiempoJuego = 0;
-		frenarTick = false;
-		temporizador = new Temporizador();
-	}
+        vidas = 3;
+        puntaje = 0;
+        nivel = 1;
+        tiempoJuego = 0;
+        frenarTick = false;
+        temporizador = new Temporizador();
+    }
 
-	public int getVidas() {
+    public int getVidas() {
         return vidas;
     }
 
@@ -87,7 +88,7 @@ public class Juego {
         controladorVistas.crearPantallaPerdiste(modoJuego);
         controladorVistas.mostrarPantallaFinJuego();
     }
-    
+
     public void mostrarPantallaVictoria() {
         controladorVistas.crearPantallaVictoria(modoJuego);
         controladorVistas.mostrarPantallaVictoria();
@@ -132,7 +133,7 @@ public class Juego {
 
     public void nivelSiguiente() {
         int tiempoAux = tiempoJuego;
-    	sonido.detener();
+        sonido.detener();
         detenerLoops();
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
             nivel++;
@@ -146,7 +147,7 @@ public class Juego {
             controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
             iniciarLoops();
         } else {
-           mostrarPantallaVictoria();
+            mostrarPantallaVictoria();
         }
     }
 
@@ -196,7 +197,7 @@ public class Juego {
 
     public void lanzarBolasDeFuego(Jugador mario) {
         if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
-            dispararBolaFuego(mario);
+            controladorBolasDeFuego.dispararBolaFuego(controladorVistas, fabricaEntidades);
             mario.getEstadoMovimiento().LanzarBola();
         }
     }
@@ -277,13 +278,6 @@ public class Juego {
 
     public void setFrenoElTick(boolean frenar) {
         frenarTick = frenar;
-    }
-
-    private void dispararBolaFuego(Jugador mario) {
-        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, nivelActual.getProyectiles());
-        getNivelActual().agregarProyectil(bolaDeFuego);
-        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
-        bolaDeFuego.registrarObserver(observer);
     }
 
     public boolean animacionGanando() {
