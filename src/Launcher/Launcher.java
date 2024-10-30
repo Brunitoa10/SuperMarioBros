@@ -11,6 +11,7 @@ public class Launcher {
 
             @Override
             public void run() {
+                System.out.println("ANDA BIEN BRUNO");
                 try {
                     new GUI();
                 } catch (Exception e) {
