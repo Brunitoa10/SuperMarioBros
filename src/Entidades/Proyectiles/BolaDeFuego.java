@@ -18,10 +18,10 @@ public class BolaDeFuego extends Proyectil {
     protected Temporizador temporizador;
     protected Jugador jugador;
 
-    public BolaDeFuego(Jugador mario, List<Proyectil> listaProyectilNivel) {
+    public BolaDeFuego(Jugador mario, Sprite spriteBolaDeFuego,List<Proyectil> listaProyectilNivel) {
         super((int) (mario.getDireccion() == -1 ? mario.getHitbox().getMinX() - 18 : mario.getHitbox().getMaxX()),
                 calcularMitadDeMario(mario),
-                crearSprite(), listaProyectilNivel);
+                spriteBolaDeFuego, listaProyectilNivel);
         velocidadX = 4;
         velocidadY = 0;
         jugador = mario;
@@ -30,10 +30,7 @@ public class BolaDeFuego extends Proyectil {
         temporizador.iniciar(); // Iniciar el temporizador al crear la bola de fuego
     }
 
-    //TODO: Buscar alguna manera de usar la fabrica de sprites para esto
-    private static Sprite crearSprite() {
-        return new Sprite("src/Recursos/Sprites/original/Proyectiles/BolaDeFuego.gif", 16, 16, "src/Recursos/Sprites/original");
-    }
+
 
     private static int calcularMitadDeMario(Jugador mario) {
         return (int) (mario.getHitbox().getMaxY() - (mario.getHitbox().getHeight() / 2));
@@ -45,7 +42,7 @@ public class BolaDeFuego extends Proyectil {
     }
 
     public void setDireccion(int direccion) {
-        this.getSprite().setRutaImagen("src/Recursos/Sprites/original/Proyectiles/ExplosionFinalBola.gif");
+        this.getSprite().setRutaImagen(jugador.getSprite().getRutaModo()+"/Proyectiles/ExplosionFinalBola.gif");
         velocidadX = 0;
         Gravedad = 0;
         contador = -10000;

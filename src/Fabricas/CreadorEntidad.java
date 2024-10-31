@@ -93,7 +93,8 @@ public class CreadorEntidad implements FabricaEntidad {
 
     @Override
     public BolaDeFuego crearBolaDeFuego(Jugador jugador, List<Proyectil> listaProyectilNivel) {
-        return new BolaDeFuego(jugador, listaProyectilNivel);
+        Sprite bolaDeFuegoSprite = fabricaSprites.crearSpriteBolaDeFuego();
+        return new BolaDeFuego(jugador, bolaDeFuegoSprite, listaProyectilNivel);
     }
 
     @Override
