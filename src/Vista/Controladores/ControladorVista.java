@@ -1,7 +1,5 @@
 package Vista.Controladores;
 
-import GestorArchivos.Ranking;
-
 public interface ControladorVista {
 
     /**
@@ -53,7 +51,7 @@ public interface ControladorVista {
      * @param nombre El nombre del jugador a agregar.
      * @param puntaje El puntaje del jugador a agregar.
      */
-   public void agregarJugadorAlRanking(String nombre, int puntaje);
+ //  public void agregarJugadorAlRanking(String nombre, int puntaje);
 
     /**
      * Establece el nombre del usuario.

@@ -21,31 +21,26 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	protected ConfiguracionJuego configuracion;
 	protected Juego miJuego;
 	protected String nombreUsuario;
-	protected PanelPantallaNivel panelPantallaNivel;
-	protected PanelPantallaPrincipal panelPantallaPrincipal;
-	protected PanelPantallaPerdiste panelPantallaFinJuego;
-	protected PanelPantallaRanking panelPantallaRanking;
-	protected PanelPantallaModoJuego panelPantallaModoJuego;
-	protected PanelPantallaNombreUsuario panelPantallaNombreUsuario;
-	protected PanelPantallaCarga panelPantallaCarga;
-	protected PanelPantallaVictoria panelPantallaVictoria;
 	protected GestorPaneles gestorPaneles;
+	protected PanelFactory panelFactory;
+	protected PanelPantallaNivel panelPantallaNivel;
+	protected PanelPantallaRanking panelPantallaRanking;
 
 	public GUI() {
+		panelFactory = new PanelFactory(this,this);
 		inicializarComponentes();
 		mostrarPantallaCarga();
 	}
 	
 	public void reiniciarPanelPantallaNivel() {
-		panelPantallaNivel = new PanelPantallaNivel(this);
+		panelPantallaNivel = panelFactory.crearPanelPantallaNivel();
 	}
 
 	// De interfaz para launcher
 	@Override
 	public void mostrarPantallaInicial(String modoJuego) {
 		configuracion.setModoJuego(modoJuego);
-		panelPantallaPrincipal = new PanelPantallaPrincipal(this, modoJuego);
-		gestorPaneles.mostrarPantalla(panelPantallaPrincipal);
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaPrincipal(modoJuego));
 		refrescar();
 	}
 
@@ -64,8 +59,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void accionarPantallaRanking() {
-		panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-		agregarJugadorAlRanking(nombreUsuario, miJuego.getPuntaje());
+		panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		mostrarPantallaRanking();
 	}
 
@@ -101,7 +95,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void mostrarPantallaNivel() {
-		panelPantallaNivel = new PanelPantallaNivel(this);
+		panelPantallaNivel = panelFactory.crearPanelPantallaNivel();
 		oyente = new OyenteTeclado();
 		panelPantallaNivel.addKeyListener(oyente);
 		panelPantallaNivel.setFocusable(true);
@@ -111,13 +105,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void mostrarPantallaFinJuego(String modoJuego) {
-		panelPantallaFinJuego = new PanelPantallaPerdiste(this, modoJuego);
-		gestorPaneles.mostrarPantalla(panelPantallaFinJuego);
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaPerdiste(modoJuego));
 	}
 
 	public void mostrarPantallaVictoria(String modoJuego) {
-		panelPantallaVictoria = new PanelPantallaVictoria(this, modoJuego);
-		gestorPaneles.mostrarPantalla(panelPantallaVictoria);	
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaVictoria(modoJuego));	
 	}
 
 	@Override
@@ -126,8 +118,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	}
 
 	public void mostrarPantallaModoJuego() {
-		panelPantallaModoJuego = new PanelPantallaModoJuego(this);
-		gestorPaneles.mostrarPantalla(panelPantallaModoJuego);
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaModoJuego());
 	}
 
 	@Override
@@ -149,8 +140,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	}
 
 	public void mostrarPantallaNombreUsuario() {
-		panelPantallaNombreUsuario = new PanelPantallaNombreUsuario(this);
-		gestorPaneles.mostrarPantalla(panelPantallaNombreUsuario);
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaNombreUsuario());
 	}
 
 	public void actualizarImagenFondoNivel(int nivel) {
@@ -181,8 +171,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	}
 
 	private void mostrarPantallaCarga() {
-		panelPantallaCarga = new PanelPantallaCarga();
-		gestorPaneles.mostrarPantalla(panelPantallaCarga);
+		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaCarga());
 
 		Timer timer = new Timer(4000, e -> mostrarPantallaNombreUsuario());
 		timer.setRepeats(false);
