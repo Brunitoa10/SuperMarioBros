@@ -17,8 +17,6 @@ public interface ControladorVista {
 
     public void mostrarPantallaRanking();
 
-    public void refrescar();
-
     public Juego getJuego();
   
     public String obtenerModoJuego();

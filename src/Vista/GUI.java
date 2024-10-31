@@ -17,7 +17,7 @@ import java.awt.*;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
-    protected JFrame ventana;
+    protected VentanaManager ventana;
     protected PanelPantallaNivel panelPantallaNivel;
     protected PanelPantallaPrincipal panelPantallaPrincipal;
     protected PanelPantallaPerdiste panelPantallaFinJuego;
@@ -49,14 +49,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     }
 
     protected void configurarVentana() {
-        ventana = new JFrame("Super Mario Bros - Equipo Basados");
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setResizable(false);
-        ventana.setIconImage(cargarIcono());
-        ventana.setSize(ConstantesVista.VENTANA_ANCHO, ConstantesVista.VENTANA_ALTO);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+    	ventana = new VentanaManager();
     }
+  
 
     // De interfaz para launcher
     @Override
@@ -66,7 +61,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         historialPaneles.push(panelPantallaPrincipal);
         panelPantallaNivel = new PanelPantallaNivel(this);
         panelPantallaRanking = new PanelPantallaRanking(this, ranking);
-        ventana.setContentPane(panelPantallaPrincipal);
+        ventana.setContenido(panelPantallaPrincipal);
         refrescar();
     }
 
@@ -132,7 +127,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public void mostrarPantallaNivel() {
         historialPaneles.push(panelPantallaNivel);
-        ventana.setContentPane(panelPantallaNivel);
+        ventana.setContenido(panelPantallaNivel);
         oyente = new OyenteTeclado();
         panelPantallaNivel.addKeyListener(oyente);
         panelPantallaNivel.setFocusable(true);
@@ -143,13 +138,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public void mostrarPantallaFinJuego() {
         historialPaneles.push(panelPantallaFinJuego);
-        ventana.setContentPane(panelPantallaFinJuego);
+        ventana.setContenido(panelPantallaFinJuego);
         refrescar();
     }
     
     public void mostrarPantallaVictoria() {
     	 historialPaneles.push(panelPantallaVictoria);
-         ventana.setContentPane(panelPantallaVictoria);
+         ventana.setContenido(panelPantallaVictoria);
          refrescar();
 		
 	}
@@ -157,32 +152,26 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     @Override
     public void mostrarPantallaRanking() {
         historialPaneles.push(panelPantallaRanking);
-        ventana.setContentPane(panelPantallaRanking);
+        ventana.setContenido(panelPantallaRanking);
         refrescar();
     }
 
     public void mostrarPantallaModoJuego() {
         historialPaneles.push(panelPantallaModoJuego);
-        ventana.setContentPane(panelPantallaModoJuego);
+        ventana.setContenido(panelPantallaModoJuego);
         refrescar();
     }
 
     public void volverAlPanelAnterior() {
         JPanel panelAnterior = historialPaneles.pop();
         if (panelAnterior != null) {
-            ventana.setContentPane(panelAnterior);
+            ventana.setContenido(panelAnterior);
             refrescar();
         }
     }
 
     public void agregarOyenteBotonVolver(JButton botonVolver) {
         botonVolver.addActionListener(e -> volverAlPanelAnterior());
-    }
-
-    @Override
-    public void refrescar() {
-        ventana.revalidate();
-        ventana.repaint();
     }
 
     @Override
@@ -220,7 +209,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
     public void mostrarPantallaNombreUsuario() {
         panelPantallaNombreUsuario = new PanelPantallaNombreUsuario(this);
         historialPaneles.push(panelPantallaNombreUsuario);
-        ventana.setContentPane(panelPantallaNombreUsuario);
+        ventana.setContenido(panelPantallaNombreUsuario);
         refrescar();
     }
 
@@ -233,18 +222,13 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         panelPantallaNivel.actualizarImagenFondoNivel(nivel);
     }
 
-
-    private Image cargarIcono() {
-        return Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/Recursos/imagenes/original/Mario.png"));
-    }
-
     private void configurarPaneles() {
         panelPantallaModoJuego = new PanelPantallaModoJuego(this);
     }
 
     private void mostrarPantallaCarga() {
         panelPantallaCarga = new PanelPantallaCarga();
-        ventana.setContentPane(panelPantallaCarga);
+        ventana.setContenido(panelPantallaCarga);
         refrescar();
 
 
@@ -256,6 +240,11 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	@Override
 	public void actualizarTiempoJuego(int tiempo) {
 		panelPantallaNivel.actualizarLabelTiempo(tiempo);
+	}
+
+	@Override
+	public void refrescar() {
+		ventana.refrescar();
 	}
 
 	
