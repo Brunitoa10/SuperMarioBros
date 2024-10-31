@@ -51,11 +51,14 @@ public class HiloRestoEntidades implements Runnable {
                     juego.frenarTick=false;
                     juego.reanudarHilo();
                 }
-                juego.loopMario.renderizar();
             }
         }
     }
 
+    public void renderizar(){
+        juego.getControladorVistaJuego().actualizarObserver();
+        juego.getControladorVistaJuego().refrescar();
+    }
 
     private void tick() {
         puedoEliminar=false;

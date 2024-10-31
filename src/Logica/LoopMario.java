@@ -19,7 +19,7 @@ public class LoopMario implements Runnable {
     protected Temporizador temporizador2;
     private boolean ejecutando;
     private Jugador mario;
-    protected boolean puedoEliminar=false;
+    protected boolean puedoEliminar = false;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private long lastUpdateTime = System.nanoTime();
 
@@ -63,7 +63,6 @@ public class LoopMario implements Runnable {
             if (now - lastUpdateTime >= updateInterval) {
                 lastUpdateTime = now;
                 tick();
-                renderizar();
             }
         }
     }
@@ -102,7 +101,7 @@ public class LoopMario implements Runnable {
         } else {
             juego.consumirHongo(mario);
         }
-        puedoEliminar=true;
+        puedoEliminar = true;
     }
 
     private void empezarCooldownMorir() {
@@ -110,8 +109,4 @@ public class LoopMario implements Runnable {
     }
 
 
-    public void renderizar() {
-        juego.getControladorVistaJuego().actualizarObserver();
-        juego.getControladorVistaJuego().refrescar();
-    }
 }

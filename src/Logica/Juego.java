@@ -186,6 +186,7 @@ public class Juego {
             entidadAEliminar.eliminarEntidad();
             nivelActual.getEntidadesAEliminar().removeFirst();
         }
+        hiloRestoEntidades.renderizar();
     }
 
     public ControladorVistaJuego getControladorVistaJuego() {
