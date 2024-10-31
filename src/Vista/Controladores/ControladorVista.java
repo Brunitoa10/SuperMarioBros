@@ -47,12 +47,6 @@ public interface ControladorVista {
      * Vuelve al panel anterior en la pila de historial de pantallas.
      */
    public void volverAlPanelAnterior();
-	
-    /**
-     * Obtiene el ranking de jugadores.
-     * @return Un objeto Ranking que contiene la información del ranking.
-     */
-   public Ranking obtenerRanking();
 
     /**
      * Agrega un jugador al ranking.

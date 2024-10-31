@@ -153,11 +153,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         return configuracion.getModoJuego();
     }
 
-    @Override
-    public Ranking obtenerRanking() {
-        return ranking;
-    }
-
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
@@ -194,6 +189,4 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
         timer.setRepeats(false);
         timer.start();
     }
-
-	
 }
