@@ -83,15 +83,15 @@ public class Juego {
         return controladorPuntaje.getPuntaje();
     }
 
-    public void mostrarPantallaFinJuego() {
+    /*public void mostrarPantallaFinJuego() {
         controladorVistas.crearPantallaPerdiste(modoJuego);
         controladorVistas.mostrarPantallaFinJuego();
-    }
+    }*/
 
-    public void mostrarPantallaVictoria() {
-        controladorVistas.crearPantallaVictoria(modoJuego);
-        controladorVistas.mostrarPantallaVictoria();
-    }
+    //public void mostrarPantallaVictoria() {
+       // controladorVistas.crearPantallaVictoria(modoJuego);
+        //controladorVistas.mostrarPantallaVictoria();
+    //}
 
     public void iniciar(String modoJuego) {
         this.modoJuego = modoJuego;
@@ -103,14 +103,15 @@ public class Juego {
 
         nivelActual = generadorNivel.generarNivel(nivel);
 
-        registrarObservers();
+        
 
         controladorVistas.mostrarPantallaNivel();
+        
         oyenteTeclado = controladorVistas.obtenerOyente();
 
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
         controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
-
+        registrarObservers();
         iniciarLoops();
         nivelActual.getJugador().setRutaOrigen(fabricaSprites.getRuta_carpeta());
     }
@@ -137,15 +138,18 @@ public class Juego {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);
             controladorVistas.actualizarImagenFondoNivel(nivel);
-            registrarObservers();
-            controladorVistas.mostrarPantallaNivel();
+            
+            //controladorVistas.mostrarPantallaNivel();
             controladorVistas.actualizarLabels();
-            sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
-            controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
-            controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
-            iniciarLoops();
+            //sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
+            //controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
+            //controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+            //registrarObservers();
+            //iniciarLoops();
+            iniciar(modoJuego);
         } else {
-            mostrarPantallaVictoria();
+            //mostrarPantallaVictoria();
+        	controladorVistas.mostrarPantallaVictoria(modoJuego);
         }
     }
 
@@ -155,9 +159,9 @@ public class Juego {
         sonido.detener();
     }
 
-    public void mostrarPantallaRanking() {
+    /*public void mostrarPantallaRanking() {
         controladorVistas.mostrarPantallaRanking();
-    }
+    }*/
 
     protected void registrarObservers() {
         registrarObserverJugador(nivelActual.getJugador());
@@ -223,7 +227,8 @@ public class Juego {
             reiniciar(modoJuego);
         } else {
             detenerLoops();
-            mostrarPantallaFinJuego();
+            controladorVistas.mostrarPantallaFinJuego(modoJuego);
+            //mostrarPantallaFinJuego();
             controladorVidasMario.setVidas(3);
         }
     }

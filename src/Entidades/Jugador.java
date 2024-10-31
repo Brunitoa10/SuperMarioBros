@@ -1,8 +1,6 @@
 package Entidades;
 
 import Constantes.CadenasValidacion;
-import Entidades.Power_Ups.FlorDeFuego;
-import Entidades.Power_Ups.SuperChampinion;
 import EstadoJugador.Puntajes;
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
@@ -23,12 +21,13 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
     protected boolean estaVivo;
     protected boolean muerte;
     protected boolean sumarVida;
-    protected static final Puntajes MATRIZPUNTAJE=new Puntajes();
+    protected Puntajes MATRIZPUNTAJE;
     protected String rutaOrigen;
 
     public Jugador(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.velocidad = 4;
+        this.velocidad = CadenasValidacion.MARIO_VELOCIDAD;
+        MATRIZPUNTAJE = new Puntajes();
         inicializacionEstadosYVisitantes();
         inicializacionBooleanos();
 

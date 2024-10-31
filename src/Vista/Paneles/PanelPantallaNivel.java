@@ -3,8 +3,9 @@ package Vista.Paneles;
 import Constantes.ConstantesVista;
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
+import Logica.ConfiguracionJuego;
 import Logica.Juego;
-import Vista.Controladores.ControladorVista;
+import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
 import Vista.ObserverGrafica.ObserverEntidad;
 import Vista.ObserverGrafica.ObserverJugador;
@@ -26,10 +27,10 @@ public class PanelPantallaNivel extends JPanel {
     protected JScrollPane panelScrollNivel;
     protected JPanel panelSuperior;
     protected JPanel panelImagen;
-    protected ControladorVista controladorVista;
+    protected ControladorVistaJuego controladorVista;
     protected String rutaImagen;
 
-    public PanelPantallaNivel(ControladorVista controladorVista) {
+    public PanelPantallaNivel(ControladorVistaJuego controladorVista) {
         this.controladorVista = controladorVista;
         configurarPanelPrincipal();
         inicializarComponentes();
@@ -161,7 +162,7 @@ public class PanelPantallaNivel extends JPanel {
     }
 
     private String obtenerRutaImagen() {
-        return "/Recursos/Fondos/" + controladorVista.obtenerModoJuego() + "/FondoLevel" + controladorVista.getJuego().nivel() + ".png";
+        return "/Recursos/Fondos/" + ConfiguracionJuego.obtenerInstancia().getModoJuego() + "/FondoLevel" + controladorVista.getJuego().nivel() + ".png";
     }
 
 

@@ -1,44 +1,74 @@
 package Vista.Controladores;
 
 import GestorArchivos.Ranking;
-import Logica.Juego;
-import Logica.OyenteTeclado;
 
 public interface ControladorVista {
-    public void accionarInicioJuego(String modoJuego);
 
-    public void accionarPantallaModoJuego();
+    /**
+     * Inicia el juego en el modo especificado.
+     * @param modoJuego El modo de juego a iniciar (por ejemplo, fácil, difícil, etc.).
+     */
+   public void accionarInicioJuego(String modoJuego);
 
-    public void accionarPantallaRanking();
+    /**
+     * Cambia a la pantalla de selección del modo de juego.
+     */
+   public void accionarPantallaModoJuego();
 
-    public void cambiarModoJuego(String modoJuego);
+    /**
+     * Cambia a la pantalla de ranking.
+     */
+   public void accionarPantallaRanking();
 
-    public void mostrarPantallaInicial(String modoJuego);
+    /**
+     * Cambia el modo de juego actual.
+     * @param modoJuego El nuevo modo de juego a establecer.
+     */
+   public void cambiarModoJuego(String modoJuego);
 
-    public void mostrarPantallaRanking();
+    /**
+     * Muestra la pantalla inicial del juego.
+     * @param modoJuego El modo de juego a utilizar en la pantalla inicial.
+     */
+   public void mostrarPantallaInicial(String modoJuego);
 
-    public Juego getJuego();
+    /**
+     * Muestra la pantalla de ranking.
+     */
+   public void mostrarPantallaRanking();
   
-    public String obtenerModoJuego();
+    /**
+     * Obtiene el modo de juego actual.
+     * @return El modo de juego actual.
+     */
+   public String obtenerModoJuego();
 
-    public void mostrarPantallaFinJuego();
-
-	public void volverAlPanelAnterior();
+    /**
+     * Vuelve al panel anterior en la pila de historial de pantallas.
+     */
+   public void volverAlPanelAnterior();
 	
-	public Ranking obtenerRanking();
+    /**
+     * Obtiene el ranking de jugadores.
+     * @return Un objeto Ranking que contiene la información del ranking.
+     */
+   public Ranking obtenerRanking();
 
-    public void agregarJugadorAlRanking(String nombre, int puntaje);
+    /**
+     * Agrega un jugador al ranking.
+     * @param nombre El nombre del jugador a agregar.
+     * @param puntaje El puntaje del jugador a agregar.
+     */
+   public void agregarJugadorAlRanking(String nombre, int puntaje);
 
-	public void setNombreUsuario(String nombreUsuario);
+    /**
+     * Establece el nombre del usuario.
+     * @param nombreUsuario El nombre de usuario a establecer.
+     */
+   public void setNombreUsuario(String nombreUsuario);
 
-	public void mostrarPantallaModoJuego();
-
-	public String obtenerNombreUsuario();
-	
-	public void mostrarPantallaNombreUsuario();
-
-	public int obtenerPuntajeJugador();
-
-    public OyenteTeclado obtenerOyente();
-
+    /**
+     * Muestra la pantalla para ingresar el nombre del usuario.
+     */
+   public void mostrarPantallaNombreUsuario();
 }

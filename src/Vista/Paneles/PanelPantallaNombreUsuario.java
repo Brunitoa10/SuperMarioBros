@@ -3,7 +3,7 @@ package Vista.Paneles;
 import Constantes.CadenasValidacion;
 import Constantes.ConstantesVista;
 import Generador.GestorSonido.Sonido;
-import Vista.Controladores.ControladorVista;
+import Vista.Controladores.ControladorVistaJuego;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +16,12 @@ public class PanelPantallaNombreUsuario extends JPanel {
 
     protected static final long serialVersionUID = 1L;
     protected JTextField campoNombre;
-    protected ControladorVista controladorVista;
+    protected ControladorVistaJuego controladorVista;
     protected JButton botonConfirmarNombre;
     protected JLabel etiquetaNombre;
     protected Sonido sonidoBoton;
 
-    public PanelPantallaNombreUsuario(ControladorVista controladorVista) {
+    public PanelPantallaNombreUsuario(ControladorVistaJuego controladorVista) {
         this.controladorVista = controladorVista;
         setLayout(null);
         setSize(ConstantesVista.PANEL_ANCHO, ConstantesVista.PANEL_ALTO);

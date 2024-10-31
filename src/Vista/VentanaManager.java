@@ -21,7 +21,7 @@ public class VentanaManager {
 
 	public void setContenido(JPanel contenido) {
 		ventana.setContentPane(contenido);
-		//refrescar();
+		refrescar();
 	}
 
 	private Image cargarIcono() {
