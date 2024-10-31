@@ -1,5 +1,5 @@
 Dino,10000
 Lauti,9000
+olga,7610
 Asheeee,1970
 Piccio,870
-Franco,777

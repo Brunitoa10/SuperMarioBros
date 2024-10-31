@@ -96,8 +96,7 @@ public class PanelPantallaPerdiste extends JPanel {
     private void registrarOyenteVerPuntaje() {
         btnVolverMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //controladorVistas.agregarJugadorAlRanking(controladorVistas.obtenerNombreUsuario(), controladorVistas.obtenerPuntajeJugador());
-                controladorVistas.accionarPantallaRanking();// mostrarPantallaRanking();
+                controladorVistas.accionarPantallaRanking();
             }
         });
         btnVolverMenu.addMouseListener(new MouseAdapter() {

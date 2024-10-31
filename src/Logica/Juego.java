@@ -83,32 +83,18 @@ public class Juego {
         return controladorPuntaje.getPuntaje();
     }
 
-    /*public void mostrarPantallaFinJuego() {
-        controladorVistas.crearPantallaPerdiste(modoJuego);
-        controladorVistas.mostrarPantallaFinJuego();
-    }*/
-
-    //public void mostrarPantallaVictoria() {
-       // controladorVistas.crearPantallaVictoria(modoJuego);
-        //controladorVistas.mostrarPantallaVictoria();
-    //}
-
     public void iniciar(String modoJuego) {
         this.modoJuego = modoJuego;
 
         fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
+        
         sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
-
+        
         nivelActual = generadorNivel.generarNivel(nivel);
-
-        
-
         controladorVistas.mostrarPantallaNivel();
-        
         oyenteTeclado = controladorVistas.obtenerOyente();
-
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
         controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
         registrarObservers();
@@ -138,17 +124,10 @@ public class Juego {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);
             controladorVistas.actualizarImagenFondoNivel(nivel);
-            
-            //controladorVistas.mostrarPantallaNivel();
-            controladorVistas.actualizarLabels();
-            //sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
-            //controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
-            //controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
-            //registrarObservers();
-            //iniciarLoops();
+            controladorVistas.actualizarLabels();          
             iniciar(modoJuego);
         } else {
-            //mostrarPantallaVictoria();
+            
         	controladorVistas.mostrarPantallaVictoria(modoJuego);
         }
     }
@@ -158,10 +137,6 @@ public class Juego {
         hiloRestoEntidades.detener();
         sonido.detener();
     }
-
-    /*public void mostrarPantallaRanking() {
-        controladorVistas.mostrarPantallaRanking();
-    }*/
 
     protected void registrarObservers() {
         registrarObserverJugador(nivelActual.getJugador());
@@ -228,7 +203,6 @@ public class Juego {
         } else {
             detenerLoops();
             controladorVistas.mostrarPantallaFinJuego(modoJuego);
-            //mostrarPantallaFinJuego();
             controladorVidasMario.setVidas(3);
         }
     }

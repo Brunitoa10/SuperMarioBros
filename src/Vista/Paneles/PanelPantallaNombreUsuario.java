@@ -79,7 +79,6 @@ public class PanelPantallaNombreUsuario extends JPanel {
     private void confirmarNombre() {
         String nombreUsuario = campoNombre.getText().trim();
 
-        // Verificar que el nombre solo contenga letras y espacios
         if (!nombreUsuario.isEmpty() && nombreUsuario.matches(CadenasValidacion.VALIDACION_USUARIO)) {
             controladorVista.setNombreUsuario(nombreUsuario);
             controladorVista.mostrarPantallaModoJuego();
