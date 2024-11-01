@@ -97,9 +97,6 @@ public class LoopMario implements Runnable {
                     juego.manejarMuerte();
                 }
             }
-
-        } else {
-            juego.consumirHongo(mario);
         }
         puedoEliminar = true;
     }
