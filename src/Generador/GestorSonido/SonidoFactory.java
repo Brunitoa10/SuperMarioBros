@@ -12,12 +12,14 @@ public class SonidoFactory {
         // SonidoGenerico("src/Recursos/Sonidos/alternativo/Song.wav"));
         registroSonidos.put("alternativo_boton", () -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/boton.wav"));
         registroSonidos.put("alternativo_nivel",() -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/Song.wav"));
+        registroSonidos.put("alternativo_muerte", () -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/muerte.wav"));
         // registroSonidos.put("alternativo_ranking",() -> new
         // SonidoGenerico("src/Recursos/Sonidos/alternativo/Song.wav"));
 
         registroSonidos.put("original_salto", () -> new SonidoGenerico("src/Recursos/Sonidos/original/Jump.wav"));
          registroSonidos.put("original_nivel", () -> new SonidoGenerico("src/Recursos/Sonidos/original/Song.wav"));
         registroSonidos.put("original_boton", () -> new SonidoGenerico("src/Recursos/Sonidos/original/boton.wav"));
+        registroSonidos.put("original_muerte", () -> new SonidoGenerico("src/Recursos/Sonidos/alternativo/muerte.wav"));
         // registroSonidos.put("original_perdiste",() -> new
         // SonidoGenerico("src/Recursos/Sonidos/original/gameOver.wav"));
         // registroSonidos.put("original_ranking", () -> new

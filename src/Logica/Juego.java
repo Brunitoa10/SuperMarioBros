@@ -272,4 +272,7 @@ public class Juego {
         }
     }
 
+    public void pausarSonidoNivel() {
+        sonido.detener();
+    }
 }

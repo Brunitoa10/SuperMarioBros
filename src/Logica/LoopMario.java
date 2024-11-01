@@ -92,8 +92,12 @@ public class LoopMario implements Runnable {
                 mario.actualizarEntidad();
             } else {
                 juego.mostrarMarioMuerte(mario);
+                if (timerAnimacionMorir == 0) {
+                    mario.sonidoMorir();
+                    juego.pausarSonidoNivel();
+                }
                 empezarCooldownMorir();
-                if (timerAnimacionMorir == 100) {
+                if (timerAnimacionMorir == 155) {
                     juego.manejarMuerte();
                 }
             }

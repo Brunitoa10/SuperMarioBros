@@ -78,4 +78,9 @@ public abstract class EntidadMovil extends Entidad {
         sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "salto");
         sonido.reproducir();
     }
+
+    public void sonidoMorir(){
+        sonido = SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "muerte");
+        sonido.reproducir();
+    }
 }
