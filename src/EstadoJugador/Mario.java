@@ -53,7 +53,6 @@ public class Mario implements EstadoJugador {
         return getPuntaje(COLUMNA);
     }
 
-
     @Override
     public boolean puedeRomperBloques() {
         return false;

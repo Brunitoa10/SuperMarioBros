@@ -1,6 +1,5 @@
 package EstadoJugador;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
