@@ -38,11 +38,12 @@ public class Juego {
     protected boolean frenarTick;
     protected int nivel;
     protected int tiempoJuego;
-    protected boolean animacionGanando = false;
+    protected boolean animacionGanando;
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
 
     public Juego(GUI controladorVistas) {
+    	animacionGanando = false;
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
         inicializarAtributos();
