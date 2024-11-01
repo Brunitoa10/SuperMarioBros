@@ -42,7 +42,6 @@ public class PiranhaPlant extends Enemigo {
             this.setAEliminar();
             proyectil.setDireccion(0);
             puntaje = ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_DESTRUIDA;
-            ;
         }
         return puntaje;
     }
