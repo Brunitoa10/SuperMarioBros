@@ -13,13 +13,11 @@ public class BloquePregunta extends Plataforma {
 
     protected Entidad contenidoBloque;
     protected EstadoBloquePregunta estado;
-    protected String nombre;
 
     public BloquePregunta(int x, int y, Sprite sprite, Entidad p, List<Plataforma> listaPlataformaNivel) {
         super(x, y, sprite, listaPlataformaNivel);
         p.getHitbox().setBounds(p.getPosicionEnX(), p.getPosicionEnY(), 0, (int) p.getHitbox().getHeight());
         contenidoBloque = p;
-        nombre = p.getSprite().getRutaImagen();
         p.setPosicionEnY(-100);
         this.estado = new BloquePreguntaLleno(this);
 
@@ -35,9 +33,5 @@ public class BloquePregunta extends Plataforma {
 
     public Entidad getContenidoBloque() {
         return contenidoBloque;
-    }
-
-    public String getRutaImagen() {
-        return nombre;
     }
 }

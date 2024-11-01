@@ -7,7 +7,7 @@ public class BloquePreguntaVacio implements EstadoBloquePregunta {
     protected BloquePregunta bloquePregunta;
 
     public BloquePreguntaVacio(BloquePregunta bloquePregunta) {
-        bloquePregunta.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueDePreguntaVacio.png");
+        bloquePregunta.getSprite().setRutaImagen(bloquePregunta.getSprite().getRutaModo() + "/Bloques/BloqueDePreguntaVacio.png");
         this.bloquePregunta = bloquePregunta;
     }
 

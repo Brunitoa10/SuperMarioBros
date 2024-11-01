@@ -15,10 +15,10 @@ public class SpinyEnSuelo implements EstadoSpiny{
     
     public void actualizarEstadoSpiny() {
         if (spiny.getDireccion() == 1) {
-            spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Spiny/SpinnyCaminandoDerechaLoop.gif");
+            spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoDerechaLoop.gif");
         }
         if (spiny.getDireccion() == -1) {
-            spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif");
+            spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif");
         }
     }
     
