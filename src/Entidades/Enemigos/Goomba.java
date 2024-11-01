@@ -13,7 +13,7 @@ import java.util.List;
 public class Goomba extends Enemigo {
 
     protected VisitorEnemigo visitor;
-    protected boolean Mori;
+    protected boolean mori;
     protected Temporizador temporizadorGoomba;
 
     public Goomba(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
@@ -34,18 +34,18 @@ public class Goomba extends Enemigo {
 
     public int interactuar(Jugador mario) {
         int toReturn = 0;
-        if (!Mori)
+        if (!mori)
             if (mario.colisionAbajo(this)) {
                 temporizadorGoomba.iniciar();
                 this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/Goomba/GoombaMuerto.png");
                 this.setPosicionEnY(436);
-                Mori = true;
+                mori = true;
                 toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
                 mario.getEstadoJugador().recibeDanio(this);
                 toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
                 if (this.aEliminar()) {
-                    Mori = true;
+                    mori = true;
                     toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
                 }
             }

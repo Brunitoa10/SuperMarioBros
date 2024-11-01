@@ -35,10 +35,6 @@ public class Lakitu extends Enemigo {
         if (mario.colisionAbajo(this)) {
             this.setAEliminar();
             toReturn = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
-        } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
-
-            this.setAEliminar();
-            toReturn = (ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO);
         }
         return toReturn;
     }
