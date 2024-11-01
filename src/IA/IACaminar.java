@@ -17,17 +17,19 @@ public class IACaminar implements ComportamientoIA {
 
     @Override
     public void actualizar(Enemigo enemigo) {
-        if(gravedad) {
-            enemigo.setPosicionEnX(enemigo.getPosicionEnY()+1);
+        if(!enemigo.estoyEnPlataforma()) {
+            enemigo.setPosicionEnY(enemigo.getPosicionEnY()+2);
         }
        
-        if(gravedad && enemigo.getPosicionEnY()>480) {
+        if(!enemigo.estoyEnPlataforma() && enemigo.getPosicionEnY()>520) {
             enemigo.setAEliminar();
         }
         if(enemigo.getTemporizador().hanPasadoNSegundos(3000)) {
             temporizador.resetear();
         }
-        enemigo.setPosicionEnX(enemigo.getPosicionEnX() + (enemigo.getVelocidad() * enemigo.getDireccion()));
+        if (enemigo.estoyEnPlataforma()) {
+            enemigo.setPosicionEnX(enemigo.getPosicionEnX() + (enemigo.getVelocidad() * enemigo.getDireccion()));
+        }
     }
 
     public boolean comienzoAtaque(){

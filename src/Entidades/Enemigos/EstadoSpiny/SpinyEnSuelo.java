@@ -14,11 +14,16 @@ public class SpinyEnSuelo implements EstadoSpiny{
     }
     
     public void actualizarEstadoSpiny() {
-        if (spiny.getDireccion() == 1) {
-            spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoDerechaLoop.gif");
+        if (!spiny.estoyEnPlataforma()) {
+            spiny.setEstadoSpiny(new SpinyCayendo(spiny));
         }
-        if (spiny.getDireccion() == -1) {
-            spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif");
+        else {
+            if (spiny.getDireccion() == 1) {
+                spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoDerechaLoop.gif");
+            }
+            if (spiny.getDireccion() == -1) {
+                spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo() + "/Enemigos/Spiny/SpinnyCaminandoLeftLoop.gif");
+            }
         }
     }
     

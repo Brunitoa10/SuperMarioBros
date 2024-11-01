@@ -14,7 +14,6 @@ public class SpinyCayendo implements EstadoSpiny{
     }
 
     public void actualizarEstadoSpiny(){
-        spiny.setPosicionEnY(spiny.getPosicionEnY() + 2);
         if(spiny.estoyEnPlataforma())
             spiny.setEstadoSpiny(new SpinyEnSuelo(spiny));
     }

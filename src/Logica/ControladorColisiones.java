@@ -26,6 +26,7 @@ public class ControladorColisiones {
 
     public void colisionesRestoEntidades() {
         colisionEnemigoConPlataforma(nivelActual.getPlataformas(), nivelActual.getEnemigos());
+        colisionEnemigoConVacio(nivelActual.getVacios(), nivelActual.getEnemigos());
         colisionProyectilPlataforma(nivelActual.getProyectiles(), nivelActual.getPlataformas());
         colisionEnemigoConProyectiles(nivelActual.getProyectiles(), nivelActual.getEnemigos());
         colisionProyectilVacio(nivelActual.getProyectiles(), nivelActual.getVacios());
@@ -143,6 +144,16 @@ public class ControladorColisiones {
             for (Plataforma plataforma : listaPlataformas) {
                 if (enemigo.detectarColision(plataforma)) {
                     enemigo.getVisitorEnemigo().visit(plataforma);
+                }
+            }
+        }
+    }
+
+    public void colisionEnemigoConVacio(List<Vacio> listaVacios, List<Enemigo> listaEnemigos) {
+        for (Enemigo enemigo : listaEnemigos) {
+            for (Vacio vacio: listaVacios) {
+                if (enemigo.colisionVacio(vacio)) {
+                    enemigo.setEnPlataforma(false);
                 }
             }
         }

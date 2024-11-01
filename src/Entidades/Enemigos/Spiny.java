@@ -55,12 +55,4 @@ public class Spiny extends Enemigo {
         this.estadoSpiny = estadoSpiny;
     }
 
-    public boolean estoyEnPlataforma() {
-        return estoyEnPlataforma;
-    }
-
-    public void setEnPlataforma(boolean enPlataforma) {
-        estoyEnPlataforma = enPlataforma;
-    }
-
 }

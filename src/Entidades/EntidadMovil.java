@@ -32,12 +32,12 @@ public abstract class EntidadMovil extends Entidad {
         return velocidad;
     }
 
-    private int calcularSolapamientoX(Rectangle hitbox1, Rectangle hitbox2) {
+    protected int calcularSolapamientoX(Rectangle hitbox1, Rectangle hitbox2) {
         int solapamientoX = ((int) (Math.min(hitbox1.getMaxX(), hitbox2.getMaxX()) - Math.max(hitbox1.getMinX(), hitbox2.getMinX())));
         return Math.max(solapamientoX, 0); // Asegurar que no sea negativo
     }
 
-    private int calcularSolapamientoY(Rectangle hitbox1, Rectangle hitbox2) {
+    protected int calcularSolapamientoY(Rectangle hitbox1, Rectangle hitbox2) {
         int solapamientoY = ((int) (Math.min(hitbox1.getMaxY(), hitbox2.getMaxY()) - Math.max(hitbox1.getMinY(), hitbox2.getMinY())));
         return Math.max(solapamientoY, 0); // Asegurar que no sea negativo
     }
