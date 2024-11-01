@@ -29,7 +29,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	public GUI() {
 		panelFactory = new PanelFactory(this,this);
 		inicializarComponentes();
-		mostrarPantallaCarga();
+		mostrarPantallaModoJuego();
+		//mostrarPantallaCarga();
 	}
 	
 	public void reiniciarPanelPantallaNivel() {
