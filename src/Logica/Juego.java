@@ -6,6 +6,7 @@ import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
+import EstadoJugador.Puntajes;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
@@ -41,6 +42,7 @@ public class Juego {
     protected boolean animacionGanando;
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
+    protected Puntajes puntaje;
 
     public Juego(GUI controladorVistas) {
     	animacionGanando = false;
@@ -231,16 +233,6 @@ public class Juego {
 
     public int nivel() {
         return nivel;
-    }
-
-    public void consumirHongo(Jugador mario) {
-        temporizador.iniciar();
-        frenarHilos();
-        aplicarSprite(mario);
-        if (temporizador.hanPasadoNSegundos(2000)) {
-            frenarTick = false;
-            reanudarHilo();
-        }
     }
 
     private void aplicarSprite(Jugador mario) {

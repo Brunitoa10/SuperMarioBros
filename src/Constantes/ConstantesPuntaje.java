@@ -3,18 +3,22 @@ package Constantes;
 public class ConstantesPuntaje {
     //Power-ups
     public static final int PUNTAJE_SUPER_CHAMPINION_NORMAL = 10;
+    public static final int PUNTJE_SUPER_CHAMPINION_FUEGO = 10;
+    public static final int PUNTJE_SUPER_CHAMPINION_CON_ESTRELLA = 10;
+
     public static final int PUNTAJE_SUPER_CHAMPINION_SUPER_MARIO = 50;
 
     public static final int PUNTAJE_FLOR_DE_FUEGO_NORMAL = 5;
     public static final int PUNTAJE_FLOR_DE_FUEGO_SUPER_MARIO = 30;
+    public static final int PUNTAJE_FLOR_DE_FUEGO_CON_ESTRELLA = 30;
     public static final int PUNTAJE_FLOR_DE_FUEGO_CON_FUEGO = 50;
 
     public static final int PUNTAJE_ESTRELLA_NORMAL = 20;
     public static final int PUNTAJE_ESTRELLA_SUPER_MARIO = 30;
     public static final int PUNTAJE_ESTRELLA_CON_ESTRELLA = 35;
+    public static final int PUNTAJE_ESTRELLA_CON_FUEGO = 50;
 
     public static final int PUNTAJE_CHAMPINON_VERDE = 100;
-    public static final int PUNTAJE_CHAMPINION_VERDE_NORMAL = 10;
 
     public static final int PUNTAJE_MONEDA = 5;
 

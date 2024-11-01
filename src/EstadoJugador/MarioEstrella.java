@@ -1,6 +1,5 @@
 package EstadoJugador;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
@@ -8,18 +7,14 @@ import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
 import Logica.Temporizador;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 public class MarioEstrella implements EstadoJugador {
 
 
+    protected static final int FILA = 3;
     protected Jugador mario;
     protected EstadoJugador estadoAnterior;
     protected int alto;
-    protected static final int FILA=3;
     protected Temporizador temporizador;
     protected boolean cambioAFlorDeFuego = false;
 
@@ -43,21 +38,20 @@ public class MarioEstrella implements EstadoJugador {
         return false;
     }
 
-
     public void actualizarEstadoJugador() {
         if (temporizador.hanPasadoNSegundos(7000)) {
             temporizador.resetear();
             mario.setVelocidad(4);
             mario.setPosicionEnY(mario.getPosicionEnY() + 32 - alto);
             mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, alto);
-            if(!cambioAFlorDeFuego)
+            if (!cambioAFlorDeFuego)
                 mario.setEstadoJugador(estadoAnterior);
             else
                 mario.setEstadoJugador(new SuperMarioFuego(mario));
         }
     }
 
-    public String inicioAnimacion(){
+    public String inicioAnimacion() {
         return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioEstrella";
     }
 
@@ -70,8 +64,8 @@ public class MarioEstrella implements EstadoJugador {
         return ".gif";
     }
 
-    public int getPuntaje(int columna){
-        return mario.getPuntajes().getPuntaje(FILA,columna);
+    public int getPuntaje(int columna) {
+        return mario.getPuntajes().getPuntaje(FILA, columna);
     }
 
     @Override
@@ -81,7 +75,7 @@ public class MarioEstrella implements EstadoJugador {
 
     @Override
     public void interactuar(FlorDeFuego powerUp) {
-        cambioAFlorDeFuego=true;
+        cambioAFlorDeFuego = true;
 
     }
 

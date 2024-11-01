@@ -1,6 +1,5 @@
 package EstadoJugador;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
@@ -9,8 +8,8 @@ import Entidades.Power_Ups.SuperChampinion;
 
 public class SuperMarioFuego implements EstadoJugador {
 
+    protected static final int FILA = 2;
     protected Jugador mario;
-    protected static final int FILA=2;
 
     public SuperMarioFuego(Jugador mario) {
         this.mario = mario;
@@ -27,7 +26,7 @@ public class SuperMarioFuego implements EstadoJugador {
         return true;
     }
 
-    public String inicioAnimacion(){
+    public String inicioAnimacion() {
         return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego";
     }
 
@@ -44,8 +43,8 @@ public class SuperMarioFuego implements EstadoJugador {
         return "";
     }
 
-    public int getPuntaje(int columna){
-        return mario.getPuntajes().getPuntaje(FILA,columna);
+    public int getPuntaje(int columna) {
+        return mario.getPuntajes().getPuntaje(FILA, columna);
     }
 
     @Override

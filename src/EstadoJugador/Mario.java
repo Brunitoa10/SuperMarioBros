@@ -51,7 +51,6 @@ public class Mario implements EstadoJugador {
         mario.setEstadoJugador(new MarioEstrella(mario));
     }
 
-
     @Override
     public boolean puedeRomperBloques() {
         return false;

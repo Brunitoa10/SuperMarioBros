@@ -13,7 +13,6 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class MarioInvencible implements EstadoJugador {
     protected Jugador mario;
-    private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     protected static final int FILA=0;
     protected Temporizador temporizador;
 
