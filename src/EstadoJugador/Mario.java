@@ -1,6 +1,5 @@
 package EstadoJugador;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
@@ -37,18 +36,21 @@ public class Mario implements EstadoJugador {
     }
 
     @Override
-    public void interactuar(SuperChampinion powerUp) {
+    public int interactuar(SuperChampinion powerUp, int COLUMNA) {
         mario.setEstadoJugador(new SuperMario(mario));
+        return getPuntaje(COLUMNA);
     }
 
     @Override
-    public void interactuar(FlorDeFuego powerUp) {
+    public int interactuar(FlorDeFuego powerUp, int COLUMNA) {
         mario.setEstadoJugador(new SuperMarioFuego(mario));
+        return getPuntaje(COLUMNA);
     }
 
     @Override
-    public void interactuar(Estrella powerUp) {
+    public int interactuar(Estrella powerUp, int COLUMNA) {
         mario.setEstadoJugador(new MarioEstrella(mario));
+        return getPuntaje(COLUMNA);
     }
 
 

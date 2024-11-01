@@ -14,8 +14,6 @@ protected static final int COLUMNA=1;
     }
 
     public int setEstadoMario(Jugador j) {
-        int toReturn = j.getEstadoJugador().getPuntaje(COLUMNA);
-        j.getEstadoJugador().interactuar(this);
-        return toReturn;
+        return j.getEstadoJugador().interactuar(this,COLUMNA); //interactua y devuelve el valor
     }
 }

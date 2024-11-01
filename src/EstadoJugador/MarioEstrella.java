@@ -75,18 +75,20 @@ public class MarioEstrella implements EstadoJugador {
     }
 
     @Override
-    public void interactuar(SuperChampinion powerUp) {
-        estadoAnterior.interactuar(powerUp);
+    public int interactuar(SuperChampinion powerUp, int COLUMNA) {
+        estadoAnterior.interactuar(powerUp,COLUMNA);
+        return getPuntaje(COLUMNA);
     }
 
     @Override
-    public void interactuar(FlorDeFuego powerUp) {
+    public int interactuar(FlorDeFuego powerUp, int COLUMNA) {
         cambioAFlorDeFuego=true;
-
+        return getPuntaje(COLUMNA);
     }
 
     @Override
-    public void interactuar(Estrella powerUp) {
+    public int interactuar(Estrella powerUp, int COLUMNA) {
         mario.setEstadoJugador(new MarioEstrella(mario));
+        return getPuntaje(COLUMNA);
     }
 }

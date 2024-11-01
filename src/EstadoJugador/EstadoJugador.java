@@ -1,7 +1,6 @@
 package EstadoJugador;
 
 import Entidades.Entidad;
-import Entidades.Power_Ups.ChampinionVerde;
 import Entidades.Power_Ups.Estrella;
 import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
@@ -21,10 +20,10 @@ public interface EstadoJugador {
 
     public void actualizarEstadoJugador();
 
-    public void interactuar(SuperChampinion powerUp);
+    public int interactuar(SuperChampinion powerUp, int COLUMNA);
 
-    public void interactuar(FlorDeFuego powerUp);
+    public int interactuar(FlorDeFuego powerUp, int COLUMNA);
 
-    public void interactuar(Estrella powerUp);
+    public int interactuar(Estrella powerUp, int COLUMNA);
 
 }
