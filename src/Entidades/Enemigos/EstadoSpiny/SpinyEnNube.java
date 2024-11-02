@@ -4,7 +4,7 @@ import Entidades.Enemigos.Lakitu;
 import Entidades.Enemigos.Spiny;
 
 public class SpinyEnNube implements EstadoSpiny{ //ESTADO INALCANZABLE NORMALMENTE(SOLO SE TIENE PARA SPAWN DESDE LAKITU)
-    private Lakitu lakitu;
+    private final Lakitu lakitu;
     protected Spiny spiny;
     public SpinyEnNube(Spiny spiny, Lakitu lakitu) {
         this.lakitu = lakitu;

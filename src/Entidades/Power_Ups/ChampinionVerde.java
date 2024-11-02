@@ -15,6 +15,6 @@ protected static final int COLUMNA=3;
     @Override
     public int setEstadoMario(Jugador j) {
         j.sumarUnaVida(true);
-        return j.getEstadoJugador().getPuntaje(COLUMNA);
+        return ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE;
     }
 }
