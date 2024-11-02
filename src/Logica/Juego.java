@@ -7,8 +7,6 @@ import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
-import EstadoJugador.Puntajes;
-import EstadoMovimiento.MarioSaltando;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
@@ -44,7 +42,6 @@ public class Juego {
     protected boolean animacionGanando;
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
-    protected Puntajes puntaje;
     protected Temporizador timerGanarJuego;
 
     public Juego(GUI controladorVistas) {

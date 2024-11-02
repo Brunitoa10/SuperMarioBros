@@ -1,6 +1,5 @@
 package EstadoJugador;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
@@ -8,12 +7,10 @@ import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
 import Logica.Temporizador;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class MarioInvencible implements EstadoJugador {
+    protected static final int FILA = 0;
     protected Jugador mario;
-    protected static final int FILA=0;
     protected Temporizador temporizador;
 
     public MarioInvencible(Jugador mario) {
@@ -34,14 +31,14 @@ public class MarioInvencible implements EstadoJugador {
     }
 
     public void actualizarEstadoJugador() {
-        if(temporizador.hanPasadoNSegundos(3000)){
+        if (temporizador.hanPasadoNSegundos(3000)) {
             temporizador.resetear();
             mario.setEstadoJugador(new Mario(mario));
         }
     }
 
     @Override
-    public String inicioAnimacion(){
+    public String inicioAnimacion() {
         return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioGolpeado";
     }
 
@@ -54,8 +51,8 @@ public class MarioInvencible implements EstadoJugador {
         return ".gif";
     }
 
-    public int getPuntaje(int columna){
-        return mario.getPuntajes().getPuntaje(FILA,columna);
+    public int getPuntaje(int columna) {
+        return mario.getPuntajes().getPuntaje(FILA, columna);
     }
 
     @Override

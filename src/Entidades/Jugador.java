@@ -1,7 +1,7 @@
 package Entidades;
 
 import Constantes.CadenasValidacion;
-import EstadoJugador.Puntajes;
+import Constantes.Puntajes;
 import EstadoJugador.EstadoJugador;
 import EstadoJugador.Mario;
 import EstadoMovimiento.EstadoMovimiento;
