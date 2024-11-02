@@ -60,13 +60,11 @@ public class MarioInvencible implements EstadoJugador {
 
     @Override
     public int interactuar(SuperChampinion powerUp, int COLUMNA) {
-        mario.setEstadoJugador(new SuperMario(mario));
         return getPuntaje(COLUMNA);
     }
 
     @Override
     public int interactuar(FlorDeFuego powerUp, int COLUMNA) {
-        mario.setEstadoJugador(new SuperMarioFuego(mario));
         return getPuntaje(COLUMNA);
     }
 
