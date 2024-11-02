@@ -8,8 +8,9 @@ import Entidades.Power_Ups.SuperChampinion;
 
 public class SuperMario implements EstadoJugador {
 
+    protected static final int FILA = 1;
     protected Jugador mario;
-    protected static final int FILA=1;
+
     public SuperMario(Jugador mario) {
         this.mario = mario;
         mario.setPosicionEnY(mario.getPosicionEnY() - 16);
@@ -28,8 +29,9 @@ public class SuperMario implements EstadoJugador {
     public void actualizar() {
 
     }
+
     @Override
-    public String inicioAnimacion(){
+    public String inicioAnimacion() {
         return mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioPowerUp";
     }
 
@@ -47,8 +49,8 @@ public class SuperMario implements EstadoJugador {
         return "";
     }
 
-    public int getPuntaje(int columna){
-        return mario.getPuntajes().getPuntaje(FILA,columna);
+    public int getPuntaje(int columna) {
+        return mario.getPuntajes().getPuntaje(FILA, columna);
     }
 
     @Override

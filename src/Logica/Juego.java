@@ -7,7 +7,6 @@ import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
-import EstadoJugador.Puntajes;
 import Fabricas.CreadorEntidad;
 import Fabricas.FabricaEntidad;
 import Fabricas.FabricaSpriteRegistro;
@@ -43,7 +42,7 @@ public class Juego {
     protected boolean animacionGanando;
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
-    protected Puntajes puntaje;
+    protected Temporizador timerGanarJuego;
 
     public Juego(GUI controladorVistas) {
     	animacionGanando = false;
@@ -53,12 +52,13 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        nivel = 1;
+        nivel = 3;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
         controladorPuntaje = new ControladorPuntaje();
         controladorVidasMario = new ControladorVidasMario();
+        timerGanarJuego = new Temporizador();
     }
 
     public int getVidas() {
@@ -139,9 +139,6 @@ public class Juego {
             controladorVistas.actualizarImagenFondoNivel(nivel);
             controladorVistas.actualizarLabels();          
             iniciar(modoJuego);
-        } else {
-            
-        	controladorVistas.mostrarPantallaVictoria(modoJuego);
         }
     }
 
@@ -274,19 +271,28 @@ public class Juego {
     }
 
     public void checkearGanarNivel(Jugador mario) {
-        if (mario.getPosicionEnX() >= 6150) {
+        if ((mario.getPosicionEnX() >= 6150) && ((nivelActual.nivel == 1) || (nivelActual.nivel == 2))) {
             mario.setVelocidad(1);
             animacionGanando = true;
+        } else if ((mario.getPosicionEnX() >= 6775) && (nivelActual.nivel == 3)) {
+            mario.setVelocidad(0);
+            animacionGanando = true;
+            timerGanarJuego.iniciar();
         }
     }
 
     public void hacerAnimacionGanar(Jugador mario) {
         mario.desplazarEnX(1);
 
-        if (mario.getPosicionEnX() > 6350) {
+        if ((mario.getPosicionEnX() > 6350) && ((nivelActual.nivel == 1) || (nivelActual.nivel == 2))) {
             mario.setVelocidad(CadenasValidacion.MARIO_VELOCIDAD);
             nivelSiguiente();
             animacionGanando = false;
+
+        }
+        if (timerGanarJuego.hanPasadoNSegundos(3000)){
+                detenerLoops();
+                controladorVistas.mostrarPantallaVictoria(modoJuego);
         }
     }
 
