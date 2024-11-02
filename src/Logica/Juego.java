@@ -44,9 +44,6 @@ public class Juego {
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
     protected Puntajes puntaje;
-    private int TIEMPOMAXIMONIVEL1 = 60;
-    private int TIEMPOMAXIMONIVEL2 = 60;
-    private int TIEMPOMAXIMONIVEL3 = 60;
 
     public Juego(GUI controladorVistas) {
     	animacionGanando = false;
@@ -292,7 +289,7 @@ public class Juego {
     }
 
     public int getTiempo() {
-        return ticksASegundos();
+        return Math.max(nivelActual.getTiempoMaximoNivel() - ticksASegundos(), 0);
     }
 
     private int ticksASegundos() {
@@ -300,24 +297,7 @@ public class Juego {
     }
 
     public boolean sinTiempo(){
-        boolean toReturn = false;
-
-        switch (nivelActual.nivel()){
-
-            case 1: if (ticksASegundos() >= TIEMPOMAXIMONIVEL1)
-                toReturn = true;
-            break;
-
-            case 2: if (ticksASegundos() >= TIEMPOMAXIMONIVEL2)
-                toReturn = true;
-            break;
-
-            case 3: if (ticksASegundos() >= TIEMPOMAXIMONIVEL3)
-                toReturn = true;
-            break;
-
-        }
-        return toReturn;
+        return ticksASegundos() >= nivelActual.getTiempoMaximoNivel();
     }
 
     public boolean marioEstaCerca(Jugador mario, Enemigo enemigo) {

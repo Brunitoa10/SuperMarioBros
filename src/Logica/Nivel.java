@@ -23,6 +23,9 @@ public class Nivel {
     protected Bandera bandera;
     protected Princesa princesa;
     protected int nivel;
+    private int TIEMPOMAXIMONIVEL1 = 60;
+    private int TIEMPOMAXIMONIVEL2 = 60;
+    private int TIEMPOMAXIMONIVEL3 = 60;
 
         public Nivel(int numero) {
             this.enemigos = new LinkedList<Enemigo>();
@@ -105,6 +108,15 @@ public class Nivel {
         
         public int nivel() {
         	return nivel;
+        }
+
+        public int getTiempoMaximoNivel(){
+            return switch (nivel) {
+                case 1 -> TIEMPOMAXIMONIVEL1;
+                case 2 -> TIEMPOMAXIMONIVEL2;
+                case 3 -> TIEMPOMAXIMONIVEL3;
+                default -> 0;
+            };
         }
 
     }
