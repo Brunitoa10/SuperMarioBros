@@ -76,7 +76,11 @@ public class MarioEstrella implements EstadoJugador {
 
     @Override
     public int interactuar(SuperChampinion powerUp, int COLUMNA) {
+        EstadoJugador estadoAuxiliar=this;
         estadoAnterior.interactuar(powerUp,COLUMNA);
+        mario.setPosicionEnY(mario.getPosicionEnY()+18);
+        mario.getHitbox().setBounds(mario.getPosicionEnX(), mario.getPosicionEnY(), 32, 32);
+        mario.setEstadoJugador(estadoAuxiliar);
         return getPuntaje(COLUMNA);
     }
 

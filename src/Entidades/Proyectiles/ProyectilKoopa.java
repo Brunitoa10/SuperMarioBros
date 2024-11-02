@@ -37,7 +37,7 @@ public class ProyectilKoopa extends Proyectil {
     public void actualizarEntidad() {
         super.actualizarEntidad();
         if (gravedad) {
-            this.setPosicionEnY(this.getPosicionEnY() + 1);
+            this.setPosicionEnY(this.getPosicionEnY() + 2);
             this.getSprite().setPosicionY(this.getPosicionEnY());
             velocidadX = 0;
         } else {
@@ -110,6 +110,7 @@ public class ProyectilKoopa extends Proyectil {
 
     public void activarGravedad() {
         gravedad = true;
+        this.velocidad=0;
     }
 
     public boolean puedeRomperBloques() {
