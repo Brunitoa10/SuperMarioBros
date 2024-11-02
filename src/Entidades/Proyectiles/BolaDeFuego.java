@@ -75,7 +75,6 @@ public class BolaDeFuego extends Proyectil {
 
     public int accept(Visitor v) {
         return v.visit(this);
-
     }
 
     public void setGravedad() {

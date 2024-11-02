@@ -26,10 +26,9 @@ public class ProyectilKoopa extends Proyectil {
 
     @Override
     public int accept(Visitor v) {
-        v.visit(this);
         direccion = 0;
         velocidadX = 7;
-        return 0;
+        return v.visit(this);
     }
 
 

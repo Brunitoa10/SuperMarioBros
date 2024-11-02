@@ -12,5 +12,5 @@ public class CadenasValidacion {
 	public static final int MAXIMO_JUGADORES_RANKING = 5;
 	public static final int FUERA_DE_RANGO = -1;
 	public static final int MINIMO_JUGADORES_RANKING = 0;
-	public static final int MARIO_VELOCIDAD = 15;
+	public static final int MARIO_VELOCIDAD = 4;
 }
