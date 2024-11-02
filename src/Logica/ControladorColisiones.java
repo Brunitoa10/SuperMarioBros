@@ -140,7 +140,8 @@ public class ControladorColisiones {
 
     public void colisionEnemigoConPlataforma(List<Plataforma> listaPlataformas, List<Enemigo> listaEnemigos) {
         for (Enemigo enemigo : listaEnemigos) {
-            enemigo.actualizar();
+            if(juegoActual.marioEstaCerca(nivelActual.getJugador(), enemigo))
+                enemigo.actualizar();
             for (Plataforma plataforma : listaPlataformas) {
                 if (enemigo.detectarColision(plataforma)) {
                     enemigo.getVisitorEnemigo().visit(plataforma);

@@ -3,6 +3,7 @@ package Logica;
 import Constantes.AnimadorMario;
 import Constantes.CadenasValidacion;
 import Constantes.ConstantesPuntaje;
+import Entidades.Enemigos.Enemigo;
 import Entidades.Entidad;
 import Entidades.EntidadLogica;
 import Entidades.Jugador;
@@ -317,6 +318,10 @@ public class Juego {
 
         }
         return toReturn;
+    }
+
+    public boolean marioEstaCerca(Jugador mario, Enemigo enemigo) {
+        return Math.abs(mario.getPosicionEnX() - enemigo.getPosicionEnX()) <= 800;
     }
 
 }
