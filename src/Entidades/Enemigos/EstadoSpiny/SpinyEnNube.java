@@ -9,7 +9,7 @@ public class SpinyEnNube implements EstadoSpiny{ //ESTADO INALCANZABLE NORMALMEN
     public SpinyEnNube(Spiny spiny, Lakitu lakitu) {
         this.lakitu = lakitu;
         this.spiny = spiny;
-        spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Bloques/BloqueNada.png");
+        spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo()+"/Bloques/BloqueNada.png");
         spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),0,0);
     }
     @Override

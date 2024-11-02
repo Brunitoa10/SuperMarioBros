@@ -7,10 +7,10 @@ public class LakituRetirada implements EstadoLakitu {
     protected Lakitu lakitu;
     public LakituRetirada(Lakitu lakitu) {
         this.lakitu = lakitu;
-        lakitu.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Lakitu/LakituMoviendose.png");
     }
     @Override
     public void actualizarLakitu() {
+        lakitu.getSprite().setRutaImagen(lakitu.getSprite().getRutaModo()+"/Enemigos/Lakitu/LakituMoviendose.png");
         lakitu.setPosicionEnX(lakitu.getPosicionEnX()+VELOCIDAD_X);
         if(lakitu.getPosicionEnX()<-600)
             lakitu.setAEliminar();

@@ -10,7 +10,7 @@ public class SpinyCayendo implements EstadoSpiny{
         spiny.setDireccion(0);
         spiny.setEnPlataforma(false);
         spiny.getHitbox().setBounds(spiny.getPosicionEnX(),spiny.getPosicionEnY(),32,32);
-        spiny.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Spiny/FallingSpinny/SpinnyCayendo2.gif");
+        spiny.getSprite().setRutaImagen(spiny.getSprite().getRutaModo()+"/Enemigos/Spiny/FallingSpinny/SpinnyCayendo.gif");
     }
 
     public void actualizarEstadoSpiny(){

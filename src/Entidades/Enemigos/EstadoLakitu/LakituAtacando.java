@@ -21,7 +21,7 @@ public class LakituAtacando implements EstadoLakitu{
     @Override
     public void actualizarLakitu() {
         comportamiento.actualizar(lakitu);
-        lakitu.getSprite().setRutaImagen("src/Recursos/Sprites/original/Enemigos/Lakitu/LakituAtaca.gif");
+        lakitu.getSprite().setRutaImagen(lakitu.getSprite().getRutaModo()+"/Enemigos/Lakitu/LakituAtaca.gif");
         if(temporizador.hanPasadoNSegundos(2800)){
                 lakitu.lanzar();
                 temporizador.resetear();
