@@ -43,6 +43,9 @@ public class Juego {
     protected ControladorVidasMario controladorVidasMario;
     protected ControladorPuntaje controladorPuntaje;
     protected Puntajes puntaje;
+    private int TIEMPOMAXIMONIVEL1 = 60;
+    private int TIEMPOMAXIMONIVEL2 = 60;
+    private int TIEMPOMAXIMONIVEL3 = 60;
 
     public Juego(GUI controladorVistas) {
     	animacionGanando = false;
@@ -72,6 +75,14 @@ public class Juego {
     public void sumarVida() {
         controladorVidasMario.sumarVida();
         controladorVistas.actualizarLabels();
+    }
+
+    public void sumarTiempo(){
+        tiempoJuego++;
+
+        if (tiempoJuego% 60 == 0){
+            controladorVistas.actualizarTiempoJuego(this);
+        }
     }
 
     public void sumarPuntaje(int puntajeParaSumar) {
@@ -121,6 +132,7 @@ public class Juego {
     }
 
     public void nivelSiguiente() {
+        tiempoJuego = 0;
         sonido.detener();
         detenerLoops();
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
@@ -200,8 +212,10 @@ public class Juego {
         return nivelActual.getJugador();
     }
 
+
     public void manejarMuerte() {
         perderVida();
+        tiempoJuego = 0;
         if (getVidas() != 0) {
             reiniciar(modoJuego);
         } else {
@@ -275,4 +289,34 @@ public class Juego {
     public void pausarSonidoNivel() {
         sonido.detener();
     }
+
+    public int getTiempo() {
+        return ticksASegundos();
+    }
+
+    private int ticksASegundos() {
+        return tiempoJuego / 60;
+    }
+
+    public boolean sinTiempo(){
+        boolean toReturn = false;
+
+        switch (nivelActual.nivel()){
+
+            case 1: if (ticksASegundos() >= TIEMPOMAXIMONIVEL1)
+                toReturn = true;
+            break;
+
+            case 2: if (ticksASegundos() >= TIEMPOMAXIMONIVEL2)
+                toReturn = true;
+            break;
+
+            case 3: if (ticksASegundos() >= TIEMPOMAXIMONIVEL3)
+                toReturn = true;
+            break;
+
+        }
+        return toReturn;
+    }
+
 }

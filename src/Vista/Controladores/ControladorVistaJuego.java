@@ -55,9 +55,9 @@ public interface ControladorVistaJuego {
 
     /**
      * Actualiza el tiempo del juego.
-     * @param tiempo El nuevo tiempo del juego.
+     * @param miJuego El nuevo tiempo del juego.
      */
-    public void actualizarTiempoJuego(int tiempo);
+    public void actualizarTiempoJuego(Juego miJuego);
 	
     /**
      * Obtiene el objeto Juego que representa la lógica del juego.

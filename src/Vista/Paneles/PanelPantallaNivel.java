@@ -166,8 +166,8 @@ public class PanelPantallaNivel extends JPanel {
     }
 
 
-	public void actualizarLabelTiempo(int tiempo) {
-		labelTiempo.setText(String.format("Tiempo: %05d", tiempo));
+	public void actualizarLabelTiempo(Juego miJuego) {
+		labelTiempo.setText(String.format("Tiempo: %05d", miJuego.getTiempo()));
 	}
 
 }
