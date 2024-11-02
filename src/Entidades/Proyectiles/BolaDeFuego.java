@@ -46,6 +46,7 @@ public class BolaDeFuego extends Proyectil {
         velocidadX = 0;
         Gravedad = 0;
         contador = -10000;
+        direccionLocal = direccion;
         condicionDesaparecer = true;
         if (!condicionDesaparecer) {
             temporizador.resetear();

@@ -58,21 +58,22 @@ public class ProyectilKoopa extends Proyectil {
 
 
     public void setDireccion(int direccion) {
-        if (cantidadDeRebotes == 3) {
-            temporizador.iniciar();
-            velocidadX = 0;
-            this.setPosicionEnY(this.getPosicionEnY() - 12);
-            if (direccionLocal == 1)
-                this.setPosicionEnX(this.getPosicionEnX() + 12);
-            if (direccionLocal == -1)
-                this.setPosicionEnX(this.getPosicionEnX() - 12);
-            this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
-        }
         if (direccion != 0) {
             this.direccion = direccion;
             direccionLocal = direccion;
+
+            if (cantidadDeRebotes == 3) {
+                temporizador.iniciar();
+                velocidadX = 0;
+                this.setPosicionEnY(this.getPosicionEnY() - 12);
+                if (direccionLocal == 1)
+                    this.setPosicionEnX(this.getPosicionEnX() + 12);
+                if (direccionLocal == -1)
+                    this.setPosicionEnX(this.getPosicionEnX() - 12);
+                this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/AnimacionDesaparecer/ProyectilDesaparecer1.gif");
+            }
+            cantidadDeRebotes++;
         }
-        cantidadDeRebotes++;
     }
 
     public void Interactuar(Jugador j) {
