@@ -86,7 +86,7 @@ public class Juego {
     public void sumarPuntaje(int puntajeParaSumar) {
         controladorPuntaje.sumarPuntaje(puntajeParaSumar);
         if (controladorPuntaje.getPuntaje() < 0)
-            controladorPuntaje.setpuntaje(0);
+            controladorPuntaje.setPuntaje(0);
 
         controladorVistas.actualizarLabels();
     }
@@ -222,6 +222,7 @@ public class Juego {
         if (getVidas() != 0) {
             reiniciar(modoJuego);
         } else {
+            controladorPuntaje.setPuntaje(0);
             detenerLoops();
             controladorVistas.mostrarPantallaFinJuego(modoJuego);
             controladorVidasMario.setVidas(3);
