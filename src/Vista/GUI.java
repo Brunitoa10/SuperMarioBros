@@ -171,11 +171,4 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		gestorPaneles = new GestorPaneles(ventana, new HistorialPaneles());
 	}
 
-	private void mostrarPantallaCarga() {
-		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaCarga());
-
-		Timer timer = new Timer(4000, e -> mostrarPantallaNombreUsuario());
-		timer.setRepeats(false);
-		timer.start();
-	}
 }

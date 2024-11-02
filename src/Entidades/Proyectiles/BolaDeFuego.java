@@ -48,10 +48,6 @@ public class BolaDeFuego extends Proyectil {
         contador = -10000;
         direccionLocal = direccion;
         condicionDesaparecer = true;
-        if (!condicionDesaparecer) {
-            temporizador.resetear();
-            temporizador.iniciar(); // Iniciar el temporizador para reproducir la animacion
-        }
     }
 
     @Override
