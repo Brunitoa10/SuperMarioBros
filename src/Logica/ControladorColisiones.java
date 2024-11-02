@@ -52,10 +52,10 @@ public class ControladorColisiones {
                 plataforma.actualizarEntidad();
                 if (plataforma.aEliminar()) {
                     Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
-                    nivelActual.agregarVacio(vacio);
-                    vacio.setAnimacionFinal(1200);
                     Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
                     vacio.registrarObserver(observer);
+                    nivelActual.agregarVacio(vacio);
+                    vacio.setAnimacionFinal(1200);
                     nivelActual.getEntidadesAEliminar().add(plataforma);
                 }
             }
@@ -66,7 +66,7 @@ public class ControladorColisiones {
         for (Enemigo enemigo : listaEnemigos) {
             if (mario.detectarColision(enemigo)) {
                 juegoActual.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
-                enemigo.actualizarEntidad();
+                enemigo.actualizar();
 
                 if (enemigo.aEliminar()) {
                     nivelActual.getEntidadesAEliminar().add(enemigo);
@@ -184,10 +184,10 @@ public class ControladorColisiones {
                     proyectil.getVisitor().visit(plataforma);
                     if (plataforma.aEliminar()) {
                         Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
-                        nivelActual.agregarVacio(vacio);
-                        vacio.setAnimacionFinal(2200);
                         Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
                         vacio.registrarObserver(observer);
+                        nivelActual.agregarVacio(vacio);
+                        vacio.setAnimacionFinal(2200);
                         nivelActual.getEntidadesAEliminar().add(plataforma);
                     }
                 }

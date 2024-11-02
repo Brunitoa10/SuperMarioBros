@@ -26,7 +26,7 @@ public class Goomba extends Enemigo {
     @Override
     public void actualizar() {
         super.actualizar();
-        if (temporizadorGoomba.hanPasadoNSegundos(500)) {
+        if (temporizadorGoomba.hanPasadoNSegundos(100)) {
             this.setAEliminar();
         }
     }
@@ -39,6 +39,7 @@ public class Goomba extends Enemigo {
                 temporizadorGoomba.iniciar();
                 this.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/Goomba/GoombaMuerto.png");
                 this.setPosicionEnY(436);
+                this.setDireccion(0);
                 mori = true;
                 toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
