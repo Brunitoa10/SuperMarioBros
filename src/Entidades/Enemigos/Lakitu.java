@@ -40,10 +40,7 @@ public class Lakitu extends Enemigo {
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {
-        int puntajeLakituDestruido = ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
-        this.setAEliminar();
-        proyectil.setDireccion(0);
-        return puntajeLakituDestruido;
+        return super.interactuarConProyectil(proyectil) + ConstantesPuntaje.PUNTAJE_LAKITU_DESTRUIDO;
     }
 
     public void setEstadoLakitu(EstadoLakitu estadoLakitu) {

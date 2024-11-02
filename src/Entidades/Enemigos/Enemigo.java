@@ -1,5 +1,6 @@
 package Entidades.Enemigos;
 
+import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadMovil;
 import Entidades.Jugador;
@@ -50,7 +51,15 @@ public abstract class Enemigo extends EntidadMovil {
 
     public abstract int interactuar(Jugador jugador);
 
-    public abstract int interactuarConProyectil(Proyectil proyectil);
+    public void logicaInteraccionConProyectil(Proyectil proyectil) {
+        this.setAEliminar();
+        proyectil.setDireccion(0);
+    }
+
+    public int interactuarConProyectil(Proyectil proyectil) {
+        logicaInteraccionConProyectil(proyectil);
+        return 0;
+    }
 
     public void setDireccion(int direccion) {
         this.direccion = direccion;

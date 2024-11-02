@@ -72,10 +72,7 @@ public class KoopaTroopa extends Enemigo {
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {
-        int puntajeKoopaTroopaDestruido = ConstantesPuntaje.PUNTAJE_KOOPA_TROOPA_DESTRUIDO;
-        this.setAEliminar();
-        proyectil.setDireccion(0);
-        return puntajeKoopaTroopaDestruido;
+        return super.interactuarConProyectil(proyectil) + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
     }
 
 }
