@@ -45,9 +45,7 @@ public class BuzzyBeetle extends Enemigo {
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {
-        int puntajeBuzzyBeetleDestruido = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
-        this.setAEliminar();
-        return puntajeBuzzyBeetleDestruido;
+        return super.interactuarConProyectil(proyectil) + ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
     }
 
 

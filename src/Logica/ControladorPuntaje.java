@@ -8,7 +8,7 @@ public class ControladorPuntaje {
         this.puntaje = 0;
     }
 
-    public void setpuntaje(int puntaje) {
+    public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
 

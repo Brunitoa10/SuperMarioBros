@@ -86,7 +86,7 @@ public class Juego {
     public void sumarPuntaje(int puntajeParaSumar) {
         controladorPuntaje.sumarPuntaje(puntajeParaSumar);
         if (controladorPuntaje.getPuntaje() < 0)
-            controladorPuntaje.setpuntaje(0);
+            controladorPuntaje.setPuntaje(0);
 
         controladorVistas.actualizarLabels();
     }
@@ -182,7 +182,12 @@ public class Juego {
     }
 
     public boolean marioCaeAlVacio(Jugador mario) {
-        return mario.getPosicionEnY() > 460;
+        boolean caeAlVacio = false;
+        if(mario.getPosicionEnY() > 460) {
+            controladorPuntaje.sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
+            caeAlVacio = true;
+        }
+        return caeAlVacio;
     }
 
     public void lanzarBolasDeFuego(Jugador mario) {
@@ -217,6 +222,7 @@ public class Juego {
         if (getVidas() != 0) {
             reiniciar(modoJuego);
         } else {
+            controladorPuntaje.setPuntaje(0);
             detenerLoops();
             controladorVistas.mostrarPantallaFinJuego(modoJuego);
             controladorVidasMario.setVidas(3);
