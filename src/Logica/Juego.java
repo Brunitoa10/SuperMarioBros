@@ -182,7 +182,12 @@ public class Juego {
     }
 
     public boolean marioCaeAlVacio(Jugador mario) {
-        return mario.getPosicionEnY() > 460;
+        boolean caeAlVacio = false;
+        if(mario.getPosicionEnY() > 460) {
+            controladorPuntaje.sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
+            caeAlVacio = true;
+        }
+        return caeAlVacio;
     }
 
     public void lanzarBolasDeFuego(Jugador mario) {
