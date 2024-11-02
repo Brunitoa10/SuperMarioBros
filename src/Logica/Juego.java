@@ -313,7 +313,7 @@ public class Juego {
     }
 
     public boolean marioEstaCerca(Jugador mario, Enemigo enemigo) {
-        return Math.abs(mario.getPosicionEnX() - enemigo.getPosicionEnX()) <= 800;
+        return Math.abs(mario.getPosicionEnX() - enemigo.getPosicionEnX()) <= 600;
     }
 
 }
