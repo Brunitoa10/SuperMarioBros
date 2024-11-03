@@ -1,6 +1,5 @@
 package Entidades.Enemigos;
 
-import Constantes.ConstantesPuntaje;
 import Entidades.Entidad;
 import Entidades.EntidadMovil;
 import Entidades.Jugador;
@@ -45,10 +44,6 @@ public abstract class Enemigo extends EntidadMovil {
         super.actualizarEntidad();
     }
 
-    public void cambiarDireccion() {
-        direccion = -direccion;
-    }
-
     public abstract int interactuar(Jugador jugador);
 
     public void logicaInteraccionConProyectil(Proyectil proyectil) {
@@ -78,10 +73,6 @@ public abstract class Enemigo extends EntidadMovil {
         return comportamientoIA;
     }
 
-    public void setComportamientoIA(ComportamientoIA nuevaIA) {
-        this.comportamientoIA = nuevaIA;
-    }
-
     public boolean estoyEnPlataforma() {
         return estoyEnPlataforma;
     }
@@ -92,7 +83,6 @@ public abstract class Enemigo extends EntidadMovil {
 
     public boolean colisionIzquierda(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
-        int toleranciaY = 16;
         int rangoColision = (int) (entidad.getHitbox().getMaxX() - entidad.getHitbox().getWidth() / 2);
         boolean colisiona = (this.getHitbox().getMinX() <= entidad.getHitbox().getMaxX()) && (this.getHitbox().getMinX() >= rangoColision);
         return colisiona && ((solapamientoY > 2) || (solapamientoY == entidad.getHitbox().getHeight()));
@@ -100,7 +90,6 @@ public abstract class Enemigo extends EntidadMovil {
 
     public boolean colisionDerecha(Entidad entidad) {
         int solapamientoY = calcularSolapamientoY(this.getHitbox(), entidad.getHitbox());
-        int toleranciaY = 16;
         int rangoColision = (int) (entidad.getHitbox().getMinX() + entidad.getHitbox().getWidth() / 2);
         boolean colisiona = (this.getHitbox().getMaxX() >= entidad.getHitbox().getMinX()) && (this.getHitbox().getMaxX() <= rangoColision);
         return colisiona && (((solapamientoY > 2) || (solapamientoY == entidad.getHitbox().getHeight())));
