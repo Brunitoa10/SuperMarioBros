@@ -11,7 +11,6 @@ import Vista.Controladores.ControladorVistaJuego;
 import Vista.ObserverGrafica.Observer;
 import Vista.Paneles.*;
 
-import javax.swing.*;
 
 public class GUI implements ControladorVista, ControladorVistaJuego {
 
