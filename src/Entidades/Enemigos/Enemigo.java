@@ -52,7 +52,8 @@ public abstract class Enemigo extends EntidadMovil {
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {
-        logicaInteraccionConProyectil(proyectil);
+        if(proyectil.getDireccion() != 0)
+            logicaInteraccionConProyectil(proyectil);
         return 0;
     }
 
