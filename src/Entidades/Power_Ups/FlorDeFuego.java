@@ -1,7 +1,6 @@
 package Entidades.Power_Ups;
 
 import Entidades.Jugador;
-import EstadoJugador.SuperMarioFuego;
 import Fabricas.Sprite;
 
 import java.util.List;
