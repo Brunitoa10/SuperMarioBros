@@ -20,8 +20,6 @@ public class Nivel {
     protected List<Vacio> vacios;
     protected List<Entidad> entidadesAEliminar;
     protected Jugador jugador;
-    protected Bandera bandera;
-    protected Princesa princesa;
     protected int nivel;
     private int TIEMPOMAXIMONIVEL1 = 60;
     private int TIEMPOMAXIMONIVEL2 = 60;
@@ -88,14 +86,6 @@ public class Nivel {
 
         public void agregarMoneda(Moneda moneda) {
             this.monedas.addLast(moneda);
-        }
-
-        public void agregarBandera(Bandera bandera) {
-            this.bandera = bandera;
-        }
-
-        public void agregarPrincesa(Princesa princesa) {
-            this.princesa = princesa;
         }
 
         public void agregarVacio(Vacio vacio) {
