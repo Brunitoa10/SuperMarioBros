@@ -41,7 +41,6 @@ public class ControladorMovimientoMario {
     private void moverM(int direccionMario) {
         mario.desplazarEnX(direccionMario);
         mario.setDireccion(direccionMario);
-        mario.desplazarEnX(0);
     }
 
 }

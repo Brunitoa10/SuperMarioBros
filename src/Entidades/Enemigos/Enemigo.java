@@ -24,7 +24,7 @@ public abstract class Enemigo extends EntidadMovil {
     public Enemigo(int x, int y, Sprite sprite, ComportamientoIA comportamientoIA, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite);
         temporizador = new Temporizador();
-        setDireccion(1);
+        setDireccion(-1);
         visitorEnemigo = new VisitorEnemigo(this);
         this.comportamientoIA = comportamientoIA;
         this.listaEnemigosNivel = listaEnemigoNivel;

@@ -63,12 +63,8 @@ public class KoopaTroopa extends Enemigo {
     private void crearProyectilKoopa() {
         proyectil.getHitbox().setBounds(this.getPosicionEnX(), 426, 32, 32);
         proyectil.setPosicionEnX(this.getPosicionEnX());
-        proyectil.setPosicionEnY(426);
-        proyectil.getSprite().setPosicionX(proyectil.getPosicionEnX());
-        proyectil.getSprite().setPosicionY(426);
-        proyectil.getSprite().setPosicionY(426);
+        proyectil.setPosicionEnY(this.getPosicionEnY() + 16);
         proyectil.getSprite().setRutaImagen(this.getSprite().getRutaModo() + "/Enemigos/KoopaTroopa/AnimacionProyectil/KoopaTropaProyectil1.png");
-        proyectil.actualizarEntidad();
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {

@@ -37,16 +37,13 @@ public class ProyectilKoopa extends Proyectil {
         super.actualizarEntidad();
         if (gravedad) {
             this.setPosicionEnY(this.getPosicionEnY() + 2);
-            this.getSprite().setPosicionY(this.getPosicionEnY());
             velocidadX = 0;
         } else {
             if (direccionLocal != 0 && cantidadDeRebotes < 3) {
                 // Actualiza la posición en X usando velocidadX y la dirección
                 this.setPosicionEnX(this.getPosicionEnX() + velocidadX * direccionLocal);
-                // Asegura que el sprite también actualice su posición X
-                this.getSprite().setPosicionX(this.getPosicionEnX());
             }
-            if (cantidadDeRebotes == 3 && temporizador.hanPasadoNSegundos(2000))
+            if (cantidadDeRebotes >= 3 && temporizador.hanPasadoNSegundos(2000))
                 this.setAEliminar();
         }
     }
