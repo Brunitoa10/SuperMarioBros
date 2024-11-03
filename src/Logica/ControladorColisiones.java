@@ -66,11 +66,9 @@ public class ControladorColisiones {
         for (Enemigo enemigo : listaEnemigos) {
             if (mario.detectarColision(enemigo)) {
                 juegoActual.sumarPuntaje(mario.accept(enemigo.getVisitorEnemigo()));
-                enemigo.actualizar();
-
-                if (enemigo.aEliminar()) {
-                    nivelActual.getEntidadesAEliminar().add(enemigo);
                 }
+            if (enemigo.aEliminar()) {
+                nivelActual.getEntidadesAEliminar().add(enemigo);
             }
         }
     }

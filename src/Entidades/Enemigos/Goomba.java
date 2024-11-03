@@ -25,10 +25,10 @@ public class Goomba extends Enemigo {
 
     @Override
     public void actualizar() {
-        super.actualizar();
-        if (temporizadorGoomba.hanPasadoNSegundos(100)) {
+        if (temporizadorGoomba.hanPasadoNSegundos(500)) {
             this.setAEliminar();
         }
+        super.actualizar();
     }
 
 
