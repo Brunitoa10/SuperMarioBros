@@ -87,12 +87,6 @@ public class GeneradorNivel {
             case 9:
                 nivel.agregarMoneda(fabricaEntidades.crearMoneda(x, y, nivel.getMonedas()));
                 break;
-            case 17:
-                nivel.agregarBandera(fabricaEntidades.crearBandera(x, y));
-                break;
-            case 18:
-                nivel.agregarPrincesa(fabricaEntidades.crearPrincesa(x, y));
-                break;
             case 19:
                 nivel.agregarVacio(fabricaEntidades.crearVacio(x, y, nivel.getVacios()));
                 break;
