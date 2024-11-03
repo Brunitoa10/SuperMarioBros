@@ -180,10 +180,23 @@ public class GeneradorNivel {
     }
 
     private void generarVaciosYSuelosNivelTres(Nivel nivel) {
-        nivel.agregarPlataforma(new SueloNivel(-800, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69,""), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(1695, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 526, 69,""), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(2327, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2247, 69,""), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(4646, 456, new Sprite(ConstantesBloques.SPRITE_VACIA, 2423, 69,""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(-800, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 786, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(773, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 98, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(872, 431, new Sprite(ConstantesBloques.SPRITE_VACIA, 2260, 98, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(3133, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 196, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(3723, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 835, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4657, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 97, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(4854, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 638, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(6132, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 144, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(6277, 431, new Sprite(ConstantesBloques.SPRITE_VACIA, 788, 98, ""), nivel.getPlataformas()));
+        nivel.agregarVacio(new Vacio(6277, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 32, 32, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(5493, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 638, 246, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4755, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 98, 246, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(4559, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 97, 246, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(3330, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 392, 246, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(3101, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 32, 32, ""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(871, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 32, 32,""), nivel.getVacios()));
+        nivel.agregarVacio(new Vacio(-13, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 785, 246, ""), nivel.getVacios()));
     }
 
     private void casoPlataformas(int idEntidad, int x, int y, int idExtra, Nivel nivel) {

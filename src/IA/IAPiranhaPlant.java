@@ -22,7 +22,7 @@ public class IAPiranhaPlant implements ComportamientoIA{
 
     @Override
     public void actualizar(Enemigo enemigo) {
-        if (temporizadorSubirBajar.hanPasadoNSegundos(7000)) {
+        if (temporizadorSubirBajar.hanPasadoNSegundos(6000)) {
             if (estaEscondido(enemigo)) {
                 subiendo = true;
             } else if (estaEnYMaximo(enemigo)) {
