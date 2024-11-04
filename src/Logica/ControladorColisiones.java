@@ -74,7 +74,7 @@ public class ControladorColisiones {
     }
 
     public void colisionMarioConMonedas(List<Moneda> listaMonedas, Jugador mario) {
-        for (Moneda moneda : listaMonedas) {
+         for (Moneda moneda : listaMonedas) {
             if (mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
                 juegoActual.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
@@ -198,8 +198,8 @@ public class ControladorColisiones {
         for (Proyectil proyectil : listaProyectil) {
             for (Vacio vacio : listaVacios) {
                 int toleranciaX = 5;
-                if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() + proyectil.getHitbox().getWidth() <= vacio.getPosicionEnX() + vacio.getHitbox().getWidth() + toleranciaX) {
-                    if ((proyectil.getHitbox().getMaxY() == vacio.getPosicionEnY())) {
+                if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() <= vacio.getPosicionEnX() + toleranciaX) {
+                    if ((vacio.getHitbox().getMinY() + toleranciaX) > proyectil.getHitbox().getMaxY() && (vacio.getHitbox().getMinY() - toleranciaX <= proyectil.getHitbox().getMaxY())) {
                         proyectil.getVisitor().visit(vacio);
                     }
                 }

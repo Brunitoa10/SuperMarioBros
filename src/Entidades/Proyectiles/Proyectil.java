@@ -36,6 +36,7 @@ public abstract class Proyectil extends EntidadMovil {
     }
 
     public void activarGravedad() {
+
     }
 
     public abstract boolean puedeRomperBloques();
