@@ -274,6 +274,7 @@ public class Juego {
         if ((mario.getPosicionEnX() >= 6150) && ((nivelActual.nivel == 1) || (nivelActual.nivel == 2))) {
             mario.setVelocidad(1);
             animacionGanando = true;
+
         } else if ((mario.getPosicionEnX() >= 6775) && (nivelActual.nivel == 3)) {
             mario.setVelocidad(0);
             animacionGanando = true;
@@ -287,12 +288,20 @@ public class Juego {
         if ((mario.getPosicionEnX() > 6350) && ((nivelActual.nivel == 1) || (nivelActual.nivel == 2))) {
             mario.setVelocidad(CadenasValidacion.MARIO_VELOCIDAD);
             nivelSiguiente();
+            if (animacionGanando) {
+                controladorPuntaje.sumarPuntaje(200);
+                controladorVistas.actualizarLabels();
+            }
             animacionGanando = false;
-
         }
         if (timerGanarJuego.hanPasadoNSegundos(3000)){
-                detenerLoops();
-                controladorVistas.mostrarPantallaVictoria(modoJuego);
+            detenerLoops();
+            controladorVistas.mostrarPantallaVictoria(modoJuego);
+            if (animacionGanando) {
+                controladorPuntaje.sumarPuntaje(300);
+                controladorVistas.actualizarLabels();
+            }
+            animacionGanando = false;
         }
     }
 
