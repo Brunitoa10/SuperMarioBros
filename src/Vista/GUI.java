@@ -60,7 +60,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void accionarPantallaRanking() {
-		//panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
+		panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		mostrarPantallaRanking();
 	}
 
