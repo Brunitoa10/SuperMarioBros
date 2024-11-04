@@ -18,7 +18,7 @@ public class AnimadorMario {
 	public static final String RUTA_MARIO_JUMP_IZQUIERDA = "/JumpingMarioLeft.png";
 	
 	
-	public static final String MUERTE_MARIO = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioDying/AnimacionDead.gif";
+	public static final String MUERTE_MARIO = "/Jugador/PNGMario/MarioDying/AnimacionDead.gif";
 	
 	public static final String CONSUMO_HONGO_LEFT = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif";
 	public static final String CONSUMO_HONGO_RIGHT = "src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif";
