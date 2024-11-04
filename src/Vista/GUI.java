@@ -51,8 +51,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	}
 
-	public void agregarJugadorAlRanking(String nombreAgregar, int puntajeAgregar) {
-		ranking.agregarAlRanking(nombreAgregar, puntajeAgregar);
+	public void agregarJugadorAlRanking( int puntajeAgregar) {
+		ranking.agregarAlRanking(nombreUsuario, puntajeAgregar);
 		panelPantallaRanking.llenarTabla();
 	}
 

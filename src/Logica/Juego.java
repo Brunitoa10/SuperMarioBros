@@ -17,6 +17,7 @@ import Generador.GestorSonido.SonidoFactory;
 import Vista.Controladores.ControladorVistaJuego;
 import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
+import GestorArchivos.Ranking;
 
 import java.util.List;
 
@@ -290,6 +291,7 @@ public class Juego {
                 controladorVistas.actualizarLabels();
             }
             animacionGanando = false;
+            controladorVistas.agregarJugadorAlRanking(controladorPuntaje.getPuntaje());
         }
     }
 
