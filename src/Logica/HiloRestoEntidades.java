@@ -43,9 +43,11 @@ public class HiloRestoEntidades implements Runnable {
             if (now - lastUpdateTime >= updateInterval) {
                 lastUpdateTime = now;
                 if(juego.loopMario.puedoEliminar) { //metodo para borrar entidades
-                    tick();
+                    juego.setFrenoElTick(true);
                     juego.eliminarEntidades();
                 }
+                juego.setFrenoElTick(false);
+                tick();
             }
         }
     }
