@@ -181,7 +181,7 @@ public class GeneradorNivel {
         nivel.agregarPlataforma(new SueloNivel(3723, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 835, 246, ""), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(4657, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 97, 246, ""), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(4854, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 638, 246, ""), nivel.getPlataformas()));
-        nivel.agregarPlataforma(new SueloNivel(6132, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 144, 246, ""), nivel.getPlataformas()));
+        nivel.agregarPlataforma(new SueloNivel(6132, 262, new Sprite(ConstantesBloques.SPRITE_VACIA, 144, 246, ""), nivel.getPlataformas()));
         nivel.agregarPlataforma(new SueloNivel(6277, 431, new Sprite(ConstantesBloques.SPRITE_VACIA, 788, 98, ""), nivel.getPlataformas()));
         nivel.agregarVacio(new Vacio(6277, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 32, 32, ""), nivel.getVacios()));
         nivel.agregarVacio(new Vacio(5493, 283, new Sprite(ConstantesBloques.SPRITE_VACIA, 638, 246, ""), nivel.getVacios()));
