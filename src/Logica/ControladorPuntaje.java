@@ -17,7 +17,12 @@ public class ControladorPuntaje {
     }
 
     public void sumarPuntaje(int puntajeASumar) {
-        this.puntaje += puntajeASumar;
+        if (puntaje + puntajeASumar < 0) {
+            this.puntaje = 0;
+        }
+        else {
+            this.puntaje += puntajeASumar;
+        }
     }
 
 
