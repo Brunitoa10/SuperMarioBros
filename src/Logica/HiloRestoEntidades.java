@@ -62,6 +62,8 @@ public class HiloRestoEntidades implements Runnable {
         }
         puedoEliminar = true;
 
+        juego.checkear100Monedas();
+
     }
 
     public void pause() {
