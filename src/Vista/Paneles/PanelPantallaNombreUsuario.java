@@ -30,22 +30,28 @@ public class PanelPantallaNombreUsuario extends JPanel {
         agregarBotonConfirmar();
     }
 
-
     protected void agregarCampoNombre() {
         campoNombre = new JTextField(20);
         campoNombre.setHorizontalAlignment(SwingConstants.CENTER);
         campoNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
         campoNombre.setBounds(295, 354, 200, 30);
+
+        // Agregar un ActionListener para detectar la tecla Enter
+        campoNombre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                confirmarNombre();
+            }
+        });
+
         add(campoNombre);
     }
-
 
     protected void agregarBotonConfirmar() {
         botonConfirmarNombre = new JButton("Confirmar");
         botonConfirmarNombre.setBounds(343, 425, 100, 30);
         decorarBotonConfirmar();
         add(botonConfirmarNombre);
-
 
         etiquetaNombre = new JLabel();
         etiquetaNombre.setIcon(new ImageIcon(PanelPantallaNombreUsuario.class.getResource("/Recursos/Imagenes/original/usuario.png")));
