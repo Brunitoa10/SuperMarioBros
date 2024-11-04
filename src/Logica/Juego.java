@@ -54,7 +54,7 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        nivel = 3;
+        nivel = 1;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
@@ -237,7 +237,6 @@ public class Juego {
     public void checkearSumaVida() {
         if (getJugador().debeSumarUnaVida()) {
             sumarVida();
-            sumarPuntaje(ConstantesPuntaje.PUNTAJE_CHAMPINON_VERDE);
             getJugador().sumarUnaVida(false);
         }
     }

@@ -44,10 +44,11 @@ public class Goomba extends Enemigo {
                 toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
             } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
                 mario.getEstadoJugador().recibeDanio(this);
-                toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
                 if (this.aEliminar()) {
                     mori = true;
                     toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+                } else if (mario.getMorir()) {
+                    toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_MUERTE_MARIO;
                 }
             }
         return toReturn;

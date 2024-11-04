@@ -75,13 +75,11 @@ public class ControladorColisiones {
 
     public void colisionMarioConMonedas(List<Moneda> listaMonedas, Jugador mario) {
          for (Moneda moneda : listaMonedas) {
-            if (mario.detectarColision(moneda)) {
+            if (mario.detectarColision(moneda) && !moneda.aEliminar()) {
                 moneda.accept(mario.getVisitorJugador());
                 juegoActual.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
                 juegoActual.agregarMoneda();
-                if (moneda.aEliminar()) {
-                    nivelActual.getEntidadesAEliminar().add(moneda);
-                }
+                nivelActual.getEntidadesAEliminar().add(moneda);
 
             }
         }
@@ -101,11 +99,10 @@ public class ControladorColisiones {
     public boolean colisionMarioConPowerUps(List<PowerUp> listaPowerUps, Jugador mario) {
         boolean toRet = false;
         for (PowerUp powerUp : listaPowerUps) {
-            if (mario.detectarColision((powerUp))) {
+            if (mario.detectarColision(powerUp) && !powerUp.aEliminar()) {
                 juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
-                powerUp.actualizarEntidad();
-                toRet = powerUp.getFrenarJuego();
                 mario.getEstadoJugador().actualizarEstadoJugador();
+                powerUp.setAEliminar();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
         }

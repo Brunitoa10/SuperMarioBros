@@ -36,7 +36,9 @@ public class BuzzyBeetle extends Enemigo {
             toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
         } else if (mario.colisionDerecha(this) || mario.colisionIzquierda(this)) {
             mario.getEstadoJugador().recibeDanio(this);
-            if (mario.getMorir())
+            if (this.aEliminar())
+                toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_DESTRUIDO;
+            else if (mario.getMorir())
                 toReturn = ConstantesPuntaje.PUNTAJE_BUZZY_BEETLE_MUERTE_MARIO;
         }
 
