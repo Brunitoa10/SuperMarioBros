@@ -2,7 +2,6 @@ package Logica;
 
 import Entidades.Jugador;
 
-import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -17,11 +16,11 @@ public class LoopMario implements Runnable {
     protected boolean debeSaltar;
     protected boolean FrenoElTick;
     protected Temporizador temporizador2;
-    private boolean ejecutando;
-    private Jugador mario;
+    protected boolean ejecutando;
+    protected Jugador mario;
     protected boolean puedoEliminar = false;
-    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private long lastUpdateTime = System.nanoTime();
+    protected ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    protected long lastUpdateTime = System.nanoTime();
 
     public LoopMario(Juego juego) {
         this.mario = juego.getNivelActual().getJugador();

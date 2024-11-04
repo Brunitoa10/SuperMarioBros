@@ -2,7 +2,6 @@ package Logica;
 
 
 import Entidades.Entidad;
-import Vista.Controladores.ControladorVistaJuego;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -13,11 +12,11 @@ public class HiloRestoEntidades implements Runnable {
     private final long updateInterval = 16_000_000; // Aproximadamente 60 FPS
     protected boolean FrenarHilo = false;
     protected List<Entidad> EntidadesAEliminar;
-    private boolean ejecutando;
-    private ControladorColisiones controladorColisiones;
-    private long lastUpdateTime = System.nanoTime();
+    protected boolean ejecutando;
+    protected ControladorColisiones controladorColisiones;
+    protected long lastUpdateTime = System.nanoTime();
     protected boolean puedoEliminar=false;
-    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    protected ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     protected Juego juego;
 
     public HiloRestoEntidades(Juego juego) {
@@ -64,8 +63,6 @@ public class HiloRestoEntidades implements Runnable {
         puedoEliminar = true;
 
     }
-
-
 
     public void pause() {
         FrenarHilo = true;
