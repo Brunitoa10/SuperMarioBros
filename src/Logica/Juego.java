@@ -45,14 +45,14 @@ public class Juego {
     protected Temporizador timerGanarJuego;
 
     public Juego(GUI controladorVistas) {
-    	animacionGanando = false;
+        animacionGanando = false;
         this.controladorVistas = controladorVistas;
         this.fabricaSpritesRegistry = new FabricaSpriteRegistro();
         inicializarAtributos();
     }
 
     private void inicializarAtributos() {
-        nivel = 1;
+        nivel = 3;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
@@ -75,10 +75,10 @@ public class Juego {
         controladorVistas.actualizarLabels();
     }
 
-    public void sumarTiempo(){
+    public void sumarTiempo() {
         tiempoJuego++;
 
-        if (tiempoJuego% 60 == 0){
+        if (tiempoJuego % 60 == 0) {
             controladorVistas.actualizarTiempoJuego(this);
         }
     }
@@ -101,14 +101,14 @@ public class Juego {
         fabricaSprites = fabricaSpritesRegistry.obtenerFabrica(modoJuego);
         fabricaEntidades = new CreadorEntidad(fabricaSprites);
         generadorNivel = new GeneradorNivel(fabricaEntidades);
-        
+
         sonido = SonidoFactory.crearSonido(modoJuego, "nivel");
-        
+
         nivelActual = generadorNivel.generarNivel(nivel);
         controladorVistas.mostrarPantallaNivel();
         oyenteTeclado = controladorVistas.obtenerOyente();
         controladorMovimientoMario = new ControladorMovimientoMario(nivelActual.getJugador(), oyenteTeclado);
-        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado);
+        controladorBolasDeFuego = new ControladorBolasDeFuego(nivelActual.getJugador(), oyenteTeclado, this);
         registrarObservers();
         iniciarLoops();
         nivelActual.getJugador().setRutaOrigen(fabricaSprites.getRuta_carpeta());
@@ -137,7 +137,7 @@ public class Juego {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);
             controladorVistas.actualizarImagenFondoNivel(nivel);
-            controladorVistas.actualizarLabels();          
+            controladorVistas.actualizarLabels();
             iniciar(modoJuego);
         }
     }
@@ -180,7 +180,7 @@ public class Juego {
 
     public boolean marioCaeAlVacio(Jugador mario) {
         boolean caeAlVacio = false;
-        if(mario.getPosicionEnY() > 460) {
+        if (mario.getPosicionEnY() > 460) {
             controladorPuntaje.sumarPuntaje(ConstantesPuntaje.PUNTAJE_VACIO_MUERTE_MARIO);
             caeAlVacio = true;
         }
@@ -189,8 +189,7 @@ public class Juego {
 
     public void lanzarBolasDeFuego(Jugador mario) {
         if (controladorBolasDeFuego.puedeLanzarBolaDeFuego()) {
-            controladorBolasDeFuego.dispararBolaFuego(controladorVistas, fabricaEntidades);
-            mario.getEstadoMovimiento().LanzarBola();
+            nivelActual.getJugador().getEstadoJugador().lanzarBolaDeFuego(controladorBolasDeFuego);
         }
     }
 
@@ -239,14 +238,6 @@ public class Juego {
         }
     }
 
-    public void frenarHilos() {
-        hiloRestoEntidades.pause();
-    }
-
-    public void reanudarHilo() {
-        hiloRestoEntidades.resume();
-    }
-
     public int nivel() {
         return nivel;
     }
@@ -291,7 +282,7 @@ public class Juego {
         if (timerGanarJuego.hanPasadoNSegundos(2000) && mario.estaEnPlataforma()) {
             mario.saltar();
         }
-        if (timerGanarJuego.hanPasadoNSegundos(5000)){
+        if (timerGanarJuego.hanPasadoNSegundos(5000)) {
             detenerLoops();
             controladorVistas.mostrarPantallaVictoria(modoJuego);
             if (animacionGanando) {
@@ -314,7 +305,7 @@ public class Juego {
         return tiempoJuego / 60;
     }
 
-    public boolean sinTiempo(){
+    public boolean sinTiempo() {
         return ticksASegundos() >= nivelActual.getTiempoMaximoNivel();
     }
 

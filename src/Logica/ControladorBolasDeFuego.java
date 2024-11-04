@@ -11,9 +11,11 @@ public class ControladorBolasDeFuego {
     protected Jugador mario;
     protected OyenteTeclado oyenteTeclado;
     protected Temporizador temporizador;
+    protected Juego juego;
 
-    public ControladorBolasDeFuego(Jugador mario, OyenteTeclado oyenteTeclado) {
+    public ControladorBolasDeFuego(Jugador mario, OyenteTeclado oyenteTeclado, Juego juego) {
         this.mario = mario;
+        this.juego = juego;
         this.oyenteTeclado = oyenteTeclado;
         temporizador = new Temporizador();
         temporizador.iniciar();
@@ -21,7 +23,7 @@ public class ControladorBolasDeFuego {
 
     public boolean puedeLanzarBolaDeFuego() {
         boolean toRet = false;
-        if(oyenteTeclado.teclaEspacio && mario.puedeLanzarBolaDeFuego() && temporizador.hanPasadoNSegundos(2000)) {
+        if(oyenteTeclado.teclaEspacio && temporizador.hanPasadoNSegundos(2000)) {
             temporizador.resetear();
             temporizador.iniciar();
             toRet = true;
@@ -29,10 +31,10 @@ public class ControladorBolasDeFuego {
         return toRet;
     }
 
-    public void dispararBolaFuego(GUI controladorVistas, FabricaEntidad fabricaEntidades) {
-        Proyectil bolaDeFuego = fabricaEntidades.crearBolaDeFuego(mario, controladorVistas.getJuego().getNivelActual().getProyectiles());
-        controladorVistas.getJuego().getNivelActual().agregarProyectil(bolaDeFuego);
-        Observer observer = controladorVistas.registrarEntidad(bolaDeFuego);
+    public void dispararBolaFuego() {
+        Proyectil bolaDeFuego = juego.fabricaEntidades.crearBolaDeFuego(mario, juego.controladorVistas.getJuego().getNivelActual().getProyectiles());
+        juego.controladorVistas.getJuego().getNivelActual().agregarProyectil(bolaDeFuego);
+        Observer observer = juego.controladorVistas.registrarEntidad(bolaDeFuego);
         bolaDeFuego.registrarObserver(observer);
     }
 

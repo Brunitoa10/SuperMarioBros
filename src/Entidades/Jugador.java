@@ -95,10 +95,6 @@ public class Jugador extends EntidadMovil implements EntidadJugador {
         return getEstadoJugador().puedeRomperBloques();
     }
 
-    public boolean puedeLanzarBolaDeFuego() {
-        return estadoJugador.puedeLanzarBolaFuego();
-    }
-
     public boolean getMorir() {
         return muerte;
     }

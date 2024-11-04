@@ -4,11 +4,10 @@ import Entidades.Entidad;
 import Entidades.Power_Ups.Estrella;
 import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
+import Logica.ControladorBolasDeFuego;
 
 public interface EstadoJugador {
     public void recibeDanio(Entidad e);
-
-    public boolean puedeLanzarBolaFuego();
 
     public boolean puedeRomperBloques();
 
@@ -25,5 +24,7 @@ public interface EstadoJugador {
     public int interactuar(FlorDeFuego powerUp, int COLUMNA);
 
     public int interactuar(Estrella powerUp, int COLUMNA);
+
+    public void lanzarBolaDeFuego(ControladorBolasDeFuego controladorBolasDeFuego);
 
 }

@@ -5,6 +5,7 @@ import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
 import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
+import Logica.ControladorBolasDeFuego;
 
 public class SuperMarioFuego implements EstadoJugador {
 
@@ -21,9 +22,10 @@ public class SuperMarioFuego implements EstadoJugador {
         mario.setEstadoJugador(new MarioInvencible(mario));
     }
 
-    @Override
-    public boolean puedeLanzarBolaFuego() {
-        return true;
+
+    public void lanzarBolaDeFuego(ControladorBolasDeFuego controladorBolasDeFuego) {
+        controladorBolasDeFuego.dispararBolaFuego();
+        mario.getEstadoMovimiento().LanzarBola();
     }
 
     public String inicioAnimacion() {

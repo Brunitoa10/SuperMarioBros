@@ -5,6 +5,7 @@ import Entidades.Jugador;
 import Entidades.Power_Ups.Estrella;
 import Entidades.Power_Ups.FlorDeFuego;
 import Entidades.Power_Ups.SuperChampinion;
+import Logica.ControladorBolasDeFuego;
 import Logica.Temporizador;
 
 
@@ -25,9 +26,10 @@ public class MarioInvencible implements EstadoJugador {
     public void recibeDanio(Entidad e) {
     }
 
-    @Override
-    public boolean puedeLanzarBolaFuego() {
-        return false;
+
+
+    public void lanzarBolaDeFuego(ControladorBolasDeFuego controladorBolasDeFuego) {
+
     }
 
     public void actualizarEstadoJugador() {
