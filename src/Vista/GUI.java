@@ -46,19 +46,21 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	// De interfaz ControladorDeVistas
 	@Override
 	public void accionarInicioJuego(String modoJuego) {
+		//panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		configuracion.setModoJuego(modoJuego);
 		miJuego.iniciar(modoJuego);
 
 	}
 
 	public void agregarJugadorAlRanking( int puntajeAgregar) {
+		panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		ranking.agregarAlRanking(nombreUsuario, puntajeAgregar);
 		panelPantallaRanking.llenarTabla();
 	}
 
 	@Override
 	public void accionarPantallaRanking() {
-		panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
+		//panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		mostrarPantallaRanking();
 	}
 
