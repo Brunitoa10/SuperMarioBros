@@ -23,6 +23,7 @@ import java.util.List;
 
 public class Juego {
 
+    protected ControladorMonedas controladorMonedas;
     protected FabricaEntidad fabricaEntidades;
     protected Sonido sonido;
     protected GUI controladorVistas;
@@ -60,6 +61,7 @@ public class Juego {
         controladorPuntaje = new ControladorPuntaje();
         controladorVidasMario = new ControladorVidasMario();
         timerGanarJuego = new Temporizador();
+        controladorMonedas = new ControladorMonedas();
     }
 
     public int getVidas() {
@@ -315,4 +317,14 @@ public class Juego {
         return Math.abs(mario.getPosicionEnX() - enemigo.getPosicionEnX()) <= 600;
     }
 
+    public void checkear100Monedas() {
+        if (controladorMonedas.getNVidas() > 0){
+            controladorVidasMario.setVidas(controladorVidasMario.getVidas() + controladorMonedas.agregarNVidas());
+            controladorVistas.actualizarLabels();
+        }
+    }
+
+    public void agregarMoneda(){
+        controladorMonedas.agregarMoneda();
+    }
 }

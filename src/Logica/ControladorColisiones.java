@@ -78,6 +78,7 @@ public class ControladorColisiones {
             if (mario.detectarColision(moneda)) {
                 moneda.accept(mario.getVisitorJugador());
                 juegoActual.sumarPuntaje(ConstantesPuntaje.PUNTAJE_MONEDA);
+                juegoActual.agregarMoneda();
                 if (moneda.aEliminar()) {
                     nivelActual.getEntidadesAEliminar().add(moneda);
                 }
