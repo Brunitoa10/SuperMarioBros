@@ -55,7 +55,7 @@ public class ControladorColisiones {
                     Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
                     vacio.registrarObserver(observer);
                     nivelActual.agregarVacio(vacio);
-                    vacio.setAnimacionFinal(1200);
+                    vacio.setAnimacionFinal(900);
                     nivelActual.getEntidadesAEliminar().add(plataforma);
                 }
             }
