@@ -52,7 +52,7 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        nivel = 3;
+        nivel = 1;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
@@ -223,6 +223,7 @@ public class Juego {
             detenerLoops();
             controladorVistas.mostrarPantallaFinJuego(modoJuego);
             controladorVidasMario.setVidas(3);
+            nivel = 1;
         }
     }
 
@@ -248,13 +249,6 @@ public class Juego {
 
     public int nivel() {
         return nivel;
-    }
-
-    private void aplicarSprite(Jugador mario) {
-        if (mario.getDireccion() == -1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoLeft.gif");
-        if (mario.getDireccion() == +1)
-            mario.getSprite().setRutaImagen("src/Recursos/Sprites/original/Jugador/PNGMario/MarioPowerUp/ConsumePowerUp/ConsumoHongoRigth.gif");
     }
 
     public boolean frenoElTick() {
