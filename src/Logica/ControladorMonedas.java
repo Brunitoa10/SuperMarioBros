@@ -6,7 +6,7 @@ public class ControladorMonedas {
     private int sumarNVidas;
 
     public ControladorMonedas(){
-        cantMonedas = 98;
+        cantMonedas = 0;
         sumarNVidas = 0;
     }
 
