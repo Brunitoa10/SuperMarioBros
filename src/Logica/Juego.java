@@ -52,7 +52,7 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        nivel = 1;
+        nivel = 3;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
@@ -294,7 +294,10 @@ public class Juego {
             }
             animacionGanando = false;
         }
-        if (timerGanarJuego.hanPasadoNSegundos(3000)){
+        if (timerGanarJuego.hanPasadoNSegundos(2000) && mario.estaEnPlataforma()) {
+            mario.saltar();
+        }
+        if (timerGanarJuego.hanPasadoNSegundos(5000)){
             detenerLoops();
             controladorVistas.mostrarPantallaVictoria(modoJuego);
             if (animacionGanando) {
