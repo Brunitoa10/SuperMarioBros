@@ -135,6 +135,7 @@ public class Juego {
         tiempoJuego = 0;
         sonido.detener();
         detenerLoops();
+        nivelActual.autoEliminarse(); // Metodo para optimizacion, una vez pasado por el nivel se borra todos las entidades juntos sus observers
         if (nivel < CadenasValidacion.MAXIMO_NIVELES) {
             nivel++;
             nivelActual = generadorNivel.generarNivel(nivel);

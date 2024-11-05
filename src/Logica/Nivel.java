@@ -109,4 +109,25 @@ public class Nivel {
             };
         }
 
+        public void autoEliminarse(){
+            while(vacios.isEmpty()){
+                vacios.removeFirst();
+            }
+            while(enemigos.isEmpty()){
+                enemigos.removeFirst();
+            }
+            while(powerUps.isEmpty()){
+                powerUps.removeFirst();
+            }
+            while(proyectiles.isEmpty()){
+                proyectiles.removeFirst();
+            }
+            while(monedas.isEmpty()){
+                monedas.removeFirst();
+            }
+            while(plataformas.isEmpty()){
+                plataformas.removeFirst();
+            }
+        }
+
     }

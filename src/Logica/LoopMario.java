@@ -67,7 +67,7 @@ public class LoopMario implements Runnable {
 
     private void tick() {
         juego.sumarTiempo();
-        if (!juego.frenoElTick()) {
+        if (!juego.frenoElTick() && ejecutando) {
             puedoEliminar = false;
             if (!mario.getMorir() && !juego.sinTiempo() || juego.animacionGanando()) {
 
@@ -100,6 +100,9 @@ public class LoopMario implements Runnable {
                     juego.manejarMuerte();
                 }
             }
+        }else{
+            if(ejecutando)
+                mario.actualizarEntidad();
         }
         puedoEliminar = true;
     }

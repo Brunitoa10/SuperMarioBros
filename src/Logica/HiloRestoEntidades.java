@@ -59,7 +59,7 @@ public class HiloRestoEntidades implements Runnable {
 
     private void tick() {
         puedoEliminar=false;
-        if (!FrenarHilo) {
+        if (!FrenarHilo && ejecutando) {
             controladorColisiones.colisionesRestoEntidades();
         }
         puedoEliminar = true;
