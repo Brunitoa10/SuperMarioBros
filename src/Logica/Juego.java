@@ -229,7 +229,6 @@ public class Juego {
     }
 
     public void mostrarMarioMuerte(Jugador mario) {
-        System.out.println(getJugador().getSprite().getRutaModo()+AnimadorMario.MUERTE_MARIO);
         mario.getSprite().setRutaImagen(getJugador().getSprite().getRutaModo()+AnimadorMario.MUERTE_MARIO);
     }
 

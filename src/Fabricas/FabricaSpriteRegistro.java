@@ -8,7 +8,6 @@ public class FabricaSpriteRegistro {
     private Map<String, Supplier<FabricaSprites>> registry;
 
     public FabricaSpriteRegistro() {
-        System.out.println("FabricaSpriteRegistro");
         registry = new HashMap<>();
         registry.put("original", () -> new FabricaSpritesOriginal("src/Recursos/Sprites/original"));
         registry.put("alternativo", () -> new FabricaSpritesAlternativa("src/Recursos/Sprites/alternativo"));

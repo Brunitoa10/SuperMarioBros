@@ -43,6 +43,24 @@ public class ControladorColisiones {
         return toRet;
     }
 
+    public void colisionMarioPlataformaTickFrenado(List<Plataforma> listaPlataformas, Jugador mario){
+        for (Plataforma plataforma : listaPlataformas) {
+            if (mario.detectarColision((plataforma))) {
+                int PosicionReemplazarX = plataforma.getPosicionEnX();
+                int PosicionReemplazarY = plataforma.getPosicionEnY();
+                plataforma.accept(mario.getVisitorJugador());
+                if (plataforma.aEliminar()) {
+                    Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
+                    Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
+                    vacio.registrarObserver(observer);
+                    nivelActual.agregarVacio(vacio);
+                    vacio.setAnimacionFinal(900);
+                    nivelActual.getEntidadesAEliminar().add(plataforma);
+                }
+            }
+        }
+    }
+
     public void colisionMarioConPlataforma(List<Plataforma> listaPlataformas, Jugador mario) {
         for (Plataforma plataforma : listaPlataformas) {
             if (mario.detectarColision((plataforma))) {

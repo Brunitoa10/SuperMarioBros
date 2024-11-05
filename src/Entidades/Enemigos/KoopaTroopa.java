@@ -23,7 +23,6 @@ public class KoopaTroopa extends Enemigo {
         visitor = new VisitorEnemigo(this);
         velocidad = 1;
         vidas = 1;
-        System.out.println("Me cree soy el koopa");
     }
 
     public void actualizar() {

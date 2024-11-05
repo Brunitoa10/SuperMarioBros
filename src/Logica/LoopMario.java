@@ -102,6 +102,7 @@ public class LoopMario implements Runnable {
                 }
             }
         }else{
+            controladorColisiones.colisionMarioPlataformaTickFrenado(juego.getNivelActual().getPlataformas(),mario);
             mario.actualizarEntidad();
         }
         puedoEliminar = true;
