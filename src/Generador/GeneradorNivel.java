@@ -60,7 +60,7 @@ public class GeneradorNivel {
                     this.casoPlataformas(idEntidad, posicionX, posicionY, idExtra, nivel);
                 } else if (idEntidad >= 5 && idEntidad <= 8) {
                     this.casoPowerUps(idEntidad, posicionX, posicionY, nivel);
-                } else if (idEntidad >= 10 && idEntidad <= 16) {
+                } else if (idEntidad >= 11 && idEntidad <= 16) {
                     this.casoEnemigos(idEntidad, posicionX, posicionY, nivel);
                 } else {
                     this.restoCasos(idEntidad, posicionX, posicionY, nivel);
@@ -82,7 +82,7 @@ public class GeneradorNivel {
             case 9:
                 nivel.agregarMoneda(fabricaEntidades.crearMoneda(x, y, nivel.getMonedas()));
                 break;
-            case 19:
+            case 10:
                 nivel.agregarVacio(fabricaEntidades.crearVacio(x, y, nivel.getVacios()));
                 break;
         }
