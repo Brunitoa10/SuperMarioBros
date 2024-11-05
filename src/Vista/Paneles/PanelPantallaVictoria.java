@@ -66,7 +66,7 @@ public class PanelPantallaVictoria extends JPanel {
     private void registrarOyenteVerPuntaje() {
         btnVerPuntaje.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {   
-                controladorVistas.accionarPantallaRanking();
+                controladorVistas.mostrarPantallaRanking();// accionarPantallaRanking();
             }
         });
         btnVerPuntaje.addMouseListener(new MouseAdapter() {

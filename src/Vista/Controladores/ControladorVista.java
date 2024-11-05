@@ -1,5 +1,6 @@
 package Vista.Controladores;
 
+
 public interface ControladorVista {
 
     /**

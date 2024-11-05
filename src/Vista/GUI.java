@@ -1,5 +1,6 @@
 package Vista;
 
+
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import GestorArchivos.Ranking;
@@ -30,7 +31,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		inicializarComponentes();
 		mostrarPantallaNombreUsuario();
 	}
-	
+
 	public void reiniciarPanelPantallaNivel() {
 		panelPantallaNivel = panelFactory.crearPanelPantallaNivel();
 	}
@@ -160,9 +161,9 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void volverAlPanelAnterior() {
-		gestorPaneles.volverAlPanelAnterior();
+		mostrarPantallaModoJuego();
 	}
-	
+
 	private void inicializarComponentes() {
 		ventana = new VentanaManager();
 		configuracion = ConfiguracionJuego.obtenerInstancia();
@@ -170,5 +171,4 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 		miJuego = new Juego(this);
 		gestorPaneles = new GestorPaneles(ventana, new HistorialPaneles());
 	}
-
 }

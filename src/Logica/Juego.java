@@ -53,7 +53,7 @@ public class Juego {
     }
 
     private void inicializarAtributos() {
-        nivel = 1;
+        nivel = 3;
         tiempoJuego = 0;
         frenarTick = false;
         temporizador = new Temporizador();
