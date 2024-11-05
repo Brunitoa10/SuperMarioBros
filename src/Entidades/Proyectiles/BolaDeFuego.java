@@ -2,6 +2,8 @@ package Entidades.Proyectiles;
 
 import Entidades.Jugador;
 import Fabricas.Sprite;
+import Generador.GestorSonido.SonidoFactory;
+import Logica.ConfiguracionJuego;
 import Logica.Temporizador;
 import Visitor.Visitor;
 
@@ -28,8 +30,12 @@ public class BolaDeFuego extends Proyectil {
         direccionLocal = mario.getDireccion();
         temporizador = new Temporizador();
         temporizador.iniciar(); // Iniciar el temporizador al crear la bola de fuego
+        reproducirSonido();
     }
 
+    private void reproducirSonido() {
+        SonidoFactory.crearSonido(ConfiguracionJuego.obtenerInstancia().getModoJuego(), "bolaFuego").reproducir();
+    }
 
 
     private static int calcularMitadDeMario(Jugador mario) {

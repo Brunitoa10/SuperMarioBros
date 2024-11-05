@@ -102,6 +102,7 @@ public class ControladorColisiones {
             if (mario.detectarColision(powerUp) && !powerUp.aEliminar()) {
                 juegoActual.sumarPuntaje(powerUp.accept(mario.getVisitorJugador()));
                 mario.getEstadoJugador().actualizarEstadoJugador();
+                juegoActual.reproducirSonidoPowerUp();
                 powerUp.setAEliminar();
                 nivelActual.getEntidadesAEliminar().add(powerUp);
             }
