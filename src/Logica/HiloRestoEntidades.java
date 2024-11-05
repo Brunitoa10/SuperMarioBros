@@ -59,11 +59,10 @@ public class HiloRestoEntidades implements Runnable {
 
     private void tick() {
         puedoEliminar=false;
-        if (!FrenarHilo && ejecutando) {
+        if (!FrenarHilo) {
             controladorColisiones.colisionesRestoEntidades();
         }
         puedoEliminar = true;
-
         juego.checkear100Monedas();
 
     }

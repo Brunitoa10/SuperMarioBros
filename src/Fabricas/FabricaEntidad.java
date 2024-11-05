@@ -55,9 +55,5 @@ public interface FabricaEntidad {
 
     public Jugador crearJugador(int x, int y);
 
-    public Bandera crearBandera(int x, int y);
-
-    public Princesa crearPrincesa(int x, int y);
-
     public Vacio crearVacio(int x, int y, List<Vacio> listaVaciosNivel);
 }

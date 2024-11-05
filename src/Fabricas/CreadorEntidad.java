@@ -142,18 +142,6 @@ public class CreadorEntidad implements FabricaEntidad {
     }
 
     @Override
-    public Bandera crearBandera(int x, int y) {
-        Sprite banderaSprite = fabricaSprites.crearSpriteBandera();
-        return new Bandera(x, y, banderaSprite);
-    }
-
-    @Override
-    public Princesa crearPrincesa(int x, int y) {
-        Sprite princesaSprite = fabricaSprites.crearSpritePrincesa();
-        return new Princesa(x, y, princesaSprite);
-    }
-
-    @Override
     public Vacio crearVacio(int x, int y, List<Vacio> listaVaciosNivel) {
         Sprite vacioSprite = fabricaSprites.crearSpriteVacio();
         return new Vacio(x, y, vacioSprite, listaVaciosNivel);

@@ -60,9 +60,7 @@ public class BolaDeFuego extends Proyectil {
     public void actualizarEntidad() {
         contador++;
         setPosicionEnX(getPosicionEnX() + velocidadX * direccionLocal);
-        this.getSprite().setPosicionX(this.getPosicionEnX());
         setPosicionEnY(getPosicionEnY() + Gravedad);
-        this.getSprite().setPosicionY(this.getPosicionEnY());
         if (contador >= 40) {
             contador = 0;
             Gravedad = 1;
