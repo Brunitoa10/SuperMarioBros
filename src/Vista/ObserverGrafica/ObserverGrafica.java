@@ -32,11 +32,7 @@ public abstract class ObserverGrafica extends JLabel implements Observer {
         String rutaImagen = entidadObservada.getSprite().getRutaImagen();
         ImageIcon icono = new ImageIcon(rutaImagen);
 
-        if (icono.getImageLoadStatus() == MediaTracker.ERRORED) {
-            System.err.println("Error al cargar la imagen ObserverGrafica: " + rutaImagen);
-        } else {
-            setIcon(icono);
-        }
+        setIcon(icono);
     }
 
     protected void actualizarPosicionTamanio() {

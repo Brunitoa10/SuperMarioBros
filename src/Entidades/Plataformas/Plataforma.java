@@ -18,10 +18,6 @@ public abstract class Plataforma extends EntidadInmovil {
         this.listaPlataformaNivel = listaPlataformaNivel;
     }
 
-    public boolean detectarColision(Entidad c) {
-        return this.getHitbox().intersects(c.getHitbox());
-    }
-
     public int accept(Visitor v) {
         v.visit(this);
         return 0;

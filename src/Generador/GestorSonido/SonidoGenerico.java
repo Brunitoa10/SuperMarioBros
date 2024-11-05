@@ -14,15 +14,15 @@ public class SonidoGenerico implements Sonido {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("No se pudo crear el sonido: " + rutaArchivo);
         }
     }
 
     @Override
     public void reproducir() {
         if (clip != null) {
-            clip.setFramePosition(0); // Reinicia el clip al inicio
-            clip.start(); // Reproduce el clip
+            clip.setFramePosition(0);
+            clip.start();
         }
     }
 

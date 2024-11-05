@@ -69,7 +69,6 @@ public class GeneradorNivel {
 
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + ruta_a_nivel);
-            e.printStackTrace();
         }
         return nivel;
     }

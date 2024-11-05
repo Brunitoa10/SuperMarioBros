@@ -14,7 +14,7 @@ public class Launcher {
                 try {
                     new GUI();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.err.println("No se pudo iniciar el juego");
                 }
             }
         });
