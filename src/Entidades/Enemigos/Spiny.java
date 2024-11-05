@@ -14,11 +14,9 @@ import java.util.List;
 public class Spiny extends Enemigo {
 
     protected EstadoSpiny estadoSpiny;
-    protected VisitorEnemigo visitor;
 
     public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
-        visitor = new VisitorEnemigo(this);
         velocidad = 1;
         estadoSpiny = new SpinyCayendo(this);
     }

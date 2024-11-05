@@ -2,16 +2,13 @@ package Fabricas;
 
 import Entidades.Enemigos.*;
 import Entidades.Entidad;
-import Entidades.EntidadInmovil.Bandera;
 import Entidades.EntidadInmovil.Moneda;
-import Entidades.EntidadInmovil.Princesa;
 import Entidades.Jugador;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Proyectiles.ProyectilKoopa;
-import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
 import java.util.List;
@@ -40,8 +37,6 @@ public interface FabricaEntidad {
     public SuperChampinion crearSuperChampinion(int x, int y, List<PowerUp> listaPowerUpsNivel);
 
     public BolaDeFuego crearBolaDeFuego(Jugador jugador, List<Proyectil> listaProyectilNivel);
-
-    public ProyectilSpiny crearProyectilSpiny(int x, int y, List<Proyectil> listaProyectilNivel);
 
     public ProyectilKoopa crearProyectilKoopa(int x, int y, List<Proyectil> listaProyectilNivel);
 

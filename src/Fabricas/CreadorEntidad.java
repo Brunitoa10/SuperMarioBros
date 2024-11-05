@@ -2,16 +2,13 @@ package Fabricas;
 
 import Entidades.Enemigos.*;
 import Entidades.Entidad;
-import Entidades.EntidadInmovil.Bandera;
 import Entidades.EntidadInmovil.Moneda;
-import Entidades.EntidadInmovil.Princesa;
 import Entidades.Jugador;
 import Entidades.Plataformas.*;
 import Entidades.Power_Ups.*;
 import Entidades.Proyectiles.BolaDeFuego;
 import Entidades.Proyectiles.Proyectil;
 import Entidades.Proyectiles.ProyectilKoopa;
-import Entidades.Proyectiles.ProyectilSpiny;
 import Entidades.Vacio;
 
 import java.util.List;
@@ -95,12 +92,6 @@ public class CreadorEntidad implements FabricaEntidad {
     public BolaDeFuego crearBolaDeFuego(Jugador jugador, List<Proyectil> listaProyectilNivel) {
         Sprite bolaDeFuegoSprite = fabricaSprites.crearSpriteBolaDeFuego();
         return new BolaDeFuego(jugador, bolaDeFuegoSprite, listaProyectilNivel);
-    }
-
-    @Override
-    public ProyectilSpiny crearProyectilSpiny(int x, int y, List<Proyectil> listaProyectilNivel) {
-        Sprite proyectilSpinySprite = fabricaSprites.crearSpriteProyectilSpiny();
-        return new ProyectilSpiny(x, y, proyectilSpinySprite, listaProyectilNivel);
     }
 
     @Override

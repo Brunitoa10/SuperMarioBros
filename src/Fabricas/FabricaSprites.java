@@ -56,10 +56,6 @@ public abstract class FabricaSprites {
         return new Sprite(ruta_carpeta + "/Proyectiles/BolaDeFuego.gif", 16, 16, ruta_carpeta);
     }
 
-    public Sprite crearSpriteProyectilSpiny() {
-        return new Sprite(ruta_carpeta + "/", 16, 16, ruta_carpeta);
-    }
-
     public Sprite crearSpriteLadrilloSolido() {
         return new Sprite(ruta_carpeta + "/Bloques/Ladrillo.png", 32, 32, ruta_carpeta);
     }
