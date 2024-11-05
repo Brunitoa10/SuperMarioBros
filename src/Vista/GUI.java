@@ -1,6 +1,11 @@
 package Vista;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import Entidades.EntidadJugador;
 import Entidades.EntidadLogica;
 import GestorArchivos.Ranking;
@@ -29,7 +34,8 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	public GUI() {
 		panelFactory = new PanelFactory(this,this);
 		inicializarComponentes();
-		mostrarPantallaNombreUsuario();
+		//mostrarPantallaNombreUsuario();
+		mostrarPantallaCarga();
 	}
 
 	public void reiniciarPanelPantallaNivel() {
@@ -142,6 +148,23 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	public void mostrarPantallaNombreUsuario() {
 		gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaNombreUsuario());
+	}
+	
+	public void mostrarPantallaCarga() {
+	    gestorPaneles.mostrarPantalla(panelFactory.crearPanelPantallaCarga());
+	 
+	    Timer timer = new Timer(4000, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            ((Timer) e.getSource()).stop();
+
+	            mostrarPantallaNombreUsuario();
+	        }
+	    });
+	    
+	   
+	    timer.setRepeats(false);
+	    timer.start();
 	}
 
 	public void actualizarImagenFondoNivel(int nivel) {

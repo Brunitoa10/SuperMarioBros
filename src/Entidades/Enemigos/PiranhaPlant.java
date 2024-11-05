@@ -5,7 +5,6 @@ import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
 import Fabricas.Sprite;
 import IA.IAPiranhaPlant;
-import Visitor.VisitorEnemigo;
 
 import java.util.List;
 

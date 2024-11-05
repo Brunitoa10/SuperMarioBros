@@ -7,7 +7,6 @@ import Entidades.Proyectiles.ProyectilKoopa;
 import EstadoMovimiento.MarioSaltando;
 import Fabricas.Sprite;
 import IA.IACaminar;
-import Visitor.VisitorEnemigo;
 
 import java.util.List;
 

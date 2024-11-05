@@ -1,6 +1,5 @@
 package Vista.ObserverGrafica;
 
-import java.awt.MediaTracker;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

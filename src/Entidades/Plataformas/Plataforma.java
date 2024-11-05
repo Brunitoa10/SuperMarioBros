@@ -1,6 +1,5 @@
 package Entidades.Plataformas;
 
-import Entidades.Entidad;
 import Entidades.EntidadInmovil.EntidadInmovil;
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
