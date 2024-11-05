@@ -13,14 +13,12 @@ import java.util.List;
 
 public class KoopaTroopa extends Enemigo {
 
-    protected VisitorEnemigo visitor;
     protected int vidas;
     protected ProyectilKoopa proyectil;
 
     public KoopaTroopa(int x, int y, Sprite sprite, ProyectilKoopa proyectil, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
         this.proyectil = proyectil;
-        visitor = new VisitorEnemigo(this);
         velocidad = 1;
         vidas = 1;
     }

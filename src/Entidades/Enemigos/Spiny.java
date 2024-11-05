@@ -15,7 +15,6 @@ public class Spiny extends Enemigo {
 
     protected EstadoSpiny estadoSpiny;
     protected VisitorEnemigo visitor;
-    boolean estoyEnPlataforma;
 
     public Spiny(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);

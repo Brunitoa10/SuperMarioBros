@@ -11,13 +11,11 @@ import java.util.List;
 
 public class PiranhaPlant extends Enemigo {
 
-    protected VisitorEnemigo visitor;
     protected int yEscondido;
 
 
     public PiranhaPlant(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IAPiranhaPlant(y, y - sprite.getAlto()), listaEnemigoNivel);
-        visitor = new VisitorEnemigo(this);
         velocidad = 1;
         yEscondido = y;
     }

@@ -11,11 +11,9 @@ import java.util.List;
 
 public class BuzzyBeetle extends Enemigo {
 
-    protected VisitorEnemigo visitor;
 
     public BuzzyBeetle(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
-        visitor = new VisitorEnemigo(this);
         velocidad = 1;
     }
 

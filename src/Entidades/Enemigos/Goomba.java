@@ -12,13 +12,11 @@ import java.util.List;
 
 public class Goomba extends Enemigo {
 
-    protected VisitorEnemigo visitor;
     protected boolean mori;
     protected Temporizador temporizadorGoomba;
 
     public Goomba(int x, int y, Sprite sprite, List<Enemigo> listaEnemigoNivel) {
         super(x, y, sprite, new IACaminar(), listaEnemigoNivel);
-        visitor = new VisitorEnemigo(this);
         velocidad = 1;
         temporizadorGoomba = new Temporizador();
     }
