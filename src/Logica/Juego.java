@@ -52,7 +52,7 @@ public class Juego {
         inicializarAtributos();
     }
 
-    private void inicializarAtributos() {
+    public void inicializarAtributos() {
         nivel = 1;
         tiempoJuego = 0;
         frenarTick = false;

@@ -161,6 +161,7 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 
 	@Override
 	public void volverAlPanelAnterior() {
+		miJuego.inicializarAtributos();
 		mostrarPantallaModoJuego();
 	}
 
