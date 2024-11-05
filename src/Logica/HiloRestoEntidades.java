@@ -47,8 +47,8 @@ public class HiloRestoEntidades implements Runnable {
                     juego.eliminarEntidades();
                 }
                 juego.setFrenoElTick(false);
-                renderizar();
                 tick();
+                renderizar();
             }
         }
     }
