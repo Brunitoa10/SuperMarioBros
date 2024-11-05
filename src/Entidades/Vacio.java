@@ -11,8 +11,7 @@ import java.util.List;
 public class Vacio extends EntidadInmovil {
 
     protected Temporizador temporizador;
-    protected String[] frames;
-    protected boolean animacionActiva; // Controla si la animación está activa
+    protected boolean animacionActiva;
     protected List<Vacio> listaVacioNivel;
     protected int cantidadSegundos = 0;
 
