@@ -38,7 +38,7 @@ public class PiranhaPlant extends Enemigo {
 
     public int interactuarConProyectil(Proyectil proyectil) {
         int toRet = 0;
-        if (!estaEscondido()) {
+        if (!estaEscondido() && proyectil.getDireccion() != 0) {
             toRet = super.interactuarConProyectil(proyectil) + ConstantesPuntaje.PUNTAJE_PIRANHA_PLANT_DESTRUIDA;
         }
         return toRet;

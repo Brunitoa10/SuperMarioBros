@@ -55,7 +55,11 @@ public class Goomba extends Enemigo {
     }
 
     public int interactuarConProyectil(Proyectil proyectil) {
-        return super.interactuarConProyectil(proyectil) + ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+        int toReturn = 0;
+        if (proyectil.getDireccion()!=0) {
+            toReturn = ConstantesPuntaje.PUNTAJE_GOOMBA_DESTRUIDO;
+        }
+        return super.interactuarConProyectil(proyectil) + toReturn;
     }
 
 }
