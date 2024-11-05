@@ -167,47 +167,53 @@ public class ControladorColisiones {
 
     public void colisionEnemigoConProyectiles(List<Proyectil> listaProyectiles, List<Enemigo> listaEnemigos) {
         for (Proyectil proyectil : listaProyectiles) {
-            for (Enemigo enemigo : listaEnemigos) {
-                if (proyectil.detectarColision(enemigo)) {
-                    juegoActual.sumarPuntaje(proyectil.accept(enemigo.getVisitorEnemigo()));
-                    if (enemigo.aEliminar()) {
-                        nivelActual.getEntidadesAEliminar().add(enemigo);
+            if(!proyectil.aEliminar()) {
+                for (Enemigo enemigo : listaEnemigos) {
+                    if (proyectil.detectarColision(enemigo)) {
+                        juegoActual.sumarPuntaje(proyectil.accept(enemigo.getVisitorEnemigo()));
+                        if (enemigo.aEliminar()) {
+                            nivelActual.getEntidadesAEliminar().add(enemigo);
+                        }
                     }
                 }
-            }
-            if (proyectil.aEliminar())
+            }else {
                 nivelActual.getEntidadesAEliminar().add(proyectil);
+            }
         }
     }
 
     public void colisionProyectilPlataforma(List<Proyectil> listaProyectils, List<Plataforma> listaPlataformas) {
         for (Proyectil proyectil : listaProyectils) {
-            for (Plataforma plataforma : listaPlataformas) {
-                if (proyectil.detectarColision(plataforma)) {
-                    int PosicionReemplazarX = plataforma.getPosicionEnX();
-                    int PosicionReemplazarY = plataforma.getPosicionEnY();
-                    proyectil.getVisitor().visit(plataforma);
-                    if (plataforma.aEliminar()) {
-                        Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
-                        Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
-                        vacio.registrarObserver(observer);
-                        nivelActual.agregarVacio(vacio);
-                        vacio.setAnimacionFinal(2200);
-                        nivelActual.getEntidadesAEliminar().add(plataforma);
+            if(!proyectil.aEliminar()) {
+                for (Plataforma plataforma : listaPlataformas) {
+                    if (proyectil.detectarColision(plataforma)) {
+                        int PosicionReemplazarX = plataforma.getPosicionEnX();
+                        int PosicionReemplazarY = plataforma.getPosicionEnY();
+                        proyectil.getVisitor().visit(plataforma);
+                        if (plataforma.aEliminar()) {
+                            Vacio vacio = new Vacio(PosicionReemplazarX, PosicionReemplazarY, new Sprite(plataforma.getSprite().getRutaImagen(), 32, 32, plataforma.getSprite().getRutaModo()), nivelActual.getVacios());
+                            Observer observer = juegoActual.getControladorVistaJuego().registrarEntidad(vacio);
+                            vacio.registrarObserver(observer);
+                            nivelActual.agregarVacio(vacio);
+                            vacio.setAnimacionFinal(2200);
+                            nivelActual.getEntidadesAEliminar().add(plataforma);
+                        }
                     }
                 }
+                proyectil.actualizarEntidad();
             }
-            proyectil.actualizarEntidad();
         }
     }
 
     public void colisionProyectilVacio(List<Proyectil> listaProyectil, List<Vacio> listaVacios) {
         for (Proyectil proyectil : listaProyectil) {
-            for (Vacio vacio : listaVacios) {
-                int toleranciaX = 5;
-                if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() <= vacio.getPosicionEnX() + toleranciaX) {
-                    if ((vacio.getHitbox().getMinY() + toleranciaX) > proyectil.getHitbox().getMaxY() && (vacio.getHitbox().getMinY() - toleranciaX <= proyectil.getHitbox().getMaxY())) {
-                        proyectil.getVisitor().visit(vacio);
+            if (!proyectil.aEliminar()) {
+                for (Vacio vacio : listaVacios) {
+                    int toleranciaX = 5;
+                    if ((proyectil.getPosicionEnX() >= vacio.getPosicionEnX() - toleranciaX) && proyectil.getPosicionEnX() <= vacio.getPosicionEnX() + toleranciaX) {
+                        if ((vacio.getHitbox().getMinY() + toleranciaX) > proyectil.getHitbox().getMaxY() && (vacio.getHitbox().getMinY() - toleranciaX <= proyectil.getHitbox().getMaxY())) {
+                            proyectil.getVisitor().visit(vacio);
+                        }
                     }
                 }
             }

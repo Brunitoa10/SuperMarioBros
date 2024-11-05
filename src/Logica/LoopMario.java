@@ -12,10 +12,9 @@ public class LoopMario implements Runnable {
     protected ControladorColisiones controladorColisiones;
     protected int timerAnimacionMorir = 0;
     protected Juego juego;
-    protected Temporizador temporizador;
+    protected Temporizador temporizadorBolasDeFuego;
     protected boolean debeSaltar;
     protected boolean FrenoElTick;
-    protected Temporizador temporizador2;
     protected boolean ejecutando;
     protected Jugador mario;
     protected boolean puedoEliminar = false;
@@ -37,21 +36,20 @@ public class LoopMario implements Runnable {
     }
 
     private void inicializarTemporizadores() {
-        temporizador = new Temporizador();
-        temporizador2 = new Temporizador();
+        temporizadorBolasDeFuego = new Temporizador();
     }
 
     public synchronized void comenzar() {
         ejecutando = true;
         Thread hilo = new Thread(this);
         hilo.start();
-        temporizador.iniciar();
+        temporizadorBolasDeFuego.iniciar();
     }
 
     public synchronized void detener() {
         ejecutando = false;
         scheduler.shutdown();
-        temporizador.pausar();
+        temporizadorBolasDeFuego.pausar();
     }
 
     @Override
@@ -75,7 +73,7 @@ public class LoopMario implements Runnable {
                 juego.checkearGanarNivel(mario);
 
                 if (!juego.animacionGanando())
-                    juego.moverMario(temporizador);
+                    juego.moverMario(temporizadorBolasDeFuego);
                 else
                     juego.hacerAnimacionGanar(mario);
 
