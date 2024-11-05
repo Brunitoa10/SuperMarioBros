@@ -47,7 +47,6 @@ public class GUI implements ControladorVista, ControladorVistaJuego {
 	// De interfaz ControladorDeVistas
 	@Override
 	public void accionarInicioJuego(String modoJuego) {
-		//panelPantallaRanking = panelFactory.crearPanelPantallaRanking(ranking);
 		configuracion.setModoJuego(modoJuego);
 		miJuego.iniciar(modoJuego);
 

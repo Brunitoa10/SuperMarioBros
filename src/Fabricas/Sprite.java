@@ -11,7 +11,6 @@ public class Sprite {
         this.alto = alto;
         this.rutaImagen = ruta_a_imagen;
         this.rutaModo = rutaModo;
-        System.out.println("Ruta de imagen clase Sprite: " + ruta_a_imagen);
     }
 
     public int getAncho() {

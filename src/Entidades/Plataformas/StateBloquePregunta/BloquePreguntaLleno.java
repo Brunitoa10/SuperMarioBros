@@ -15,7 +15,6 @@ public class BloquePreguntaLleno implements EstadoBloquePregunta {
         Entidad powerUp = bloquePregunta.getContenidoBloque();
         powerUp.getHitbox().setBounds(powerUp.getPosicionEnX(), bloquePregunta.getPosicionEnY() - 32, 32, 32);
         powerUp.setPosicionEnY(bloquePregunta.getPosicionEnY() - 32);
-        System.out.println(powerUp.getSprite().getRutaImagen());
         powerUp.actualizarEntidad();
         bloquePregunta.setEstado(new BloquePreguntaVacio(bloquePregunta));
     }

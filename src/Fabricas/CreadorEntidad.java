@@ -111,7 +111,6 @@ public class CreadorEntidad implements FabricaEntidad {
 
     @Override
     public LadrilloSolido crearLadrilloSolido(int x, int y, List<Plataforma> listaPlataformaNivel) {
-        System.out.println(x + "" + y);
         Sprite ladrilloSolidoSprite = fabricaSprites.crearSpriteLadrilloSolido();
         return new LadrilloSolido(x, y, ladrilloSolidoSprite, listaPlataformaNivel);
     }

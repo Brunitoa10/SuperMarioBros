@@ -34,7 +34,6 @@ public class LanzandoBola implements EstadoMovimiento {
                 AFK();
             else
                 EnAire();
-        System.out.println(mario.getDireccion());
         if (mario.getDireccion() == 1) {
             if (mario.estaEnPlataforma()) {
                 mario.getSprite().setRutaImagen(mario.getSprite().getRutaModo() + "/Jugador/PNGMario/MarioFlorDeFuego/TiraFireBallRigth.gif");
