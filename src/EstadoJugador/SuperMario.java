@@ -27,9 +27,6 @@ public class SuperMario implements EstadoJugador {
 
     }
 
-    public void actualizar() {
-
-    }
 
     @Override
     public String inicioAnimacion() {
