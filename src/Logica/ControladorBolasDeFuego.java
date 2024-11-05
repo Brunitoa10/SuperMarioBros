@@ -2,8 +2,6 @@ package Logica;
 
 import Entidades.Jugador;
 import Entidades.Proyectiles.Proyectil;
-import Fabricas.FabricaEntidad;
-import Vista.GUI;
 import Vista.ObserverGrafica.Observer;
 
 public class ControladorBolasDeFuego {
